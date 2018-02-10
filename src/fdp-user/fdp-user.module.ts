@@ -8,12 +8,14 @@ import {FdpUserRoutingModule} from './fdp-user.routing.module';
 import {FdpUserAuthService} from './fdp-user-auth/fdp-user-auth.service';
 import {FdpUserAuthRegisterComponent} from './fdp-user-auth/fdp-user-auth-register/fdp-user-auth-register.component';
 import {FdpUserAuthComponent} from './fdp-user-auth/fdp-user-auth.component';
+import {FdpUserProfileComponent} from './fdp-user-profile/fdp-user-profile.component';
 
 @NgModule({
   declarations: [
     FdpUserLoginComponent,
     FdpUserAuthRegisterComponent,
     FdpUserAuthComponent,
+    FdpUserProfileComponent,
   ],
   exports: [
     FdpUserAuthComponent,

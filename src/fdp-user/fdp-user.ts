@@ -1,15 +1,18 @@
 export class User {
   public username: string;
   public password: string;
+  public email: string;
   private _token: string;
 
   constructor(username: string, password: string) {
     this.username = username;
     this.password = password;
     this._token = localStorage.getItem('token');
+    this.email = null;
   }
 
-  public profile(profile: {any}) {
+  public profile(profile: any) {
+    this.email = profile.email;
     this.username = profile.username;
     this.password = profile.password;
   }

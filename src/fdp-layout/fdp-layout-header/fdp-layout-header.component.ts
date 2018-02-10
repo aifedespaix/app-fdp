@@ -17,12 +17,10 @@ export class FdpHeaderComponent {
   @Output() toggleSlidenav = new EventEmitter<null>();
   @Input() isSlidenavActived: Boolean;
   public isLoginActive: boolean;
-  public authBtnMessage: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private fdpUserAuthService: FdpUserAuthService) {
-    this.authBtnMessage = AUTH_MODE.login;
   }
 
   public appendLogin() {
@@ -37,11 +35,15 @@ export class FdpHeaderComponent {
     this.isLoginActive = false;
   }
 
-  public logoutMode() {
-    this.authBtnMessage = AUTH_MODE.logout;
-  }
-
   public isLoged() {
     return this.fdpUserAuthService.isLoged;
+  }
+
+  public logout() {
+    this.fdpUserAuthService.logout();
+  }
+
+  public username() {
+    return this.fdpUserAuthService.user.username;
   }
 }

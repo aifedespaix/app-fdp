@@ -16,17 +16,19 @@
   </div>
 
   <!--<mat-input-container>-->
-    <!--<input matInput class="fdpInput fdpHeader_search" type="text" placeholder="Rechercher">-->
+  <!--<input matInput class="fdpInput fdpHeader_search" type="text" placeholder="Rechercher">-->
   <!--</mat-input-container>-->
 
   <span class="fdpHeader_login fdpHeader_extremum">
-    <span *ngIf="!isLoged()" class="fdpButton fdpButton_login" i18n="Connexion | Connexion button" (click)="appendLogin()">
-      {{authBtnMessage}}
-    </span>
-    <button *ngIf="isLoged()" mat-button [matMenuTriggerFor]="userMenu">Menu</button>
+
+    <button mat-button *ngIf="!isLoged()" (click)="appendLogin()">
+      Connexion
+    </button>
+
+    <button mat-button *ngIf="isLoged()" [matMenuTriggerFor]="userMenu">{{username()}}</button>
     <mat-menu #userMenu="matMenu">
-      <button mat-menu-item>Profil</button>
-      <button mat-menu-item (click)="fdpUserAuthService.logout()">Déconnexion</button>
+      <button mat-menu-item routerLink="/profil" routerLinkActive="active">Profil</button>
+      <button mat-menu-item (click)="logout()">Déconnexion</button>
     </mat-menu>
 
   </span>
