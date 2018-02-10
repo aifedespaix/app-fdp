@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
 
 import {FdpMaterialModule} from '../fdp-material/fdp-material.module';
 import {FdpUserLoginComponent} from './fdp-user-auth/fdp-user-auth-login/fdp-user-auth-login.component';
@@ -23,8 +24,9 @@ import {FdpUserAuthComponent} from './fdp-user-auth/fdp-user-auth.component';
     FormsModule,
   ],
   providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     FdpUserAuthService,
-  ]
+  ],
 })
 
 export class FdpUserModule {

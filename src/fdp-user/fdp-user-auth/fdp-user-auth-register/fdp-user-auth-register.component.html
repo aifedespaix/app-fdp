@@ -1,10 +1,31 @@
-<form #loginForm{{diagnostic}}="ngForm" (ngSubmit)="register()" class="fdpLogin_form">
+<form
+  #loginForm="ngForm"
+  (ngSubmit)="submitForm(userRegister)"
+  class="fdpLogin_form"
+>
+  <!--[formGroup]="userRegisterForm"-->
+
+  <!--[ngFormOptions]="{updateOn: 'blur'}"-->
   <div class="fdpLogin_fields">
     <mat-input-container>
       <input type="email" placeholder="Email" id="register_email" name="register_email"
              matInput required
              [(ngModel)]="userRegister.email" #username="ngModel">
     </mat-input-container>
+
+    <!--<mat-form-field class="example-full-width">-->
+      <!--<input type="email" placeholder="Email" id="register_email" name="register_email"-->
+             <!--matInput-->
+             <!--formControlName="register_email"-->
+             <!--[(ngModel)]="userRegister.email">-->
+      <!--<mat-hint>Errors appear instantly!</mat-hint>-->
+      <!--&lt;!&ndash;<mat-error *ngIf="userRegisterForm.hasError('email') && !userRegisterForm.hasError('required')">&ndash;&gt;-->
+        <!--&lt;!&ndash;Please enter a valid email address&ndash;&gt;-->
+      <!--&lt;!&ndash;</mat-error>&ndash;&gt;-->
+      <!--&lt;!&ndash;<mat-error *ngIf="userRegisterForm.hasError('required')">&ndash;&gt;-->
+        <!--&lt;!&ndash;Email is <strong>required</strong>&ndash;&gt;-->
+      <!--&lt;!&ndash;</mat-error>&ndash;&gt;-->
+    <!--</mat-form-field>-->
 
     <mat-input-container>
       <input type="text" placeholder="Identifiant" id="register_username" name="register_username"
@@ -28,7 +49,7 @@
   </div>
 
   <div class="fdpLogin_buttons">
-    <button mat-raised-button class="fdpLogin_button-suscribe" i18n="Suscribe | Suscribe button">
+    <button mat-raised-button type="submit" class="fdpLogin_button-suscribe" i18n="Suscribe | Suscribe button" [disabled]="!loginForm.form.valid">
       Inscription
     </button>
   </div>
