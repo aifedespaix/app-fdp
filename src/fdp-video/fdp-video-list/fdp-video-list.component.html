@@ -1,0 +1,15 @@
+<div class="fdpVideoList">
+  <ng-container *ngFor="let video of videos">
+    <a class="fdpVideoList_link fdpBoxBloc" (click)="loadVideo(video.id)" [title]="video.title">
+      <div class="fdpVideoList fdpVideoList_miniature">
+        <img [src]="'https://img.youtube.com/vi/'+video.youtubeId+'/0.jpg'"
+             [alt]="'Miniature vidéo '+video.title">
+      </div>
+      <div class="fdpVideoList_titleBlock">
+        <div class="fdpVideoList_title">
+          {{video.title}}
+        </div>
+      </div>
+    </a>
+  </ng-container>
+</div>

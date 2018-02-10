@@ -1,0 +1,22 @@
+<form #loginForm{{diagnostic}}="ngForm" (ngSubmit)="login()" class="fdpLogin_form">
+  <div class="fdpLogin_fields">
+    <mat-input-container>
+      <input type="text" placeholder="Identifiant" id="login_username" name="login_username" matInput required
+             [(ngModel)]="userLogin.username" #username="ngModel">
+    </mat-input-container>
+
+    <mat-input-container>
+      <input type="password" placeholder="Mot de passe" id="login_password" name="login_password" matInput required
+             [(ngModel)]="userLogin.password" #password="ngModel">
+    </mat-input-container>
+
+    <div *ngIf="error">{{error}}</div>
+  </div>
+
+  <div class="fdpLogin_buttons">
+    <button mat-button class="fdpLogin_button-login" i18n="Connexion | Connexion button">
+      Connexion
+    </button>
+  </div>
+
+</form>

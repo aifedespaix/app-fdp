@@ -1,0 +1,61 @@
+@import '../../fdp-variables';
+
+$loginHeight: 350px;
+$loginWidth: 600px;
+
+.fdpLogin {
+
+  width: $loginWidth;
+  height: $loginHeight;
+
+  padding: 25px;
+
+  &_formGroup {
+    height: 100%;
+    width: 100%;
+  }
+
+  &_form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &_forms {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_button {
+    &s {
+      display: flex;
+      justify-content: center;
+    }
+
+    &-login {
+      background-color: $color_main_medium;
+      color: $color_bg_neutral !important;
+    }
+    &-suscribe {
+      background-color: $color_quaternary_dark;
+      color: $color_bg_neutral !important;
+    }
+  }
+}
+
+@media screen and (max-width: $loginWidth) {
+  .fdpLogin {
+    width: 100%;
+    height: 100%;
+    max-height: $loginHeight;
+    overflow-y: scroll;
+  }
+}

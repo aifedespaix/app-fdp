@@ -1,0 +1,15 @@
+<div class="fdpContent">
+  <h1 class="fdpFont fdpTitle">AifeDesVidéos</h1>
+
+  <div class="fdpVideo" id="fdpVideo">
+    <ng-container *ngIf="video">
+      <div class="fdpVideo_playContainer">
+        <iframe class="fdpVideo_play" width="930" height="529" [src]="unsecureUrl('https://www.youtube-nocookie.com/embed/'+video.youtubeId)" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <h3 class="fdpVideo_title">{{video.title}}</h3>
+    </ng-container>
+  </div>
+
+  <app-fdp-video-list [videos]="videos" (onLoadVideo)="loadVideo($event)"></app-fdp-video-list>
+
+</div>

@@ -1,0 +1,33 @@
+<header class="fdpHeader">
+
+  <div class="fdpHeader_title fdpHeader_extremum">
+    <div class="fdpHeader_button">
+      <button mat-icon-button class="material-icons fdpHeader_menuIcon usn" (click)="pressBtnSlidenav()">
+        <mat-icon aria-label="Toggle menu">{{isSlidenavActived ? "clear" : "menu"}}</mat-icon>
+      </button>
+    </div>
+    <a class="fdpHeader_logoBlock" routerLink="/" routerLinkActive="active">
+      <span class="fdpVC fdpHeader_logo">
+        <img [src]="'assets/images/logos/aifedespaix.png'"
+             alt="Logo AifeDesPaix" title="Accueil AifeDesPaix">
+      </span>
+      <span class="fdpFont">AifeDesPaix</span>
+    </a>
+  </div>
+
+  <!--<mat-input-container>-->
+    <!--<input matInput class="fdpInput fdpHeader_search" type="text" placeholder="Rechercher">-->
+  <!--</mat-input-container>-->
+
+  <span class="fdpHeader_login fdpHeader_extremum">
+    <span *ngIf="!isLoged" class="fdpButton fdpButton_login" i18n="Connexion | Connexion button" (click)="appendLogin()">
+      {{authBtnMessage}}
+    </span>
+    <span *ngIf="isLoged" class="fdpButton fdpButton_login" i18n="Mon Compte | My Account">
+      {{Salut}}
+    </span>
+  </span>
+
+</header>
+
+<app-fdp-user-auth *ngIf="isLoginActive" (onFormExit)="onFormExit()" (onLoginDone)="logoutMode()"></app-fdp-user-auth>

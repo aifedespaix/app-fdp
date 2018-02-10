@@ -1,0 +1,30 @@
+@import "../../fdp-variables";
+
+.fdpArticle {
+
+  background-color: $color_bg_neutral;
+  padding: 10px;
+
+  &_ {
+    &title {
+      height: 90px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      //background-color: fade_out($color_main, 0.5);
+      color: #111;
+
+      &Image {
+        height: 250px;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+}

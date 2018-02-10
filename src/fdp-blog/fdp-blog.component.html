@@ -1,0 +1,22 @@
+<div class="fdpContent">
+
+  <h1 class="fdpFont fdpTitle">AifeDesBlog</h1>
+
+  <div class="fdpBlog">
+
+    <div class="fdpBlog_articlesList usn">
+      <ng-container *ngFor="let article of articles">
+        <a class="fdpArticlePrv fdpBoxBloc" [routerLink]="['/blog/article/', article.id]" routerLinkActive="active">
+          <div class="fdpArticlePrv_header">
+            <img class="" src="{{article.image.url}}" alt="{{article.image.alt}}">
+          </div>
+          <div class="fdpArticlePrv_content">
+            <h3>{{article.title}}</h3>
+            <div class="fdpArticlePrv_description">{{article.description}}</div>
+          </div>
+        </a>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

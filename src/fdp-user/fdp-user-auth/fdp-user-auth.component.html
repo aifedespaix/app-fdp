@@ -1,0 +1,17 @@
+<div class="fdpModale" (click)="closeModale()">
+  <div class="fdpLogin fdpBoxBloc fdpBoxBloc-noAnim" (click)="$event.stopPropagation()">
+
+    <div class="fdpLogin_formGroup">
+      <h3 class="fdpTitle fdpFont fdpNoMargin">AifeDesConnexion</h3>
+      <div class="fdpLogin_forms">
+        <div class="fdpMidWidth">
+          <app-fdp-user-auth-login (onLoginDone)="closeModale()"></app-fdp-user-auth-login>
+        </div>
+        <div class="fdpMidWidth">
+          <app-fdp-user-auth-register (onRegisterDone)="closeModale()"></app-fdp-user-auth-register>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

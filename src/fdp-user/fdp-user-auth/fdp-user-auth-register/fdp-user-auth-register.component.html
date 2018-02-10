@@ -1,0 +1,37 @@
+<form #loginForm{{diagnostic}}="ngForm" (ngSubmit)="register()" class="fdpLogin_form">
+  <div class="fdpLogin_fields">
+    <mat-input-container>
+      <input type="email" placeholder="Email" id="register_email" name="register_email"
+             matInput required
+             [(ngModel)]="userRegister.email" #username="ngModel">
+    </mat-input-container>
+
+    <mat-input-container>
+      <input type="text" placeholder="Identifiant" id="register_username" name="register_username"
+             matInput required
+             [(ngModel)]="userRegister.username" #username="ngModel">
+    </mat-input-container>
+
+    <mat-input-container>
+      <input type="password" placeholder="Mot de passe" id="register_password" name="register_password"
+             matInput required
+             [(ngModel)]="userRegister.password" #password="ngModel">
+    </mat-input-container>
+
+    <mat-input-container>
+      <input type="password" placeholder="Confirmation mot de passe" id="register_confirmPassword" name="register_confirmPassword"
+             matInput required
+             [(ngModel)]="userRegister.confirmPassword" #password="ngModel">
+    </mat-input-container>
+
+    <div *ngIf="error">{{error}}</div>
+  </div>
+
+  <div class="fdpLogin_buttons">
+    <button mat-raised-button class="fdpLogin_button-suscribe" i18n="Suscribe | Suscribe button">
+      Inscription
+    </button>
+  </div>
+
+</form>
+

@@ -1,0 +1,64 @@
+@import "../../fdp-variables";
+
+$miniatureWidth: 300px;
+$miniatureHoverBorder: 5px;
+
+.fdpVideoList {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  &_ {
+
+    &link {
+      cursor: pointer;
+      width: $miniatureWidth;
+      overflow: hidden;
+      margin: 10px;
+      background-color: $color_bg_neutral;
+
+      display: flex;
+      flex-direction: column;
+
+      &:hover {
+          filter: saturate(150%);
+      }
+    }
+
+    &miniature {
+      width: 100%;
+      height: 180px;
+
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+
+      margin-bottom: $miniatureHoverBorder;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &titleBlock {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #111;
+    }
+
+    &title {
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      height: 2em;
+      line-height: 1em;
+      max-lines: 2;
+      padding: 2px 5px;
+      overflow: hidden;
+    }
+  }
+}
