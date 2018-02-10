@@ -20,12 +20,15 @@
   <!--</mat-input-container>-->
 
   <span class="fdpHeader_login fdpHeader_extremum">
-    <span *ngIf="!isLoged" class="fdpButton fdpButton_login" i18n="Connexion | Connexion button" (click)="appendLogin()">
+    <span *ngIf="!isLoged()" class="fdpButton fdpButton_login" i18n="Connexion | Connexion button" (click)="appendLogin()">
       {{authBtnMessage}}
     </span>
-    <span *ngIf="isLoged" class="fdpButton fdpButton_login" i18n="Mon Compte | My Account">
-      {{Salut}}
-    </span>
+    <button *ngIf="isLoged()" mat-button [matMenuTriggerFor]="userMenu">Menu</button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item>Profil</button>
+      <button mat-menu-item (click)="fdpUserAuthService.logout()">Déconnexion</button>
+    </mat-menu>
+
   </span>
 
 </header>

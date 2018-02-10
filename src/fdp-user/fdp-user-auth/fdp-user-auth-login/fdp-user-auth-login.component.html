@@ -1,20 +1,26 @@
-<form #loginForm{{diagnostic}}="ngForm" (ngSubmit)="login()" class="fdpLogin_form">
-  <div class="fdpLogin_fields">
+<form class="fdpAuth_form" #loginForm="ngForm" (ngSubmit)="login()" [formGroup]="userLoginFormGroup">
+
+  <div class="fdpAuth_fields">
     <mat-input-container>
       <input type="text" placeholder="Identifiant" id="login_username" name="login_username" matInput required
-             [(ngModel)]="userLogin.username" #username="ngModel">
+             formControlName="login_username"
+             [(ngModel)]="userLogin.username">
+      <mat-hint>Au moins 3 caractères</mat-hint>
     </mat-input-container>
 
     <mat-input-container>
-      <input type="password" placeholder="Mot de passe" id="login_password" name="login_password" matInput required
-             [(ngModel)]="userLogin.password" #password="ngModel">
+      <input type="password" placeholder="Mot de passe" id="login_password" name="login_password"
+             matInput required
+             formControlName="login_password"
+             [(ngModel)]="userLogin.password">
+      <mat-hint>Au moins 8 caractères</mat-hint>
     </mat-input-container>
 
-    <div *ngIf="error">{{error}}</div>
+    <div *ngIf="error" class="fdpError">{{error}}</div>
   </div>
 
-  <div class="fdpLogin_buttons">
-    <button mat-button class="fdpLogin_button-login" i18n="Connexion | Connexion button">
+  <div class="fdpAuth_buttons">
+    <button mat-button class="fdpAuth_button-login" i18n="Connexion | Connexion button" [disabled]="!userLoginFormGroup.valid">
       Connexion
     </button>
   </div>

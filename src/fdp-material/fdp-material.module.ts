@@ -8,7 +8,7 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatButtonToggleModule,
-  MatIconModule,
+  MatIconModule, MatTabsModule, MatMenuModule,
 } from '@angular/material';
 
 @NgModule({
@@ -21,6 +21,8 @@ import {
     MatToolbarModule,
     MatButtonToggleModule,
     MatIconModule,
+    MatTabsModule,
+    MatMenuModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -31,6 +33,8 @@ import {
     MatToolbarModule,
     MatButtonToggleModule,
     MatIconModule,
+    MatTabsModule,
+    MatMenuModule,
   ],
   declarations: []
 })

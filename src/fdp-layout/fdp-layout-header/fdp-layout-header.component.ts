@@ -14,22 +14,19 @@ const AUTH_MODE = {
 })
 export class FdpHeaderComponent {
 
-  public isLoginActive: boolean;
   @Output() toggleSlidenav = new EventEmitter<null>();
   @Input() isSlidenavActived: Boolean;
+  public isLoginActive: boolean;
   public authBtnMessage: string;
-  public isLoged: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private fdpUserAuthService: FdpUserAuthService) {
-    this.isLoged = this.fdpUserAuthService.isLoged;
     this.authBtnMessage = AUTH_MODE.login;
   }
 
   public appendLogin() {
     this.isLoginActive = !this.isLoginActive;
-    console.log(this.isLoginActive);
   }
 
   public pressBtnSlidenav() {
@@ -42,5 +39,9 @@ export class FdpHeaderComponent {
 
   public logoutMode() {
     this.authBtnMessage = AUTH_MODE.logout;
+  }
+
+  public isLoged() {
+    return this.fdpUserAuthService.isLoged;
   }
 }

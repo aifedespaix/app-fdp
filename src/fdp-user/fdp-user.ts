@@ -1,14 +1,17 @@
 export class User {
-  public id: string;
   public username: string;
   public password: string;
   private _token: string;
 
   constructor(username: string, password: string) {
-    this.id = null;
     this.username = username;
     this.password = password;
     this._token = localStorage.getItem('token');
+  }
+
+  public profile(profile: {any}) {
+    this.username = profile.username;
+    this.password = profile.password;
   }
 
   get token(): string {
@@ -18,5 +21,12 @@ export class User {
   set token(value: string) {
     this._token = value;
     localStorage.setItem('token', value);
+  }
+
+  public reset() {
+    this.username = null;
+    this.password = null;
+    this._token = null;
+    localStorage.setItem('token', null)
   }
 }

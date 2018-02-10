@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FdpUserAuthService} from '../fdp-user-auth.service';
 import {FdpUserAuthLogin} from './fdp-user-auth-login';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-fdp-user-auth-login',
@@ -11,25 +12,27 @@ export class FdpUserLoginComponent implements OnInit {
 
   @Output() onLoginDone: EventEmitter<boolean> = new EventEmitter();
   public userLogin: FdpUserAuthLogin;
+  public userLoginFormGroup: FormGroup;
   public error: String;
 
   constructor(private fdpAuthService: FdpUserAuthService) {
     this.userLogin = new FdpUserAuthLogin('', '');
+    this.userLoginFormGroup = new FormGroup({
+      login_username: new FormControl(this.userLogin.username, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      login_password: new FormControl(this.userLogin.password, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+    })
   }
 
   ngOnInit() {
   }
 
   public login() {
-    if (this.userLogin.username.length < 5) {
-      this.error = 'Identifiant trop court';
-      return;
-    }
-    if (this.userLogin.password.length < 8) {
-      this.error = 'Mot de passe trop court';
-      return;
-    }
-
     this.fdpAuthService.login(this.userLogin.username, this.userLogin.password)
       .subscribe(({success, error}) => {
           if (success) {

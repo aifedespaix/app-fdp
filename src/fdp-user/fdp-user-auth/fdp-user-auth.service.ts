@@ -58,11 +58,6 @@ export class FdpUserAuthService {
     return this._user;
   }
 
-  /**
-   * @param {string} username
-   * @param {string} password
-   * @returns {Observable<{success: boolean; error: string}>}
-   */
   public login(username: string, password: string): Observable<{ success: boolean, error: string }> {
     return this.apollo.query({
       query: this.loginRequest,
@@ -88,9 +83,10 @@ export class FdpUserAuthService {
     );
   }
 
-
-  logout() {
+  public logout() {
     this.apollo.getClient().resetStore();
+    this._user.reset();
+    this.isLoged = false;
   }
 
   public register(email: string, username: string, password: string): Observable<{ success: boolean, error: string }> {
@@ -109,7 +105,6 @@ export class FdpUserAuthService {
           return {success: false, error: errors[0].message}
         }
         if (data && data.register) {
-          this.login(username, password);
           return {success: true, error: null};
         }
         return {success: false, error: 'erreur chelou lol'};
@@ -125,13 +120,10 @@ export class FdpUserAuthService {
       query: this.profileRequest,
       errorPolicy: 'all'
     }).subscribe(({data, errors}: any) => {
-      console.log('okkkk');
       if (errors) {
         console.log(errors);
       } else if (data && data.profile) {
-        console.log(this._user);
-        this._user = data.profile;
-        console.log(this._user);
+        this._user.profile(data.profile);
       }
     });
   }

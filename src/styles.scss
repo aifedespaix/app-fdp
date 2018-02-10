@@ -11,6 +11,10 @@ html, body {
   overflow: hidden;
 }
 
+.mat-tab-group {
+  height: 100%;
+}
+
 a {
   @extend .mainColor;
   text-decoration: none;
@@ -60,6 +64,14 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  
+  &Error {
+    color: #96000a;
+  }
+
+  &Clickable {
+    cursor: pointer;
   }
 
   &MidWidth {
