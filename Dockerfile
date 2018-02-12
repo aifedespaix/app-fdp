@@ -13,15 +13,14 @@ RUN set -ex \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update && apt-get install yarn -y
 
-RUN yarn
-RUN yarn build --prod --build-optimizer
-RUN ls -la
+#RUN yarn
+#RUN yarn build --prod --build-optimizer
+#RUN ls -la
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:1.13
 
-WORKDIR /
 #COPY --from=node /app/dist/ /usr/share/nginx/html
-COPY --from=node /app/dist/ /usr/share/nginx/html
+COPY dist/ /usr/share/nginx/html
 
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
