@@ -3,14 +3,14 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/delay';
 import {Apollo} from 'apollo-angular';
 
-import {User} from '../fdp-user';
+import {FdpUserAuth} from '../fdp-user';
 import gql from 'graphql-tag';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class FdpUserAuthService {
 
-  private _user: User;
+  private _user: FdpUserAuth;
   public isLoged: boolean;
 
   private loginRequest = gql`
@@ -50,11 +50,11 @@ export class FdpUserAuthService {
   `;
 
   constructor(private apollo: Apollo) {
-    this._user = new User('', '');
+    this._user = new FdpUserAuth('', '');
     this.isLoged = false;
   }
 
-  get user(): User {
+  get user(): FdpUserAuth {
     return this._user;
   }
 
@@ -65,7 +65,7 @@ export class FdpUserAuthService {
         username: username,
         password: password,
       },
-      errorPolicy: 'all'
+      errorPolicy: 'all',
     }).map(
       ({data, errors}: any) => {
         if (errors) {
@@ -79,7 +79,7 @@ export class FdpUserAuthService {
           return {success: true, error: null};
         }
         return {success: false, error: 'erreur chelou lol'};
-      }
+      },
     );
   }
 
@@ -98,7 +98,7 @@ export class FdpUserAuthService {
         username,
         password,
       },
-      errorPolicy: 'all'
+      errorPolicy: 'all',
     }).map(
       ({data, errors}: any) => {
         if (errors) {
@@ -108,17 +108,14 @@ export class FdpUserAuthService {
           return {success: true, error: null};
         }
         return {success: false, error: 'erreur chelou lol'};
-      }
+      },
     );
   }
 
-  /**
-   * @returns {Promise<void>}
-   */
   private async updateUser() {
     this.apollo.query({
       query: this.profileRequest,
-      errorPolicy: 'all'
+      errorPolicy: 'all',
     }).subscribe(({data, errors}: any) => {
       if (errors) {
         console.log(errors);

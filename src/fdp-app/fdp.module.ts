@@ -70,8 +70,7 @@ import {environment} from '../environments/environment';
     FdpNigmeModule,
     // Fdp Video
     FdpVideoModule,
-
-    // Fdp User
+    // Fdp FdpUserAuth
     FdpUserModule,
 
     // Routing

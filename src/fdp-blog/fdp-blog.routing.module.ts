@@ -1,7 +1,7 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {FdpBlogComponent} from "./fdp-blog.component";
-import {FdpBlogArticleComponent} from "./fdp-blog-article/fdp-blog-article.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {FdpBlogComponent} from './fdp-blog.component';
+import {FdpBlogArticleComponent} from './fdp-blog-article/fdp-blog-article.component';
 
 const BLOG_ROUTES: Routes = [
   {
@@ -9,7 +9,7 @@ const BLOG_ROUTES: Routes = [
     children: [
       {path: '', component: FdpBlogComponent, data: {title: 'Blog'}},
       {path: 'article/:id', component: FdpBlogArticleComponent, data: {title: 'Article'}},
-    ]
+    ],
   },
 ];
 
@@ -17,7 +17,7 @@ const BLOG_ROUTES: Routes = [
   imports: [
     RouterModule.forChild(BLOG_ROUTES),
   ],
-  exports: [
-  ]
+  exports: [],
 })
-export class FdpBlogRoutingModule { }
+export class FdpBlogRoutingModule {
+}

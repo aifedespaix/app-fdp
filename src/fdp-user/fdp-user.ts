@@ -1,4 +1,4 @@
-export class User {
+export class FdpUserAuth {
   public username: string;
   public password: string;
   public email: string;
