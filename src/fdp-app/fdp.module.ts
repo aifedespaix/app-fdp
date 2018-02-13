@@ -30,6 +30,7 @@ import {FdpUserModule} from '../fdp-user/fdp-user.module';
 import {FdpVideoModule} from '../fdp-video/fdp-video.module';
 import {FdpBoxModule} from '../fdp-box/fdp-box.module';
 import {FdpNigmeModule} from '../fdp-nigme/fdp-nigme.module';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -86,9 +87,10 @@ import {FdpNigmeModule} from '../fdp-nigme/fdp-nigme.module';
 export class FdpModule {
   constructor(apollo: Apollo,
               httpLink: HttpLink) {
+    const apiUrl = environment.production ? 'https://api.aifedespaix.com/graphql' : 'http://localhost:3000/graphql';
+    // const apiUrl = 'https://api.aifedespaix.com/graphql';
     const http = httpLink.create({
-      uri: 'https://api.aifedespaix.com/graphql',
-      // credentials: 'same-origin'
+      uri: apiUrl,
     });
 
     const authLink = setContext((_, {headers}) => {
