@@ -87,7 +87,7 @@ export class FdpModule {
   constructor(apollo: Apollo,
               httpLink: HttpLink) {
     const http = httpLink.create({
-      uri: 'https://api.aifedespaix.com:3000/graphql',
+      uri: 'https://api.aifedespaix.com/graphql',
       // credentials: 'same-origin'
     });
 
