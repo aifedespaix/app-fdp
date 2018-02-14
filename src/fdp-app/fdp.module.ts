@@ -87,7 +87,8 @@ import {FdpUserAuthService} from '../fdp-user/fdp-user-auth/fdp-user-auth.servic
 export class FdpModule {
   constructor(apollo: Apollo,
               httpLink: HttpLink,
-              fdpUserAuthService: FdpUserAuthService) {
+              // fdpUserAuthService: FdpUserAuthService
+  ) {
     const apiUrl = environment.production ? 'https://api.aifedespaix.com/graphql' : 'http://localhost:3000/graphql';
     const http = httpLink.create({
       uri: apiUrl,
@@ -96,7 +97,8 @@ export class FdpModule {
 
     const authLink = setContext((_, {headers}) => {
       // get the authentication token from local storage if it exists
-      const token = fdpUserAuthService.user.token;
+      // const token = fdpUserAuthService.user.token;
+      const token = localStorage.getItem('token');
       // return the headers to the context so httpLink can read them
       // in this example we assume headers property exists
       // and it is an instance of HttpHeaders

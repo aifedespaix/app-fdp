@@ -51,7 +51,7 @@ export class FdpUserAuthService {
 
   constructor(private apollo: Apollo) {
     this._user = new FdpUserAuth('', '');
-    this.isLoged = false;
+    this.verifyLogin();
   }
 
   get user(): FdpUserAuth {
@@ -112,18 +112,38 @@ export class FdpUserAuthService {
     );
   }
 
-  private async updateUser() {
-    this.apollo.query({
+  private async updateUser(): Observable<{ success: boolean, error: string }> {
+    return this.apollo.query({
       query: this.profileRequest,
       variables: [],
       errorPolicy: 'all',
-    }).subscribe(({data, errors}: any) => {
-      if (errors) {
-        console.log(errors);
-      } else if (data && data.profile) {
-        this._user.profile(data.profile);
-      }
-    });
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, errors: errors};
+        } else if (data && data.profile) {
+          this._user.profile(data.profile);
+          return {success: true, errors: null};
+        }
+      });
   }
 
+  private verifyLogin() {
+    if (this.user.token !== null) {
+      this.updateUser()
+        .subscribe(
+          res => {
+            console.log('res');
+            console.log(res);
+          },
+          err => {
+            console.log('err');
+            console.log(err);
+          });
+
+      this.isLoged = true;
+    } else {
+      this.isLoged = false;
+    }
+  }
 }
