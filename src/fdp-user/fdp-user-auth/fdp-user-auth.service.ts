@@ -112,36 +112,35 @@ export class FdpUserAuthService {
     );
   }
 
-  private async updateUser(): Observable<{ success: boolean, error: string }> {
+  private updateUser() {
     return this.apollo.query({
       query: this.profileRequest,
       variables: [],
       errorPolicy: 'all',
-    }).map(
-      ({data, errors}: any) => {
-        if (errors) {
-          return {success: false, errors: errors};
-        } else if (data && data.profile) {
-          this._user.profile(data.profile);
-          return {success: true, errors: null};
-        }
-      });
+    })
+      .map(
+        ({data, errors}: any) => {
+          if (errors) {
+            throw Error('Token pas bonne'); // En vrai c'ets aps obligé que ce soit ça l'erreur mdr
+          }
+          if (data && data.profile) {
+            this._user.profile(data.profile);
+            return {success: true, errors: null};
+          }
+          throw Error('Erreur chelou');
+        });
   }
 
   private verifyLogin() {
     if (this.user.token !== null) {
       this.updateUser()
         .subscribe(
-          res => {
-            console.log('res');
-            console.log(res);
+          data => {
+            this.isLoged = true;
           },
           err => {
-            console.log('err');
-            console.log(err);
+            this.isLoged = false;
           });
-
-      this.isLoged = true;
     } else {
       this.isLoged = false;
     }
