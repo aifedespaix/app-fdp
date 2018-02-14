@@ -51,7 +51,7 @@ export class FdpUserAuthService {
 
   constructor(private apollo: Apollo) {
     this._user = new FdpUserAuth('', '');
-    this.isLoged = false;
+    this.verifyLogin();
   }
 
   get user(): FdpUserAuth {
@@ -112,18 +112,37 @@ export class FdpUserAuthService {
     );
   }
 
-  private async updateUser() {
-    this.apollo.query({
+  private updateUser() {
+    return this.apollo.query({
       query: this.profileRequest,
       variables: [],
       errorPolicy: 'all',
-    }).subscribe(({data, errors}: any) => {
-      if (errors) {
-        console.log(errors);
-      } else if (data && data.profile) {
-        this._user.profile(data.profile);
-      }
-    });
+    })
+      .map(
+        ({data, errors}: any) => {
+          if (errors) {
+            throw Error('Token pas bonne'); // En vrai c'ets aps obligé que ce soit ça l'erreur mdr
+          }
+          if (data && data.profile) {
+            this._user.profile(data.profile);
+            return {success: true, errors: null};
+          }
+          throw Error('Erreur chelou');
+        });
   }
 
+  private verifyLogin() {
+    if (this.user.token !== null) {
+      this.updateUser()
+        .subscribe(
+          data => {
+            this.isLoged = true;
+          },
+          err => {
+            this.isLoged = false;
+          });
+    } else {
+      this.isLoged = false;
+    }
+  }
 }
