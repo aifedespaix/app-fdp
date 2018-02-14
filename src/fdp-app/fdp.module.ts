@@ -91,6 +91,7 @@ export class FdpModule {
     const apiUrl = environment.production ? 'https://api.aifedespaix.com/graphql' : 'http://localhost:3000/graphql';
     const http = httpLink.create({
       uri: apiUrl,
+      withCredentials: true
     });
 
     const authLink = setContext((_, {headers}) => {
@@ -103,7 +104,7 @@ export class FdpModule {
         headers: {
           ...headers,
           authorization: token ? `${token}` : '',
-        }
+        },
       };
     });
     apollo.create({

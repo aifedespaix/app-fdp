@@ -115,6 +115,7 @@ export class FdpUserAuthService {
   private async updateUser() {
     this.apollo.query({
       query: this.profileRequest,
+      variables: [],
       errorPolicy: 'all',
     }).subscribe(({data, errors}: any) => {
       if (errors) {
