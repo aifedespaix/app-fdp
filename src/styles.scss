@@ -65,7 +65,7 @@ a {
     flex-direction: column;
     justify-content: center;
   }
-  
+
   &Error {
     color: #96000a;
   }
@@ -76,6 +76,16 @@ a {
 
   &MidWidth {
     width: 50%;
+  }
+
+  &Txt {
+    &-small {
+      font-size: 9px;
+    }
+  }
+
+  &Tac {
+    text-align: center;
   }
 
   &Button {

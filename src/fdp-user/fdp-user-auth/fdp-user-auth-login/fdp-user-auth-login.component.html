@@ -1,4 +1,5 @@
-<form class="fdpAuth_form" #loginForm="ngForm" (ngSubmit)="login()" [formGroup]="userLoginFormGroup">
+<form *ngIf="typeForm === TYPE_FORM.login" class="fdpAuth_form" #loginForm="ngForm" (ngSubmit)="login()"
+      [formGroup]="userLoginFormGroup">
 
   <div class="fdpAuth_fields">
     <mat-input-container>
@@ -20,9 +21,31 @@
   </div>
 
   <div class="fdpAuth_buttons">
-    <button mat-button class="fdpAuth_button fdpAuth_button-login" i18n="Connexion | Connexion button" [disabled]="!userLoginFormGroup.valid">
+    <button mat-button class="fdpAuth_button fdpAuth_button-login" [disabled]="!userLoginFormGroup.valid">
       Connexion
     </button>
+    <div class="fdpTxt fdpTxt-small fdpTac"><a (click)="switchForgotPassword()">Mot de passe oublié</a></div>
   </div>
 
+</form>
+
+<form *ngIf="typeForm === TYPE_FORM.forgotPassword" class="fdpAuth_form" #forgotPasswordForm="ngForm"
+      (ngSubmit)="forgotPassword()" [formGroup]="userForgotPasswordFormGroup">
+
+  <mat-input-container>
+    <input type="email" placeholder="Email" id="forgotPassword_email" name="forgotPassword_email"
+           formControlName="forgotPassword_email"
+           matInput required
+           [(ngModel)]="userForgotPassword.email">
+    <mat-error *ngIf="userForgotPasswordFormGroup.controls.forgotPassword_email.errors">
+      <span *ngIf="userForgotPasswordFormGroup.controls.forgotPassword_email.errors.email">Email invalide</span>
+    </mat-error>
+  </mat-input-container>
+
+  <div class="fdpAuth_buttons">
+    <button mat-button class="fdpAuth_button fdpAuth_button-submit" [disabled]="!userForgotPasswordFormGroup.valid">
+      Mot de passe oublié
+    </button>
+    <button mat-button class="fdpAuth_button" (click)="switchLogin()">Retour</button>
+  </div>
 </form>

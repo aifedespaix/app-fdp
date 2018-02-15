@@ -23,6 +23,12 @@ export class FdpUserAuthService {
       }
     }
   `;
+
+  private forgotPasswordQuery = gql`
+    query forgotPassword($email: String!) {
+      forgotPassword(data: {email: $email})
+    }
+  `;
   private registerMutation = gql`
     mutation register($email: String! $username: String! $password: String!) {
       register(data: {username: $username, password: $password, email: $email}) {
@@ -144,5 +150,24 @@ export class FdpUserAuthService {
     } else {
       this.isLoged = false;
     }
+  }
+
+  forgotPassword(email: string) {
+    return this.apollo.query({
+      query: this.forgotPasswordQuery,
+      variables: {email},
+      errorPolicy: 'all',
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, error: errors[0].message}
+        }
+        if (data && data.forgotPassword) {
+          return {success: true, error: null}
+        }
+        return {success: false, error: 'erreur chelou lol'};
+      },
+    );
+
   }
 }

@@ -28,7 +28,9 @@ $maxLoginWidth: 600px;
     margin-top: 5px;
 
     &s {
+      margin-top: 8px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
     }
 
@@ -36,7 +38,7 @@ $maxLoginWidth: 600px;
       background-color: $color_main_medium;
       color: $color_bg_neutral !important;
     }
-    &-suscribe {
+    &-submit {
       background-color: $color_quaternary_dark;
       color: $color_bg_neutral !important;
     }

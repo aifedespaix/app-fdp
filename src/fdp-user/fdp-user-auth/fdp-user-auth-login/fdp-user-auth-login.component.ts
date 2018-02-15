@@ -1,7 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FdpUserAuthService} from '../fdp-user-auth.service';
-import {FdpUserAuthLogin} from './fdp-user-auth-login';
+import {FdpUserAuthLogin, FdpUserForgotPassword} from './fdp-user-auth-login';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-fdp-user-auth-login',
@@ -10,10 +11,19 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class FdpUserLoginComponent implements OnInit {
 
+  private typeForm: number;
   @Output() onLoginDone: EventEmitter<boolean> = new EventEmitter();
   public userLogin: FdpUserAuthLogin;
   public userLoginFormGroup: FormGroup;
+
+  public userForgotPassword: FdpUserForgotPassword;
+  public userForgotPasswordFormGroup: FormGroup;
   public error: String;
+
+  readonly TYPE_FORM = {
+    login: 0,
+    forgotPassword: 1,
+  };
 
   constructor(private fdpAuthService: FdpUserAuthService) {
     this.userLogin = new FdpUserAuthLogin('', '');
@@ -26,7 +36,17 @@ export class FdpUserLoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(8),
       ]),
-    })
+    });
+
+    this.userForgotPassword = new FdpUserForgotPassword('');
+    this.userForgotPasswordFormGroup = new FormGroup({
+      forgotPassword_email: new FormControl(this.userForgotPassword.email, [
+        Validators.required,
+        Validators.email,
+      ]),
+    },);
+
+    this.switchLogin();
   }
 
   ngOnInit() {
@@ -47,6 +67,31 @@ export class FdpUserLoginComponent implements OnInit {
         });
 
     return false;
+  }
+
+  public forgotPassword() {
+    this.fdpAuthService.forgotPassword(this.userForgotPassword.email)
+      .subscribe(({success, error}) => {
+          if (success) {
+            this.onLoginDone.emit(true);
+          } else {
+            this.error = error;
+          }
+        },
+        err => {
+          console.log('err');
+          console.log(err);
+        });
+
+    return false;
+  }
+
+  public switchForgotPassword() {
+    this.typeForm = this.TYPE_FORM.forgotPassword;
+  }
+
+  public switchLogin() {
+    this.typeForm = this.TYPE_FORM.login;
   }
 
 }
