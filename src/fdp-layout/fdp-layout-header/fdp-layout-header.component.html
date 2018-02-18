@@ -25,7 +25,7 @@
       Connexion
     </button>
 
-    <button mat-button *ngIf="isLoged()" [matMenuTriggerFor]="userMenu">{{username()}}</button>
+    <button mat-button *ngIf="isLoged()" [matMenuTriggerFor]="userMenu">{{logedUser().username}}</button>
     <mat-menu #userMenu="matMenu">
       <button mat-menu-item routerLink="/profil" routerLinkActive="active">Profil</button>
       <button mat-menu-item (click)="logout()">Déconnexion</button>
@@ -35,4 +35,4 @@
 
 </header>
 
-<app-fdp-user-auth *ngIf="isLoginActive" (onFormExit)="onFormExit()" (onLoginDone)="logoutMode()"></app-fdp-user-auth>
+<app-fdp-user-auth [hidden]="!isAuthActive" (onFormExit)="onFormExit()" (onLoginDone)="logoutMode()"></app-fdp-user-auth>

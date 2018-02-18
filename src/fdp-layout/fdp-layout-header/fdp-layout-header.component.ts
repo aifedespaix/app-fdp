@@ -16,7 +16,7 @@ export class FdpHeaderComponent {
 
   @Output() toggleSlidenav = new EventEmitter<null>();
   @Input() isSlidenavActived: Boolean;
-  public isLoginActive: boolean;
+  public isAuthActive: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -24,7 +24,7 @@ export class FdpHeaderComponent {
   }
 
   public appendLogin() {
-    this.isLoginActive = !this.isLoginActive;
+    this.isAuthActive = !this.isAuthActive;
   }
 
   public pressBtnSlidenav() {
@@ -32,7 +32,7 @@ export class FdpHeaderComponent {
   }
 
   public onFormExit() {
-    this.isLoginActive = false;
+    this.isAuthActive = false;
   }
 
   public isLoged() {
@@ -43,7 +43,7 @@ export class FdpHeaderComponent {
     this.fdpUserAuthService.logout();
   }
 
-  public username() {
-    return this.fdpUserAuthService.user.username;
+  public logedUser() {
+    return this.fdpUserAuthService.user;
   }
 }

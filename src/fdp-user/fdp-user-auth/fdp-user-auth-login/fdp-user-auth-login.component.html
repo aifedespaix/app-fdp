@@ -1,8 +1,9 @@
-<form class="fdpAuth_form" #loginForm="ngForm" (ngSubmit)="login()" [formGroup]="userLoginFormGroup">
+<form *ngIf="typeForm === TYPE_FORM.login" class="fdpAuth_form" #loginForm="ngForm" (ngSubmit)="login()"
+      [formGroup]="userLoginFormGroup">
 
   <div class="fdpAuth_fields">
     <mat-input-container>
-      <input type="text" placeholder="Identifiant" id="login_username" name="login_username" matInput required
+      <input type="text" placeholder="Identifiant ou Mail" id="login_username" name="login_username" matInput required
              formControlName="login_username"
              [(ngModel)]="userLogin.username">
       <mat-hint>Au moins 3 caractères</mat-hint>
@@ -20,9 +21,33 @@
   </div>
 
   <div class="fdpAuth_buttons">
-    <button mat-button class="fdpAuth_button fdpAuth_button-login" i18n="Connexion | Connexion button" [disabled]="!userLoginFormGroup.valid">
+    <button mat-raised-button color="primary" [disabled]="userLoginFormGroup.invalid">
       Connexion
     </button>
+    <div class="fdpTxt fdpTxt-small fdpTac"><a (click)="switchForgotPassword()">Mot de passe oublié</a></div>
   </div>
 
+</form>
+
+<form *ngIf="typeForm === TYPE_FORM.forgotPassword" class="fdpAuth_form" #forgotPasswordForm="ngForm"
+      (ngSubmit)="forgotPassword()" [formGroup]="userForgotPasswordFormGroup">
+
+  <mat-input-container>
+    <input type="email" placeholder="Email" id="forgotPassword_email" name="forgotPassword_email"
+           formControlName="forgotPassword_email"
+           matInput required
+           [(ngModel)]="userForgotPassword.email">
+    <mat-error *ngIf="userForgotPasswordFormGroup.controls.forgotPassword_email.errors">
+      <span *ngIf="userForgotPasswordFormGroup.controls.forgotPassword_email.errors.email">Email invalide</span>
+    </mat-error>
+  </mat-input-container>
+
+  <div *ngIf="error" class="fdpError">{{error}}</div>
+
+  <div class="fdpAuth_buttons">
+    <button mat-raised-button color="primary" [disabled]="userForgotPasswordFormGroup.invalid">
+      Mot de passe oublié
+    </button>
+    <button mat-button class="fdpAuth_button" (click)="switchLogin()">Retour</button>
+  </div>
 </form>

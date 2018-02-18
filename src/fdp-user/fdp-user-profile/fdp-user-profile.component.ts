@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FdpUserAuthService} from '../fdp-user-auth/fdp-user-auth.service';
-import {FdpUserAuth} from '../fdp-user';
+import {FdpUser} from '../fdp-user';
 
 @Component({
   selector: 'app-fdp-user-profile',
@@ -9,7 +9,7 @@ import {FdpUserAuth} from '../fdp-user';
 })
 export class FdpUserProfileComponent implements OnInit {
 
-  public user: FdpUserAuth;
+  public user: FdpUser;
 
   constructor(public fdpAuthService: FdpUserAuthService) {
     this.user = this.fdpAuthService.user;

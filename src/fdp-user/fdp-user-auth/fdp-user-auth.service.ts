@@ -3,14 +3,14 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/delay';
 import {Apollo} from 'apollo-angular';
 
-import {FdpUserAuth} from '../fdp-user';
+import {FdpUser} from '../fdp-user';
 import gql from 'graphql-tag';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class FdpUserAuthService {
 
-  private _user: FdpUserAuth;
+  private _user: FdpUser;
   public isLoged: boolean;
 
   private loginRequest = gql`
@@ -23,6 +23,23 @@ export class FdpUserAuthService {
       }
     }
   `;
+
+  private forgotPasswordQuery = gql`
+    query forgotPassword($email: String!) {
+      forgotPassword(data: {email: $email})
+    }
+  `;
+
+  private verifyResetPasswordQuery = gql`
+    query verifyResetPassword($user: String! $token: String!) {
+      verifyResetPassword(data: {user: $user token: $token})
+    }  `;
+
+  private resetPasswordQuery = gql`
+    mutation resetPassword($user: String! $token: String! $newPassword: String!) {
+      resetPassword(data: {token: $token user: $user newPassword: $newPassword})
+    }`;
+
   private registerMutation = gql`
     mutation register($email: String! $username: String! $password: String!) {
       register(data: {username: $username, password: $password, email: $email}) {
@@ -50,11 +67,11 @@ export class FdpUserAuthService {
   `;
 
   constructor(private apollo: Apollo) {
-    this._user = new FdpUserAuth('', '');
+    this._user = new FdpUser();
     this.verifyLogin();
   }
 
-  get user(): FdpUserAuth {
+  get user(): FdpUser {
     return this._user;
   }
 
@@ -71,11 +88,18 @@ export class FdpUserAuthService {
         if (errors) {
           return {success: false, error: errors[0].message}
         }
+
         if (data && data.signIn) {
-          this.user.username = username;
           this.user.token = data.signIn.token;
           this.isLoged = true;
-          this.updateUser();
+          this.updateUser()
+            .subscribe(
+              () => {
+                this.isLoged = true;
+              },
+              () => {
+                this.isLoged = false;
+              });
           return {success: true, error: null};
         }
         return {success: false, error: 'erreur chelou lol'};
@@ -121,7 +145,7 @@ export class FdpUserAuthService {
       .map(
         ({data, errors}: any) => {
           if (errors) {
-            throw Error('Token pas bonne'); // En vrai c'ets aps obligé que ce soit ça l'erreur mdr
+            throw Error('Token invalide'); // En vrai c'ets pas obligé que ce soit ça l'erreur mdr
           }
           if (data && data.profile) {
             this._user.profile(data.profile);
@@ -135,14 +159,69 @@ export class FdpUserAuthService {
     if (this.user.token !== null) {
       this.updateUser()
         .subscribe(
-          data => {
+          () => {
             this.isLoged = true;
           },
-          err => {
+          () => {
             this.isLoged = false;
           });
     } else {
       this.isLoged = false;
     }
+  }
+
+  public forgotPassword(email: string) {
+    return this.apollo.query({
+      query: this.forgotPasswordQuery,
+      variables: {email},
+      errorPolicy: 'all',
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, error: errors[0].message}
+        }
+        if (data && data.forgotPassword) {
+          return {success: true, error: null}
+        }
+        return {success: false, error: 'erreur chelou lol'};
+      },
+    );
+  }
+
+  public verifyResetPassword(user: string, token: string) {
+    return this.apollo.query({
+      query: this.verifyResetPasswordQuery,
+      variables: {user, token},
+      errorPolicy: 'all',
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, error: errors[0].message}
+        }
+        if (data && data.verifyResetPassword) {
+          return {success: true, error: null}
+        }
+        return {success: false, error: 'erreur chelou lol'};
+      },
+    );
+  }
+
+  public resetPassword(user, token, newPassword) {
+    return this.apollo.mutate({
+      mutation: this.resetPasswordQuery,
+      variables: {user, token, newPassword},
+      errorPolicy: 'all',
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, error: errors[0].message}
+        }
+        if (data && data.resetPassword) {
+          return {success: true, error: null}
+        }
+        return {success: false, error: 'erreur chelou lol'};
+      },
+    );
+
   }
 }

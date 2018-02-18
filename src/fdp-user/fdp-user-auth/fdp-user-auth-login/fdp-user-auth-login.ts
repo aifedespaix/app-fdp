@@ -24,3 +24,20 @@ export class FdpUserAuthLogin {
     this._password = value;
   }
 }
+export class FdpUserForgotPassword {
+
+  private _email: string;
+
+  constructor(email: string) {
+    this._email = email;
+  }
+
+  get email(): string {
+    return this._email;
+  }
+
+  set email(value: string) {
+    this._email = value;
+  }
+
+}
