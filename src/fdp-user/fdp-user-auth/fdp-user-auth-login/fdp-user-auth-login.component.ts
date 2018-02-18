@@ -63,6 +63,7 @@ export class FdpUserLoginComponent implements OnInit {
     this.fdpAuthService.login(this.userLogin.username, this.userLogin.password)
       .subscribe(({success, error}) => {
           if (success) {
+            this.userLogin.reset();
             this.onLoginDone.emit(true);
           } else {
             this.error = error;
@@ -72,7 +73,6 @@ export class FdpUserLoginComponent implements OnInit {
           console.log('err');
           console.log(err);
         });
-
     return false;
   }
 
@@ -80,6 +80,7 @@ export class FdpUserLoginComponent implements OnInit {
     this.fdpAuthService.forgotPassword(this.userForgotPassword.email)
       .subscribe(({success, error}) => {
           if (success) {
+            this.userForgotPassword.reset();
             this.onLoginDone.emit(true);
             this.snackBar.open('Vas voir tes mails', 'Ok', {
               duration: 8000,

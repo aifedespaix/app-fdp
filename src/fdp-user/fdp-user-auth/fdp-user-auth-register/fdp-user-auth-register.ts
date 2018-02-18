@@ -43,4 +43,11 @@ export class FdpUserAuthRegister {
   set confirmPassword(value: string) {
     this._confirmPassword = value;
   }
+
+  public reset() {
+    this._email = '';
+    this._username = '';
+    this._password = '';
+    this._confirmPassword = '';
+  }
 }

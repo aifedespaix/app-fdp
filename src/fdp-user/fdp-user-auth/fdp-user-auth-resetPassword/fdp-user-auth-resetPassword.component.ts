@@ -63,7 +63,7 @@ export class FdpUserAuthResetPasswordComponent implements OnInit {
             return this.fdpAuthService.login(this.userAuthResetPassword.user, this.userAuthResetPassword.password)
               .subscribe(({success: loginSuccess, error: loginError}) => {
                 if (loginSuccess) {
-                  this.snackBar.open('Le mot de passe à bien été réinitialisé', 'osef', {
+                  this.snackBar.open('Le mot de passe à bien été changé', 'osef', {
                     duration: 5000,
                   });
                   this.router.navigate(['/']);

@@ -23,6 +23,11 @@ export class FdpUserAuthLogin {
   set password(value: string) {
     this._password = value;
   }
+
+  reset() {
+    this._password = '';
+    this._username = '';
+  }
 }
 export class FdpUserForgotPassword {
 
@@ -40,4 +45,7 @@ export class FdpUserForgotPassword {
     this._email = value;
   }
 
+  reset() {
+    this._email = '';
+  }
 }

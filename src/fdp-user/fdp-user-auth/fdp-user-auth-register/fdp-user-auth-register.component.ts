@@ -54,6 +54,7 @@ export class FdpUserAuthRegisterComponent implements OnInit {
               this.fdpAuthService.login(this.userRegister.username, this.userRegister.password)
                 .subscribe(({success: loginSucces, error: loginError}) => {
                   if (loginSucces) {
+                    this.userRegister.reset();
                     this.onRegisterDone.emit(true);
                     return {success: true, error: null};
                   } else {
