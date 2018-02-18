@@ -11,7 +11,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class FdpUserLoginComponent implements OnInit {
 
-  private typeForm: number;
+  public typeForm: number;
   @Output() onLoginDone: EventEmitter<boolean> = new EventEmitter();
   public userLogin: FdpUserAuthLogin;
   public userLoginFormGroup: FormGroup;
