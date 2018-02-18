@@ -66,6 +66,20 @@ a {
     justify-content: center;
   }
 
+  &Bg {
+    &_ {
+      &default {
+        background-color: $color_main_medium !important;
+        color: $color_bg_neutral !important;
+      }
+
+      &danger {
+        background-color: $color_quaternary_dark !important;
+        color: $color_bg_neutral !important;
+      }
+    }
+  }
+
   &Error {
     color: #96000a;
   }
@@ -109,12 +123,21 @@ a {
       animation: pulse .2s;
     }
 
-    &-noAnim {
-      &:hover {
-        animation: none;
+    &- {
+      &center {
+        display: flex;
+        justify-content: center;
+      }
+      &noAnim {
+        &:hover {
+          animation: none;
+        }
       }
     }
+  }
 
+  &Bloc {
+    padding: 15px;
   }
 
   &Title {

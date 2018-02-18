@@ -47,23 +47,30 @@ export class FdpUserAuthRegisterComponent implements OnInit {
   }
 
   public register() {
+    if (this.userRegisterFormGroup.valid) {
+      this.fdpAuthService.register(this.userRegister.email, this.userRegister.username, this.userRegister.password)
+        .subscribe(({success, error}) => {
+            if (success) {
+              this.fdpAuthService.login(this.userRegister.username, this.userRegister.password)
+                .subscribe(({success: loginSucces, error: loginError}) => {
+                  if (loginSucces) {
+                    this.onRegisterDone.emit(true);
+                    return {success: true, error: null};
+                  } else {
+                    return {success: false, error: loginError}
+                  }
+                });
+            } else {
+              this.error = error;
+            }
+          },
+          err => {
+            console.log('error de gros enculé sa mère qui sait pas les gérer like a biatchedefdp');
+            console.log(err);
+          });
+    }
 
-    this.fdpAuthService.register(this.userRegister.email, this.userRegister.username, this.userRegister.password)
-      .subscribe(({success, error}) => {
-          if (success) {
-            this.onRegisterDone.emit(true);
-          } else {
-            // this.error = error;
-            this.error = "Cet utilisateur éxiste déjà";
-          }
-        },
-        err => {
-          console.log('error de gros enculé sa mère qui sais pas les gérer like a biatchedefdp');
-          console.log(err);
-        });
-    this.fdpAuthService.login(this.userRegister.username, this.userRegister.password);
-
-    return false;
+    // return false;
   }
 
 }

@@ -33,15 +33,6 @@ $maxLoginWidth: 600px;
       flex-direction: column;
       justify-content: center;
     }
-
-    &-login {
-      background-color: $color_main_medium;
-      color: $color_bg_neutral !important;
-    }
-    &-submit {
-      background-color: $color_quaternary_dark;
-      color: $color_bg_neutral !important;
-    }
   }
 }
 

@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FdpUserAuthService} from '../fdp-user-auth.service';
 import {FdpUserAuthLogin, FdpUserForgotPassword} from './fdp-user-auth-login';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-fdp-user-auth-login',
@@ -25,7 +25,14 @@ export class FdpUserLoginComponent implements OnInit {
     forgotPassword: 1,
   };
 
-  constructor(private fdpAuthService: FdpUserAuthService) {
+  private static isValidEmail(email) {
+    // eslint-disable-next-line no-useless-escape
+    const validMail = /^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return validMail.test(email);
+  }
+
+  constructor(private fdpAuthService: FdpUserAuthService,
+              public snackBar: MatSnackBar) {
     this.userLogin = new FdpUserAuthLogin('', '');
     this.userLoginFormGroup = new FormGroup({
       login_username: new FormControl(this.userLogin.username, [
@@ -44,7 +51,7 @@ export class FdpUserLoginComponent implements OnInit {
         Validators.required,
         Validators.email,
       ]),
-    },);
+    });
 
     this.switchLogin();
   }
@@ -74,6 +81,9 @@ export class FdpUserLoginComponent implements OnInit {
       .subscribe(({success, error}) => {
           if (success) {
             this.onLoginDone.emit(true);
+            this.snackBar.open('Vas voir tes mails', 'Ok', {
+              duration: 8000,
+            });
           } else {
             this.error = error;
           }
@@ -87,11 +97,17 @@ export class FdpUserLoginComponent implements OnInit {
   }
 
   public switchForgotPassword() {
+    this.error = '';
+    if (FdpUserLoginComponent.isValidEmail(this.userLogin.username)) {
+      this.userForgotPassword.email = this.userLogin.username;
+    }
     this.typeForm = this.TYPE_FORM.forgotPassword;
   }
 
   public switchLogin() {
+    this.error = '';
     this.typeForm = this.TYPE_FORM.login;
   }
+
 
 }

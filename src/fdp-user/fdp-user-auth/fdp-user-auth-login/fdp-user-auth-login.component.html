@@ -3,7 +3,7 @@
 
   <div class="fdpAuth_fields">
     <mat-input-container>
-      <input type="text" placeholder="Identifiant" id="login_username" name="login_username" matInput required
+      <input type="text" placeholder="Identifiant ou Mail" id="login_username" name="login_username" matInput required
              formControlName="login_username"
              [(ngModel)]="userLogin.username">
       <mat-hint>Au moins 3 caractères</mat-hint>
@@ -21,7 +21,7 @@
   </div>
 
   <div class="fdpAuth_buttons">
-    <button mat-button class="fdpAuth_button fdpAuth_button-login" [disabled]="!userLoginFormGroup.valid">
+    <button mat-raised-button color="primary" [disabled]="userLoginFormGroup.invalid">
       Connexion
     </button>
     <div class="fdpTxt fdpTxt-small fdpTac"><a (click)="switchForgotPassword()">Mot de passe oublié</a></div>
@@ -42,8 +42,10 @@
     </mat-error>
   </mat-input-container>
 
+  <div *ngIf="error" class="fdpError">{{error}}</div>
+
   <div class="fdpAuth_buttons">
-    <button mat-button class="fdpAuth_button fdpAuth_button-submit" [disabled]="!userForgotPasswordFormGroup.valid">
+    <button mat-raised-button color="primary" [disabled]="userForgotPasswordFormGroup.invalid">
       Mot de passe oublié
     </button>
     <button mat-button class="fdpAuth_button" (click)="switchLogin()">Retour</button>

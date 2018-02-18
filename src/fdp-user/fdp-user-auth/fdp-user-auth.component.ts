@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-fdp-user-auth',
@@ -16,10 +16,6 @@ export class FdpUserAuthComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  get showForm(): boolean {
-    return this._showForm;
   }
 
   set showForm(value: boolean) {
