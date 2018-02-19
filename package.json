@@ -1,7 +1,7 @@
 {
   "name": "fdp-app",
-  "version": "0.0.1",
-  "license": "FDP",
+  "version": "1.0.0",
+  "description": "Le site pour les gros FDP",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
