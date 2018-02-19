@@ -1,0 +1,52 @@
+<form #boxForm="ngForm" class="fdpAuth_form" (ngSubmit)="createBox()" [formGroup]="boxFormGroup">
+
+  <div class="fdpAuth_fields">
+    <!--<mat-input-container>-->
+      <input type="file" placeholder="Son" id="box_sound" name="box_sound"
+             formControlName="box_sound"
+             matInput required
+             [(ngModel)]="box.sound">
+      <!--<mat-error *ngIf="boxAddFormGroup.controls.register_email.errors">-->
+      <!--<span *ngIf="boxAddFormGroup.controls.register_email.errors.email">Email invalide</span>-->
+      <!--</mat-error>-->
+    <!--</mat-input-container>-->
+
+    <!--<mat-input-container>-->
+    <!--<input type="text" placeholder="Identifiant" id="register_username" name="register_username"-->
+    <!--matInput required-->
+    <!--formControlName="register_username"-->
+    <!--[(ngModel)]="box.description">-->
+    <!--<mat-hint>Au moins 3 caractères</mat-hint>-->
+    <!--</mat-input-container>-->
+
+    <!--<mat-input-container>-->
+    <!--<input [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" id="register_password"-->
+    <!--name="register_password"-->
+    <!--matInput required-->
+    <!--formControlName="register_password"-->
+    <!--[(ngModel)]="box.password">-->
+    <!--<mat-hint>Au moins 8 caractères</mat-hint>-->
+    <!--<mat-icon class="fdpClickable" matSuffix (click)="showPassword = !showPassword">-->
+    <!--{{showPassword ? 'visibility' : 'visibility_off'}}-->
+    <!--</mat-icon>-->
+    <!--</mat-input-container>-->
+
+    <!--<mat-input-container *ngIf="!showPassword">-->
+    <!--<input type="password" placeholder="Confirmation mot de passe" id="register_confirmPassword"-->
+    <!--formControlName="register_confirmPassword"-->
+    <!--name="register_confirmPassword"-->
+    <!--matInput required-->
+    <!--[(ngModel)]="box.confirmPassword">-->
+    <!--<mat-hint>Répéter le mot de passe</mat-hint>-->
+    <!--</mat-input-container>-->
+
+    <div *ngIf="error" class="fdpError">{{error}}</div>
+  </div>
+
+  <div class="fdpAuth_buttons">
+    <button mat-raised-button color="primary" type="submit" [disabled]="boxFormGroup.invalid">
+      Bam !
+    </button>
+  </div>
+
+</form>
