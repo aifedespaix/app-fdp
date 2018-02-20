@@ -1,13 +1,11 @@
-import {FdpFileService} from './fdp-file.service';
-
-export abstract class FdpFile {
+export class FdpFile {
   private _id: string;
   private _name: string;
   private _type: string;
   private _value: string;
+  private _formResult: any;
 
-  constructor(name: string, type: string, value: string,
-              protected fdpFileService: FdpFileService) {
+  constructor(name: string, type: string, value: string) {
     this._id = null;
     this._name = name;
     this._type = type;
@@ -42,10 +40,22 @@ export abstract class FdpFile {
     this._value = value;
   }
 
+  get formResult(): any {
+    return this._formResult;
+  }
+
+  set formResult(value: any) {
+    console.log(value);
+    // console.log(instanceof value);
+    this._formResult = value;
+  }
+
   protected canBeSaved() {
     return this.name && this.type && this.value;
   }
 
-  public abstract saveFile();
+  public saveFile() {
+
+  }
 
 }

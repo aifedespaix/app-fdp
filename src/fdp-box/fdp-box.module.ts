@@ -8,6 +8,7 @@ import {FdpBoxFormComponent} from './fdp-box-form/fdp-box-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FdpBoxService} from './fdp-box-form.service';
 import {FdpFileService} from '../fdp-file/fdp-file.service';
+import {FdpFileModule} from '../fdp-file/fdp-file.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {FdpFileService} from '../fdp-file/fdp-file.service';
   ],
   imports: [
     FdpMaterialModule,
+    FdpFileModule,
     FdpBoxRoutingModule,
     FormsModule,
     ReactiveFormsModule,

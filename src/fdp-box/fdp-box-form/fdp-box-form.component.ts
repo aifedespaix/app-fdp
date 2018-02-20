@@ -22,17 +22,15 @@ export class FdpBoxFormComponent {
 
   constructor(private fb: FormBuilder,
               private fdpFileService: FdpFileService) {
-    this.loading = false;
-    this.createForm();
     this.box = new FdpBox(this.fdpFileService);
     this.error = '';
+    this.createForm();
   }
 
   createForm() {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      avatar: null,
-    });
+    // this.form = this.fb.group({
+    //   name: ['', Validators.required],
+    // });
   }
 
   onMiniatureChange(event) {

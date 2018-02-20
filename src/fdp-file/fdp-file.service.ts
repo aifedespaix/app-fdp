@@ -8,7 +8,6 @@ import {FdpFile} from './fdp-file';
 @Injectable()
 export class FdpFileService {
 
-
   private createFileMutation = gql`
     mutation createFile($name: String! $type: String! $value: String!) {
       createFile(file: {name: $name type: $type value: $value}) {
