@@ -1,6 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FdpBoxService} from '../fdp-box-form.service';
+import {FdpFileService} from '../../fdp-file/fdp-file.service';
+import {FdpBox} from '../fdp-box';
+import {FdpFile} from '../../fdp-file/fdp-file';
+import {FdpFileImage} from '../../fdp-file/fdp-file-image';
 
 @Component({
   selector: 'app-fdp-box-form',
@@ -9,14 +13,19 @@ import {FdpBoxService} from '../fdp-box-form.service';
 })
 export class FdpBoxFormComponent {
 
-  form: FormGroup;
-  loading: boolean = false;
+  public form: FormGroup;
+  public loading: boolean;
+  public box: FdpBox;
+  public error: string;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private fb: FormBuilder,
-              private fdpBoxService: FdpBoxService) {
+              private fdpFileService: FdpFileService) {
+    this.loading = false;
     this.createForm();
+    this.box = new FdpBox(this.fdpFileService);
+    this.error = '';
   }
 
   createForm() {
@@ -26,32 +35,21 @@ export class FdpBoxFormComponent {
     });
   }
 
-  onFileChange(event) {
-    let reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.form.get('avatar').setValue({
-          filename: file.name,
-          filetype: file.type,
-          value: reader.result.split(',')[1],
-        })
-      };
+  onMiniatureChange(event) {
+    this.error = null;
+    try {
+      if (event.target.files && event.target.files.length > 0) {
+        this.box.saveMiniature(event.target.files[0]);
+      } else {
+        this.error = 'Fichier Invalide';
+      }
+    } catch (err) {
+      this.error = err.message;
     }
   }
 
   onSubmit() {
     const formModel = this.form.value;
-    this.loading = true;
-    // In a real-world app you'd have a http request / service call here like
-    // this.http.post('apiUrl', formModel)
-    this.fdpBoxService.sendFile(formModel.avatar);
-    setTimeout(() => {
-      console.log(formModel);
-      alert('done!');
-      this.loading = false;
-    }, 1000);
   }
 
   clearFile() {

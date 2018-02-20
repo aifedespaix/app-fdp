@@ -7,6 +7,7 @@ import {FdpBoxSoundComponent} from './fdp-box-sound/fdp-box-sound.component';
 import {FdpBoxFormComponent} from './fdp-box-form/fdp-box-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FdpBoxService} from './fdp-box-form.service';
+import {FdpFileService} from '../fdp-file/fdp-file.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {FdpBoxService} from './fdp-box-form.service';
   ],
   providers: [
     FdpBoxService,
+    FdpFileService,
   ]
 })
 
