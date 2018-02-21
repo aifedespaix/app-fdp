@@ -1,3 +1,42 @@
+<mat-horizontal-stepper linear="true" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="filesForm" label="La Box" editable="false">
+    <form [formGroup]="filesForm">
+      <input type="hidden" [(ngModel)]="box.soundId" formControlName="box_sound" required>
+      <input type="hidden" [(ngModel)]="box.miniatureId" formControlName="box_miniature" required>
+    </form>
+    <app-fdp-file></app-fdp-file> <!-- todo ajouter retour valeur id output -->
+    <app-fdp-file></app-fdp-file> <!-- todo ajouter retour valeur id output -->
+    <div>
+      <button mat-button matStepperNext>Continuer</button>
+    </div>
+  </mat-step>
+  <!--<mat-step [stepControl]="secondFormGroup" label="Infos">-->
+  <mat-step stepControl="false" label="Infos" editable="false">
+    <!--<form [formGroup]="secondFormGroup">-->
+    <!-- todo tags ect ect -->
+    <form>
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" required>
+        <!--formControlName="secondCtrl"-->
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Envoyer</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step stepControl="false" label="Fini">
+    <ng-template matStepperIcon="edit">
+      <mat-icon svgIcon="thumbs-up"></mat-icon>
+    </ng-template>
+    <div>
+      <a href="">Voir ma box</a>
+    </div>
+    <div>
+      <button mat-button matStepperPrevious>Précédent</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
 <!--<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
   <!--<div class="form-group">-->
     <!--<label for="name">Name</label>-->
@@ -13,5 +52,4 @@
     <!--class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>-->
 
   <!--<img [src]="box.miniature.value">-->
-  <app-fdp-file></app-fdp-file>
 <!--</form>-->

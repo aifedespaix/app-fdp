@@ -1,3 +1,5 @@
+import {FdpFileService} from './fdp-file.service';
+
 export class FdpFile {
   private _id: string;
   private _name: string;
@@ -17,6 +19,10 @@ export class FdpFile {
 
   get id(): string {
     return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
   }
 
   get name(): string {
@@ -67,32 +73,55 @@ export class FdpFile {
 
   }
 
-  public async load(event: any) {
+  public load(event: any, fdpFileService: FdpFileService) {
     if (!event.target || !event.target.files || event.target.files.length === 0 || !(event.target.files[0] instanceof File)) {
       throw Error('Fichier Invalide');
     }
 
     const file = event.target.files[0];
+    // const reader = new FileReader();
+    // reader.readAsDataURL(file);
 
-    console.log('file');
-    console.log(file);
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => { // todo : c'est de l'event, a voir comment on passe à la sauvegarde ... psk la function se finit et attend pas le onload, logique
-      this.name = file.name;
-      console.log('this.name');
-      console.log(this.name);
-      console.log('file.name');
-      console.log(file.name);
-      this.type = file.type;
-      this.lastModified = file.lastModified;
-      this.value = reader.result.split(',')[1];
-      this.size = file.size;
-      console.log('this 1');
-      console.log(this);
-    };
-    console.log('this 2');
-    console.log(this);
-    return true;
+    if (file.size > 1040000) {
+      console.log(file.size);
+      throw Error('Fichier trop gros');
+    }
+
+    this.type = file.type;
+    this.name = file.name;
+    this.lastModified = file.lastModified;
+    this.size = file.size;
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      const self = this;
+
+      reader.onload = function() {
+        self.value = reader.result;
+        resolve();
+      };
+
+      reader.onerror = function(error) {
+        reject(error);
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    // const self = this;
+    // reader.onload = () => {
+    //   self.type = file.type;
+    //   self.name = file.name;
+    //   self.lastModified = file.lastModified;
+    //   self.value = reader.result.split(',')[1];
+    //   self.size = file.size;
+    //   fdpFileService.sendFile(self).subscribe(id => {
+    //     self.id = id;
+    //   }, err => {
+    //     console.log('err fdp file');
+    //     console.log(err)
+    //   });
+    // };
   }
+
 }

@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FdpBoxService} from '../fdp-box-form.service';
 import {FdpFileService} from '../../fdp-file/fdp-file.service';
 import {FdpBox} from '../fdp-box';
@@ -12,9 +12,9 @@ import {FdpBox} from '../fdp-box';
 export class FdpBoxFormComponent {
 
   public form: FormGroup;
-  public loading: boolean;
   public box: FdpBox;
   public error: string;
+  public filesForm: FormGroup;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -23,12 +23,18 @@ export class FdpBoxFormComponent {
     this.box = new FdpBox(this.fdpFileService);
     this.error = '';
     this.createForm();
+    this.createForm();
   }
 
   createForm() {
-    // this.form = this.fb.group({
-    //   name: ['', Validators.required],
-    // });
+    this.filesForm = new FormGroup({
+      box_sound: new FormControl(this.box.soundId, [
+        Validators.required,
+      ]),
+      box_miniature: new FormControl(this.box.miniatureId, [
+        Validators.required,
+      ]),
+    });
   }
 
   onSubmit() {

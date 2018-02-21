@@ -10,10 +10,10 @@ import {FdpFileService} from './fdp-file.service';
 })
 export class FdpFileComponent {
 
-  public form: FormGroup;
   public file: FdpFile;
   public loading: boolean;
   public error: string;
+  public label: string;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -22,31 +22,27 @@ export class FdpFileComponent {
     this.loading = false;
     this.file = new FdpFile('', '', '');
     this.error = '';
-    this.createForm();
-  }
-
-  createForm() {
-    // this.form = this.fb.group({
-    //     file: this.file.formResult,
-    // });
   }
 
   loadFile(event) {
     this.error = null;
+    this.loading = true;
     try {
       // On charge le fichier
-      this.file.load(event).then((a) => {
-        console.log(a);
-        console.log(this.file);
-        // On l'envoie à l'API
-        this.fdpFileService.sendFile(this.file).subscribe(res => {
-          console.log(res);
-        }, err => {
-          console.log(err);
-        });
-
+      this.file.load(event, this.fdpFileService).then(() => {
+        // On sauvegarde le fichier
+        this.fdpFileService.sendFile(this.file).subscribe((savedId) => {
+          this.file.id = savedId; // On affecte l'id
+          this.loading = false;
+        })
+      }, (err) => {
+        console.log('err');
+        console.log(err.message);
+        this.loading = false;
       });
+
     } catch (err) {
+      this.loading = false;
       this.error = err.message;
     }
   }

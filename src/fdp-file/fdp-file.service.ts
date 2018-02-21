@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/delay';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
-import {Observable} from 'rxjs/Observable';
 import {FdpFile} from './fdp-file';
 
 @Injectable()
@@ -21,7 +20,7 @@ export class FdpFileService {
   constructor(private apollo: Apollo) {
   }
 
-  public sendFile(file: FdpFile): Observable<{ success: boolean, error: string }> {
+  public sendFile(file: FdpFile) {
     // todo remplir l'id et repondre true sinon throw error
     return this.apollo.mutate({
       mutation: this.createFileMutation,
@@ -33,12 +32,11 @@ export class FdpFileService {
       errorPolicy: 'all',
     }).map(
       ({data, errors}: any) => {
-        console.log(data);
         if (errors) {
           return {success: false, error: errors[0].message}
         }
         if (data && data.createFile) {
-          return {success: true, error: null};
+          return data.createFile.id;
         }
         return {success: false, error: 'erreur chelou lol'};
       },

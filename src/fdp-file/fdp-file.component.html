@@ -1,7 +1,8 @@
 <div class="form-group">
-  <label for="file">File</label>
+  <label for="file">{{label}}</label>
   <input type="file" id="file" #fileInput (change)="loadFile($event)">
-         <!--[(ngModel)]="file.formResult">-->
 </div>
-<div>{{error}}</div>
 
+<mat-progress-spinner *ngIf="loading" class="" color="primary" mode="indeterminate"></mat-progress-spinner>
+
+<div>{{error}}</div>
