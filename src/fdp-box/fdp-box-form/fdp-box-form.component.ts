@@ -3,8 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FdpBoxService} from '../fdp-box-form.service';
 import {FdpFileService} from '../../fdp-file/fdp-file.service';
 import {FdpBox} from '../fdp-box';
-import {FdpFile} from '../../fdp-file/fdp-file';
-import {FdpFileImage} from '../../fdp-file/fdp-file-image';
 
 @Component({
   selector: 'app-fdp-box-form',
@@ -33,21 +31,8 @@ export class FdpBoxFormComponent {
     // });
   }
 
-  onMiniatureChange(event) {
-    this.error = null;
-    try {
-      if (event.target.files && event.target.files.length > 0) {
-        this.box.saveMiniature(event.target.files[0]);
-      } else {
-        this.error = 'Fichier Invalide';
-      }
-    } catch (err) {
-      this.error = err.message;
-    }
-  }
-
   onSubmit() {
-    const formModel = this.form.value;
+    // const formModel = this.form.value;
   }
 
   clearFile() {

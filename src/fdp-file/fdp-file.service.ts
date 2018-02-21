@@ -7,7 +7,7 @@ import {FdpFile} from './fdp-file';
 
 @Injectable()
 export class FdpFileService {
-
+// todo manque size + date + ...
   private createFileMutation = gql`
     mutation createFile($name: String! $type: String! $value: String!) {
       createFile(file: {name: $name type: $type value: $value}) {
@@ -21,14 +21,8 @@ export class FdpFileService {
   constructor(private apollo: Apollo) {
   }
 
-  public sendImage(file: FdpFile) {
-    if (this.imagesTypes.indexOf(file.type) === -1) {
-      throw Error('Type de fichier invalide');
-    }
-    return this.sendFile(file);
-  }
-
-  private sendFile(file: FdpFile): Observable<{ success: boolean, error: string }> {
+  public sendFile(file: FdpFile): Observable<{ success: boolean, error: string }> {
+    // todo remplir l'id et repondre true sinon throw error
     return this.apollo.mutate({
       mutation: this.createFileMutation,
       variables: {

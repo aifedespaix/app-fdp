@@ -1,30 +1,19 @@
-import {FdpFile} from '../fdp-file/fdp-file';
-import {FdpFileImage} from '../fdp-file/fdp-file-image';
-import {FdpFileSound} from '../fdp-file/fdp-file-sound';
 import {FdpFileService} from '../fdp-file/fdp-file.service';
 
 export class FdpBox {
 
-  private _sound: FdpFileSound;
+  private _soundId: string;
   private _title: string;
   private _description: string;
-  private _miniature: FdpFileImage;
+  private _miniatureId: string;
   private _tags: string[];
 
   constructor(protected fdpFileService: FdpFileService) {
-    this.sound = new FdpFileImage('', '', '', fdpFileService);
+    this.soundId = '';
     this.title = '';
     this.description = '';
-    this._miniature = new FdpFileImage('', '', '', fdpFileService);
+    this.miniatureId = '';
     this.tags = [];
-  }
-
-  get sound(): FdpFileSound {
-    return this._sound;
-  }
-
-  set sound(value: FdpFileSound) {
-    this._sound = value;
   }
 
   get title(): string {
@@ -43,24 +32,20 @@ export class FdpBox {
     this._description = value;
   }
 
-  get miniature(): FdpFile {
-    return this._miniature;
+  get soundId(): string {
+    return this._soundId;
   }
 
-  public saveMiniature(file: File) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this._miniature.name = file.name;
-      this._miniature.type = file.type;
-      this._miniature.value = reader.result.split(',')[1];
+  set soundId(value: string) {
+    this._soundId = value;
+  }
 
-      try {
-        this.miniature.saveFile();
-      } catch(err) {
-        throw err;
-      }
-    };
+  get miniatureId(): string {
+    return this._miniatureId;
+  }
+
+  set miniatureId(value: string) {
+    this._miniatureId = value;
   }
 
   get tags(): string[] {

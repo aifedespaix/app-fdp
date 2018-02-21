@@ -3,13 +3,16 @@ export class FdpFile {
   private _name: string;
   private _type: string;
   private _value: string;
-  private _formResult: any;
+  private _lastModified: number;
+  private _size: number;
 
   constructor(name: string, type: string, value: string) {
     this._id = null;
     this._name = name;
     this._type = type;
     this._value = value;
+    this._lastModified = 0;
+    this._size = 0;
   }
 
   get id(): string {
@@ -40,14 +43,20 @@ export class FdpFile {
     this._value = value;
   }
 
-  get formResult(): any {
-    return this._formResult;
+  get lastModified(): number {
+    return this._lastModified;
   }
 
-  set formResult(value: any) {
-    console.log(value);
-    // console.log(instanceof value);
-    this._formResult = value;
+  set lastModified(value: number) {
+    this._lastModified = value;
+  }
+
+  get size(): number {
+    return this._size;
+  }
+
+  set size(value: number) {
+    this._size = value;
   }
 
   protected canBeSaved() {
@@ -58,4 +67,32 @@ export class FdpFile {
 
   }
 
+  public async load(event: any) {
+    if (!event.target || !event.target.files || event.target.files.length === 0 || !(event.target.files[0] instanceof File)) {
+      throw Error('Fichier Invalide');
+    }
+
+    const file = event.target.files[0];
+
+    console.log('file');
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => { // todo : c'est de l'event, a voir comment on passe à la sauvegarde ... psk la function se finit et attend pas le onload, logique
+      this.name = file.name;
+      console.log('this.name');
+      console.log(this.name);
+      console.log('file.name');
+      console.log(file.name);
+      this.type = file.type;
+      this.lastModified = file.lastModified;
+      this.value = reader.result.split(',')[1];
+      this.size = file.size;
+      console.log('this 1');
+      console.log(this);
+    };
+    console.log('this 2');
+    console.log(this);
+    return true;
+  }
 }
