@@ -29,7 +29,7 @@ export class FdpFileComponent {
     this.loading = true;
     try {
       // On charge le fichier
-      this.file.load(event, this.fdpFileService).then(() => {
+      this.file.load(event).then(() => {
         // On sauvegarde le fichier
         this.fdpFileService.sendFile(this.file).subscribe((savedId) => {
           this.file.id = savedId; // On affecte l'id

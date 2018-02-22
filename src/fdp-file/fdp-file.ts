@@ -73,20 +73,16 @@ export class FdpFile {
 
   }
 
-  public load(event: any, fdpFileService: FdpFileService) {
+  public load(event: any) {
     if (!event.target || !event.target.files || event.target.files.length === 0 || !(event.target.files[0] instanceof File)) {
       throw Error('Fichier Invalide');
     }
 
     const file = event.target.files[0];
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-
     if (file.size > 1040000) {
       console.log(file.size);
       throw Error('Fichier trop gros');
     }
-
     this.type = file.type;
     this.name = file.name;
     this.lastModified = file.lastModified;
@@ -107,21 +103,6 @@ export class FdpFile {
 
       reader.readAsDataURL(file);
     });
-
-    // const self = this;
-    // reader.onload = () => {
-    //   self.type = file.type;
-    //   self.name = file.name;
-    //   self.lastModified = file.lastModified;
-    //   self.value = reader.result.split(',')[1];
-    //   self.size = file.size;
-    //   fdpFileService.sendFile(self).subscribe(id => {
-    //     self.id = id;
-    //   }, err => {
-    //     console.log('err fdp file');
-    //     console.log(err)
-    //   });
-    // };
   }
 
 }
