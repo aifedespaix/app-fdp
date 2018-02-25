@@ -8,7 +8,7 @@ export class FdpBox {
   private _miniatureId: string;
   private _tags: string[];
 
-  constructor(protected fdpFileService: FdpFileService) {
+  constructor() {
     this.soundId = '';
     this.title = '';
     this.description = '';

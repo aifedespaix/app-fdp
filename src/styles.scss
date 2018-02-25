@@ -84,6 +84,11 @@ a {
     color: #96000a;
   }
 
+  &List {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &Clickable {
     cursor: pointer;
   }

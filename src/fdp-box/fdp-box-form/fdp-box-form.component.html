@@ -1,55 +1,50 @@
-<mat-horizontal-stepper linear="true" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper linear="false" #stepper="matHorizontalStepper">
   <mat-step [stepControl]="filesForm" label="La Box" editable="false">
+
     <form [formGroup]="filesForm">
       <input type="hidden" [(ngModel)]="box.soundId" formControlName="box_sound" required>
       <input type="hidden" [(ngModel)]="box.miniatureId" formControlName="box_miniature" required>
     </form>
-    <app-fdp-file></app-fdp-file> <!-- todo ajouter retour valeur id output -->
-    <app-fdp-file></app-fdp-file> <!-- todo ajouter retour valeur id output -->
-    <div>
-      <button mat-button matStepperNext>Continuer</button>
+
+    <div class="fdpBoxForm fdpBoxForm_files">
+      <app-fdp-file label="Son" (fileSaved)="loadSound($event)"></app-fdp-file>
+      <app-fdp-file label="Miniature" (fileSaved)="loadMiniature($event)"></app-fdp-file>
+    </div>
+
+    <div class="fdpBoxForm fdpBoxForm_submit">
+      <button mat-raised-button color="primary" matStepperNext [disabled]="!filesForm.valid">Continuer</button>
     </div>
   </mat-step>
-  <!--<mat-step [stepControl]="secondFormGroup" label="Infos">-->
-  <mat-step stepControl="false" label="Infos" editable="false">
-    <!--<form [formGroup]="secondFormGroup">-->
-    <!-- todo tags ect ect -->
-    <form>
-      <ng-template matStepLabel>Fill out your address</ng-template>
+
+  <mat-step [stepControl]="informationsForm" label="Infos" editable="false">
+    <ng-template matStepLabel>Informations générales</ng-template>
+
+    <form [formGroup]="informationsForm" class="fdpBoxForm fdpBoxForm_fields">
       <mat-form-field>
-        <input matInput placeholder="Address" required>
-        <!--formControlName="secondCtrl"-->
+        <input matInput [(ngModel)]="box.title" formControlName="box_title" placeholder="Titre" required>
       </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Envoyer</button>
+
+      <mat-form-field>
+        <textarea matInput [(ngModel)]="box.description" formControlName="box_description" placeholder="Description" required></textarea>
+      </mat-form-field>
+
+      <div class="fdpBoxForm fdpBoxForm_submit">
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!informationsForm.valid" (click)="sendBox()">Envoyer</button>
       </div>
     </form>
+
   </mat-step>
-  <mat-step stepControl="false" label="Fini">
+
+  <mat-step label="Fini">
+
     <ng-template matStepperIcon="edit">
       <mat-icon svgIcon="thumbs-up"></mat-icon>
     </ng-template>
+
     <div>
       <a href="">Voir ma box</a>
     </div>
-    <div>
-      <button mat-button matStepperPrevious>Précédent</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
-<!--<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
-  <!--<div class="form-group">-->
-    <!--<label for="name">Name</label>-->
-    <!--<input type="text" class="form-control" id="name" placeholder="Bob" formControlName="name">-->
-  <!--</div>-->
-  <!--<div class="form-group">-->
-    <!--<label for="avatar">Avatar</label>-->
-    <!--<input type="file" id="avatar" (change)="onMiniatureChange($event)" #fileInput>-->
-    <!--<button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>-->
-  <!--</div>-->
-  <!--<div>{{error}}</div>-->
-  <!--<button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i-->
-    <!--class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>-->
 
-  <!--<img [src]="box.miniature.value">-->
-<!--</form>-->
+  </mat-step>
+
+</mat-horizontal-stepper>

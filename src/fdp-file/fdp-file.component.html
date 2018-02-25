@@ -1,8 +1,22 @@
-<div class="form-group">
-  <label for="file">{{label}}</label>
-  <input type="file" id="file" #fileInput (change)="loadFile($event)">
+<div class="form-group fdpFileForm fdpFileForm_{{file.id ? 'dragged' : 'draggable'}}">
+  <ng-container *ngIf="loading">
+    <mat-progress-spinner class="" color="primary" mode="indeterminate"></mat-progress-spinner>
+  </ng-container>
+
+  <ng-container *ngIf="!loading">
+
+    <ng-container *ngIf="file.id">
+      <label class="fdpFont" for="file">{{file.name}}</label>
+    </ng-container>
+
+    <ng-container *ngIf="!file.id">
+      <label class="fdpFont" for="file">{{label}}</label>
+      <input type="file" id="file" #fileInput (change)="loadFile($event)">
+    </ng-container>
+
+  </ng-container>
+
 </div>
 
-<mat-progress-spinner *ngIf="loading" class="" color="primary" mode="indeterminate"></mat-progress-spinner>
 
 <div>{{error}}</div>

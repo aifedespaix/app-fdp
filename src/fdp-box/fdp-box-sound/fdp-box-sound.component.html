@@ -1,1 +1,15 @@
-<div>mdr</div>
+<div  class="fdpList usn">
+  <div class="fdpBoxSound" *ngFor="let box of boxes" (click)="play(box.sound)">
+    <div class="fdpBoxSoundBackground">
+      <img [src]="box.miniature.value" alt="{{box.title}}">
+    </div>
+    <div class="fdpBoxSound_content">
+      <div class="fdpTitle fdpFont">{{box.title}}</div>
+      <div class="fdpTitle fdpFont">{{box.description}}</div>
+    </div>
+    <div>
+      <!--<button mat-button>LIKE</button>-->
+      <!--<button mat-button>SHARE</button>-->
+    </div>
+  </div>
+</div>

@@ -1,14 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FdpBoxService} from '../fdp-box.service';
 
 @Component({
   selector: 'app-fdp-box-sound',
   templateUrl: './fdp-box-sound.component.html',
-  styleUrls: ['./fdp-box-sound.component.scss']
+  styleUrls: ['./fdp-box-sound.component.scss'],
 })
 export class FdpBoxSoundComponent implements OnInit {
 
-  constructor() { }
+  public boxes: {}[];
+  public sound: string;
 
-  ngOnInit() {}
+  constructor(private fdpBoxService: FdpBoxService) {
+    this.boxes = [];
+    this.sound = null;
+  }
 
+  ngOnInit() {
+    this.fdpBoxService.boxes().subscribe(boxes => {
+      this.boxes = boxes;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  public play(sound) {
+    const audio = new Audio(sound.value);
+    audio.play();
+  }
 }
