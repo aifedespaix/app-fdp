@@ -35,7 +35,7 @@ export class FdpFileComponent {
       this.file.load(event, this.fileType).then(() => {
         // On sauvegarde le fichier
         this.fdpFileService.sendFile(this.file).subscribe((result) => {
-          console.log(result);
+          // console.log(result);
           if (!result.success) {
             this.loading = false;
             return false;
