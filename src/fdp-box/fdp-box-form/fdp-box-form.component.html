@@ -1,4 +1,4 @@
-<mat-horizontal-stepper linear="false" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper linear="true" #stepper="matHorizontalStepper">
   <mat-step [stepControl]="filesForm" label="La Box" editable="false">
 
     <form [formGroup]="filesForm">
@@ -7,8 +7,8 @@
     </form>
 
     <div class="fdpBoxForm fdpBoxForm_files">
-      <app-fdp-file label="Son" (fileSaved)="loadSound($event)"></app-fdp-file>
-      <app-fdp-file label="Miniature" (fileSaved)="loadMiniature($event)"></app-fdp-file>
+      <app-fdp-file label="Son" fileType="audio" (fileSaved)="loadSound($event)"></app-fdp-file>
+      <app-fdp-file label="Miniature" fileType="image" (fileSaved)="loadMiniature($event)"></app-fdp-file>
     </div>
 
     <div class="fdpBoxForm fdpBoxForm_submit">

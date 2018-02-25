@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {FdpFile} from './fdp-file';
 import {FdpFileService} from './fdp-file.service';
@@ -14,6 +14,7 @@ export class FdpFileComponent {
   public loading: boolean;
   public error: string;
   @Input() label: string;
+  @Input() fileType: string;
   @Output() fileSaved = new EventEmitter<string>();
 
   @ViewChild('fileInput') fileInput: ElementRef;
@@ -28,9 +29,10 @@ export class FdpFileComponent {
   loadFile(event) {
     this.error = null;
     this.loading = true;
+
     try {
       // On charge le fichier
-      this.file.load(event).then(() => {
+      this.file.load(event, this.fileType).then(() => {
         // On sauvegarde le fichier
         this.fdpFileService.sendFile(this.file).subscribe((result) => {
           console.log(result);

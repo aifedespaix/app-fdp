@@ -8,6 +8,13 @@ export class FdpFile {
   private _lastModified: number;
   private _size: number;
 
+  private autorizedTypes = {
+    'image/png': 'image',
+    'image/jpeg': 'image',
+    'audio/mpeg': 'audio',
+    'audio/wav': 'audio',
+  };
+
   constructor(name: string, type: string, value: string) {
     this._id = null;
     this._name = name;
@@ -73,17 +80,27 @@ export class FdpFile {
 
   }
 
-  public load(event: any) {
+  public load(event: any, fileType: string) {
     if (!event.target || !event.target.files || event.target.files.length === 0 || !(event.target.files[0] instanceof File)) {
       throw Error('Fichier Invalide');
     }
+
 
     const file = event.target.files[0];
     if (file.size > 1040000) {
       console.log(file.size);
       throw Error('Fichier trop gros');
     }
+
     this.type = file.type;
+    console.log(fileType);
+    console.log(this.type);
+    console.log(this.autorizedTypes[this.type]);
+
+    if (this.autorizedTypes[this.type] !== fileType) {
+      throw Error('Type de fichier invalide');
+    }
+
     this.name = file.name;
     this.lastModified = file.lastModified;
     this.size = file.size;
