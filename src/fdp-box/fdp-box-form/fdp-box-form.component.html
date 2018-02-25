@@ -1,0 +1,50 @@
+<mat-horizontal-stepper linear="true" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="filesForm" label="La Box" editable="false">
+
+    <form [formGroup]="filesForm">
+      <input type="hidden" [(ngModel)]="box.soundId" formControlName="box_sound" required>
+      <input type="hidden" [(ngModel)]="box.miniatureId" formControlName="box_miniature" required>
+    </form>
+
+    <div class="fdpBoxForm fdpBoxForm_files">
+      <app-fdp-file label="Son" fileType="audio" (fileSaved)="loadSound($event)"></app-fdp-file>
+      <app-fdp-file label="Miniature" fileType="image" (fileSaved)="loadMiniature($event)"></app-fdp-file>
+    </div>
+
+    <div class="fdpBoxForm fdpBoxForm_submit">
+      <button mat-raised-button color="primary" matStepperNext [disabled]="!filesForm.valid">Continuer</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="informationsForm" label="Infos" editable="false">
+    <ng-template matStepLabel>Informations générales</ng-template>
+
+    <form [formGroup]="informationsForm" class="fdpBoxForm fdpBoxForm_fields">
+      <mat-form-field>
+        <input matInput [(ngModel)]="box.title" formControlName="box_title" placeholder="Titre" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput [(ngModel)]="box.description" formControlName="box_description" placeholder="Description" required></textarea>
+      </mat-form-field>
+
+      <div class="fdpBoxForm fdpBoxForm_submit">
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!informationsForm.valid" (click)="sendBox()">Envoyer</button>
+      </div>
+    </form>
+
+  </mat-step>
+
+  <mat-step label="Fini">
+
+    <ng-template matStepperIcon="edit">
+      <mat-icon svgIcon="thumbs-up"></mat-icon>
+    </ng-template>
+
+    <div>
+      <a href="">Voir ma box</a>
+    </div>
+
+  </mat-step>
+
+</mat-horizontal-stepper>

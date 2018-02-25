@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FdpUserAuthService} from '../fdp-user/fdp-user-auth/fdp-user-auth.service';
 
 @Component({
   selector: 'app-fdp-box',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FdpBoxComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fdpUserAuthService: FdpUserAuthService) { }
 
   ngOnInit() {}
 
+  public isLoged() {
+    return this.fdpUserAuthService.isLoged;
+  }
 }

@@ -19,9 +19,7 @@ a {
   @extend .mainColor;
   text-decoration: none;
 
-  &:hover {
-    cursor:  url(assets/cursors/fuck.cur) 2 2, pointer;
-  }
+  cursor:  url(assets/cursors/fuck.cur) 2 2, pointer;
 }
 
 .normalColor {
@@ -58,6 +56,10 @@ a {
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 
 .fdp {
+
+  &Hover {
+    cursor:  url(assets/cursors/fuck.cur) 2 2, pointer;
+  }
   /* Vertical Center */
   &VC {
     height: 100%;
@@ -82,6 +84,11 @@ a {
 
   &Error {
     color: #96000a;
+  }
+
+  &List {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &Clickable {

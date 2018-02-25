@@ -9,4 +9,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(FdpModule);
+platformBrowserDynamic().bootstrapModule(FdpModule)
+  .then(success => console.log(`Ouèche sale fdp`))
+  .catch(err => console.error(err));
