@@ -5,7 +5,7 @@
     height: 150px;
     position: relative;
     margin: 3px;
-    cursor: pointer;
+    overflow: hidden;
 
     &Background {
       position: absolute;
@@ -23,6 +23,16 @@
         max-height: 150%;
       }
     }
+
+    &:hover {
+      .fdpBoxSoundBackground {
+        img {
+          filter: saturate(2);
+          opacity: 0.5;
+        }
+      }
+    }
+
 
     &_content {
       position: relative;

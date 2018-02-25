@@ -85,25 +85,20 @@ export class FdpFile {
       throw Error('Fichier Invalide');
     }
 
-
     const file = event.target.files[0];
-    if (file.size > 1040000) {
-      console.log(file.size);
+
+    this.size = file.size;
+    if (this.size > 1040000) {
       throw Error('Fichier trop gros');
     }
 
     this.type = file.type;
-    console.log(fileType);
-    console.log(this.type);
-    console.log(this.autorizedTypes[this.type]);
-
     if (this.autorizedTypes[this.type] !== fileType) {
       throw Error('Type de fichier invalide');
     }
 
     this.name = file.name;
     this.lastModified = file.lastModified;
-    this.size = file.size;
 
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
