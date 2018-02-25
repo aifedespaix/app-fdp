@@ -50,7 +50,7 @@ export class FdpBoxService {
       errorPolicy: 'all',
     }).map(
       ({data, errors}: any) => {
-        console.log(data);
+        // console.log(data);
         if (errors) {
           return {success: false, error: errors[0].message}
         }
@@ -69,7 +69,7 @@ export class FdpBoxService {
       errorPolicy: 'all',
     }).map(
       ({data, errors}: any) => {
-        console.log(data);
+        // console.log(data);
         if (errors) {
           return {success: false, error: errors[0].message}
         }
