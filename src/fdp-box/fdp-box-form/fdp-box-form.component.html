@@ -7,8 +7,8 @@
     </form>
 
     <div class="fdpBoxForm fdpBoxForm_files">
-      <app-fdp-file label="Son" fileType="audio" (fileSaved)="loadSound($event)"></app-fdp-file>
-      <app-fdp-file label="Miniature" fileType="image" (fileSaved)="loadMiniature($event)"></app-fdp-file>
+      <app-fdp-file label="Son" [fileTypes]="['audio/*']" (fileSaved)="loadSound($event)"></app-fdp-file>
+      <app-fdp-file label="Miniature" [fileTypes]="['image/*']" (fileSaved)="loadMiniature($event)"></app-fdp-file>
     </div>
 
     <div class="fdpBoxForm fdpBoxForm_submit">
@@ -42,7 +42,7 @@
     </ng-template>
 
     <div>
-      <a href="">Voir ma box</a>
+      Bravo c'est en ligne, maintenant casse toi.
     </div>
 
   </mat-step>

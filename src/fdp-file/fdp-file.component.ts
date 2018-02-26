@@ -14,7 +14,7 @@ export class FdpFileComponent {
   public loading: boolean;
   public error: string;
   @Input() label: string;
-  @Input() fileType: string;
+  @Input() fileTypes: string[];
   @Output() fileSaved = new EventEmitter<string>();
 
   @ViewChild('fileInput') fileInput: ElementRef;
@@ -32,10 +32,9 @@ export class FdpFileComponent {
 
     try {
       // On charge le fichier
-      this.file.load(event, this.fileType).then(() => {
+      this.file.load(event).then(() => {
         // On sauvegarde le fichier
         this.fdpFileService.sendFile(this.file).subscribe((result) => {
-          // console.log(result);
           if (!result.success) {
             this.loading = false;
             return false;
@@ -55,6 +54,10 @@ export class FdpFileComponent {
       this.loading = false;
       this.error = err.message;
     }
+  }
+
+  public acceptTypes() {
+    return this.fileTypes.join();
   }
 
   private saveFinished() {

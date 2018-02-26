@@ -1,7 +1,7 @@
 <div  class="fdpList">
   <div class="fdpBoxSound usn fdpHover" *ngFor="let box of boxes" (click)="play(box.sound)">
     <div class="fdpBoxSoundBackground">
-      <img [src]="box.miniature.value" alt="{{box.title}}">
+      <img [src]="box.miniature.url" alt="{{box.title}}">
     </div>
     <div class="fdpBoxSound_content">
       <div class="fdpTitle fdpFont">{{box.title}}</div>
