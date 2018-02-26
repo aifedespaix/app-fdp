@@ -14,6 +14,7 @@ import {
   MatMenuModule,
   MatCardModule,
   MatSnackBarModule,
+  MatListModule,
 } from '@angular/material';
 
 @NgModule({
@@ -30,6 +31,7 @@ import {
     MatMenuModule,
     MatCardModule,
     MatSnackBarModule,
+    MatListModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -43,6 +45,7 @@ import {
     MatTabsModule,
     MatMenuModule,
     MatCardModule,
+    MatListModule,
     MatSnackBarModule,
   ],
   declarations: [],

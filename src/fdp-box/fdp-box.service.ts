@@ -36,6 +36,32 @@ export class FdpBoxService {
     }
   `;
 
+  private myBoxesQuery = gql`
+    query myBoxesQuery {
+      myBoxes {
+        id
+        title
+        description
+        sound {
+          url
+          type
+        }
+        miniature {
+          url
+        }
+        tags {
+          value
+        }
+      }
+    }
+  `;
+
+  private deleteBoxMutation = gql`
+    mutation deleteBoxMutation($id: ID!) {
+      deleteBox(id: $id)
+    }
+  `;
+
   constructor(private apollo: Apollo) {}
 
   public createBox(box: FdpBox) {
@@ -50,7 +76,6 @@ export class FdpBoxService {
       errorPolicy: 'all',
     }).map(
       ({data, errors}: any) => {
-        // console.log(data);
         if (errors) {
           return {success: false, error: errors[0].message}
         }
@@ -75,6 +100,42 @@ export class FdpBoxService {
         }
         if (data && data.boxes) {
           return data.boxes;
+        }
+        return {success: false, error: 'erreur chelou lol'};
+      },
+    );
+  }
+
+  public myBoxes() {
+    return this.apollo.query({
+      query: this.myBoxesQuery,
+      variables: {},
+      errorPolicy: 'all',
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, error: errors[0].message, boxes: null}
+        }
+        if (data && data.myBoxes) {
+          return {success: true, error: null, boxes: data.myBoxes}
+        }
+        return {success: false, error: 'erreur chelou lol', boxes: null};
+      },
+    );
+  }
+
+  public delete(id: any) {
+    return this.apollo.mutate({
+      mutation: this.deleteBoxMutation,
+      variables: {id},
+      errorPolicy: 'all',
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, error: errors[0].message}
+        }
+        if (data && data.deleteBox) {
+          return {success: true, error: null}
         }
         return {success: false, error: 'erreur chelou lol'};
       },

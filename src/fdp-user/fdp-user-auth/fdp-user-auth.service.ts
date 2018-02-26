@@ -35,7 +35,7 @@ export class FdpUserAuthService {
       verifyResetPassword(data: {user: $user token: $token})
     }  `;
 
-  private resetPasswordQuery = gql`
+  private resetPasswordMutation = gql`
     mutation resetPassword($user: String! $token: String! $newPassword: String!) {
       resetPassword(data: {token: $token user: $user newPassword: $newPassword})
     }`;
@@ -79,8 +79,8 @@ export class FdpUserAuthService {
     return this.apollo.query({
       query: this.loginRequest,
       variables: {
-        username: username,
-        password: password,
+       username,
+       password,
       },
       errorPolicy: 'all',
     }).map(
@@ -208,7 +208,7 @@ export class FdpUserAuthService {
 
   public resetPassword(user, token, newPassword) {
     return this.apollo.mutate({
-      mutation: this.resetPasswordQuery,
+      mutation: this.resetPasswordMutation,
       variables: {user, token, newPassword},
       errorPolicy: 'all',
     }).map(

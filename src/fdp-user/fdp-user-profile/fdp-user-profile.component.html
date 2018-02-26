@@ -1,22 +1,30 @@
 <div class="fdpContent">
   <h1 class="fdpFont fdpTitle">AifeDesProfil</h1>
 
-  <div></div>
-
   <mat-card *ngIf="fdpAuthService.isLoged;else noProfile">
     <mat-card-header>
-      <div mat-card-avatar class="fdpProfilePicture" [style.background-image]="'url(assets/images/logos/fdp_logo_v2.png)'"></div>
+      <div mat-card-avatar class="fdpProfilePicture"
+           [style.background-image]="'url(assets/images/logos/fdp_logo_v2.png)'"></div>
       <mat-card-title>{{user.username}}</mat-card-title>
       <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
     </mat-card-header>
     <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
     <mat-card-content>
       <p>Encore un profil de merde</p>
+      <div *ngIf="myBoxes.length > 0">
+        <div class="fdpTitle fdpFont">Mes Boxs</div>
+        <mat-list>
+          <h3 mat-subheader>Boxs</h3>
+          <mat-list-item *ngFor="let box of myBoxes">
+            <h4 mat-line>{{box.title}}</h4>
+            <p mat-line> {{box.description}}</p>
+            <mat-icon mat-list-icon class="fdpHover" (click)="deleteBox(box.id)">delete</mat-icon>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+
     </mat-card-content>
-    <!--<mat-card-actions>-->
-    <!--<button mat-button>LIKE</button>-->
-    <!--<button mat-button>SHARE</button>-->
-    <!--</mat-card-actions>-->
   </mat-card>
   <ng-template #noProfile>
     <p>T'as pas de profil car t'es pas connecté enculé.</p>
