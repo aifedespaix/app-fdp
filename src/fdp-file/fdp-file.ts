@@ -1,5 +1,3 @@
-import {FdpFileService} from './fdp-file.service';
-
 export class FdpFile {
   private _id: string;
   private _name: string;
@@ -7,13 +5,6 @@ export class FdpFile {
   private _value: string;
   private _lastModified: number;
   private _size: number;
-
-  private autorizedTypes = {
-    'image/png': 'image',
-    'image/jpeg': 'image',
-    'audio/mpeg': 'audio',
-    'audio/wav': 'audio',
-  };
 
   constructor(name: string, type: string, value: string) {
     this._id = null;
@@ -80,7 +71,7 @@ export class FdpFile {
 
   }
 
-  public load(event: any, fileType: string) {
+  public load(event: any) {
     if (!event.target || !event.target.files || event.target.files.length === 0 || !(event.target.files[0] instanceof File)) {
       throw Error('Fichier Invalide');
     }
@@ -93,10 +84,6 @@ export class FdpFile {
     }
 
     this.type = file.type;
-    if (this.autorizedTypes[this.type] !== fileType) {
-      throw Error('Type de fichier invalide');
-    }
-
     this.name = file.name;
     this.lastModified = file.lastModified;
 

@@ -25,7 +25,7 @@ export class FdpBoxSoundComponent implements OnInit {
   }
 
   public play(sound) {
-    const audio = new Audio(sound.value);
+    const audio = new Audio(sound.url);
     audio.play();
   }
 }

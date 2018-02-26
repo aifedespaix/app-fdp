@@ -23,11 +23,11 @@ export class FdpBoxService {
         title
         description
         sound {
-          value
+          url
           type
         }
         miniature {
-          value
+          url
         }
         tags {
           value

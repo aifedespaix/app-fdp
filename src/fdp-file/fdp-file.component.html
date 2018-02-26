@@ -11,7 +11,7 @@
 
     <ng-container *ngIf="!file.id">
       <label class="fdpFont" for="file">{{label}}</label>
-      <input type="file" id="file" #fileInput (change)="loadFile($event)">
+      <input type="file" id="file" [accept]="acceptTypes()" #fileInput (change)="loadFile($event)">
     </ng-container>
 
   </ng-container>
