@@ -79,7 +79,7 @@ export class FdpFile {
     const file = event.target.files[0];
 
     this.size = file.size;
-    if (this.size > 1040000) {
+    if (this.size > 2040000) {
       throw Error('Fichier trop gros');
     }
 

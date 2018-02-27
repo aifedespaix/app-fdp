@@ -10,6 +10,7 @@ import {FdpUserAuthRegisterComponent} from './fdp-user-auth/fdp-user-auth-regist
 import {FdpUserAuthComponent} from './fdp-user-auth/fdp-user-auth.component';
 import {FdpUserProfileComponent} from './fdp-user-profile/fdp-user-profile.component';
 import {FdpUserAuthResetPasswordComponent} from './fdp-user-auth/fdp-user-auth-resetPassword/fdp-user-auth-resetPassword.component';
+import {FdpBoxConfirmDeleteBoxDialog} from '../fdp-box/fdp-box-delete/fdp-box-delete.dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {FdpUserAuthResetPasswordComponent} from './fdp-user-auth/fdp-user-auth-r
     FdpUserProfileComponent,
     FdpUserAuthResetPasswordComponent,
   ],
+  entryComponents: [FdpBoxConfirmDeleteBoxDialog],
   exports: [
     FdpUserAuthComponent,
   ],
