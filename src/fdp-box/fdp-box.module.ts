@@ -10,15 +10,18 @@ import {FdpBoxService} from './fdp-box.service';
 import {FdpFileService} from '../fdp-file/fdp-file.service';
 import {FdpFileModule} from '../fdp-file/fdp-file.module';
 import {MatStepperModule} from '@angular/material';
+import {FdpBoxConfirmDeleteBoxDialog} from './fdp-box-delete/fdp-box-delete.dialog.component';
 
 @NgModule({
   declarations: [
     FdpBoxComponent,
     FdpBoxSoundComponent,
     FdpBoxFormComponent,
+    FdpBoxConfirmDeleteBoxDialog,
   ],
   exports: [
     FdpBoxComponent,
+    FdpBoxConfirmDeleteBoxDialog,
   ],
   imports: [
     FdpMaterialModule,

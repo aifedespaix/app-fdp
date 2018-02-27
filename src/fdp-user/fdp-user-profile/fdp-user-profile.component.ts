@@ -2,6 +2,8 @@ import {Component, OnInit, Pipe} from '@angular/core';
 import {FdpUserAuthService} from '../fdp-user-auth/fdp-user-auth.service';
 import {FdpUser} from '../fdp-user';
 import {FdpBoxService} from '../../fdp-box/fdp-box.service';
+import {FdpBoxConfirmDeleteBoxDialog} from '../../fdp-box/fdp-box-delete/fdp-box-delete.dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-fdp-user-profile',
@@ -14,7 +16,8 @@ export class FdpUserProfileComponent implements OnInit {
   public myBoxes: {}[];
 
   constructor(public fdpAuthService: FdpUserAuthService,
-              private fdpBoxService: FdpBoxService) {
+              private fdpBoxService: FdpBoxService,
+              public dialog: MatDialog) {
     this.user = this.fdpAuthService.user;
     this.myBoxes = [];
   }
@@ -36,5 +39,21 @@ export class FdpUserProfileComponent implements OnInit {
       } else {
       }
     })
+  }
+
+  public playBox(box) {
+    const audio = new Audio(box.sound.url);
+    audio.play();
+  }
+
+  public confirmDelete(id) {
+    const dialogRef = this.dialog.open(FdpBoxConfirmDeleteBoxDialog, {
+      height: '350px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteBox(id);
+      }
+    });
   }
 }

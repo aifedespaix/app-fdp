@@ -8,20 +8,26 @@
       <mat-card-title>{{user.username}}</mat-card-title>
       <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
     </mat-card-header>
-    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+
     <mat-card-content>
       <p>Encore un profil de merde</p>
-      <div *ngIf="myBoxes.length > 0">
-        <div class="fdpTitle fdpFont">Mes Boxs</div>
-        <mat-list>
-          <h3 mat-subheader>Boxs</h3>
-          <mat-list-item *ngFor="let box of myBoxes">
-            <h4 mat-line>{{box.title}}</h4>
-            <p mat-line> {{box.description}}</p>
-            <mat-icon mat-list-icon class="fdpHover" (click)="deleteBox(box.id)">delete</mat-icon>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
+      <div class="fdpList" *ngIf="myBoxes.length > 0">
+        <h3 class="fdpList_title">Mes Boxs</h3>
+        <div class="fdpList_elem" *ngFor="let box of myBoxes">
+          <div class="fdpLine_bloc">
+            <mat-icon mat-list-icon class="fdpHover" (click)="playBox(box)" title="Jouer la box">
+              play_circle_outline
+            </mat-icon>
+            <h4>{{box.title}}</h4>
+            <p>{{box.description}}</p>
+          </div>
+          <div class="fdpLine_bloc">
+            <mat-icon mat-list-icon class="fdpHover" (click)="confirmDelete(box.id)" title="Supprimer cette box">
+              delete
+            </mat-icon>
+          </div>
+
+        </div>
       </div>
 
     </mat-card-content>
