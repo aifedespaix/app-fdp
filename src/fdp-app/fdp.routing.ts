@@ -4,7 +4,7 @@ import {NgModule} from "@angular/core";
 
 const FDP_ROUTES: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
-  {path: '**', component: PageNotFoundComponent, data: {title: 'Page introuvable'}},
+  {path: '**', component: PageNotFoundComponent, data: {title: 'Page introuvable', }},
 ];
 
 @NgModule({
