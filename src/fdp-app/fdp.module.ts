@@ -1,6 +1,6 @@
 // Angular
 import {NgModule} from '@angular/core'
-import {BrowserModule, Title} from '@angular/platform-browser';
+import {BrowserModule, Meta, Title} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -80,6 +80,7 @@ import {FdpUserAuthService} from '../fdp-user/fdp-user-auth/fdp-user-auth.servic
   providers: [
     // Angular
     Title,
+    Meta,
 
   ],
   bootstrap: [FdpAppComponent],

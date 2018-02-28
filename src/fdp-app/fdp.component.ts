@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 // Routing et balise Title
-import {Title} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import {NavigationEnd, Router} from '@angular/router';
 
 import 'rxjs/add/operator/filter';
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/mergeMap';
 @Component({
   selector: 'app-root',
   templateUrl: './fdp.component.html',
-  styleUrls: ['./fdp.component.scss']
+  styleUrls: ['./fdp.component.scss'],
 })
 
 export class FdpAppComponent {
@@ -19,7 +19,8 @@ export class FdpAppComponent {
   public titlePrefix: String = 'AifeDesPaix - ';
 
   constructor(private router: Router,
-              private title: Title) {
+              private title: Title,
+              private meta: Meta) {
 
     // Slidenav config
     this.isSlidenavActive = localStorage.getItem('isSlidenavActive') === 'true' || window.innerWidth > 1380;
@@ -29,6 +30,8 @@ export class FdpAppComponent {
       }
     };
 
+    this.meta.addTag({name: 'author', content: 'AifeDesPaix'});
+
     // Changement title pas routage route
     this.router.events
       .filter((event: any) => event instanceof NavigationEnd)
@@ -37,10 +40,16 @@ export class FdpAppComponent {
         while (root) {
           if (root.children && root.children.length) {
             root = root.children[0];
-          } else if (root.data && root.data['title']) {
-            this.title.setTitle(this.titlePrefix + root.data['title']);
-            return;
           } else {
+            if (root.data && root.data['title']) {
+              this.title.setTitle(this.titlePrefix + root.data['title']);
+            }
+            if (root.data['description']) {
+              this.meta.addTag({name: 'description', content: root.data['description']});
+            }
+            if (root.data['keyword']) {
+              this.meta.addTag({name: 'keywords', content: root.data['keyword']});
+            }
             return;
           }
         }
