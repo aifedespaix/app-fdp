@@ -2,8 +2,8 @@
   <mat-step [stepControl]="filesForm" label="La Box" editable="false">
 
     <form [formGroup]="filesForm">
-      <input type="hidden" [(ngModel)]="box.soundId" formControlName="box_sound" required>
-      <input type="hidden" [(ngModel)]="box.miniatureId" formControlName="box_miniature" required>
+      <input type="hidden" [(ngModel)]="box.sound.id" formControlName="box_sound" required>
+      <input type="hidden" [(ngModel)]="box.miniature.id" formControlName="box_miniature" required>
     </form>
 
     <div class="fdpBoxForm fdpBoxForm_files">

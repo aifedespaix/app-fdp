@@ -1,0 +1,24 @@
+<div class="fdpList" *ngIf="myBoxes.length > 0">
+  <h3 class="fdpList_title">Mes Boxs</h3>
+
+  <div class="fdpList_elem" *ngFor="let box of myBoxes">
+    <div class="fdpLine_bloc">
+      <mat-icon mat-list-icon class="fdpHover" (click)="playBox(box)" title="Jouer cette box">
+        play_circle_outline
+      </mat-icon>
+      <div>
+        <h4 class="fdpDI">{{box.title}}</h4> {{box.description}}
+      </div>
+    </div>
+
+    <div class="fdpLine_bloc">
+      <mat-icon mat-list-icon class="fdpHover" (click)="edit(box)" title="Editer cette box">
+        edit
+      </mat-icon>
+      <mat-icon mat-list-icon class="fdpHover" (click)="confirmDelete(box.id)" title="Supprimer cette box">
+        delete
+      </mat-icon>
+    </div>
+
+  </div>
+</div>

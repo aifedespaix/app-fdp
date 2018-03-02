@@ -86,6 +86,10 @@ a {
     color: #96000a;
   }
 
+  &DI {
+    display: inline;
+  }
+
   &List {
     display: flex;
     flex-wrap: wrap;
@@ -93,8 +97,9 @@ a {
 
     &_ {
       &elem {
-        border-bottom: 1px solid $color_main;
+        border-bottom: 1px solid #2a2a2a;
         width: 100%;
+        min-height: 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;

@@ -69,8 +69,8 @@ export class FdpBoxService {
       mutation: this.createBoxMutation,
       variables: {
         title: box.title,
-        sound: box.soundId,
-        miniature: box.miniatureId,
+        sound: box.sound.id,
+        miniature: box.miniature.id,
         description: box.description,
       },
       errorPolicy: 'all',
@@ -94,7 +94,6 @@ export class FdpBoxService {
       errorPolicy: 'all',
     }).map(
       ({data, errors}: any) => {
-        // console.log(data);
         if (errors) {
           return {success: false, error: errors[0].message}
         }
@@ -117,6 +116,11 @@ export class FdpBoxService {
           return {success: false, error: errors[0].message, boxes: null}
         }
         if (data && data.myBoxes) {
+          const boxes = [];
+          data.myBoxes.forEach((box) => {
+            boxes.push(FdpBox.reader(box));
+          });
+          console.log(boxes);
           return {success: true, error: null, boxes: data.myBoxes}
         }
         return {success: false, error: 'erreur chelou lol', boxes: null};

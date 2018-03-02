@@ -26,10 +26,10 @@ export class FdpBoxFormComponent {
 
   createForms() {
     this.filesForm = new FormGroup({
-      box_sound: new FormControl(this.box.soundId, [
+      box_sound: new FormControl(this.box.sound.id, [
         Validators.required,
       ]),
-      box_miniature: new FormControl(this.box.miniatureId, [
+      box_miniature: new FormControl(this.box.miniature.id, [
         Validators.required,
       ]),
     });
@@ -57,11 +57,11 @@ export class FdpBoxFormComponent {
   }
 
   loadSound($event: string) {
-    this.box.soundId = $event;
+    this.box.sound.id = $event;
   }
 
   loadMiniature($event: string) {
-    this.box.miniatureId = $event;
+    this.box.miniature.id = $event;
   }
 
 }
