@@ -2,6 +2,7 @@ import {FdpFile} from '../fdp-file/fdp-file';
 
 export class FdpBox {
 
+  private _id: string;
   private _sound: FdpFile;
   private _title: string;
   private _description: string;
@@ -14,6 +15,14 @@ export class FdpBox {
     this.description = '';
     this.miniature = new FdpFile('', '', '');
     this.tags = [];
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
   }
 
   get title(): string {
@@ -59,19 +68,23 @@ export class FdpBox {
   static reader(boxData: any): FdpBox {
     const box = new FdpBox();
 
-    if (box.title) {
+    if (boxData.id) {
+      box.id = boxData.id;
+    }
+
+    if (boxData.title) {
       box.title = boxData.title;
     }
-    if (box.description) {
+    if (boxData.description) {
       box.description = boxData.description;
     }
-    if (box.sound) {
+    if (boxData.sound) {
       box.sound = FdpFile.reader(boxData.sound);
     }
-    if (box.miniature) {
+    if (boxData.miniature) {
       box.miniature = FdpFile.reader(boxData.miniature);
     }
-    if (box.tags) {
+    if (boxData.tags) {
       box.tags = boxData.tags;
     }
 

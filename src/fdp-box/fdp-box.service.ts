@@ -120,8 +120,7 @@ export class FdpBoxService {
           data.myBoxes.forEach((box) => {
             boxes.push(FdpBox.reader(box));
           });
-          console.log(boxes);
-          return {success: true, error: null, boxes: data.myBoxes}
+          return {success: true, error: null, boxes}
         }
         return {success: false, error: 'erreur chelou lol', boxes: null};
       },

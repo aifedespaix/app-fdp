@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FdpBoxService} from '../fdp-box.service';
-import {FdpBoxConfirmDeleteBoxDialog} from '../fdp-box-delete/fdp-box-delete.dialog.component';
+import {FdpBoxConfirmDeleteDialog} from '../fdp-box-delete-dialog/fdp-box-delete.dialog.component';
+import {FdpBoxEditDialog} from '../fdp-box-edit-dialog/fdp-box-edit.dialog.component';
 import {FdpBox} from '../fdp-box';
 import {MatDialog} from '@angular/material';
 
@@ -12,9 +13,9 @@ import {MatDialog} from '@angular/material';
 export class FdpBoxMyListComponent implements OnInit {
 
   public myBoxes: FdpBox[];
-  public dialog: MatDialog
 
-  constructor(private fdpBoxService: FdpBoxService) {
+  constructor(private fdpBoxService: FdpBoxService,
+              public dialog: MatDialog) {
     this.myBoxes = [];
   }
 
@@ -43,8 +44,8 @@ export class FdpBoxMyListComponent implements OnInit {
   }
 
   public confirmDelete(id) {
-    const dialogRef = this.dialog.open(FdpBoxConfirmDeleteBoxDialog, {
-      height: '350px',
+    const dialogRef = this.dialog.open(FdpBoxConfirmDeleteDialog, {
+      height: '200px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -54,11 +55,14 @@ export class FdpBoxMyListComponent implements OnInit {
   }
 
   public edit(id) {
-    // const dialogRef = this.dialog.open(FdpBoxEditBoxDialog, {
-    //   height: '350px',
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
+    const dialogRef = this.dialog.open(FdpBoxEditDialog, {
+      height: '250px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // todo
+      }
+    });
   }
 
 }

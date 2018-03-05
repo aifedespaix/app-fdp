@@ -17,9 +17,6 @@ export class FdpFileService {
     }
   `;
 
-
-  private imagesTypes = ['image/png'];
-
   constructor(private apollo: Apollo) {
   }
 

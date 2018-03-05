@@ -2,10 +2,8 @@
   <h3 class="fdpList_title">Mes Boxs</h3>
 
   <div class="fdpList_elem" *ngFor="let box of myBoxes">
-    <div class="fdpLine_bloc">
-      <mat-icon mat-list-icon class="fdpHover" (click)="playBox(box)" title="Jouer cette box">
-        play_circle_outline
-      </mat-icon>
+    <div class="fdpLine_bloc fdpHover" title="Jouer cette box" (click)="playBox(box)">
+      <img [src]="box.miniature.url" alt="Miniature de la box {{box.title}}" class="fdpCircle fdpCircle-small">
       <div>
         <h4 class="fdpDI">{{box.title}}</h4> {{box.description}}
       </div>

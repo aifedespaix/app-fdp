@@ -107,7 +107,7 @@ export class FdpFile {
   }
 
   static reader(fileData: any) {
-    const file = new FdpFile('', '', '')
+    const file = new FdpFile('', '', '');
 
     if(fileData.id) {
       file.id = fileData.id;
