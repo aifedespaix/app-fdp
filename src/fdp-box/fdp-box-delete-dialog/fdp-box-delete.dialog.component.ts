@@ -3,11 +3,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'fdp-dialog-confirm-delete-box-dialog',
-  templateUrl: 'fdp-box-delete.dialog.html',
+  templateUrl: 'fdp-box-delete.dialog.component.html',
 })
-export class FdpBoxConfirmDeleteBoxDialog {
+export class FdpBoxConfirmDeleteDialog {
   constructor(
-    public dialogRef: MatDialogRef<FdpBoxConfirmDeleteBoxDialog>,
+    public dialogRef: MatDialogRef<FdpBoxConfirmDeleteDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {

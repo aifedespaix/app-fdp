@@ -5,6 +5,7 @@ export class FdpFile {
   private _value: string;
   private _lastModified: number;
   private _size: number;
+  private _url: string;
 
   constructor(name: string, type: string, value: string) {
     this._id = null;
@@ -13,6 +14,7 @@ export class FdpFile {
     this._value = value;
     this._lastModified = 0;
     this._size = 0;
+    this._url = '';
   }
 
   get id(): string {
@@ -63,12 +65,12 @@ export class FdpFile {
     this._size = value;
   }
 
-  protected canBeSaved() {
-    return this.name && this.type && this.value;
+  get url(): string {
+    return this._url;
   }
 
-  public saveFile() {
-
+  set url(value: string) {
+    this._url = value;
   }
 
   public load(event: any) {
@@ -104,4 +106,31 @@ export class FdpFile {
     });
   }
 
+  static reader(fileData: any) {
+    const file = new FdpFile('', '', '');
+
+    if(fileData.id) {
+      file.id = fileData.id;
+    }
+    if(fileData.name) {
+      file.name = fileData.name;
+    }
+    if(fileData.type) {
+      file.type = fileData.type;
+    }
+    if(fileData.value) {
+      file.value = fileData.value;
+    }
+    if(fileData.lastModified) {
+      file.lastModified = fileData.lastModified;
+    }
+    if(fileData.size) {
+      file.size = fileData.size;
+    }
+    if(fileData.url) {
+      file.url = fileData.url;
+    }
+
+    return file;
+  }
 }

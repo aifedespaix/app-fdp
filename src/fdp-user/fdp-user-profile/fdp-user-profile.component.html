@@ -11,25 +11,7 @@
 
     <mat-card-content>
       <p>Encore un profil de merde</p>
-      <div class="fdpList" *ngIf="myBoxes.length > 0">
-        <h3 class="fdpList_title">Mes Boxs</h3>
-        <div class="fdpList_elem" *ngFor="let box of myBoxes">
-          <div class="fdpLine_bloc">
-            <mat-icon mat-list-icon class="fdpHover" (click)="playBox(box)" title="Jouer la box">
-              play_circle_outline
-            </mat-icon>
-            <h4>{{box.title}}</h4>
-            <p>{{box.description}}</p>
-          </div>
-          <div class="fdpLine_bloc">
-            <mat-icon mat-list-icon class="fdpHover" (click)="confirmDelete(box.id)" title="Supprimer cette box">
-              delete
-            </mat-icon>
-          </div>
-
-        </div>
-      </div>
-
+      <app-fdp-box-my-list></app-fdp-box-my-list>
     </mat-card-content>
   </mat-card>
   <ng-template #noProfile>

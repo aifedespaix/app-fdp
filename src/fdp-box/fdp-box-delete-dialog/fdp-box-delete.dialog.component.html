@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Supprimer la box</h1>
+<div mat-dialog-content>
+  <p>Voulez-vous vraiment supprimer la box ?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Supprimer</button>
+  <button mat-raised-button color="primary" (click)="onNoClick()">Nope</button>
+</div>
