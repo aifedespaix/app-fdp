@@ -62,4 +62,8 @@ export class FdpFileComponent {
   private saveFinished() {
     this.fileSaved.emit(this.file);
   }
+
+  public isImage() {
+    return /image\/.*/.exec(this.file.type);
+  }
 }

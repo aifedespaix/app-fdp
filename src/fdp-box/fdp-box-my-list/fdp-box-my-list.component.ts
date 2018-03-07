@@ -8,7 +8,6 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 @Component({
   selector: 'app-fdp-box-my-list',
   templateUrl: './fdp-box-my-list.component.html',
-  // styleUrls: ['./fdp-box-my-list.component.scss'],
 })
 export class FdpBoxMyListComponent implements OnInit {
 

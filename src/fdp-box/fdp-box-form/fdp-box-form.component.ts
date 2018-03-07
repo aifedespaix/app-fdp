@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FdpBoxService} from '../fdp-box.service';
 import {FdpBox} from '../fdp-box';
@@ -15,6 +15,8 @@ export class FdpBoxFormComponent {
   public error: string;
   public filesForm: FormGroup;
   public informationsForm: FormGroup;
+
+  @Output() onBoxSaved = new EventEmitter<FdpBox>();
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -38,19 +40,15 @@ export class FdpBoxFormComponent {
       box_title: new FormControl(this.box.title, [
         Validators.required,
       ]),
-      box_description: new FormControl(this.box.description, [
-        Validators.required,
-      ]),
+      box_description: new FormControl(this.box.description, []),
     });
-  }
-
-  onSubmit() {
-    // const formModel = this.form.value;
   }
 
   sendBox() {
     this.fdpBoxService.createBox(this.box).subscribe(res => {
-        console.log(res);
+        if(res.box) {
+          this.onBoxSaved.emit(res.box);
+        }
       }, error => {
         console.log(error);
       },
