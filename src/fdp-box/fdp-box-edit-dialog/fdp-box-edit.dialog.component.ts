@@ -12,11 +12,13 @@ import {FdpFile} from '../../fdp-file/fdp-file';
 export class FdpBoxEditDialog {
   public editBoxFormGroup: FormGroup;
   public box: FdpBox;
+  public error: string;
 
   constructor(public dialogRef: MatDialogRef<FdpBoxEditDialog>,
               private fdpBoxService: FdpBoxService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.box = new FdpBox();
+    this.error = '';
     this.editBoxFormGroup = new FormGroup({
       box_title: new FormControl(this.box.title, []),
       box_description: new FormControl(this.box.description, []),
