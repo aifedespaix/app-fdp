@@ -22,7 +22,7 @@ export class FdpFileComponent {
   constructor(private fb: FormBuilder,
               private fdpFileService: FdpFileService) {
     this.loading = false;
-    this.file = new FdpFile('', '', '');
+    this.file = new FdpFile();
     this.error = '';
   }
 

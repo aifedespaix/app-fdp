@@ -10,10 +10,10 @@ export class FdpBox {
   private _tags: string[];
 
   constructor() {
-    this.sound = new FdpFile('', '', '');
+    this.sound = new FdpFile();
     this.title = '';
     this.description = '';
-    this.miniature = new FdpFile('', '', '');
+    this.miniature = new FdpFile();
     this.tags = [];
   }
 

@@ -16,6 +16,12 @@ export class FdpBoxService {
     }
   `;
 
+  private editBoxMutation = gql`
+    mutation editBoxMutation($id: ID!, $title: String $miniature: ID $description: String) {
+      editBox(id: $id, box: {title: $title miniature: $miniature description: $description})
+    }
+  `;
+
   private boxesQuery = gql`
     query boxesQuery {
       boxes {
@@ -139,6 +145,36 @@ export class FdpBoxService {
         }
         if (data && data.deleteBox) {
           return {success: true, error: null}
+        }
+        return {success: false, error: 'erreur chelou lol'};
+      },
+    );
+  }
+
+  editBox(box: FdpBox) {
+    console.log('box');
+    console.log(box);
+
+    let variables = {
+      id: box.id,
+      title: box.title,
+      description: box.description,
+    };
+    if(box.description.id) {
+      variables.miniature = box.miniature.id;
+    }
+    console.log(variables);
+    return this.apollo.mutate({
+      mutation: this.editBoxMutation,
+      variables,
+      errorPolicy: 'all',
+    }).map(
+      ({data, errors}: any) => {
+        if (errors) {
+          return {success: false, error: errors[0].message}
+        }
+        if (data && data.editBox) {
+          return {success: true, error: null};
         }
         return {success: false, error: 'erreur chelou lol'};
       },

@@ -54,9 +54,10 @@ export class FdpBoxMyListComponent implements OnInit {
     });
   }
 
-  public edit(id) {
+  public edit(box) {
     const dialogRef = this.dialog.open(FdpBoxEditDialog, {
-      height: '250px',
+      height: '350px',
+      data: {box}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
