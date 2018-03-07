@@ -19,7 +19,7 @@ a {
   @extend .mainColor;
   text-decoration: none;
 
-  cursor:  url(assets/cursors/fuck.cur) 2 2, pointer;
+  cursor:  url(assets/cursors/fuck.cur) 18 5, pointer;
 }
 
 .normalColor {
@@ -58,7 +58,7 @@ a {
 .fdp {
 
   &Hover {
-    cursor:  url(assets/cursors/fuck.cur) 2 2, pointer;
+    cursor:  url(assets/cursors/fuck.cur) 18 5, pointer;
   }
   /* Vertical Center */
   &VC {
@@ -79,6 +79,24 @@ a {
         background-color: $color_quaternary_dark !important;
         color: $color_bg_neutral !important;
       }
+    }
+  }
+
+  &Form {
+  }
+  &Fields {
+    display: flex;
+    flex-direction: column;
+
+  }
+  &Buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      margin-top: 10px;
     }
   }
 

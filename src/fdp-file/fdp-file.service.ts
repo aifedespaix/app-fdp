@@ -13,7 +13,14 @@ export class FdpFileService {
         type: $type
         value: $value
         lastModified: $lastModified
-        size: $size}) {id}
+        size: $size}) {
+        id
+        name
+        type
+        url
+        size
+        lastModified
+      }
     }
   `;
 
@@ -34,12 +41,13 @@ export class FdpFileService {
     }).map(
       ({data, errors}: any) => {
         if (errors) {
-          return {success: false, error: errors[0].message, fileId: null}
+          return {success: false, error: errors[0].message, file: null}
         }
         if (data && data.createFile) {
-          return {success: true, error: null, fileId: data.createFile.id};
+          file.url = data.createFile.url;
+          return {success: true, error: null, file: FdpFile.reader(data.createFile)};
         }
-        return {success: false, error: 'erreur chelou lol', fileId: null};
+        return {success: false, error: 'erreur chelou lol', file: null};
       },
     );
   }

@@ -7,14 +7,8 @@ export class FdpFile {
   private _size: number;
   private _url: string;
 
-  constructor(name: string, type: string, value: string) {
-    this._id = null;
-    this._name = name;
-    this._type = type;
-    this._value = value;
-    this._lastModified = 0;
-    this._size = 0;
-    this._url = '';
+  constructor() {
+    this.reset();
   }
 
   get id(): string {
@@ -107,7 +101,7 @@ export class FdpFile {
   }
 
   static reader(fileData: any) {
-    const file = new FdpFile('', '', '');
+    const file = new FdpFile();
 
     if(fileData.id) {
       file.id = fileData.id;
@@ -132,5 +126,15 @@ export class FdpFile {
     }
 
     return file;
+  }
+
+  public reset() {
+    this._id = null;
+    this._name = '';
+    this._type = '';
+    this._value = '';
+    this._lastModified = 0;
+    this._size = 0;
+    this._url = '';
   }
 }
