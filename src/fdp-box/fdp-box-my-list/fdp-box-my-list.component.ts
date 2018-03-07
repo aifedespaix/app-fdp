@@ -66,7 +66,7 @@ export class FdpBoxMyListComponent implements OnInit {
           duration: 1500,
         });
       } else {
-        this.snackBar.open('Erreur lors de la mise à jour de la box.', 'osef', {
+        this.snackBar.open(`La box n'a pas été mise à jour.`, 'osef', {
           duration: 1500,
         });
       }
