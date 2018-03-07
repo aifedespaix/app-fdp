@@ -2,6 +2,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FdpBoxService} from '../fdp-box.service';
 import {FdpBox} from '../fdp-box';
+import {FdpFile} from '../../fdp-file/fdp-file';
 
 @Component({
   selector: 'app-fdp-box-form',
@@ -56,12 +57,12 @@ export class FdpBoxFormComponent {
     );
   }
 
-  loadSound($event: string) {
-    this.box.sound.id = $event;
+  loadSound(file: FdpFile) {
+    this.box.sound = file;
   }
 
-  loadMiniature($event: string) {
-    this.box.miniature.id = $event;
+  loadMiniature(file: FdpFile) {
+    this.box.miniature = file;
   }
 
 }

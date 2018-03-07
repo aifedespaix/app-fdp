@@ -68,7 +68,8 @@ export class FdpBoxService {
     }
   `;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) {
+  }
 
   public createBox(box: FdpBox) {
     return this.apollo.mutate({
@@ -152,18 +153,14 @@ export class FdpBoxService {
   }
 
   editBox(box: FdpBox) {
-    console.log('box');
-    console.log(box);
-
-    let variables = {
+    let variables: any = {
       id: box.id,
       title: box.title,
       description: box.description,
     };
-    if(box.description.id) {
+    if (box.miniature.id) {
       variables.miniature = box.miniature.id;
     }
-    console.log(variables);
     return this.apollo.mutate({
       mutation: this.editBoxMutation,
       variables,

@@ -3,7 +3,7 @@ import {FdpBoxService} from '../fdp-box.service';
 import {FdpBoxConfirmDeleteDialog} from '../fdp-box-delete-dialog/fdp-box-delete.dialog.component';
 import {FdpBoxEditDialog} from '../fdp-box-edit-dialog/fdp-box-edit.dialog.component';
 import {FdpBox} from '../fdp-box';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-fdp-box-my-list',
@@ -15,7 +15,8 @@ export class FdpBoxMyListComponent implements OnInit {
   public myBoxes: FdpBox[];
 
   constructor(private fdpBoxService: FdpBoxService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              public snackBar: MatSnackBar) {
     this.myBoxes = [];
   }
 
@@ -57,11 +58,17 @@ export class FdpBoxMyListComponent implements OnInit {
   public edit(box) {
     const dialogRef = this.dialog.open(FdpBoxEditDialog, {
       height: '350px',
-      data: {box}
+      data: {box},
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // todo
+    dialogRef.afterClosed().subscribe(success => {
+      if (success) {
+        this.snackBar.open('La box a bien été mise à jour.', 'osef', {
+          duration: 1500,
+        });
+      } else {
+        this.snackBar.open('Erreur lors de la mise à jour de la box.', 'osef', {
+          duration: 1500,
+        });
       }
     });
   }

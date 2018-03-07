@@ -15,7 +15,7 @@ export class FdpFileComponent {
   public error: string;
   @Input() label: string;
   @Input() fileTypes: string[];
-  @Output() fileSaved = new EventEmitter<string>();
+  @Output() fileSaved = new EventEmitter<FdpFile>();
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -39,8 +39,7 @@ export class FdpFileComponent {
             this.loading = false;
             return false;
           }
-
-          this.file.id = result.fileId; // On affecte l'id
+          this.file = result.file;
           this.loading = false; // On stop le load
           this.saveFinished();
         })
@@ -61,6 +60,6 @@ export class FdpFileComponent {
   }
 
   private saveFinished() {
-    this.fileSaved.emit(this.file.id);
+    this.fileSaved.emit(this.file);
   }
 }

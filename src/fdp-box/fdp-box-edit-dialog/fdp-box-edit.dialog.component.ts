@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FdpBox} from '../fdp-box';
 import {FdpBoxService} from '../fdp-box.service';
+import {FdpFile} from '../../fdp-file/fdp-file';
 
 @Component({
   selector: 'fdp-dialog-edit-box-dialog',
@@ -27,17 +28,14 @@ export class FdpBoxEditDialog {
   }
 
   public editBox() {
-    this.fdpBoxService.editBox(this.box).subscribe(() => {
-      console.log('gg');
+    this.fdpBoxService.editBox(this.box).subscribe((res) => {
+      this.dialogRef.close(res.success);
     });
   }
 
-  public updateMiniature($event) {
+  public updateMiniature(file: FdpFile) {
     this.box.miniature.reset();
-    this.box.miniature.id = $event;
+    this.box.miniature = file;
   }
 
-  onNoClick(): void {
-    this.dialogRef.close(false);
-  }
 }
