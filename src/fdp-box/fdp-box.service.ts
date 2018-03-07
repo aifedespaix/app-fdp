@@ -12,6 +12,18 @@ export class FdpBoxService {
     mutation createBoxMutation($title: String! $sound: ID! $miniature: ID! $description: String!) {
       createBox(box: {title: $title sound: $sound miniature: $miniature description: $description}) {
         id
+        title
+        description
+        sound {
+          url
+          type
+        }
+        miniature {
+          url
+        }
+        tags {
+          value
+        }
       }
     }
   `;
@@ -84,12 +96,12 @@ export class FdpBoxService {
     }).map(
       ({data, errors}: any) => {
         if (errors) {
-          return {success: false, error: errors[0].message}
+          return {success: false, error: errors[0].message, box: null}
         }
         if (data && data.register) {
-          return {success: true, error: null};
+          return {success: true, error: null, box: FdpBox.reader(data.box)};
         }
-        return {success: false, error: 'erreur chelou lol'};
+        return {success: false, error: 'erreur chelou lol', box: null};
       },
     );
   }

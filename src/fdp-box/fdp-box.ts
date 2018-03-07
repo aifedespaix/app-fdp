@@ -71,7 +71,6 @@ export class FdpBox {
     if (boxData.id) {
       box.id = boxData.id;
     }
-
     if (boxData.title) {
       box.title = boxData.title;
     }

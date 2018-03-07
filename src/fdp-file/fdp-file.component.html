@@ -6,7 +6,7 @@
   <ng-container *ngIf="!loading">
 
     <ng-container *ngIf="file.id">
-      <img class="fdpFileForm_preview" alt="loadedImage" [src]="file.url">
+      <img *ngIf="isImage()" class="fdpFileForm_preview" alt="loadedImage" [src]="file.url">
       <span class="fdpFont fdpFileForm_previewTxt">{{file.name}}</span>
     </ng-container>
 
