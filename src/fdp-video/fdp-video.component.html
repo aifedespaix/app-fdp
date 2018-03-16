@@ -3,9 +3,15 @@
 
   <div class="fdpVideo" id="fdpVideo">
     <ng-container *ngIf="video">
-      <div class="fdpVideo_playContainer">
-        <iframe class="fdpVideo_play" width="930" height="529" [src]="unsecureUrl('https://www.youtube-nocookie.com/embed/'+video.youtubeId)" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
+      <iframe #videoView id="videoView" class="fdpVideo_play"
+              [src]="unsecureUrl('https://www.youtube.com/embed/'+video.youtubeId)"
+              frameborder="0" allow="autoplay; encrypted-media"
+              allowfullscreen="allowfullscreen"
+              mozallowfullscreen="mozallowfullscreen"
+              msallowfullscreen="msallowfullscreen"
+              oallowfullscreen="oallowfullscreen"
+              webkitallowfullscreen="webkitallowfullscreen"
+              (window:resize)="calcVideoHeight()"></iframe>
       <h3 class="fdpVideo_title">{{video.title}}</h3>
     </ng-container>
   </div>
