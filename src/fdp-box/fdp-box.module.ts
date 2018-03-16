@@ -13,6 +13,7 @@ import {MatStepperModule} from '@angular/material';
 import {FdpBoxConfirmDeleteDialog} from './fdp-box-delete-dialog/fdp-box-delete.dialog.component';
 import {FdpBoxMyListComponent} from './fdp-box-my-list/fdp-box-my-list.component';
 import {FdpBoxEditDialog} from './fdp-box-edit-dialog/fdp-box-edit.dialog.component';
+import {FdpTagModule} from '../fdp-tag/fdp-tag.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {FdpBoxEditDialog} from './fdp-box-edit-dialog/fdp-box-edit.dialog.compon
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
+    FdpTagModule,
   ],
   providers: [
     FdpBoxService,

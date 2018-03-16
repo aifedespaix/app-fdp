@@ -1,4 +1,4 @@
-<mat-horizontal-stepper linear="true" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper linear="false" #stepper="matHorizontalStepper">
   <mat-step [stepControl]="filesForm" label="La Box" editable="false">
 
     <form [formGroup]="filesForm">
@@ -27,6 +27,8 @@
       <mat-form-field>
         <textarea matInput [(ngModel)]="box.description" formControlName="box_description" placeholder="Description"></textarea>
       </mat-form-field>
+
+      <!--<app-fdp-tag></app-fdp-tag>-->
 
       <div class="fdpBoxForm fdpBoxForm_submit">
         <button mat-raised-button color="primary" matStepperNext [disabled]="!informationsForm.valid" (click)="sendBox()">Envoyer</button>
