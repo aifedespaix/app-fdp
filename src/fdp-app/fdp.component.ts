@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { HostListener } from '@angular/core';
 
 // Routing et balise Title
 import {Meta, Title} from '@angular/platform-browser';
@@ -18,10 +19,14 @@ export class FdpAppComponent {
   public isSlidenavActive: Boolean;
   public titlePrefix: String = 'AifeDesPaix - ';
 
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.onKey(event);
+  }
+
   constructor(private router: Router,
               private title: Title,
               private meta: Meta) {
-
     // Slidenav config
     this.isSlidenavActive = localStorage.getItem('isSlidenavActive') === 'true' || window.innerWidth > 1380;
     window.onresize = () => {
@@ -63,6 +68,15 @@ export class FdpAppComponent {
     if (window.innerWidth < 1380 || !this.isSlidenavActive) {
       this.isSlidenavActive = !this.isSlidenavActive;
       localStorage.setItem('isSlidenavActive', String(this.isSlidenavActive));
+    }
+  }
+
+
+  public onKey(event: KeyboardEvent) { // without type info
+    switch(event.key) {
+      case "Escape":
+        ;
+        break;
     }
   }
 

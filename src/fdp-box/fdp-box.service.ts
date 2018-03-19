@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/delay';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
-import {Observable} from 'rxjs/Observable';
 import {FdpBox} from './fdp-box';
 
 @Injectable()
