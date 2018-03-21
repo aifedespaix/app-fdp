@@ -14,6 +14,8 @@ import {FdpBoxConfirmDeleteDialog} from './fdp-box-delete-dialog/fdp-box-delete.
 import {FdpBoxMyListComponent} from './fdp-box-my-list/fdp-box-my-list.component';
 import {FdpBoxEditDialog} from './fdp-box-edit-dialog/fdp-box-edit.dialog.component';
 import {FdpTagModule} from '../fdp-tag/fdp-tag.module';
+import {FdpSoundModule} from '../fdp-sound/fdp-sound.module';
+import {FdpSoundService} from '../fdp-sound/fdp-sound.service';
 
 @NgModule({
   declarations: [
@@ -29,17 +31,21 @@ import {FdpTagModule} from '../fdp-tag/fdp-tag.module';
     FdpBoxMyListComponent,
   ],
   imports: [
-    FdpMaterialModule,
-    FdpFileModule,
-    FdpBoxRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
+
+    FdpMaterialModule,
+
     FdpTagModule,
+    FdpSoundModule,
+    FdpFileModule,
+    FdpBoxRoutingModule,
   ],
   providers: [
     FdpBoxService,
     FdpFileService,
+    FdpSoundService,
   ]
 })
 

@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FdpBoxService} from '../fdp-box.service';
+import {FdpSoundService} from '../../fdp-sound/fdp-sound.service';
+import {FdpFile} from '../../fdp-file/fdp-file';
+import {FdpBox} from '../fdp-box';
 
 @Component({
   selector: 'app-fdp-box-sound',
@@ -8,12 +11,11 @@ import {FdpBoxService} from '../fdp-box.service';
 })
 export class FdpBoxSoundComponent implements OnInit {
 
-  public boxes: {}[];
-  public sound: string;
+  public boxes: FdpBox[];
 
-  constructor(private fdpBoxService: FdpBoxService) {
+  constructor(private fdpBoxService: FdpBoxService,
+              private fdpSoundService: FdpSoundService) {
     this.boxes = [];
-    this.sound = null;
   }
 
   ngOnInit() {
@@ -24,8 +26,11 @@ export class FdpBoxSoundComponent implements OnInit {
     })
   }
 
-  public play(sound) {
-    const audio = new Audio(sound.url);
-    audio.play();
+  public play(sound: FdpFile) {
+    this.fdpSoundService.play(sound);
+  }
+
+  public vote(id, positive: boolean) {
+
   }
 }

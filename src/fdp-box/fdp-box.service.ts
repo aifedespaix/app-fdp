@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/delay';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
-import {Observable} from 'rxjs/Observable';
 import {FdpBox} from './fdp-box';
 
 @Injectable()
@@ -114,12 +113,16 @@ export class FdpBoxService {
     }).map(
       ({data, errors}: any) => {
         if (errors) {
-          return {success: false, error: errors[0].message}
+          throw new Error(errors[0].message);
         }
         if (data && data.boxes) {
-          return data.boxes;
+          const boxes = [];
+          data.boxes.forEach((box) => {
+            boxes.push(FdpBox.reader(box));
+          });
+          return boxes;
         }
-        return {success: false, error: 'erreur chelou lol'};
+        throw new Error('erreur chelou lol');
       },
     );
   }
