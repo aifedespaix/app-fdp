@@ -31,7 +31,7 @@ import {FdpVideoModule} from '../fdp-video/fdp-video.module';
 import {FdpBoxModule} from '../fdp-box/fdp-box.module';
 import {FdpNigmeModule} from '../fdp-nigme/fdp-nigme.module';
 import {environment} from '../environments/environment';
-import {FdpUserAuthService} from '../fdp-user/fdp-user-auth/fdp-user-auth.service';
+import {FdpSoundModule} from '../fdp-sound/fdp-sound.module';
 
 @NgModule({
   declarations: [
@@ -56,22 +56,19 @@ import {FdpUserAuthService} from '../fdp-user/fdp-user-auth/fdp-user-auth.servic
     ApolloModule,
     HttpLinkModule,
 
-    // Fdp Layout
+    // Structure HTML
     FdpLayoutModule,
 
-    // Fdp Index
+    // Modules services
+    FdpSoundModule,
+
+    // Pages
     FdpIndexModule,
-    // Fdp Blog
     FdpBlogModule,
-    // Fdp Box
     FdpBoxModule,
-    // Fdp Music
     FdpMusicModule,
-    // Fdp Nigme
     FdpNigmeModule,
-    // Fdp Video
     FdpVideoModule,
-    // Fdp FdpUserAuth
     FdpUserModule,
 
     // Routing
@@ -81,14 +78,12 @@ import {FdpUserAuthService} from '../fdp-user/fdp-user-auth/fdp-user-auth.servic
     // Angular
     Title,
     Meta,
-
   ],
   bootstrap: [FdpAppComponent],
 })
 export class FdpModule {
   constructor(apollo: Apollo,
               httpLink: HttpLink,
-              // fdpUserAuthService: FdpUserAuthService
   ) {
     const apiUrl = environment.production ? 'https://api.aifedespaix.com/graphql' : 'http://localhost:3000/graphql';
     const http = httpLink.create({

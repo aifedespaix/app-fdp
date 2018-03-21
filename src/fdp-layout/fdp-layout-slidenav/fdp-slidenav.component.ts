@@ -25,12 +25,6 @@ export class FdpSlidenavComponent {
         text: 'Blog',
         exact: false,
       },
-      // {
-      //   link: 'music',
-      //   icon: 'audiotrack',
-      //   text: 'Musique',
-      //   exact: false,
-      // },
       {
         link: 'box',
         icon: 'audiotrack',

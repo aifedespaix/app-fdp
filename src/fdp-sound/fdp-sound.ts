@@ -1,7 +1,7 @@
 import {FdpFile} from '../fdp-file/fdp-file';
 
 export class FdpSound {
-  public audio: Audio;
+  public audio: HTMLAudioElement;
   public file: FdpFile;
 
   constructor(file: FdpFile) {
@@ -11,6 +11,10 @@ export class FdpSound {
 
   play() {
     this.audio.play();
+  }
+
+  stop() {
+    this.audio.pause();
   }
 
 }

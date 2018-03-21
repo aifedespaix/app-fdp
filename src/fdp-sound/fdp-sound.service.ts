@@ -6,14 +6,21 @@ import {FdpFile} from '../fdp-file/fdp-file';
 @Injectable()
 export class FdpSoundService {
 
-  public sounds: FdpSound[];
+  public sound: FdpSound;
 
   constructor() {
-    this.sounds = [];
+    this.sound = null;
   }
 
   play(file: FdpFile) {
-    this.sounds[file.id] = new FdpSound(file);
-    this.sounds[file.id].play();
+    if(this.sound instanceof FdpSound) {
+      this.stop();
+    }
+    this.sound = new FdpSound(file);
+    this.sound.play();
+  }
+
+  stop() {
+    this.sound.stop();
   }
 }

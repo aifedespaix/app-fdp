@@ -8,6 +8,7 @@ import {NavigationEnd, Router} from '@angular/router';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import {FdpSoundService} from '../fdp-sound/fdp-sound.service';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ export class FdpAppComponent {
 
   constructor(private router: Router,
               private title: Title,
-              private meta: Meta) {
+              private meta: Meta,
+              private fdpSoundService: FdpSoundService) {
     // Slidenav config
     this.isSlidenavActive = localStorage.getItem('isSlidenavActive') === 'true' || window.innerWidth > 1380;
     window.onresize = () => {
@@ -75,7 +77,7 @@ export class FdpAppComponent {
   public onKey(event: KeyboardEvent) { // without type info
     switch(event.key) {
       case "Escape":
-        ;
+        this.fdpSoundService.stop();
         break;
     }
   }

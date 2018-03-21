@@ -19,7 +19,7 @@ a {
   @extend .mainColor;
   text-decoration: none;
 
-  cursor:  url(assets/cursors/fuck.cur) 18 5, pointer;
+  cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
 }
 
 .normalColor {
@@ -58,7 +58,7 @@ a {
 .fdp {
 
   &Hover {
-    cursor:  url(assets/cursors/fuck.cur) 18 5, pointer;
+    cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
   }
   /* Vertical Center */
   &VC {
@@ -142,8 +142,8 @@ a {
     margin: 2px;
     border-radius: 2px;
 
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.3);
-    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
 
     display: flex;
     flex-direction: column;
@@ -156,6 +156,10 @@ a {
 
       &hoverable:hover {
         animation: pulse .2s;
+
+        .fdpTuile_details {
+          visibility: visible;
+        }
       }
     }
 
@@ -163,6 +167,7 @@ a {
       &title {
         overflow: hidden;
         flex: 1;
+        background-color: #fff;
       }
       &content {
         overflow: hidden;
@@ -170,12 +175,40 @@ a {
         justify-content: center;
         align-items: center;
         flex: 2;
+        position: relative;
 
         img {
+          z-index: 0;
+          position: absolute;
           min-width: 100%;
           max-width: 150%;
           min-height: 100%;
           max-height: 150%;
+        }
+      }
+      &details {
+        visibility: hidden;
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      &vote {
+        opacity: 0.3;
+        padding: 5px;
+        background-color: #fff;
+        &:hover {
+          opacity: 0.8;
+        }
+        &-good:hover {
+          color: $color_good;
+        }
+        &-bad:hover {
+          color: $color_bad;
         }
       }
     }
@@ -222,8 +255,8 @@ a {
     margin: 10px;
     border-radius: 2px;
 
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.3);
-    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
 
     &:hover {
       animation: pulse .2s;
@@ -294,6 +327,7 @@ a {
     }
   }
 }
+
 router-outlet + * {
   width: 100%;
   min-width: 100%;
@@ -303,7 +337,6 @@ router-outlet + * {
   .fdpContent {
     width: calc(1080px - #{2 * $contentPadding});
   }
-
 
   router-outlet + * {
     width: $contentWidth;
