@@ -4,6 +4,7 @@ import {FdpBoxConfirmDeleteDialog} from '../fdp-box-delete-dialog/fdp-box-delete
 import {FdpBoxEditDialog} from '../fdp-box-edit-dialog/fdp-box-edit.dialog.component';
 import {FdpBox} from '../fdp-box';
 import {MatDialog, MatSnackBar} from '@angular/material';
+import {FdpSoundService} from '../../fdp-sound/fdp-sound.service';
 
 @Component({
   selector: 'app-fdp-box-my-list',
@@ -15,7 +16,8 @@ export class FdpBoxMyListComponent implements OnInit {
 
   constructor(private fdpBoxService: FdpBoxService,
               public dialog: MatDialog,
-              public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar,
+              private fdpSoundService: FdpSoundService) {
     this.myBoxes = [];
   }
 
@@ -39,8 +41,7 @@ export class FdpBoxMyListComponent implements OnInit {
   }
 
   public playBox(box) {
-    const audio = new Audio(box.sound.url);
-    audio.play();
+    this.fdpSoundService.play(box.sound);
   }
 
   public confirmDelete(id) {
