@@ -156,10 +156,6 @@ a {
 
       &hoverable:hover {
         animation: pulse .2s;
-
-        .fdpTuile_details {
-          visibility: visible;
-        }
       }
     }
 
@@ -187,7 +183,6 @@ a {
         }
       }
       &details {
-        visibility: hidden;
         position: absolute;
         z-index: 1;
         width: 100%;
