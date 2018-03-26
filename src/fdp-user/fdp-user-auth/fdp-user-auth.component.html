@@ -4,10 +4,16 @@
     <h3 class="fdpTitle fdpFont fdpNoMargin">AifeDesConnexion</h3>
     <div class="fdpAuth_fields">
       <mat-tab-group>
-        <mat-tab label="Connexion">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon mat-list-icon>person</mat-icon> Connexion
+          </ng-template>
           <app-fdp-user-auth-login (onLoginDone)="closeModale()"></app-fdp-user-auth-login>
         </mat-tab>
-        <mat-tab label="Inscription">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon mat-list-icon>person_add</mat-icon> Inscription
+          </ng-template>
           <app-fdp-user-auth-register (onRegisterDone)="closeModale()"></app-fdp-user-auth-register>
         </mat-tab>
       </mat-tab-group>

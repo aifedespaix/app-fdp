@@ -46,7 +46,7 @@ export class FdpBoxMyListComponent implements OnInit {
 
   public confirmDelete(id) {
     const dialogRef = this.dialog.open(FdpBoxConfirmDeleteDialog, {
-      height: '200px',
+      height: '250px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
