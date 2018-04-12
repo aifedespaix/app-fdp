@@ -1,8 +1,12 @@
 <div class="fdpContent">
   <h1 class="fdpFont fdpTitle">AifeDesBox</h1>
 
+  <p>Ici faut mettre le son</p>
+  <p>Clique sur une box, le son va se jouer.</p>
+  <p>Connecte toi pour upload tes propres box.</p>
+  <p>Appuie sur "Echap" pour stoper la lecture enculé(e).</p>
+
   <app-fdp-box-form *ngIf="isLoged()" (onBoxSaved)="addBox($event)"></app-fdp-box-form>
 
-  <p>Appuie sur "Echap" pour stoper la lecture enculé.</p>
   <app-fdp-box-sound></app-fdp-box-sound>
 </div>
