@@ -37,6 +37,13 @@ export class FdpAppComponent {
       }
     };
 
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     gtag('set', 'page', event.urlAfterRedirects);
+    //     gtag('send', 'pageview');
+    //   }
+    // });
+
     this.meta.addTag({name: 'author', content: 'AifeDesPaix'});
 
     // Changement title pas routage route
