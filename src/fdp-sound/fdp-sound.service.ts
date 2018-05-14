@@ -13,7 +13,7 @@ export class FdpSoundService {
   }
 
   play(file: FdpFile) {
-    if(this.sound instanceof FdpSound) {
+    if(this.sound) {
       this.stop();
     }
     this.sound = new FdpSound(file);
