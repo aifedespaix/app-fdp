@@ -26,9 +26,9 @@
              formControlName="register_password"
              [(ngModel)]="userRegister.password">
       <mat-hint>Au moins 8 caractères</mat-hint>
-      <mat-icon class="fdpClickable" matSuffix (click)="showPassword = !showPassword">
-        {{showPassword ? 'visibility' : 'visibility_off'}}
-      </mat-icon>
+      <!--<mat-icon class="fdpClickable" matSuffix (click)="showPassword = !showPassword">-->
+        <!--{{showPassword ? 'visibility' : 'visibility_off'}}-->
+      <!--</mat-icon>-->
     </mat-input-container>
 
     <mat-input-container *ngIf="!showPassword">

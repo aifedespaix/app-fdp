@@ -37,7 +37,7 @@ export class FdpUserAuthRegisterComponent implements OnInit {
       ]),
       register_confirmPassword: new FormControl(this.userRegister.confirmPassword, [
         // Validators.required,
-        confirmPasswordValidator(this.userRegister),
+        confirmPasswordValidator(this.userRegister, this.showPassword),
       ]),
     });
 
