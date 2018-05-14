@@ -20,15 +20,21 @@ export class FdpSlidenavComponent {
         exact: true,
       },
       {
+        link: 'box',
+        icon: 'audiotrack',
+        text: 'Box',
+        exact: false,
+      },
+      {
         link: 'blog',
         icon: 'chrome_reader_mode',
         text: 'Blog',
         exact: false,
       },
       {
-        link: 'box',
-        icon: 'audiotrack',
-        text: 'Box',
+        link: 'music',
+        icon: 'queue_music',
+        text: 'Playlists',
         exact: false,
       },
       {

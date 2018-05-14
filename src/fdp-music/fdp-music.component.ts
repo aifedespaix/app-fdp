@@ -11,4 +11,10 @@ export class FdpMusicComponent implements OnInit {
 
   ngOnInit() {}
 
+  //
+  // public calcVideoHeight(target) {
+  //   console.log(target);
+  //   target.nativeElement.height = target.nativeElement.offsetWidth / (16 / 9) + 'px';
+  // }
+
 }
