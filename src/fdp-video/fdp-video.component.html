@@ -5,13 +5,14 @@
     <ng-container *ngIf="video">
       <iframe #videoView id="videoView" class="fdpVideo_play"
               [src]="unsecureUrl('https://www.youtube.com/embed/'+video.youtubeId)"
-              frameborder="0" allow="autoplay; encrypted-media"
-              allowfullscreen="allowfullscreen"
-              mozallowfullscreen="mozallowfullscreen"
-              msallowfullscreen="msallowfullscreen"
-              oallowfullscreen="oallowfullscreen"
-              webkitallowfullscreen="webkitallowfullscreen"
+              frameborder="0"
+              allowfullscreen
               (window:resize)="calcVideoHeight()"></iframe>
+      <!--allow="autoplay; encrypted-media"-->
+      <!--mozallowfullscreen="mozallowfullscreen"-->
+      <!--msallowfullscreen="msallowfullscreen"-->
+      <!--oallowfullscreen="oallowfullscreen"-->
+      <!--webkitallowfullscreen="webkitallowfullscreen"-->
       <h3 class="fdpVideo_title">{{video.title}}</h3>
     </ng-container>
   </div>
