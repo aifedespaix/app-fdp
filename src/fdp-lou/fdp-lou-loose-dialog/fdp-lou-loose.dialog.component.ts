@@ -10,7 +10,7 @@ export class FdpLouLooseDialog {
 
   public randomImageId = 0;
 
-  private listDossier = [
+  public listDossier = [
     '31590554_10216455811610448_5675554855075184640_n.png',
     '32548595_1768346106557042_2767209272323342336_n.jpg',
     '32603673_1768346169890369_9283735019061248_n.jpg',
