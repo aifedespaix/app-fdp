@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { HostListener } from '@angular/core';
+import {HostListener} from '@angular/core';
 
 // Routing et balise Title
 import {Meta, Title} from '@angular/platform-browser';
@@ -75,8 +75,8 @@ export class FdpAppComponent {
 
 
   public onKey(event: KeyboardEvent) { // without type info
-    switch(event.key) {
-      case "Escape":
+    switch (event.key) {
+      case 'Escape':
         this.fdpSoundService.stop();
         break;
     }

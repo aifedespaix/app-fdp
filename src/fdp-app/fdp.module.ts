@@ -21,7 +21,7 @@ import {FdpMaterialModule} from '../fdp-material/fdp-material.module';
 import {FdpAppComponent} from './fdp.component';
 
 // Fdp Modules
-import {FdpRoutingModule, routingComponents} from './fdp.routing'
+import {FdpRoutingModule} from './fdp.routing'
 import {FdpLayoutModule} from '../fdp-layout/fdp-layout.module';
 import {FdpBlogModule} from '../fdp-blog/fdp-blog.module';
 import {FdpIndexModule} from '../fdp-index/fdp-index.module';
@@ -32,11 +32,12 @@ import {FdpBoxModule} from '../fdp-box/fdp-box.module';
 import {FdpNigmeModule} from '../fdp-nigme/fdp-nigme.module';
 import {environment} from '../environments/environment';
 import {FdpSoundModule} from '../fdp-sound/fdp-sound.module';
+import {FdpLouModule} from '../fdp-lou/fdp-lou.module';
 
 @NgModule({
   declarations: [
     // Routing
-    routingComponents,
+    // routingComponents,
     // Appli
     FdpAppComponent,
     // Spéciaux
@@ -66,6 +67,7 @@ import {FdpSoundModule} from '../fdp-sound/fdp-sound.module';
     FdpIndexModule,
     FdpBlogModule,
     FdpBoxModule,
+    FdpLouModule,
     FdpMusicModule,
     FdpNigmeModule,
     FdpVideoModule,

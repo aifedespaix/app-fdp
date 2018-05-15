@@ -19,4 +19,4 @@ const FDP_ROUTES: Routes = [
 })
 export class FdpRoutingModule { }
 
-export const routingComponents = [];
+// export const routingComponents = [];
