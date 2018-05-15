@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class FdpLouP1Component implements OnInit {
 
+  public answerFormGroup: FormGroup;
   public answer = {value: ''};
   public music;
   public win;
@@ -19,7 +20,7 @@ export class FdpLouP1Component implements OnInit {
   constructor(
     public dialog: MatDialog,
     public router: Router) {
-    this.editBoxFormGroup = new FormGroup({
+    this.answerFormGroup = new FormGroup({
       answer: new FormControl(this.answer.value, []),
     });
 
