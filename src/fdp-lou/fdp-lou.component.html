@@ -7,9 +7,8 @@
   <p class="fdpFont fdpTac">Bonne Chance...</p>
 
   <div class="fdpTac">
-    <button mat-raised-button class="fdpLou_btnStart" color="primary">Commencer</button>
-    <button mat-raised-button class="fdpLou_btnStart" color="warn" >Quitter</button>
+    <button mat-raised-button class="fdpLou_btnStart" color="primary" (click)="loose()">Commencer</button>
+    <button mat-raised-button class="fdpLou_btnStart" color="warn" [routerLink]="['iuzfdsfv']" routerLinkActive="active">Quitter</button>
   </div>
 
-  <router-outlet name="FdpLou"></router-outlet>
 </div>

@@ -5,14 +5,9 @@ import {FdpLouP1Component} from './fdp-lou-p1/fdp-lou-p1.component';
 
 const FDP_LOU_ROUTES: Routes = [{
   path: 'LouPD',
-  component: FdpLouComponent,
-  data: {title: 'LouPD'},
   children: [
-    {
-      path: 'a',
-      component: FdpLouP1Component,
-      outlet: 'FdpLou',
-    },
+    {path: '', component: FdpLouComponent, data: {title: 'Lou PD'}},
+    {path: 'iuzfdsfv', component: FdpLouP1Component, data: {title: 'Lou Jeu 1'}},
   ]
 }];
 
