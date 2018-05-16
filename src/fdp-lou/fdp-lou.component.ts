@@ -9,7 +9,7 @@ import {MatDialog} from '@angular/material';
 })
 export class FdpLouComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,) {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {
