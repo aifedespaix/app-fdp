@@ -56,11 +56,15 @@ export class FdpUserAuthService {
         h_password
         person {
           id
+          firstName
+          lastName
         }
         email
         telephone
         friends {
           id
+          firstName
+          lastName
         }
       }
     }
