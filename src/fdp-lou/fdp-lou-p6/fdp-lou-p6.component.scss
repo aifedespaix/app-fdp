@@ -1,0 +1,15 @@
+.fdpContent {
+  background-image: url(/assets/images/loup/jeux/6/a.jpg);
+  -webkit-background-size: cover;
+  background-size: cover;
+  position: relative;
+}
+
+.fdpLou_input {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  left: calc(50% - 100px);
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+}
