@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FdpLouLooseDialog} from '../fdp-lou-loose-dialog/fdp-lou-loose.dialog.component';
 import {MatDialog} from '@angular/material';
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   templateUrl: './fdp-lou-p8.component.html',
   styleUrls: ['./fdp-lou-p8.component.scss'],
 })
-export class FdpLouP8Component implements OnInit {
+export class FdpLouP8Component implements OnInit, OnDestroy {
 
   public answerFormGroup: FormGroup;
   public answer = {value: ''};
@@ -34,8 +34,12 @@ export class FdpLouP8Component implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.music.pause();
+  }
+
   public verifyAnswer() {
-    if (this.answer.value.toUpperCase() === 'BOOM') {
+    if (this.answer.value.toUpperCase() === 'OZORA') {
       // this.music.pause();
       this.win.play();
       setTimeout(() => {
