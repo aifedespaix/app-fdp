@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FdpLouLooseDialog} from '../fdp-lou-loose-dialog/fdp-lou-loose.dialog.component';
 import {MatDialog} from '@angular/material';
@@ -9,21 +9,23 @@ import {Router} from '@angular/router';
   templateUrl: './fdp-lou-p9.component.html',
   styleUrls: ['./fdp-lou-p9.component.scss']
 })
-export class FdpLouP9Component implements OnInit {
+export class FdpLouP9Component implements OnInit, OnDestroy {
 
-  public answerFormGroup: FormGroup;
-  public answer = {value: ''};
   public music;
-  public loose;
 
   constructor(
     public dialog: MatDialog,
     public router: Router) {
-    this.answerFormGroup = new FormGroup({
-      answer: new FormControl(this.answer.value, []),
-    });
+
+    this.music = new Audio('/assets/images/loup/jeux/dsl.mp3');
+    this.music.loop = true;
+    this.music.play();
   }
 
   ngOnInit() {}
+
+  ngOnDestroy() {
+    this.music.pause();
+  }
 
 }
