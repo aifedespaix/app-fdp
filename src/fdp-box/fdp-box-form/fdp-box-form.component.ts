@@ -46,7 +46,7 @@ export class FdpBoxFormComponent {
 
   sendBox() {
     this.fdpBoxService.createBox(this.box).subscribe(res => {
-        if(res.box) {
+        if (res.box) {
           this.onBoxSaved.emit(res.box);
         }
       }, error => {

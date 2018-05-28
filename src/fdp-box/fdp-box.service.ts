@@ -33,6 +33,12 @@ export class FdpBoxService {
     }
   `;
 
+  private voteBoxMutation = gql`
+    mutation voteBoxMutation($id: ID!, $vote: Boolean) {
+      addVote(vote: {target: $id value: $vote})
+    }
+  `;
+
   private boxesQuery = gql`
     query boxesQuery {
       boxes {
@@ -191,5 +197,12 @@ export class FdpBoxService {
         return {success: false, error: 'erreur chelou lol'};
       },
     );
+  }
+
+  public vote(id: any, vote: boolean) {
+    console.log('mdr');
+    let variables: any = {id, vote};
+    console.log(variables);
+    return this.apollo.mutate({mutation: this.voteBoxMutation, variables});
   }
 }

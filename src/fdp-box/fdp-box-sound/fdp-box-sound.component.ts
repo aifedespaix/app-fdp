@@ -30,8 +30,17 @@ export class FdpBoxSoundComponent implements OnInit {
     this.fdpSoundService.play(sound);
   }
 
-  public vote($event, id, positive: boolean) {
+  public vote($event, id, vote: boolean) {
     $event.stopPropagation();
-    console.log(positive);
+    this.fdpBoxService.vote(id, vote).subscribe(res => {
+        // if (res.box) {
+          // this.onBoxSaved.emit(res.box);
+        // }
+      console.log(res);
+      }, error => {
+        // console.log(error);
+      },
+    );
+    console.log(vote);
   }
 }

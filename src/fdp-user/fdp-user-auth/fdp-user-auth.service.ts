@@ -63,8 +63,8 @@ export class FdpUserAuthService {
         telephone
         friends {
           id
-          firstName
-          lastName
+#          firstName
+#          lastName
         }
       }
     }
