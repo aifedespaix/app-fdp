@@ -1,0 +1,42 @@
+@import "../fdp-variables";
+
+.fdp {
+  &Flex {
+    &Dual {
+      display: flex;
+      flex-direction: row;
+
+      @media screen and (max-width: $responsiveWidth_M) {
+        flex-direction: column;
+
+      }
+    }
+    &Bloc {
+      flex: 1;
+      padding: 10px;
+
+      p {
+        text-align: justify;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      &_ {
+        &image {
+          &- {
+            &full {
+              width: 100%;
+            }
+          }
+        }
+      }
+      &- {
+        &primary {
+
+        }
+      }
+    }
+  }
+}

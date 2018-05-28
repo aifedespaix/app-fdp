@@ -33,6 +33,7 @@ import {FdpNigmeModule} from '../fdp-nigme/fdp-nigme.module';
 import {environment} from '../environments/environment';
 import {FdpSoundModule} from '../fdp-sound/fdp-sound.module';
 import {FdpLouModule} from '../fdp-lou/fdp-lou.module';
+import {FdpPortfolioModule} from '../fdp-portfolio/fdp-portfolio.module';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import {FdpLouModule} from '../fdp-lou/fdp-lou.module';
     FdpNigmeModule,
     FdpVideoModule,
     FdpUserModule,
+    FdpPortfolioModule,
 
     // Routing
     FdpRoutingModule,
