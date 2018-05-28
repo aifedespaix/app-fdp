@@ -9,4 +9,8 @@ export class FdpPortfolioComponent {
 
   constructor() { }
 
+  calcVideoHeight() {
+
+  }
+
 }

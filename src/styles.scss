@@ -329,6 +329,10 @@ a {
     }
   }
 
+  &AutoHeight {
+    height: auto;
+  }
+
   &Youtube {
     &-container {
       position: relative;
