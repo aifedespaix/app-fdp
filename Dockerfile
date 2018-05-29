@@ -13,6 +13,7 @@ RUN set -ex \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update && apt-get install yarn -y
 
+RUN yarn global add node-gyp
 RUN yarn
 RUN yarn build --prod --build-optimizer
 RUN ls -la
