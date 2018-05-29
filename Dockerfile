@@ -16,7 +16,7 @@ RUN set -ex \
 RUN yarn
 RUN yarn build --prod --build-optimizer
 RUN ls -la
-RUN mkdir /usr/share/nginx/html
+RUN mkdir /usr/share/nginx/html -p
 RUN cp dist/* /usr/share/nginx/html -R
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
