@@ -151,15 +151,8 @@
               <div>
                 <p>
                   WeSport est un projet scolaire d'entreprenariat conçu par une équipe de dix étudiants.
-                  En utilisant la méthodologie SCRUM, nous devons mener le projet à son succès de la conception à la
-                  mise en
-                  production, tout en pilotant le projet pour ne pas dérivier sur les coûts, les temps et la
-                  qualité.
-                  Le développement est organisé en sprints. Chaque période de cours (d'une durée de deux semaines)
-                  se
-                  termine sur un copil qui permet de faire un bilan sur l'avancement du projet, les problèmes, et
-                  d'acter
-                  des solutions pour mes corriger.
+                  En utilisant la méthodologie SCRUM, nous devons mener le projet à son succès de la conception à la mise en production, tout en pilotant le projet pour ne pas dérivier sur les coûts, les temps et la qualité.
+                  Le développement est organisé en sprints. Chaque période de cours (d'une durée de deux semaines) se termine sur un copil qui permet de faire un bilan sur l'avancement du projet, les problèmes, et d'acter des solutions pour les corriger.
                 </p>
               </div>
             </div>
@@ -167,19 +160,10 @@
             <div class="fdpFlexBloc">
               <h5>Technologies</h5>
               <p>
-                L'application est développée en deux parties disinctes : une API REST et une application mobile
-                (Android
-                et
-                IOS)
+                L'application est développée en deux parties disinctes : une API REST et une application mobile (Android et IOS)
                 L'objectif est d'avoir un seul et même code source compilable sous Android et IOS.
-                Nous avons mise en place un processus d'intégration continue. Ce dernier ne déploie en production
-                qu'un
-                code
-                respectant les normes de codage que nous avons décidés et validant les tests unitaires en
-                fonctionnels
-                mis en place.
-                Le projet se doit d'être rentable, nous avons donc élaboré un business plan basé sur un système
-                d'abonnement.
+                Nous avons mise en place un processus d'intégration continue. Ce dernier ne déploie en production qu'un code respectant les normes de codage que nous avons décidés et validant les tests unitaires et fonctionnels mis en place.
+                Le projet se doit d'être rentable, nous avons donc élaboré un business plan basé sur un système d'abonnement.
               </p>
               <div>
 
@@ -218,9 +202,34 @@
     </mat-tab>
 
     <mat-tab label="Contact">
-      <p>
-        Vous pouvez me contacter par mail à <a href="mailto:joan.sa.bjt@gmail.com">cette adresse</a>.
-      </p>
+      <!--<form *ngIf="typeForm === TYPE_FORM.login" class="fdpAuth_form" #loginForm="ngForm" (ngSubmit)="login()"-->
+            <!--[formGroup]="userLoginFormGroup">-->
+      <form class="fdpForm fdpForm_vertical">
+          <mat-form-field class="fdpField fdpField-large">
+            <input type="text" placeholder="Adresse mail" id="contact_mail" name="contact_mail" matInput required
+                   formControlName="contact_mail"
+            >
+                   <!--[(ngModel)]="contact.mail"-->
+            <!--<mat-hint>Au moins 3 caractères</mat-hint>-->
+          </mat-form-field>
+
+          <mat-form-field class="fdpField fdpField-large">
+            <input type="text" placeholder="Prénom et Nom" id="contact_names" name="contact_names" matInput required
+                   formControlName="contact_names"
+            >
+                   <!--[(ngModel)]="contact.mail"-->
+            <!--<mat-hint>Au moins 3 caractères</mat-hint>-->
+          </mat-form-field>
+
+          <mat-form-field class="fdpField fdpField-large">
+            <textarea placeholder="Message" id="contact_message" name="contact_message"
+                   matInput required formControlName="contact_message"></textarea>
+                   <!--[(ngModel)]="userLogin.password"-->
+            <!--<mat-hint>Au moins 8 caractères</mat-hint>-->
+          </mat-form-field>
+
+          <div *ngIf="error" class="fdpError">{{error}}</div>
+      </form>
     </mat-tab>
   </mat-tab-group>
 
