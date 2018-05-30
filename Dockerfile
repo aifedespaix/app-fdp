@@ -16,9 +16,11 @@ RUN set -ex \
 #RUN yarn global add node-gyp
 RUN yarn
 RUN yarn build --prod --build-optimizer
-RUN ls -la
+RUN ls /usr/share/nginx/html -la
 RUN mkdir /usr/share/nginx/html -p
+RUN ls /usr/share/nginx/html -la
 RUN yes | cp -rf dist/* /usr/share/nginx/html
+RUN ls /usr/share/nginx/html -la
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:1.13
