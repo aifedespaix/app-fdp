@@ -1,4 +1,8 @@
 @import "../fdp-variables";
+.mat-expansion-panel-header-title {
+  min-width: 160px;
+  max-width: 160px;
+}
 
 .fdp {
   &Flex {
