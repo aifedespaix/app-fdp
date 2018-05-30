@@ -16,7 +16,6 @@ RUN set -ex \
 #RUN yarn global add node-gyp
 RUN yarn
 RUN yarn build --prod --build-optimizer
-RUN ls /usr/share/nginx/html -la
 RUN mkdir /usr/share/nginx/html -p
 RUN ls /usr/share/nginx/html -la
 RUN yes | cp -rf dist/* /usr/share/nginx/html
