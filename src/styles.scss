@@ -1,8 +1,8 @@
 //@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 //@import '~@angular/material/theming';
 @import 'fdp-variables';
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -18,7 +18,6 @@ html, body {
 a {
   @extend .mainColor;
   text-decoration: none;
-
   cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
 }
 
@@ -54,9 +53,7 @@ a {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
-
 .fdp {
-
   &Hover {
     cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
   }
@@ -67,25 +64,21 @@ a {
     flex-direction: column;
     justify-content: center;
   }
-
   &Bg {
     &_ {
       &default {
         background-color: $color_main_medium !important;
         color: $color_bg_neutral !important;
       }
-
       &danger {
         background-color: $color_quaternary_dark !important;
         color: $color_bg_neutral !important;
       }
     }
   }
-
   &Form {
     display: flex;
     background-color: #fff;
-
     &_ {
       &vertical {
         flex-direction: column;
@@ -96,31 +89,25 @@ a {
   &Field {
     flex: 1;
   }
-
   &Fields {
     display: flex;
     flex-direction: column;
-
   }
   &Buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     button {
       margin-top: 10px;
     }
   }
-
   &Error {
     color: #96000a;
   }
-
   &DI {
     display: inline;
   }
-
   &Circle {
     border-radius: 50%;
     margin: 0 3px;
@@ -129,12 +116,10 @@ a {
       height: 25px;
     }
   }
-
   &List {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 25px;
-
     &_ {
       &elem {
         border-bottom: 1px solid #2a2a2a;
@@ -148,7 +133,6 @@ a {
         width: 100%;
       }
     }
-
     &- {
       &vertical {
         flex-direction: column;
@@ -156,29 +140,23 @@ a {
       }
     }
   }
-
   &Tuile {
     overflow: hidden;
     margin: 2px;
     border-radius: 2px;
-
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
-
     display: flex;
     flex-direction: column;
-
     &- {
       &small {
         width: 170px;
         height: 170px;
       }
-
       &hoverable:hover {
         animation: pulse .2s;
       }
     }
-
     &_ {
       &title {
         overflow: hidden;
@@ -192,7 +170,6 @@ a {
         align-items: center;
         flex: 2;
         position: relative;
-
         img {
           z-index: 0;
           position: absolute;
@@ -228,7 +205,6 @@ a {
       }
     }
   }
-
   &Line {
     &_ {
       &bloc {
@@ -237,46 +213,36 @@ a {
       }
     }
   }
-
   &Clickable {
     cursor: pointer;
   }
-
   &MidWidth {
     width: 50%;
   }
-
   &Txt {
     &-small {
       font-size: 9px;
     }
   }
-
   &Tac {
     text-align: center;
   }
-
   &Button {
     cursor: pointer;
-
     &_login {
       height: 40px;
       padding: 5px;
     }
   }
-
   &BoxBloc {
     background-color: $color_bg_neutral;
     margin: 10px;
     border-radius: 2px;
-
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
-
     &:hover {
       animation: pulse .2s;
     }
-
     &- {
       &center {
         display: flex;
@@ -289,24 +255,19 @@ a {
       }
     }
   }
-
   &Bloc {
     padding: 15px;
   }
-
   &Title {
     text-align: center;
   }
-
   &NoMargin {
     margin: 0;
   }
-
   &Font {
     font-family: Gloria Hallelujah, cursive;
     font-size: 1.5em;
   }
-
   &Modale {
     position: absolute;
     width: 100%;
@@ -318,40 +279,30 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-
     z-index: 20;
-
     background-color: rgba(0, 0, 0, 0.6);
   }
-
   &Content {
-    width: calc(100% - #{2 * $contentPadding});
+    // width: calc(100% - #{2 * $contentPadding});
     height: calc(100% - #{$contentPadding*2});
     overflow: auto;
-
     padding: $contentPadding;
-
     background-color: $color_bg_aneutral;
-
     &-noScroll {
       height: calc(100% - #{$contentPadding*2});
     }
-
     &-noPadding {
       padding: 0;
     }
   }
-
   &AutoHeight {
     height: auto;
   }
-
   &Youtube {
     &-container {
       position: relative;
       height: 0;
       overflow: hidden;
-
       &- {
         &16x9 {
           padding-bottom: 56.25%;
@@ -359,7 +310,6 @@ a {
         &4x3 {
           padding-bottom: 75%;
         }
-
         iframe {
           position: absolute;
           top: 0;
@@ -372,22 +322,10 @@ a {
   }
 }
 
-router-outlet + * {
-  width: 100%;
-  min-width: 100%;
-}
-
-@media screen and (min-width: 1130px) {
-  .fdpContent {
-    width: calc(1080px - #{2 * $contentPadding});
-  }
-
-  router-outlet + * {
-    width: $contentWidth;
-    min-width: $contentWidth;
-  }
-}
-
+// router-outlet+* {
+//   width: 100%;
+//   min-width: 100%;
+// }
 @media screen and (max-width: 1130px) {
   .fdpTuile {
     width: 100%;
@@ -398,7 +336,6 @@ router-outlet + * {
     box-shadow: none;
     border-bottom: 1px solid $color_main;
     border-radius: 0;
-
     &- {
       &small {
         height: 85px;
@@ -408,23 +345,13 @@ router-outlet + * {
       &content {
         flex: 1;
       }
-
       &title {
         flex: 1;
       }
     }
-
   }
 }
 
-@media screen and (min-width: 1980px) {
-  .fdpContent {
-    width: calc(1500px - #{2 * $contentPadding});
-    min-width: calc(1500px - #{2 * $contentPadding});
-  }
-
-  router-outlet + * {
-    width: 1500px;
-    min-width: 1500px;
-  }
+router-outlet+* {
+  width: 100%;
 }

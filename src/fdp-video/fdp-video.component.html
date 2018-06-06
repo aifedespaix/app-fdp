@@ -7,7 +7,7 @@
               [src]="unsecureUrl('https://www.youtube.com/embed/'+video.youtubeId)"
               frameborder="0"
               allowfullscreen
-              (window:resize)="calcVideoHeight()"></iframe>
+              (window:resize)="isFullScreen() ? true : calcVideoHeight()"></iframe>
       <!--allow="autoplay; encrypted-media"-->
       <!--mozallowfullscreen="mozallowfullscreen"-->
       <!--msallowfullscreen="msallowfullscreen"-->
