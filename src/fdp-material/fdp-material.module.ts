@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from "@angular/core";
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import {
   MatButtonModule,
@@ -17,7 +17,8 @@ import {
   MatListModule,
   MatDialogModule,
   MatExpansionModule,
-} from '@angular/material';
+  MatFormFieldModule
+} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import {
     MatListModule,
     MatDialogModule,
     MatExpansionModule,
+    MatFormFieldModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -53,8 +55,8 @@ import {
     MatSnackBarModule,
     MatDialogModule,
     MatExpansionModule,
+    MatFormFieldModule
   ],
-  declarations: [],
+  declarations: []
 })
-export class FdpMaterialModule {
-}
+export class FdpMaterialModule {}
