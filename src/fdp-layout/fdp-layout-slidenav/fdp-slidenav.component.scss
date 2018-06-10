@@ -1,58 +1,43 @@
 @import "../../fdp-variables";
 @import "../../fdp-animations";
-
 .fdpSlidenav {
   height: calc(100% - 20px);
   width: $navslideWidth;
   z-index: 10;
-
   display: flex;
   flex-direction: column;
-
   padding: 10px 0;
-
   background-color: $color_bg_neutral;
-
   overflow-y: hidden;
-
   &:hover {
     overflow-y: auto;
   }
-
   &_hide {
     display: none;
   }
-
   &_link {
     padding: 5px 0;
     height: 40px;
     line-height: 40px;
     color: #333;
     display: flex;
-
     &:hover {
       background-color: rgba($color_main, 0.1);
       color: $color_main;
-
       .material-icons {
         -webkit-animation: slidenavIcon .2s;
         -o-animation: slidenavIcon .2s;
         animation: slidenavIcon .2s;
       }
     }
-
     &-active {
       font-weight: bold;
-
       .material-icons {
         color: $color_main;
       }
     }
-
   }
-
   &Link {
-
     &_txt {
       padding-left: 21px;
     }
@@ -62,36 +47,23 @@
       height: 40px;
       text-align: center;
     }
-  }
-
-}
-
-// Menu
-@media screen and (max-width: 1380px) {
-
-  .fdp {
-    &Slidenav {
-      height: calc((100% - 20px) - #{$headerHeight});
+  } // Menu
+  @media screen and (max-width: $responsiveWidth_L) {
+    height: calc((100% - 20px) - #{$headerHeight});
+    position: fixed;
+    top: $headerHeight;
+    left: 0;
+    &_hide {
+      display: block;
+      -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+      box-shadow: 0 0 10px rgba(0, 0, 0, .25);
       position: fixed;
       top: $headerHeight;
-      left: 0;
-
-      &_hide {
-        display: block;
-
-        -webkit-box-shadow: 0 0 10px rgba(0,0,0,.25);
-        box-shadow: 0 0 10px rgba(0,0,0,.25);
-
-        position: fixed;
-        top: $headerHeight;
-        left: $navslideWidth;
-        width: calc(100% - #{$navslideWidth});
-        height: calc(100% - #{$headerHeight});
-
-        background-color: rgba(0, 0, 0, 0.4);
-        z-index: 10;
-      }
+      left: $navslideWidth;
+      width: calc(100% - #{$navslideWidth});
+      height: calc(100% - #{$headerHeight});
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 10;
     }
   }
-
 }

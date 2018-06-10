@@ -40,14 +40,11 @@
     &:hover {
       color: $color_main;
     }
+    @media screen and (min-width: $responsiveWidth_L) {
+      display: none;
+    }
   }
   &_extremum {
     width: 275px;
-  }
-}
-
-@media screen and (min-width: 1380px) {
-  .fdpHeader_menuIcon {
-    display: none;
   }
 }

@@ -16,20 +16,15 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
   templateUrl: "./fdp-video.component.html",
   styleUrls: ["./fdp-video.component.scss"]
 })
-export class FdpVideoComponent implements AfterViewInit {
+export class FdpVideoComponent {
   public videos: FdpVideo[];
   public video: FdpVideo;
-  @ViewChild("videoView") videoView: ElementRef;
 
   constructor(public sanitizer: DomSanitizer) {
     FdpVideoService.getVideos().then(videos => {
       this.videos = videos;
       this.video = this.videos[0];
     });
-  }
-
-  ngAfterViewInit() {
-    this.calcVideoHeight();
   }
 
   /**
@@ -43,23 +38,5 @@ export class FdpVideoComponent implements AfterViewInit {
 
   public loadVideo(id: number) {
     this.video = this.videos[id];
-  }
-
-  public isFullScreen() {
-    return (
-      (<any>window).fullScreen ||
-      (window.innerWidth === screen.width &&
-        window.innerHeight === screen.height)
-    );
-  }
-
-  public calcVideoHeight() {
-    console.log(this.isFullScreen() ? "oui" : "non");
-    this.videoView.nativeElement.height =
-      this.videoView.nativeElement.offsetWidth / (16 / 9);
-    if (this.videoView.nativeElement.height > 720) {
-      this.videoView.nativeElement.height = 720;
-    }
-    this.videoView.nativeElement.offsetWidth += "px";
   }
 }

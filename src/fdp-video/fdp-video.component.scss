@@ -1,20 +1,15 @@
 @import "../fdp-variables";
-
 .fdpVideo {
   margin: 0 auto 10px auto;
   background-color: #eee;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &_ {
-    &play {
-      width: 100%;
-    }
-
     &title {
       padding: 15px;
       margin: 0;
       color: $color_main;
     }
-
   }
-
 }

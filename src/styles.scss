@@ -3,356 +3,367 @@
 @import 'fdp-variables';
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 .mat-tab-group {
-    height: 100%;
+  height: 100%;
 }
 
 a {
-    @extend .mainColor;
-    text-decoration: none;
-    cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
+  @extend .mainColor;
+  text-decoration: none;
+  cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
 }
 
 .normalColor {
-    color: #000;
+  color: #000;
 }
 
 .mainColor {
-    color: $color_main;
+  color: $color_main;
 }
 
 .mainCompose {
-    background-color: $color_main;
-    color: $color_bg_aneutral;
-    a {
-        color: fade_out($color_bg_aneutral, 0.3);
-    }
+  background-color: $color_main;
+  color: $color_bg_aneutral;
+  a {
+    color: fade_out($color_bg_aneutral, 0.3);
+  }
 }
 
 .mainCompose-i {
-    background-color: $color_bg_neutral;
-    color: $color_main;
-    a {
-        color: fade_in($color_main, 0.3);
-    }
+  background-color: $color_bg_neutral;
+  color: $color_main;
+  a {
+    color: fade_in($color_main, 0.3);
+  }
 }
 
 .usn {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 .fdp {
-    &Hover {
-        cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
-    }
-    /* Vertical Center */
-    &VC {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    &Bg {
-        &_ {
-            &default {
-                background-color: $color_main_medium !important;
-                color: $color_bg_neutral !important;
-            }
-            &danger {
-                background-color: $color_quaternary_dark !important;
-                color: $color_bg_neutral !important;
-            }
+  &Hover {
+    cursor: url(assets/cursors/fuck.cur) 18 5, pointer;
+  }
+  /* Vertical Center */
+  &VC {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &Embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    &Container {
+      display: block;
+      min-width: 200px;
+      width: 65%;
+      max-width: 100%;
+      &- {
+        &16x9 {
+          padding-bottom: 56.25%;
         }
-    }
-    &Form {
-        display: flex;
-        background-color: #fff;
-        &_ {
-            &vertical {
-                flex-direction: column;
-                align-items: center;
-            }
+        &4x3 {
+          padding-bottom: 75%;
         }
+      }
+      @media screen and (max-width: $responsiveWidth_M) {
+        width: 100%;
+      }
+      @media screen and (min-width: $responsiveWidth_M) {
+        width: 70%;
+      }
     }
-    &Field {
-        flex: 1;
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
-    &Fields {
-        display: flex;
-        flex-direction: column;
+  }
+  &Bg {
+    &_ {
+      &default {
+        background-color: $color_main_medium !important;
+        color: $color_bg_neutral !important;
+      }
+      &danger {
+        background-color: $color_quaternary_dark !important;
+        color: $color_bg_neutral !important;
+      }
     }
-    &Buttons {
-        display: flex;
+  }
+  &Form {
+    display: flex;
+    background-color: #fff;
+    &_ {
+      &vertical {
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        button {
-            margin-top: 10px;
-        }
+      }
     }
-    &Error {
-        color: #96000a;
+  }
+  &Field {
+    flex: 1;
+  }
+  &Fields {
+    display: flex;
+    flex-direction: column;
+  }
+  &Buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    button {
+      margin-top: 10px;
     }
-    &DI {
-        display: inline;
+  }
+  &Error {
+    color: #96000a;
+  }
+  &DI {
+    display: inline;
+  }
+  &Circle {
+    border-radius: 50%;
+    margin: 0 3px;
+    &-small {
+      width: 25px;
+      height: 25px;
     }
-    &Circle {
-        border-radius: 50%;
-        margin: 0 3px;
-        &-small {
-            width: 25px;
-            height: 25px;
-        }
-    }
-    &List {
+  }
+  &List {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    justify-content: space-around;
+    &_ {
+      &elem {
+        border-bottom: 1px solid #2a2a2a;
+        width: 100%;
+        min-height: 40px;
         display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 25px;
-        justify-content: space-around;
-        &_ {
-            &elem {
-                border-bottom: 1px solid #2a2a2a;
-                width: 100%;
-                min-height: 40px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            &title {
-                width: 100%;
-            }
-        }
-        &- {
-            &vertical {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+        justify-content: space-between;
+        align-items: center;
+      }
+      &title {
+        width: 100%;
+      }
     }
-    &Tuile {
+    &- {
+      &vertical {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+  &Tuile {
+    overflow: hidden;
+    margin: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    display: flex;
+    flex-direction: column;
+    &- {
+      &small {
+        width: 170px;
+        height: 170px;
+      }
+      &hoverable:hover {
+        animation: pulse .2s;
+      }
+    }
+    &_ {
+      &title {
         overflow: hidden;
-        margin: 2px;
-        border-radius: 2px;
-        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+        flex: 1;
+        background-color: #fff;
+        @media screen and (max-width: $responsiveWidth_M) {
+          flex: 2;
+        }
+      }
+      &content {
+        overflow: hidden;
         display: flex;
-        flex-direction: column;
-        &- {
-            &small {
-                width: 170px;
-                height: 170px;
-            }
-            &hoverable:hover {
-                animation: pulse .2s;
-            }
+        justify-content: center;
+        align-items: center;
+        flex: 2;
+        position: relative;
+        img {
+          z-index: 0;
+          position: absolute;
+          min-width: 100%;
+          max-width: 150%;
+          min-height: 100%;
+          max-height: 150%;
         }
-        &_ {
-            &title {
-                overflow: hidden;
-                flex: 1;
-                background-color: #fff;
-            }
-            &content {
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex: 2;
-                position: relative;
-                img {
-                    z-index: 0;
-                    position: absolute;
-                    min-width: 100%;
-                    max-width: 150%;
-                    min-height: 100%;
-                    max-height: 150%;
-                }
-            }
-            &details {
-                position: absolute;
-                z-index: 1;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: flex-end;
-            }
-            &vote {
-                opacity: 0.3;
-                padding: 5px;
-                background-color: #fff;
-                &:hover {
-                    opacity: 0.8;
-                }
-                &-good:hover {
-                    color: $color_good;
-                }
-                &-bad:hover {
-                    color: $color_bad;
-                }
-            }
-        }
-    }
-    &Line {
-        &_ {
-            &bloc {
-                display: flex;
-                align-items: center;
-            }
-        }
-    }
-    &Clickable {
-        cursor: pointer;
-    }
-    &MidWidth {
-        width: 50%;
-    }
-    &Txt {
-        &-small {
-            font-size: 9px;
-        }
-    }
-    &Tac {
-        text-align: center;
-    }
-    &Button {
-        cursor: pointer;
-        &_login {
-            height: 40px;
-            padding: 5px;
-        }
-    }
-    &BoxBloc {
-        background-color: $color_bg_neutral;
-        margin: 10px;
-        border-radius: 2px;
-        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
-        &:hover {
-            animation: pulse .2s;
-        }
-        &- {
-            &center {
-                display: flex;
-                justify-content: center;
-            }
-            &noAnim {
-                &:hover {
-                    animation: none;
-                }
-            }
-        }
-    }
-    &Bloc {
-        padding: 15px;
-    }
-    &Title {
-        text-align: center;
-    }
-    &NoMargin {
-        margin: 0;
-    }
-    &Font {
-        font-family: Gloria Hallelujah, cursive;
-        font-size: 1.5em;
-    }
-    &Modale {
+      }
+      &details {
         position: absolute;
+        z-index: 1;
         width: 100%;
         height: 100%;
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      &vote {
+        opacity: 0.3;
+        padding: 5px;
+        background-color: #fff;
+        &:hover {
+          opacity: 0.8;
+        }
+        &-good:hover {
+          color: $color_good;
+        }
+        &-bad:hover {
+          color: $color_bad;
+        }
+      }
+    }
+    @media screen and (max-width: $responsiveWidth_M) {
+      width: 100%;
+      flex-direction: row;
+      margin: 0;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      border-bottom: 1px solid $color_main;
+      border-radius: 0;
+      &- {
+        &small {
+          height: 85px;
+        }
+      }
+      &_ {
+        &content {
+          flex: 1;
+        }
+      }
+    }
+  }
+  &Line {
+    &_ {
+      &bloc {
         display: flex;
         align-items: center;
+      }
+    }
+  }
+  &Clickable {
+    cursor: pointer;
+  }
+  &MidWidth {
+    width: 50%;
+  }
+  &Txt {
+    &-small {
+      font-size: 9px;
+    }
+  }
+  &Tac {
+    text-align: center;
+  }
+  &Button {
+    cursor: pointer;
+    &_login {
+      height: 40px;
+      padding: 5px;
+    }
+  }
+  &BoxBloc {
+    background-color: $color_bg_neutral;
+    margin: 10px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    &:hover {
+      animation: pulse .2s;
+    }
+    &- {
+      &center {
+        display: flex;
         justify-content: center;
-        z-index: 20;
-        background-color: rgba(0, 0, 0, 0.6);
-    }
-    &Content {
-        // width: calc(100% - #{2 * $contentPadding});
-        height: calc(100% - #{$contentPadding*2});
-        overflow: auto;
-        padding: $contentPadding;
-        background-color: $color_bg_aneutral;
-        &-noScroll {
-            height: calc(100% - #{$contentPadding*2});
+      }
+      &noAnim {
+        &:hover {
+          animation: none;
         }
-        &-noPadding {
-            padding: 0;
-        }
+      }
     }
-    &AutoHeight {
-        height: auto;
+  }
+  &Bloc {
+    padding: 15px;
+  }
+  &Title {
+    text-align: center;
+  }
+  &NoMargin {
+    margin: 0;
+  }
+  &Font {
+    font-family: Gloria Hallelujah, cursive;
+    font-size: 1.5em;
+  }
+  &Modale {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  &Content {
+    // width: calc(100% - #{2 * $contentPadding});
+    height: calc(100% - #{$contentPadding*2});
+    overflow: auto;
+    padding: $contentPadding;
+    background-color: $color_bg_aneutral;
+    &-noScroll {
+      height: calc(100% - #{$contentPadding*2});
     }
-    &Youtube {
-        &-container {
-            position: relative;
-            height: 0;
-            overflow: hidden;
-            &- {
-                &16x9 {
-                    padding-bottom: 56.25%;
-                }
-                &4x3 {
-                    padding-bottom: 75%;
-                }
-                iframe {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-        }
+    &-noPadding {
+      padding: 0;
     }
-}
-
-// router-outlet+* {
-//   width: 100%;
-//   min-width: 100%;
-// }
-@media screen and (max-width: 1130px) {
-    .fdpTuile {
-        width: 100%;
-        flex-direction: row;
-        margin: 0;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        border-bottom: 1px solid $color_main;
-        border-radius: 0;
-        &- {
-            &small {
-                height: 85px;
-            }
-        }
-        &_ {
-            &content {
-                flex: 1;
-            }
-            &title {
-                flex: 1;
-            }
-        }
+    @media screen and (max-width: $responsiveWidth_M) {
+      width: 100%;
+      padding: 25px 0;
     }
+  }
+  &AutoHeight {
+    height: auto;
+  }
 }
 
 router-outlet+* {
-    width: 100%;
+  width: 100%;
 }

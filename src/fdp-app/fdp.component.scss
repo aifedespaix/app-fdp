@@ -18,18 +18,8 @@
     background-size: auto 100%;
     background-repeat: no-repeat;
     display: none;
-    &_left {
-      //background-image: url(../assets/images/background/fdp_left.jpg);
-      //background-position: 98% 0;
+    @media screen and (min-width: $responsiveWidth_L) {
+      display: block;
     }
-    &_right {
-      //background-image: url(../assets/images/background/fdp_right.jpg);
-    }
-  }
-}
-
-@media screen and (min-width: 1130px) {
-  .fdpBackground {
-    display: block;
   }
 }
