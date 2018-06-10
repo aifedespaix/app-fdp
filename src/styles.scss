@@ -1,5 +1,6 @@
 //@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 //@import '~@angular/material/theming';
+@import "material-corections";
 @import 'fdp-variables';
 html,
 body {
@@ -88,6 +89,9 @@ a {
       }
       @media screen and (min-width: $responsiveWidth_M) {
         width: 70%;
+      }
+      &_small {
+        width: 45%;
       }
     }
     iframe,
@@ -318,6 +322,14 @@ a {
   &Bloc {
     padding: 15px;
   }
+  &Text {
+    &_suspension {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+  }
   &Title {
     text-align: center;
   }
@@ -348,6 +360,25 @@ a {
     overflow: auto;
     padding: $contentPadding;
     background-color: $color_bg_aneutral;
+    &_ {
+      &slider {
+        width: 100%;
+        padding: $contentPadding 0 0 0;
+        height: calc(100% - #{$contentPadding});
+        display: flex;
+        flex-direction: column;
+        &- {
+          &title {
+            flex: 0 1 auto;
+            padding: $contentPadding;
+          }
+          &content {
+            flex: 1 1 auto;
+            overflow: hidden;
+          }
+        }
+      }
+    }
     &-noScroll {
       height: calc(100% - #{$contentPadding*2});
     }

@@ -1,0 +1,12 @@
+.mat-expansion-panel-header-description {
+  display: block !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-tab-group {
+  //   height: calc(100% - 91px) !important;
+  min-height: min-content;
+  max-height: max-content;
+}
