@@ -370,12 +370,16 @@ a {
         &- {
           &title {
             flex: 0 1 auto;
-            padding: $contentPadding;
+            padding: 0 $contentPadding;
           }
           &content {
             flex: 1 1 auto;
             overflow: hidden;
           }
+        }
+        .fdpTitle {
+          padding: 0;
+          margin: 0;
         }
       }
     }
