@@ -34,6 +34,7 @@ import { FdpUserModule } from "../fdp-user/fdp-user.module";
 import { FdpVideoModule } from "../fdp-video/fdp-video.module";
 import { FdpBoxModule } from "../fdp-box/fdp-box.module";
 import { FdpNigmeModule } from "../fdp-nigme/fdp-nigme.module";
+import { FdpGalerieModule } from "../fdp-galerie/fdp-galerie.module";
 import { environment } from "../environments/environment";
 import { FdpSoundModule } from "../fdp-sound/fdp-sound.module";
 import { FdpLouModule } from "../fdp-lou/fdp-lou.module";
@@ -75,6 +76,7 @@ import { ApolloLink, concat } from "apollo-link";
     FdpLouModule,
     FdpMusicModule,
     FdpNigmeModule,
+    FdpGalerieModule,
     FdpVideoModule,
     FdpUserModule,
     FdpPortfolioModule,
@@ -95,29 +97,6 @@ import { ApolloLink, concat } from "apollo-link";
   bootstrap: [FdpAppComponent]
 })
 export class FdpModule {
-  // constructor(apollo: Apollo, httpLink: HttpLink) {
-  // const apiUrl = environment.production
-  //   ? "https://api.aifedespaix.com/graphql"
-  //   : "http://localhost:3000/graphql";
-  // const http: HttpLinkHandler = httpLink.create({
-  //   uri: apiUrl,
-  //   withCredentials: true
-  // });
-  // const authLink = setContext((_, { headers }) => {
-  //   // get the authentication token from local storage if it exists
-  //   // const token = fdpUserAuthService.user.token;
-  //   const token = localStorage.getItem("token");
-  //   // return the headers to the context so httpLink can read them
-  //   // in this example we assume headers property exists
-  //   // and it is an instance of HttpHeaders
-  //   return {
-  //     headers: {
-  //       ...headers,
-  //       authorization: token ? `${token}` : ""
-  //     }
-  //   };
-  // });
-  // }
   constructor(apollo: Apollo, httpLink: HttpLink) {
     const http = httpLink.create({
       uri: environment.production
@@ -125,20 +104,6 @@ export class FdpModule {
         : "http://localhost:3000/graphql"
     });
 
-    // const auth = setContext((_, { headers }) => {
-    //   // get the authentication token from local storage if it exists
-    //   const token = localStorage.getItem("token");
-    //   // return the headers to the context so httpLink can read them
-    //   // in this example we assume headers property exists
-    //   // and it is an instance of HttpHeaders
-    //   if (!token) {
-    //     return {};
-    //   } else {
-    //     return {
-    //       headers: headers.append("Authorization", `Bearer ${token}`)
-    //     };
-    //   }
-    // });
     const authMiddleware = new ApolloLink((operation, forward) => {
       // add the authorization to the headers
       operation.setContext({
@@ -157,17 +122,3 @@ export class FdpModule {
     });
   }
 }
-
-// export function createApollo(httpLink: HttpLink) {
-//   return {
-//     link: httpLink.create({
-//       uri: "http://localhost:3000/graphql",
-//       withCredentials: true
-//     }), // todo
-//     cache: new InMemoryCache()
-//   };
-//   // apollo.create({
-//   //   link: authLink.concat(http),
-//   //   cache: new InMemoryCache()
-//   // });
-// }
