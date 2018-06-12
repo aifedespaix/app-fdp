@@ -7,6 +7,7 @@ import {FdpUser} from '../fdp-user/fdp-user';
 @Component({
   selector: 'app-index',
   templateUrl: './fdp-index.component.html',
+  styleUrls: ['./fdp-index.component.scss']
 })
 export class FdpIndexComponent {
 
