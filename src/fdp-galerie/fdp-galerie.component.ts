@@ -6,7 +6,11 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./fdp-galerie.component.scss"]
 })
 export class FdpGalerieComponent implements OnInit {
-  constructor() {}
+  // public files: string[];
+
+  constructor() {
+    // this.files = fs.readdirSync("/assets/images/galerie");
+  }
 
   ngOnInit() {}
 }
