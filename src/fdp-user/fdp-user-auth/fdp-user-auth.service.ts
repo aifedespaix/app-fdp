@@ -93,7 +93,7 @@ export class FdpUserAuthService {
           return {success: false, error: errors[0].message}
         }
 
-        if (data && data.signIn) {
+        if (data && data.signIn) { 
           this.user.token = data.signIn.token;
           this.isLoged = true;
           this.updateUser()
@@ -225,7 +225,7 @@ export class FdpUserAuthService {
         }
         return {success: false, error: 'erreur chelou lol'};
       },
-    );
+    ); 
 
   }
 }

@@ -128,6 +128,12 @@ a {
   }
   &Field {
     flex: 1;
+    &-medium {
+      width: 250px;
+    }
+    &-large {
+      width: 350px;
+    }
   }
   &Fields {
     display: flex;
