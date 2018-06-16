@@ -9,8 +9,12 @@ import { FdpPortfolioService } from "./fdp-portfolio.service";
 export class FdpPortfolioComponent {
   public contact: FdpContact;
   public contactFormGroup: FormGroup;
+  public isContactSend: Boolean;
+  public error: String;
 
   constructor(private portfolioService: FdpPortfolioService) {
+    this.isContactSend = true;
+    this.error = null;
     this.contact = new FdpContact();
     this.contactFormGroup = new FormGroup({
       contact_mail: new FormControl(this.contact.mail, [
@@ -30,16 +34,14 @@ export class FdpPortfolioComponent {
       .subscribe(
         ({ success, error }) => {
           if (success) {
-            // this.userLogin.reset();
-            // this.onLoginDone.emit(true);
-          // } else {
-            // this.error = error;
-          // }
-          console.log('cool');
+            this.isContactSend = true;
+            this.error = null;
+          } else {
+            this.error = error;
+          }
         },
         err => {
           console.log("err");
-          console.log(err);
         }
       );
     return false;

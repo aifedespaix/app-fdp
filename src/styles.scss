@@ -88,10 +88,15 @@ a {
         width: 100%;
       }
       @media screen and (min-width: $responsiveWidth_M) {
-        width: 70%;
-      }
+        width: 60%;
+      } // @media screen and (max-width: $responsiveWidth_L) {
+      //   width: 100%;
+      // }
       &_small {
         width: 45%;
+      }
+      &_big {
+        width: 70%;
       }
     }
     iframe,
@@ -338,6 +343,14 @@ a {
   }
   &Title {
     text-align: center;
+    &_ {
+      &padded {
+        padding: 15px;
+      }
+      &centred {
+        text-align: center;
+      }
+    }
   }
   &NoMargin {
     margin: 0;

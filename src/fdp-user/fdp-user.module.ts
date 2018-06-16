@@ -1,4 +1,4 @@
-import { NgModule, Injectable } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   ErrorStateMatcher,
@@ -16,7 +16,7 @@ import { FdpUserAuthResetPasswordComponent } from "./fdp-user-auth/fdp-user-auth
 import { FdpBoxConfirmDeleteDialog } from "../fdp-box/fdp-box-delete-dialog/fdp-box-delete.dialog.component";
 import { FdpBoxModule } from "../fdp-box/fdp-box.module";
 import { FdpBoxEditDialog } from "../fdp-box/fdp-box-edit-dialog/fdp-box-edit.dialog.component";
-import { inject } from "@angular/core/testing";
+// import { inject } from "@angular/core/testing";
 
 @NgModule({
   declarations: [

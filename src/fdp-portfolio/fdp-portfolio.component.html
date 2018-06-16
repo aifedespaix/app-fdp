@@ -258,7 +258,7 @@
     </mat-tab>
 
     <mat-tab label="Contact">
-      <form class="fdpForm fdpForm_vertical" (ngSubmit)="sendMail()" #contactForm="ngForm" [formGroup]="contactFormGroup">
+      <form class="fdpForm fdpForm_vertical" (ngSubmit)="sendMail()" #contactForm="ngForm" [formGroup]="contactFormGroup" *ngIf="!isContactSend">
 
         <mat-form-field class="fdpField fdpField-large">
           <input type="text" placeholder="Adresse mail" id="contact_mail" name="contact_mail" matInput required formControlName="contact_mail"
@@ -276,10 +276,18 @@
             [(ngModel)]="contact.message"></textarea>
         </mat-form-field>
 
+        <div *ngIf="error" class="fdpError">{{error}}</div>
+
         <button mat-raised-button color="primary" [disabled]="contactFormGroup.invalid">
           Envoyer
         </button>
       </form>
+
+      <div *ngIf="isContactSend" class="fdpPortfolio_sended">
+        <div>
+          Le message a bien été envoyé !
+        </div>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

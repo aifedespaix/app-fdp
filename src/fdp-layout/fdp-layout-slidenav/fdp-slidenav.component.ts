@@ -24,12 +24,12 @@ export class FdpSlidenavComponent {
         text: "Box",
         exact: false
       },
-      {
-        link: "galerie",
-        icon: "photo",
-        text: "Galerie",
-        exact: false
-      },
+      // {
+      //   link: "galerie",
+      //   icon: "photo",
+      //   text: "Galerie",
+      //   exact: false
+      // },
       {
         link: "blog",
         icon: "chrome_reader_mode",
