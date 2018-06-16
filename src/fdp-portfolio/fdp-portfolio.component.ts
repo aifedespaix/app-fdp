@@ -13,7 +13,7 @@ export class FdpPortfolioComponent {
   public error: String;
 
   constructor(private portfolioService: FdpPortfolioService) {
-    this.isContactSend = true;
+    this.isContactSend = false;
     this.error = null;
     this.contact = new FdpContact();
     this.contactFormGroup = new FormGroup({
