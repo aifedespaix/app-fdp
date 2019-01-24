@@ -1,7 +1,0 @@
-<app-fdp-header (toggleSlidenav)="toggleSlidenav()" [isSlidenavActived]="isSlidenavActive"></app-fdp-header>
-
-<div class="fdpContainer">
-  <app-fdp-slidenav *ngIf="isSlidenavActive" [isSlidenavActive]="isSlidenavActive"
-                    (onItemClick)="toggleSlidenav()"></app-fdp-slidenav>
-  <router-outlet></router-outlet>
-</div>
