@@ -50,11 +50,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fdp-app"
+            "browserTarget": "fdp-app:build"
           },
           "configurations": {
             "production": {
               "browserTarget": "fdp-app:production"
+            },
+            "dev": {
+              "browserTarget": "fdp-app:build:dev"
             }
           }
         },
