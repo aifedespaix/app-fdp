@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material';
 import {BoxModule} from './box/box.module';
 import {MainModule} from './main/main.module';
+import { GraphQLModule } from './graphql.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {MainModule} from './main/main.module';
     MatSidenavModule,
     BoxModule,
     MainModule,
+    GraphQLModule,
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, {dataEncapsulation: false},
     // ),

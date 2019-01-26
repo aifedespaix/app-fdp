@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {MatSidenav} from '@angular/material';
-import {ResponsiveService} from '../responsive.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import gql from 'graphql-tag';
+import {Apollo} from 'apollo-angular';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,8 +10,29 @@ import {ResponsiveService} from '../responsive.service';
 export class SidenavComponent implements OnInit {
 
   @Output() close = new EventEmitter();
+  constructor(private apollo: Apollo) {}
+  public items;
 
   ngOnInit() {
+    this.apollo
+    .watchQuery({
+      query: gql`
+        {
+          menu(where: {name: "main"}) {
+            id
+            name
+            items {
+              name
+              routerLink
+            }
+          }
+        }
+      `,
+    })
+    .valueChanges.subscribe(({data}) => {
+      console.log(data);
+      this.items = data.menu.items;
+      console.log(this.items);
+    });
   }
-
 }
