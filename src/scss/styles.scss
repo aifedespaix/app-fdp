@@ -1,5 +1,5 @@
-@import "~@angular/material/_theming.scss";
-@import "responsive";
+@import "../../node_modules/@angular/material/theming";
+@import "scss/responsive";
 
 /** Global styles **/
 body, html {
