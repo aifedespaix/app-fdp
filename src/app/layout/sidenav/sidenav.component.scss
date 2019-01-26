@@ -1,0 +1,12 @@
+@import "app.variables";
+
+:host {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+app-title {
+  height: $header-height;
+}

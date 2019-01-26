@@ -1,0 +1,24 @@
+@import "app.variables";
+
+@media screen and (max-width: $mobile-width) {
+  .mobile {
+    &-content {
+      grid-template-rows: 1fr $header-height;
+      grid-template-areas: "main" "header" !important;
+    }
+
+    &-header {
+      flex-direction: row-reverse;
+    }
+
+    &-title {
+      flex-direction: row-reverse;
+    }
+
+    &-nav,
+    &-sidenav {
+      flex-direction: column-reverse !important;
+    }
+
+  }
+}
