@@ -29,7 +29,7 @@ export class SidenavComponent implements OnInit {
         }
       `,
     })
-    .valueChanges.subscribe(({data}) => {
+    .valueChanges.subscribe(({data}: any) => {
       console.log(data);
       this.items = data.menu.items;
       console.log(this.items);
