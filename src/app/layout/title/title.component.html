@@ -1,6 +1,9 @@
-<button *ngIf="!responsiveService.isNormalScreen()" mat-icon-button (click)="toggle.emit()">
+<button *ngIf="responsiveService.isMobileScreen" mat-icon-button (click)="toggle.emit()">
   <mat-icon class="mat-18">menu</mat-icon>
 </button>
 
-<!--todo referencement-->
-<div>aifedespaix.com</div>
+<div class="logo">
+  <!--<mat-icon svgIcon="logo-fdp"></mat-icon>-->
+  <img class="logo_image" src="assets/images/fdp_logo.svg" alt="">
+  <span class="logo_text">aifedespaix</span>
+</div>

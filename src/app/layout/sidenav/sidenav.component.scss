@@ -1,7 +1,7 @@
-@import "scss/app.variables";
+@import "app.variables";
 
 :host {
-  width: 200px;
+  width: $sidenav-width;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -9,4 +9,26 @@
 
 app-title {
   height: $header-height;
+}
+
+mat-nav-list {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+mat-list-item {
+  a {
+    margin-left: 8px;
+  }
+}
+
+.active {
+  mat-icon {
+    color: #005CB1;
+  }
+  a {
+    font-weight: bold;
+  }
 }

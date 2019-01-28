@@ -1,9 +1,9 @@
-@import "scss/app.variables";
+@import "app.variables";
 
 @media screen and (max-width: $mobile-width) {
   .mobile {
     &-content {
-      grid-template-rows: 1fr $header-height;
+      grid-template-rows: 1fr $header-height !important;
       grid-template-areas: "main" "header" !important;
     }
 

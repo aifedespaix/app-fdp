@@ -1,33 +1,50 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material';
 import {ResponsiveService} from './layout/responsive.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('sidenav') private sidenav: MatSidenav;
 
-  constructor(public responsiveService: ResponsiveService) {
+  constructor(public responsiveService: ResponsiveService, private router: Router) {
   }
 
-  toggleSidenav(open: boolean) {
-    if (!this.responsiveService.isNormalScreen()) {
+  ngOnInit(): void {
+    this.router.events.subscribe(() => {
+      if (this.responsiveService.isMobileScreen) {
+        this.toggleSidenav(false);
+      }
+    });
+
+    this.responsiveService.switchLayout.subscribe(() => {
+      if (!this.responsiveService.isMobileScreen) {
+        this.toggleSidenav(true);
+      }
+    });
+
+    this.initSidenav();
+  }
+
+  public toggleSidenav(open: boolean) {
+    if (this.responsiveService.isMobileScreen || open) {
       this.sidenav.toggle(open).then();
     }
   }
 
   public sidenavMode(): string {
-    return this.responsiveService.isNormalScreen() ? 'side' : 'over';
-  }
-
-  public sidenavOpened(): boolean {
-    return this.responsiveService.isNormalScreen();
+    return this.responsiveService.isMobileScreen ? 'over' : 'side';
   }
 
   public sidenavPosition(): string {
-    return this.responsiveService.isNormalScreen() ? 'start' : 'end';
+    return this.responsiveService.isMobileScreen ? 'end' : 'start';
+  }
+
+  private initSidenav() {
+    this.toggleSidenav(!this.responsiveService.isMobileScreen);
   }
 }

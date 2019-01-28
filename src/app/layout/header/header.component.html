@@ -1,11 +1,16 @@
-<div>
-  <app-title *ngIf="!responsiveService.isNormalScreen()" (toggle)="open.emit()" class="mobile-title"></app-title>
-</div>
+<app-title *ngIf="responsiveService.isMobileScreen" (toggle)="open.emit()" class="mobile-title"></app-title>
 
 <div>
-  <input type="text">
+  <!--<input type="text">-->
 </div>
 
 <div class="user">
-  user
+  <button mat-icon-button [matMenuTriggerFor]="user">
+    <mat-icon class="mat-18">person</mat-icon>
+  </button>
+
+  <mat-menu #user="matMenu">
+    <button mat-menu-item>Connection</button>
+    <button mat-menu-item>Inscription</button>
+  </mat-menu>
 </div>

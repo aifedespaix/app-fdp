@@ -1,4 +1,4 @@
-@import "scss/app.variables";
+@import "app.variables";
 
 :host {
   display: block;
@@ -15,6 +15,7 @@
 .content {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-areas: "header" "main";
 }
 
@@ -27,4 +28,8 @@
 
 app-header {
   grid-area: header;
+}
+
+router-outlet {
+  display: none;
 }

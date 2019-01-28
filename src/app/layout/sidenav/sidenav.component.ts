@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,8 +12,14 @@ import {Apollo} from 'apollo-angular';
 export class SidenavComponent implements OnInit {
 
   @Output() close = new EventEmitter();
-  constructor(private apollo: Apollo) {}
   public items;
+  public activeRoute: string;
+
+  constructor(private apollo: Apollo, private router: Router) {
+    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(route => {
+      this.activeRoute = (route as any).url;
+    });
+  }
 
   ngOnInit() {
     this.apollo
@@ -24,15 +32,14 @@ export class SidenavComponent implements OnInit {
             items {
               name
               routerLink
+              icon
             }
           }
         }
       `,
     })
     .valueChanges.subscribe(({data}: any) => {
-      console.log(data);
       this.items = data.menu.items;
-      console.log(this.items);
     });
   }
 }

@@ -1,27 +1,45 @@
-import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {EventEmitter, Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResponsiveService {
-// todo rename isNormalScreen en isMobileScreen
+
+  public minimumNormalWidth = 850;
+  public switchLayout = new EventEmitter();
+
+  public alreadyResized: boolean;
   public screenWidth: number;
-  public minimumNormalWidth = 840;
+  public isMobileScreen: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId) {
+    this.alreadyResized = false;
     if (isPlatformBrowser(platformId)) {
       this.screenWidth = window.innerWidth;
+      this.isMobileScreen = this.calcIsMobileScreen();
       window.onresize = () => {
-        this.screenWidth = window.innerWidth;
+        this.windowResized();
       };
     } else {
       this.screenWidth = this.minimumNormalWidth;
+      this.isMobileScreen = false;
     }
   }
 
-  public isNormalScreen() {
-    return this.screenWidth > this.minimumNormalWidth;
+  private windowResized() {
+    this.alreadyResized = true;
+    this.screenWidth = window.innerWidth;
+
+    const layoutAfterResize = this.calcIsMobileScreen();
+    if (layoutAfterResize !== this.isMobileScreen) {
+      this.isMobileScreen = layoutAfterResize;
+      this.switchLayout.emit();
+    }
+  }
+
+  private calcIsMobileScreen() {
+    return !(this.screenWidth > this.minimumNormalWidth);
   }
 
 }

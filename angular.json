@@ -32,7 +32,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/"
+                "src/scss"
               ]
             },
             "scripts": []
@@ -90,7 +90,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/"
+                "src/scss"
               ]
             },
             "scripts": [],
@@ -120,7 +120,7 @@
             "tsConfig": "src/tsconfig.server.json",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/"
+                "src/scss"
               ]
             }
           }
