@@ -26,7 +26,7 @@ export class SidenavComponent implements OnInit {
     .watchQuery({
       query: gql`
         {
-          menu(where: {name: "main"}) {
+          menu(name: "main") {
             id
             name
             items {
@@ -36,7 +36,7 @@ export class SidenavComponent implements OnInit {
             }
           }
         }
-      `,
+      `
     })
     .valueChanges.subscribe(({data}: any) => {
       this.items = data.menu.items;

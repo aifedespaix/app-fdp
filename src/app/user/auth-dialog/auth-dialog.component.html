@@ -1,0 +1,23 @@
+<mat-tab-group #tabs>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>person</mat-icon>
+      <div>Connexion</div>
+    </ng-template>
+
+    <app-login (close)="close()"></app-login>
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>person_add</mat-icon>
+      <div>Inscription</div>
+
+    </ng-template>
+
+    <app-register></app-register>
+  </mat-tab>
+
+</mat-tab-group>

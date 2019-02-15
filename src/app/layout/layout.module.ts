@@ -7,6 +7,7 @@ import {MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatRadioMo
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TitleComponent } from './title/title.component';
 import {RouterModule} from '@angular/router';
+import {UserModule} from '../user/user.module';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidenavComponent, TitleComponent],
@@ -16,10 +17,9 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     MatRadioModule,
     MatIconModule,
-    MatButtonModule,
     RouterModule,
-    MatMenuModule,
     MatListModule,
+    UserModule,
   ],
   exports: [
     HeaderComponent,

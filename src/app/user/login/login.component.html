@@ -1,0 +1,27 @@
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Identifiant / Mail" name="login" [(ngModel)]="userLoginModel.login" required>
+    <mat-error>Identifiant incorrect</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'" name="password"
+           [(ngModel)]="userLoginModel.password" [errorStateMatcher]="lengthMatcher" required>
+    <mat-icon class="fdpCursor" [color]="hide ? 'primary' : 'warn'" matSuffix
+              (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-hint>
+      8 caractères minimum
+    </mat-hint>
+    <mat-error>Mot de passe incorrect</mat-error>
+  </mat-form-field>
+
+  <div class="submitButtons">
+    <button (click)="closeLogin()" mat-flat-button color="warn" type="warn" class="btn btn-success">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-flat-button color="primary" type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
+</form>
+
