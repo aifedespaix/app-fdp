@@ -1,0 +1,12 @@
+<div class="center">
+  <mat-icon class="mat-18" [color]="data.color">{{data.icon}}</mat-icon>
+  <span>{{data.message}}</span>
+</div>
+
+
+<div class="center">
+  <span *ngIf="subscribeTimer > 0">{{ subscribeTimer }}</span>
+  <button mat-button (click)="close()" color="warn">
+    <mat-icon class="mat-18">close</mat-icon>
+  </button>
+</div>

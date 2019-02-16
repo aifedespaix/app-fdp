@@ -51,21 +51,21 @@ export class LoginComponent {
        `,
         variables: {login: this.userLoginModel.login, password: this.userLoginModel.password},
       })
-      .subscribe(res => {
-          console.log(res);
+      .subscribe(({data}) => {
+          console.log(data);
+          console.log(data.login);
         },
         () => {
           this.snackBar.openFromComponent(FdpSnackbarComponent, {
             duration: 5000,
             data: {
               icon: 'error',
+              color: 'warn',
               message: 'Identifiants incorrects'
             }
           });
-        },
-        () => {
-          console.log('fini');
-        });
+        }
+        );
   }
 
 }
