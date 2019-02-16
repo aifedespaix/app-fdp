@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material';
 import {ResponsiveService} from './layout/responsive.service';
 import {Router} from '@angular/router';
+import {UserService} from './user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,12 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit {
   @ViewChild('sidenav') private sidenav: MatSidenav;
 
-  constructor(public responsiveService: ResponsiveService, private router: Router) {
+  constructor(public responsiveService: ResponsiveService, private router: Router, private userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.userService.authent();
+
     this.router.events.subscribe(() => {
       if (this.responsiveService.isMobileScreen) {
         this.toggleSidenav(false);

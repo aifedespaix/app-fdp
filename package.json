@@ -9,9 +9,11 @@
     "test": "ng test",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
-    "build:ssr": "yarn build:client-and-server-bundles && yarn webpack:server",
+    "build:preprod": "yarn build:client-and-server-bundles-preprod && yarn webpack:server",
+    "build:client-and-server-bundles-preprod": "ng build --configuration=preprod && ng run fdp-app:server",
+    "build:prod": "yarn build:client-and-server-bundles && yarn webpack:server",
+    "build:client-and-server-bundles": "ng build --configuration=production && ng run fdp-app:server",
     "serve:ssr": "node dist/server.js",
-    "build:client-and-server-bundles": "ng build --prod && ng run fdp-app:server",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "keywords": [

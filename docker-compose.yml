@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PORT=${PORT}
+        - ENV=${NODE_ENV}
+    networks:
+      - web
+    labels:
+      - "traefik.frontend.rule=Host:${TRAEFIK_HOST_API}"
+      - "traefik.backend=${NODE_ENV}-api-fdp"
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+
+networks:
+  web:
+    external: true
