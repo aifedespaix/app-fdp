@@ -4,7 +4,7 @@
   width: 100%;
   height: $header-height;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   background-color: #fff;
 }
@@ -12,9 +12,4 @@
 .user {
   display: flex;
   justify-content: flex-end;
-}
-
-app-title {
-  width: $sidenav-width;
-  margin: 0 5px;
 }

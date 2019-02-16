@@ -9,12 +9,15 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule,
+  MatMenuModule, MatSnackBarModule,
   MatTabsModule,
+  MatTooltipModule,
 } from '@angular/material';
 import { RegisterComponent } from './register/register.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import {FdpModule} from '../fdp/fdp.module';
+import {FdpSnackbarComponent} from '../fdp/fdp-snackbar/fdp-snackbar.component';
 
 @NgModule({
   declarations: [LoginComponent, AuthDialogComponent, AuthButtonComponent, RegisterComponent],
@@ -28,13 +31,17 @@ import {BrowserModule} from '@angular/platform-browser';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    FdpModule,
   ],
   exports: [
     AuthButtonComponent
   ],
   entryComponents: [
-    AuthDialogComponent
+    AuthDialogComponent,
+    FdpSnackbarComponent
   ]
 })
 export class UserModule {

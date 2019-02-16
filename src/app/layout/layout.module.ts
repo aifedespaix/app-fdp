@@ -5,12 +5,13 @@ import { FooterComponent } from './footer/footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatRadioModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { TitleComponent } from './title/title.component';
+import { MenuButtonComponent } from './menu-button/menu-button.component';
 import {RouterModule} from '@angular/router';
 import {UserModule} from '../user/user.module';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SidenavComponent, TitleComponent],
+  declarations: [HeaderComponent, FooterComponent, SidenavComponent, MenuButtonComponent, LogoComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,6 +21,7 @@ import {UserModule} from '../user/user.module';
     RouterModule,
     MatListModule,
     UserModule,
+    MatButtonModule
   ],
   exports: [
     HeaderComponent,

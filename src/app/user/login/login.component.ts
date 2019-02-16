@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {LengthMatcher} from '../../errorStateMatchers/errorStateMatchers';
+import gql from 'graphql-tag';
+import {Apollo} from 'apollo-angular';
+import {MatSnackBar} from '@angular/material';
+import {FdpSnackbarComponent} from '../../fdp/fdp-snackbar/fdp-snackbar.component';
 
 class UserLogin {
   login: string;
@@ -10,30 +13,59 @@ class UserLogin {
     this.password = password;
   }
 }
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
 
-  private readonly userLoginModel: UserLogin;
+  public readonly userLoginModel: UserLogin;
   @Output() private close = new EventEmitter();
   public hide;
-  public lengthMatcher: LengthMatcher;
 
-  constructor() {
+  constructor(private apollo: Apollo, private snackBar: MatSnackBar) {
     this.hide = true;
     this.userLoginModel = new UserLogin('', '');
-    this.lengthMatcher = new LengthMatcher(8);
   }
 
   closeLogin() {
     this.close.emit();
   }
 
-  onSubmit() {
-    console.log(this.userLoginModel);
+  login() {
+    return this.apollo
+      .mutate({
+        mutation: gql`
+          mutation login($login: String!, $password: String!) {
+            login(email: $login, password: $password) {
+            token
+            user {
+              id
+              email
+              name
+            }
+          }
+        }
+       `,
+        variables: {login: this.userLoginModel.login, password: this.userLoginModel.password},
+      })
+      .subscribe(res => {
+          console.log(res);
+        },
+        () => {
+          this.snackBar.openFromComponent(FdpSnackbarComponent, {
+            duration: 5000,
+            data: {
+              icon: 'error',
+              message: 'Identifiants incorrects'
+            }
+          });
+        },
+        () => {
+          console.log('fini');
+        });
   }
 
 }

@@ -1,0 +1,11 @@
+<ng-container *ngIf="responsiveService.isMobileScreen; then mobile else computer"></ng-container>
+
+<ng-template #mobile>
+  <button mat-icon-button (click)="toggle.emit()">
+    <mat-icon class="mat-18">menu</mat-icon>
+  </button>
+</ng-template>
+
+<ng-template #computer>
+  <app-logo></app-logo>
+</ng-template>

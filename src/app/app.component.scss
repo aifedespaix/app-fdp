@@ -1,5 +1,9 @@
 @import "app.variables";
 
+:host::ng-deep router-outlet + * {
+  overflow: hidden;
+}
+
 :host {
   display: block;
   width: 100%;

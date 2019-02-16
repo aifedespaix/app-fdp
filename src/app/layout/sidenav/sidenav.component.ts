@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
+import {ResponsiveService} from '../responsive.service';
 
 @Component({
   selector: 'app-sidenav',

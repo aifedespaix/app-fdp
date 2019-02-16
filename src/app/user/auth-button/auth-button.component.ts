@@ -16,6 +16,9 @@ export class AuthButtonComponent implements OnInit {
   }
 
   public authent(register: boolean) {
-    this.authentDialog.open(AuthDialogComponent, {data: register});
+    this.authentDialog.open(AuthDialogComponent, {
+      data: register,
+      panelClass: 'mobile-modale'
+    });
   }
 }

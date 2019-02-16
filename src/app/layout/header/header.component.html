@@ -1,9 +1,5 @@
-<app-title *ngIf="responsiveService.isMobileScreen" (toggle)="open.emit()" class="mobile-title"></app-title>
+<app-logo *ngIf="responsiveService.isMobileScreen"></app-logo>
 
-<div>
-  <!--<input type="text">-->
-</div>
+<app-auth-button class="user"></app-auth-button>
 
-<app-auth-button class="user">
-
-</app-auth-button>
+<app-menu-button *ngIf="responsiveService.isMobileScreen" (toggle)="open.emit()"></app-menu-button>
