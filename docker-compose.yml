@@ -3,6 +3,7 @@ version: '3.3'
 services:
 
   app:
+    container_name: fdp-app-${NODE_ENV}
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,7 +14,7 @@ services:
       - web
     labels:
       - "traefik.frontend.rule=Host:${TRAEFIK_HOST_API}"
-      - "traefik.backend=${NODE_ENV}-api-fdp"
+      - "traefik.backend=${NODE_ENV}-app-fdp"
       - "traefik.docker.network=web"
       - "traefik.enable=true"
 
