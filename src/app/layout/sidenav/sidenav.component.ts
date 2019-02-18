@@ -1,9 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
-import {ResponsiveService} from '../responsive.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -37,10 +36,13 @@ export class SidenavComponent implements OnInit {
             }
           }
         }
-      `
+      `,
     })
     .valueChanges.subscribe(({data}: any) => {
-      this.items = data.menu.items;
-    });
+        this.items = data.menu.items;
+      },
+      (err) => {
+        console.log(err);
+      });
   }
 }
