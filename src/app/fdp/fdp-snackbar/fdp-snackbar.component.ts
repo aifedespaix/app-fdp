@@ -16,6 +16,7 @@ export class FdpSnackBar {
 export class FdpSnackbarComponent implements OnInit {
 
   private timerSubscription: Subscription;
+  private readonly duration: number;
   public subscribeTimer: number;
 
   constructor(
@@ -23,7 +24,8 @@ export class FdpSnackbarComponent implements OnInit {
     @Inject(MAT_SNACK_BAR_DATA) public data: FdpSnackBar,
     public snackBarRef: MatSnackBarRef<FdpSnackbarComponent>,
   ) {
-    this.subscribeTimer = null;
+    this.duration = this.snackBarRef.containerInstance.snackBarConfig.duration / 1000;
+    this.subscribeTimer = this.duration ? this.duration : null;
   }
 
   ngOnInit(): void {
@@ -37,14 +39,13 @@ export class FdpSnackbarComponent implements OnInit {
   }
 
   private oberserableTimer() {
-    const timeLeft = this.snackBarRef.containerInstance.snackBarConfig.duration / 1000;
-    if (!timeLeft) {
+    if (!this.duration) {
       return;
     }
 
     const source = timer(0, 1000);
     this.timerSubscription = source.subscribe(val => {
-      this.subscribeTimer = timeLeft - val;
+      this.subscribeTimer = this.duration - val;
       this.changeDetectorRef.detectChanges();
     });
   }
