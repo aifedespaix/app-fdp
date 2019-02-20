@@ -18,9 +18,10 @@ import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {FdpModule} from '../fdp/fdp.module';
 import {FdpSnackbarComponent} from '../fdp/fdp-snackbar/fdp-snackbar.component';
+import {EqualValidator} from './equal-validator.directive';
 
 @NgModule({
-  declarations: [LoginComponent, AuthDialogComponent, AuthButtonComponent, RegisterComponent],
+  declarations: [LoginComponent, AuthDialogComponent, AuthButtonComponent, RegisterComponent, EqualValidator],
   imports: [
     CommonModule,
     MatDialogModule,

@@ -5,10 +5,10 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'" name="password"
+    <input matInput placeholder="Mot de passe" [type]="showPassword ? 'text' : 'password'" name="password"
            [(ngModel)]="userLoginModel.password" minlength="8" maxlength="30" required>
-    <mat-icon class="fdpCursor" [color]="hide ? 'primary' : 'warn'" matSuffix
-              (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-icon class="fdpCursor" [color]="showPassword ? 'warn' : 'primary'" matSuffix
+              (click)="showPassword = !showPassword">{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
     <mat-error>
       Mot de passe incorrect 8 caractères minimum
     </mat-error>
