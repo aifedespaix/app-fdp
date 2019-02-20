@@ -10,9 +10,9 @@ class UserLogin {
   login: string;
   password: string;
 
-  constructor(login: string, password: string) {
-    this.login = login;
-    this.password = password;
+  constructor() {
+    this.login = '';
+    this.password = '';
   }
 }
 
@@ -24,23 +24,28 @@ class UserLogin {
 export class LoginComponent {
 
   public readonly userLoginModel: UserLogin;
-  public hide;
+  public showPassword;
 
-  constructor(private apollo: Apollo, private snackBar: MatSnackBar, private userService: UserService, private dialogRef: MatDialogRef<null>) {
-    this.hide = true;
-    this.userLoginModel = new UserLogin('', '');
+  constructor(
+    private apollo: Apollo,
+    private snackBar: MatSnackBar,
+    private userService: UserService,
+    private dialogRef: MatDialogRef<null>,
+  ) {
+    this.showPassword = false;
+    this.userLoginModel = new UserLogin();
   }
 
   public closeLogin() {
     this.dialogRef.close();
   }
 
-  login() {
+  public login() {
     const loginSub = this.apollo
-      .mutate({
-        mutation: gql`
-          mutation login($login: String!, $password: String!) {
-            login(email: $login, password: $password) {
+    .mutate({
+      mutation: gql`
+        mutation login($login: String!, $password: String!) {
+          login(email: $login, password: $password) {
             token
             user {
               id
@@ -49,34 +54,34 @@ export class LoginComponent {
             }
           }
         }
-       `,
-        variables: {login: this.userLoginModel.login, password: this.userLoginModel.password},
-      })
-      .subscribe(({data}) => {
-          this.userService.user = {token: data.login.token, ...data.login.user} as User;
-          this.snackBar.openFromComponent(FdpSnackbarComponent, {
-            duration: 5000,
-            data: {
-              icon: 'done',
-              message: 'Vous êtes connecté',
-            },
-          });
-          this.closeLogin();
-        },
-        () => {
-          this.snackBar.openFromComponent(FdpSnackbarComponent, {
-            duration: 5000,
-            data: {
-              icon: 'error',
-              color: 'warn',
-              message: 'Identifiants incorrects',
-            },
-          });
-        },
-        () => {
-          loginSub.unsubscribe();
-        },
-      );
+      `,
+      variables: {login: this.userLoginModel.login, password: this.userLoginModel.password},
+    })
+    .subscribe(({data}) => {
+        this.userService.user = {token: data.login.token, ...data.login.user} as User;
+        this.snackBar.openFromComponent(FdpSnackbarComponent, {
+          duration: 5000,
+          data: {
+            icon: 'done',
+            message: 'Vous êtes connecté',
+          },
+        });
+        this.closeLogin();
+      },
+      () => {
+        this.snackBar.openFromComponent(FdpSnackbarComponent, {
+          duration: 5000,
+          data: {
+            icon: 'error',
+            color: 'warn',
+            message: 'Identifiants incorrects',
+          },
+        });
+      },
+      () => {
+        loginSub.unsubscribe();
+      },
+    );
   }
 
 }
