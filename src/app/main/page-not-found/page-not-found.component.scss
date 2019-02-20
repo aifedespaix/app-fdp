@@ -1,0 +1,20 @@
+:host {
+  background-image: url(/assets/images/dead_link.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+}
+
+h4 {
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 4em;
+  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #3a6635, 0 0 30px #67b362, 0 0 40px #67b362, 0 0 55px #67b362, 0 0 75px #3b6736;
+  padding: 10px;
+}
