@@ -44,6 +44,7 @@
     "apollo-cache-inmemory": "^1.4.3",
     "apollo-client": "^2.4.13",
     "apollo-link": "^1.2.8",
+    "apollo-link-context": "^1.0.14",
     "core-js": "^2.6.5",
     "dotenv": "^6.2.0",
     "graphql": "^14.1.1",
