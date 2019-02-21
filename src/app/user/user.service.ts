@@ -23,7 +23,7 @@ export class UserService {
 
   public authent() {
     const token = this.localStorage.token;
-    console.log(token);
+
     if (token) {
       const profileSub = this.apollo
       .query({

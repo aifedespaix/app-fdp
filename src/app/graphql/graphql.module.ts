@@ -10,7 +10,7 @@ export function createApollo(httpLink: HttpLink) {
     link: setContext((_, {headers}) => {
       let authorization = '';
 
-      if (localStorage) {
+      if (typeof localStorage !== 'undefined') {
         const token = localStorage.getItem('token');
         authorization = token ? `Bearer ${token}` : '';
       }
