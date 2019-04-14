@@ -12,7 +12,7 @@ export function createApollo(httpLink: HttpLink) {
 
       if (typeof localStorage !== 'undefined') {
         const token = localStorage.getItem('token');
-        authorization = token ? `Bearer ${token}` : '';
+        authorization = token ? token : '';
       }
 
       return {

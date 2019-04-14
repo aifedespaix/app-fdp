@@ -42,22 +42,28 @@ export class LoginComponent {
 
   public login() {
     const loginSub = this.apollo
-    .mutate({
-      mutation: gql`
-        mutation login($login: String!, $password: String!) {
-          login(email: $login, password: $password) {
-            token
+    .query({
+      query: gql`
+        query login($login: String!, $password: String!) {
+          login(loginInput: {login: $login, password: $password}) {
+            token {
+              expiresIn
+              accessToken
+            }
             user {
               id
               email
-              name
+              login
+              createdAt
+              editedAt
             }
           }
         }
       `,
       variables: {login: this.userLoginModel.login, password: this.userLoginModel.password},
     })
-    .subscribe(({data}) => {
+    .subscribe(({data}: any) => {
+      console.log(data);
         this.userService.user = {token: data.login.token, ...data.login.user} as User;
         this.snackBar.openFromComponent(FdpSnackbarComponent, {
           duration: 5000,
@@ -69,6 +75,7 @@ export class LoginComponent {
         this.closeLogin();
       },
       () => {
+      console.log('aaaaaaaaaaa');
         this.snackBar.openFromComponent(FdpSnackbarComponent, {
           duration: 5000,
           data: {

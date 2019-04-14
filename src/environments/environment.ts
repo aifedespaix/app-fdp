@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'https://dev.api.aifedespaix.com',
+  apiEndpoint: 'http://localhost:3000',
 };
 
 /*

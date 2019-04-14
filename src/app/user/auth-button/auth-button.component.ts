@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthDialogComponent} from '../auth-dialog/auth-dialog.component';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-auth-button',
