@@ -13,3 +13,14 @@
 
 ### Update all 
 `yarn ng update @angular/cli @angular/core [--all=true]`
+
+### SSR
+```typescript
+import {isPlatformServer} from '@angular/common';
+
+if (isPlatformServer(this.platformId)) {
+  console.log("PALTEFORME");
+} else {
+  console.log("BROWSER");
+}
+```

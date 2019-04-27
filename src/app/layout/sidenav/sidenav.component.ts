@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import gql from 'graphql-tag';
+import {Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
+import {menu} from './queries/menu.gql';
 
 @Component({
   selector: 'app-sidenav',
@@ -15,7 +15,10 @@ export class SidenavComponent implements OnInit {
   public items;
   public activeRoute: string;
 
-  constructor(private apollo: Apollo, private router: Router) {
+  constructor(
+    private readonly apollo: Apollo,
+    private readonly router: Router,
+    @Inject(PLATFORM_ID) private readonly platformId: Object) {
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(route => {
       this.activeRoute = (route as any).url;
     });
@@ -24,19 +27,7 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
     this.apollo
     .watchQuery({
-      query: gql`
-        {
-          menu(name: "main") {
-            id
-            name
-            items {
-              name
-              routerLink
-              icon
-            }
-          }
-        }
-      `,
+      query: menu
     })
     .valueChanges.subscribe(({data}: any) => {
         this.items = data.menu.items;

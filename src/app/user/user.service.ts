@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {User} from './user';
 import {LocalStorageService} from '../storage/local-storage.service';
-import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
+
+import {profile} from './queries/profile.gql';
 
 @Injectable({
   providedIn: 'root',
@@ -27,18 +28,9 @@ export class UserService {
     if (token) {
       const profileSub = this.apollo
       .query({
-        query: gql`
-          query me {
-            me {
-              id
-              email
-              name
-            }
-          }
-        `,
+        query: profile,
       })
       .subscribe(({data}: any) => {
-        console.log(data);
           this.user = {token: data.me.token, ...data.me.user} as User;
         },
         () => {

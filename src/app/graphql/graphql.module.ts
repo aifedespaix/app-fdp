@@ -7,6 +7,7 @@ import {setContext} from 'apollo-link-context';
 
 export function createApollo(httpLink: HttpLink) {
   return {
+    // ssrMode: true,
     link: setContext((_, {headers}) => {
       let authorization = '';
 
