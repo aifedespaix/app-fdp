@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FileService} from '../file.service';
+import {File} from '../file';
+import {ResourceCreateInput} from '../../graphql.schema';
 
 @Component({
   selector: 'app-file-upload',
@@ -7,24 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileUploadComponent implements OnInit {
 
-  private fileToUpload: File;
-
-  constructor() {
-    this.fileToUpload = null;
+  constructor(
+    private readonly fileService: FileService,
+  ) {
   }
 
   ngOnInit() {
   }
 
   handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-    console.log(this.fileToUpload);
+    const file = files.item(0);
     const myReader: FileReader = new FileReader();
-
-    console.log(myReader.readAsDataURL(this.fileToUpload));
+    const fileUpload = file as {} as ResourceCreateInput;
+    console.log("aaaa");
+    myReader.readAsDataURL(file);
     myReader.onloadend = (e) => {
-      console.log(myReader.result);
+      fileUpload.base64 = myReader.result as string;
+      this.fileService.uploadFile(fileUpload);
     };
+    // this.file = this.fileService.uploadFile(this.file);
 
   }
 

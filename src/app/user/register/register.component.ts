@@ -6,6 +6,7 @@ import {AbstractControl, ValidationErrors, Validators} from '@angular/forms';
 import gql from 'graphql-tag';
 import {User} from '../user';
 import {FdpSnackbarComponent} from '../../fdp/fdp-snackbar/fdp-snackbar.component';
+import {register} from '../queries/register.gql';
 
 class UserRegister {
   login: string;
@@ -48,18 +49,7 @@ export class RegisterComponent {
   public register() {
     const loginSub = this.apollo
     .mutate({
-      mutation: gql`
-        mutation subscribe($email: String!, $password: String!, $name: String!) {
-          signup(email: $email, password: $password, name: $name) {
-            token
-            user {
-              id
-              email
-              name
-            }
-          }
-        }
-      `,
+      mutation: register,
       variables: {email: this.userRegisterModel.email, password: this.userRegisterModel.password, name: this.userRegisterModel.login},
     })
     .subscribe(({data}) => {

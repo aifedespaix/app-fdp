@@ -24,7 +24,7 @@ export function createApollo(httpLink: HttpLink) {
       };
     }).concat(
       httpLink.create({
-          uri: environment.apiEndpoint,
+          uri: `${environment.apiEndpoint}/graphql`,
           withCredentials: true,
         },
       )),
