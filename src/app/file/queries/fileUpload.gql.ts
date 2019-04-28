@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const fileUploadGql = gql`
-  mutation subscribe(
+  mutation ressourceUpload(
     $data: ResourceCreateInput
   ) {
     fileUpload(data: $data) {
