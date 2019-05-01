@@ -43,6 +43,29 @@ export enum BoxOrderByInput {
     description_DESC = "description_DESC"
 }
 
+export enum FileOrderByInput {
+    id_ASC = "id_ASC",
+    id_DESC = "id_DESC",
+    createdAt_ASC = "createdAt_ASC",
+    createdAt_DESC = "createdAt_DESC",
+    updatedAt_ASC = "updatedAt_ASC",
+    updatedAt_DESC = "updatedAt_DESC",
+    deleted_ASC = "deleted_ASC",
+    deleted_DESC = "deleted_DESC",
+    lastModified_ASC = "lastModified_ASC",
+    lastModified_DESC = "lastModified_DESC",
+    name_ASC = "name_ASC",
+    name_DESC = "name_DESC",
+    size_ASC = "size_ASC",
+    size_DESC = "size_DESC",
+    type_ASC = "type_ASC",
+    type_DESC = "type_DESC",
+    base64_ASC = "base64_ASC",
+    base64_DESC = "base64_DESC",
+    description_ASC = "description_ASC",
+    description_DESC = "description_DESC"
+}
+
 export enum MenuItemOrderByInput {
     id_ASC = "id_ASC",
     id_DESC = "id_DESC",
@@ -109,29 +132,6 @@ export enum PostOrderByInput {
     title_DESC = "title_DESC",
     content_ASC = "content_ASC",
     content_DESC = "content_DESC"
-}
-
-export enum ResourceOrderByInput {
-    id_ASC = "id_ASC",
-    id_DESC = "id_DESC",
-    createdAt_ASC = "createdAt_ASC",
-    createdAt_DESC = "createdAt_DESC",
-    updatedAt_ASC = "updatedAt_ASC",
-    updatedAt_DESC = "updatedAt_DESC",
-    deleted_ASC = "deleted_ASC",
-    deleted_DESC = "deleted_DESC",
-    lastModified_ASC = "lastModified_ASC",
-    lastModified_DESC = "lastModified_DESC",
-    name_ASC = "name_ASC",
-    name_DESC = "name_DESC",
-    size_ASC = "size_ASC",
-    size_DESC = "size_DESC",
-    type_ASC = "type_ASC",
-    type_DESC = "type_DESC",
-    base64_ASC = "base64_ASC",
-    base64_DESC = "base64_DESC",
-    description_ASC = "description_ASC",
-    description_DESC = "description_DESC"
 }
 
 export enum UserLevel {
@@ -362,8 +362,8 @@ export class BoxCreateInput {
     name: string;
     description?: string;
     author: UserCreateOneWithoutBoxesInput;
-    miniature: ResourceCreateOneInput;
-    sound: ResourceCreateOneInput;
+    miniature: FileCreateOneInput;
+    sound: FileCreateOneInput;
 }
 
 export class BoxCreateManyWithoutAuthorInput {
@@ -376,8 +376,8 @@ export class BoxCreateWithoutAuthorInput {
     deleted?: boolean;
     name: string;
     description?: string;
-    miniature: ResourceCreateOneInput;
-    sound: ResourceCreateOneInput;
+    miniature: FileCreateOneInput;
+    sound: FileCreateOneInput;
 }
 
 export class BoxScalarWhereInput {
@@ -462,8 +462,8 @@ export class BoxUpdateInput {
     name?: string;
     description?: string;
     author?: UserUpdateOneRequiredWithoutBoxesInput;
-    miniature?: ResourceUpdateOneRequiredInput;
-    sound?: ResourceUpdateOneRequiredInput;
+    miniature?: FileUpdateOneRequiredInput;
+    sound?: FileUpdateOneRequiredInput;
 }
 
 export class BoxUpdateManyDataInput {
@@ -499,8 +499,8 @@ export class BoxUpdateWithoutAuthorDataInput {
     deleted?: boolean;
     name?: string;
     description?: string;
-    miniature?: ResourceUpdateOneRequiredInput;
-    sound?: ResourceUpdateOneRequiredInput;
+    miniature?: FileUpdateOneRequiredInput;
+    sound?: FileUpdateOneRequiredInput;
 }
 
 export class BoxUpdateWithWhereUniqueWithoutAuthorInput {
@@ -579,20 +579,204 @@ export class BoxWhereInput {
     description_ends_with?: string;
     description_not_ends_with?: string;
     author?: UserWhereInput;
-    miniature?: ResourceWhereInput;
-    sound?: ResourceWhereInput;
+    miniature?: FileWhereInput;
+    sound?: FileWhereInput;
 }
 
 export class BoxWhereUniqueInput {
     id?: string;
 }
 
-export class FileInput {
-    lastModified: Date;
+export class FileCreateInput {
+    id?: string;
+    deleted?: boolean;
+    lastModified?: DateTime;
     name: string;
     size: number;
     type: string;
     base64: string;
+    description?: string;
+}
+
+export class FileCreateOneInput {
+    create?: FileCreateInput;
+    connect?: FileWhereUniqueInput;
+}
+
+export class FileSubscriptionWhereInput {
+    AND: FileSubscriptionWhereInput[];
+    OR: FileSubscriptionWhereInput[];
+    NOT: FileSubscriptionWhereInput[];
+    mutation_in: MutationType[];
+    updatedFields_contains?: string;
+    updatedFields_contains_every: string[];
+    updatedFields_contains_some: string[];
+    node?: FileWhereInput;
+}
+
+export class FileUpdateDataInput {
+    deleted?: boolean;
+    lastModified?: DateTime;
+    name?: string;
+    size?: number;
+    type?: string;
+    base64?: string;
+    description?: string;
+}
+
+export class FileUpdateInput {
+    deleted?: boolean;
+    lastModified?: DateTime;
+    name?: string;
+    size?: number;
+    type?: string;
+    base64?: string;
+    description?: string;
+}
+
+export class FileUpdateManyMutationInput {
+    deleted?: boolean;
+    lastModified?: DateTime;
+    name?: string;
+    size?: number;
+    type?: string;
+    base64?: string;
+    description?: string;
+}
+
+export class FileUpdateOneInput {
+    create?: FileCreateInput;
+    connect?: FileWhereUniqueInput;
+    disconnect?: boolean;
+    delete?: boolean;
+    update?: FileUpdateDataInput;
+    upsert?: FileUpsertNestedInput;
+}
+
+export class FileUpdateOneRequiredInput {
+    create?: FileCreateInput;
+    connect?: FileWhereUniqueInput;
+    update?: FileUpdateDataInput;
+    upsert?: FileUpsertNestedInput;
+}
+
+export class FileUpsertNestedInput {
+    update: FileUpdateDataInput;
+    create: FileCreateInput;
+}
+
+export class FileWhereInput {
+    AND: FileWhereInput[];
+    OR: FileWhereInput[];
+    NOT: FileWhereInput[];
+    id?: string;
+    id_not?: string;
+    id_in: string[];
+    id_not_in: string[];
+    id_lt?: string;
+    id_lte?: string;
+    id_gt?: string;
+    id_gte?: string;
+    id_contains?: string;
+    id_not_contains?: string;
+    id_starts_with?: string;
+    id_not_starts_with?: string;
+    id_ends_with?: string;
+    id_not_ends_with?: string;
+    createdAt?: DateTime;
+    createdAt_not?: DateTime;
+    createdAt_in: DateTime[];
+    createdAt_not_in: DateTime[];
+    createdAt_lt?: DateTime;
+    createdAt_lte?: DateTime;
+    createdAt_gt?: DateTime;
+    createdAt_gte?: DateTime;
+    updatedAt?: DateTime;
+    updatedAt_not?: DateTime;
+    updatedAt_in: DateTime[];
+    updatedAt_not_in: DateTime[];
+    updatedAt_lt?: DateTime;
+    updatedAt_lte?: DateTime;
+    updatedAt_gt?: DateTime;
+    updatedAt_gte?: DateTime;
+    deleted?: boolean;
+    deleted_not?: boolean;
+    lastModified?: DateTime;
+    lastModified_not?: DateTime;
+    lastModified_in: DateTime[];
+    lastModified_not_in: DateTime[];
+    lastModified_lt?: DateTime;
+    lastModified_lte?: DateTime;
+    lastModified_gt?: DateTime;
+    lastModified_gte?: DateTime;
+    name?: string;
+    name_not?: string;
+    name_in: string[];
+    name_not_in: string[];
+    name_lt?: string;
+    name_lte?: string;
+    name_gt?: string;
+    name_gte?: string;
+    name_contains?: string;
+    name_not_contains?: string;
+    name_starts_with?: string;
+    name_not_starts_with?: string;
+    name_ends_with?: string;
+    name_not_ends_with?: string;
+    size?: number;
+    size_not?: number;
+    size_in: number[];
+    size_not_in: number[];
+    size_lt?: number;
+    size_lte?: number;
+    size_gt?: number;
+    size_gte?: number;
+    type?: string;
+    type_not?: string;
+    type_in: string[];
+    type_not_in: string[];
+    type_lt?: string;
+    type_lte?: string;
+    type_gt?: string;
+    type_gte?: string;
+    type_contains?: string;
+    type_not_contains?: string;
+    type_starts_with?: string;
+    type_not_starts_with?: string;
+    type_ends_with?: string;
+    type_not_ends_with?: string;
+    base64?: string;
+    base64_not?: string;
+    base64_in: string[];
+    base64_not_in: string[];
+    base64_lt?: string;
+    base64_lte?: string;
+    base64_gt?: string;
+    base64_gte?: string;
+    base64_contains?: string;
+    base64_not_contains?: string;
+    base64_starts_with?: string;
+    base64_not_starts_with?: string;
+    base64_ends_with?: string;
+    base64_not_ends_with?: string;
+    description?: string;
+    description_not?: string;
+    description_in: string[];
+    description_not_in: string[];
+    description_lt?: string;
+    description_lte?: string;
+    description_gt?: string;
+    description_gte?: string;
+    description_contains?: string;
+    description_not_contains?: string;
+    description_starts_with?: string;
+    description_not_starts_with?: string;
+    description_ends_with?: string;
+    description_not_ends_with?: string;
+}
+
+export class FileWhereUniqueInput {
+    id?: string;
 }
 
 export class LoginInput {
@@ -1299,198 +1483,6 @@ export class RegisterInput {
     password: string;
 }
 
-export class ResourceCreateInput {
-    id?: string;
-    deleted?: boolean;
-    lastModified?: DateTime;
-    name: string;
-    size: number;
-    type: string;
-    base64: string;
-    description?: string;
-}
-
-export class ResourceCreateOneInput {
-    create?: ResourceCreateInput;
-    connect?: ResourceWhereUniqueInput;
-}
-
-export class ResourceSubscriptionWhereInput {
-    AND: ResourceSubscriptionWhereInput[];
-    OR: ResourceSubscriptionWhereInput[];
-    NOT: ResourceSubscriptionWhereInput[];
-    mutation_in: MutationType[];
-    updatedFields_contains?: string;
-    updatedFields_contains_every: string[];
-    updatedFields_contains_some: string[];
-    node?: ResourceWhereInput;
-}
-
-export class ResourceUpdateDataInput {
-    deleted?: boolean;
-    lastModified?: DateTime;
-    name?: string;
-    size?: number;
-    type?: string;
-    base64?: string;
-    description?: string;
-}
-
-export class ResourceUpdateInput {
-    deleted?: boolean;
-    lastModified?: DateTime;
-    name?: string;
-    size?: number;
-    type?: string;
-    base64?: string;
-    description?: string;
-}
-
-export class ResourceUpdateManyMutationInput {
-    deleted?: boolean;
-    lastModified?: DateTime;
-    name?: string;
-    size?: number;
-    type?: string;
-    base64?: string;
-    description?: string;
-}
-
-export class ResourceUpdateOneInput {
-    create?: ResourceCreateInput;
-    connect?: ResourceWhereUniqueInput;
-    disconnect?: boolean;
-    delete?: boolean;
-    update?: ResourceUpdateDataInput;
-    upsert?: ResourceUpsertNestedInput;
-}
-
-export class ResourceUpdateOneRequiredInput {
-    create?: ResourceCreateInput;
-    connect?: ResourceWhereUniqueInput;
-    update?: ResourceUpdateDataInput;
-    upsert?: ResourceUpsertNestedInput;
-}
-
-export class ResourceUpsertNestedInput {
-    update: ResourceUpdateDataInput;
-    create: ResourceCreateInput;
-}
-
-export class ResourceWhereInput {
-    AND: ResourceWhereInput[];
-    OR: ResourceWhereInput[];
-    NOT: ResourceWhereInput[];
-    id?: string;
-    id_not?: string;
-    id_in: string[];
-    id_not_in: string[];
-    id_lt?: string;
-    id_lte?: string;
-    id_gt?: string;
-    id_gte?: string;
-    id_contains?: string;
-    id_not_contains?: string;
-    id_starts_with?: string;
-    id_not_starts_with?: string;
-    id_ends_with?: string;
-    id_not_ends_with?: string;
-    createdAt?: DateTime;
-    createdAt_not?: DateTime;
-    createdAt_in: DateTime[];
-    createdAt_not_in: DateTime[];
-    createdAt_lt?: DateTime;
-    createdAt_lte?: DateTime;
-    createdAt_gt?: DateTime;
-    createdAt_gte?: DateTime;
-    updatedAt?: DateTime;
-    updatedAt_not?: DateTime;
-    updatedAt_in: DateTime[];
-    updatedAt_not_in: DateTime[];
-    updatedAt_lt?: DateTime;
-    updatedAt_lte?: DateTime;
-    updatedAt_gt?: DateTime;
-    updatedAt_gte?: DateTime;
-    deleted?: boolean;
-    deleted_not?: boolean;
-    lastModified?: DateTime;
-    lastModified_not?: DateTime;
-    lastModified_in: DateTime[];
-    lastModified_not_in: DateTime[];
-    lastModified_lt?: DateTime;
-    lastModified_lte?: DateTime;
-    lastModified_gt?: DateTime;
-    lastModified_gte?: DateTime;
-    name?: string;
-    name_not?: string;
-    name_in: string[];
-    name_not_in: string[];
-    name_lt?: string;
-    name_lte?: string;
-    name_gt?: string;
-    name_gte?: string;
-    name_contains?: string;
-    name_not_contains?: string;
-    name_starts_with?: string;
-    name_not_starts_with?: string;
-    name_ends_with?: string;
-    name_not_ends_with?: string;
-    size?: number;
-    size_not?: number;
-    size_in: number[];
-    size_not_in: number[];
-    size_lt?: number;
-    size_lte?: number;
-    size_gt?: number;
-    size_gte?: number;
-    type?: string;
-    type_not?: string;
-    type_in: string[];
-    type_not_in: string[];
-    type_lt?: string;
-    type_lte?: string;
-    type_gt?: string;
-    type_gte?: string;
-    type_contains?: string;
-    type_not_contains?: string;
-    type_starts_with?: string;
-    type_not_starts_with?: string;
-    type_ends_with?: string;
-    type_not_ends_with?: string;
-    base64?: string;
-    base64_not?: string;
-    base64_in: string[];
-    base64_not_in: string[];
-    base64_lt?: string;
-    base64_lte?: string;
-    base64_gt?: string;
-    base64_gte?: string;
-    base64_contains?: string;
-    base64_not_contains?: string;
-    base64_starts_with?: string;
-    base64_not_starts_with?: string;
-    base64_ends_with?: string;
-    base64_not_ends_with?: string;
-    description?: string;
-    description_not?: string;
-    description_in: string[];
-    description_not_in: string[];
-    description_lt?: string;
-    description_lte?: string;
-    description_gt?: string;
-    description_gte?: string;
-    description_contains?: string;
-    description_not_contains?: string;
-    description_starts_with?: string;
-    description_not_starts_with?: string;
-    description_ends_with?: string;
-    description_not_ends_with?: string;
-}
-
-export class ResourceWhereUniqueInput {
-    id?: string;
-}
-
 export class UserCreateInput {
     id?: string;
     deleted?: boolean;
@@ -1498,7 +1490,7 @@ export class UserCreateInput {
     name: string;
     hpassword: string;
     level?: UserLevel;
-    avatar?: ResourceCreateOneInput;
+    avatar?: FileCreateOneInput;
     person?: PersonCreateOneInput;
     posts?: PostCreateManyWithoutAuthorInput;
     boxes?: BoxCreateManyWithoutAuthorInput;
@@ -1527,7 +1519,7 @@ export class UserCreateWithoutBoxesInput {
     name: string;
     hpassword: string;
     level?: UserLevel;
-    avatar?: ResourceCreateOneInput;
+    avatar?: FileCreateOneInput;
     person?: PersonCreateOneInput;
     posts?: PostCreateManyWithoutAuthorInput;
     friends?: UserCreateManyInput;
@@ -1540,7 +1532,7 @@ export class UserCreateWithoutPostsInput {
     name: string;
     hpassword: string;
     level?: UserLevel;
-    avatar?: ResourceCreateOneInput;
+    avatar?: FileCreateOneInput;
     person?: PersonCreateOneInput;
     boxes?: BoxCreateManyWithoutAuthorInput;
     friends?: UserCreateManyInput;
@@ -1647,7 +1639,7 @@ export class UserUpdateDataInput {
     name?: string;
     hpassword?: string;
     level?: UserLevel;
-    avatar?: ResourceUpdateOneInput;
+    avatar?: FileUpdateOneInput;
     person?: PersonUpdateOneInput;
     posts?: PostUpdateManyWithoutAuthorInput;
     boxes?: BoxUpdateManyWithoutAuthorInput;
@@ -1660,7 +1652,7 @@ export class UserUpdateInput {
     name?: string;
     hpassword?: string;
     level?: UserLevel;
-    avatar?: ResourceUpdateOneInput;
+    avatar?: FileUpdateOneInput;
     person?: PersonUpdateOneInput;
     posts?: PostUpdateManyWithoutAuthorInput;
     boxes?: BoxUpdateManyWithoutAuthorInput;
@@ -1720,7 +1712,7 @@ export class UserUpdateWithoutBoxesDataInput {
     name?: string;
     hpassword?: string;
     level?: UserLevel;
-    avatar?: ResourceUpdateOneInput;
+    avatar?: FileUpdateOneInput;
     person?: PersonUpdateOneInput;
     posts?: PostUpdateManyWithoutAuthorInput;
     friends?: UserUpdateManyInput;
@@ -1732,7 +1724,7 @@ export class UserUpdateWithoutPostsDataInput {
     name?: string;
     hpassword?: string;
     level?: UserLevel;
-    avatar?: ResourceUpdateOneInput;
+    avatar?: FileUpdateOneInput;
     person?: PersonUpdateOneInput;
     boxes?: BoxUpdateManyWithoutAuthorInput;
     friends?: UserUpdateManyInput;
@@ -1841,7 +1833,7 @@ export class UserWhereInput {
     level_not?: UserLevel;
     level_in: UserLevel[];
     level_not_in: UserLevel[];
-    avatar?: ResourceWhereInput;
+    avatar?: FileWhereInput;
     person?: PersonWhereInput;
     posts_every?: PostWhereInput;
     posts_some?: PostWhereInput;
@@ -1916,6 +1908,10 @@ export class AggregateBox {
     count: number;
 }
 
+export class AggregateFile {
+    count: number;
+}
+
 export class AggregateMenu {
     count: number;
 }
@@ -1929,10 +1925,6 @@ export class AggregatePerson {
 }
 
 export class AggregatePost {
-    count: number;
-}
-
-export class AggregateResource {
     count: number;
 }
 
@@ -1957,8 +1949,8 @@ export class Box implements Node {
     name: string;
     description?: string;
     author: User;
-    miniature: Resource;
-    sound: Resource;
+    miniature: File;
+    sound: File;
 }
 
 export class BoxConnection {
@@ -1986,6 +1978,50 @@ export class BoxSubscriptionPayload {
     node?: Box;
     updatedFields: string[];
     previousValues?: BoxPreviousValues;
+}
+
+export class File implements Node {
+    id: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+    deleted: boolean;
+    lastModified?: DateTime;
+    name: string;
+    size: number;
+    type: string;
+    base64: string;
+    description?: string;
+}
+
+export class FileConnection {
+    pageInfo: PageInfo;
+    edges?: FileEdge[];
+    aggregate: AggregateFile;
+}
+
+export class FileEdge {
+    node: File;
+    cursor: string;
+}
+
+export class FilePreviousValues {
+    id: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+    deleted: boolean;
+    lastModified?: DateTime;
+    name: string;
+    size: number;
+    type: string;
+    base64: string;
+    description?: string;
+}
+
+export class FileSubscriptionPayload {
+    mutation: MutationType;
+    node?: File;
+    updatedFields: string[];
+    previousValues?: FilePreviousValues;
 }
 
 export class Menu implements Node {
@@ -2064,7 +2100,7 @@ export class MenuSubscriptionPayload {
 export abstract class IMutation {
     abstract authRegister(data?: RegisterInput): Auth | Promise<Auth>;
 
-    abstract fileUpload(data?: FileInput): Resource | Promise<Resource>;
+    abstract fileUpload(data?: Upload): File | Promise<File>;
 
     abstract createPost(data: PostCreateInput): Post | Promise<Post>;
 
@@ -2080,7 +2116,7 @@ export abstract class IMutation {
 
     abstract createPerson(data: PersonCreateInput): Person | Promise<Person>;
 
-    abstract createResource(data: ResourceCreateInput): Resource | Promise<Resource>;
+    abstract createFile(data: FileCreateInput): File | Promise<File>;
 
     abstract updatePost(data: PostUpdateInput, where: PostWhereUniqueInput): Post | Promise<Post>;
 
@@ -2096,7 +2132,7 @@ export abstract class IMutation {
 
     abstract updatePerson(data: PersonUpdateInput, where: PersonWhereUniqueInput): Person | Promise<Person>;
 
-    abstract updateResource(data: ResourceUpdateInput, where: ResourceWhereUniqueInput): Resource | Promise<Resource>;
+    abstract updateFile(data: FileUpdateInput, where: FileWhereUniqueInput): File | Promise<File>;
 
     abstract deletePost(where: PostWhereUniqueInput): Post | Promise<Post>;
 
@@ -2112,7 +2148,7 @@ export abstract class IMutation {
 
     abstract deletePerson(where: PersonWhereUniqueInput): Person | Promise<Person>;
 
-    abstract deleteResource(where: ResourceWhereUniqueInput): Resource | Promise<Resource>;
+    abstract deleteFile(where: FileWhereUniqueInput): File | Promise<File>;
 
     abstract upsertPost(where: PostWhereUniqueInput, create: PostCreateInput, update: PostUpdateInput): Post | Promise<Post>;
 
@@ -2128,7 +2164,7 @@ export abstract class IMutation {
 
     abstract upsertPerson(where: PersonWhereUniqueInput, create: PersonCreateInput, update: PersonUpdateInput): Person | Promise<Person>;
 
-    abstract upsertResource(where: ResourceWhereUniqueInput, create: ResourceCreateInput, update: ResourceUpdateInput): Resource | Promise<Resource>;
+    abstract upsertFile(where: FileWhereUniqueInput, create: FileCreateInput, update: FileUpdateInput): File | Promise<File>;
 
     abstract updateManyPosts(data: PostUpdateManyMutationInput, where?: PostWhereInput): BatchPayload | Promise<BatchPayload>;
 
@@ -2144,7 +2180,7 @@ export abstract class IMutation {
 
     abstract updateManyPersons(data: PersonUpdateManyMutationInput, where?: PersonWhereInput): BatchPayload | Promise<BatchPayload>;
 
-    abstract updateManyResources(data: ResourceUpdateManyMutationInput, where?: ResourceWhereInput): BatchPayload | Promise<BatchPayload>;
+    abstract updateManyFiles(data: FileUpdateManyMutationInput, where?: FileWhereInput): BatchPayload | Promise<BatchPayload>;
 
     abstract deleteManyPosts(where?: PostWhereInput): BatchPayload | Promise<BatchPayload>;
 
@@ -2160,7 +2196,7 @@ export abstract class IMutation {
 
     abstract deleteManyPersons(where?: PersonWhereInput): BatchPayload | Promise<BatchPayload>;
 
-    abstract deleteManyResources(where?: ResourceWhereInput): BatchPayload | Promise<BatchPayload>;
+    abstract deleteManyFiles(where?: FileWhereInput): BatchPayload | Promise<BatchPayload>;
 }
 
 export class PageInfo {
@@ -2265,7 +2301,7 @@ export abstract class IQuery {
 
     abstract persons(where?: PersonWhereInput, orderBy?: PersonOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): Person[] | Promise<Person[]>;
 
-    abstract resources(where?: ResourceWhereInput, orderBy?: ResourceOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): Resource[] | Promise<Resource[]>;
+    abstract files(where?: FileWhereInput, orderBy?: FileOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): File[] | Promise<File[]>;
 
     abstract post(where: PostWhereUniqueInput): Post | Promise<Post>;
 
@@ -2281,7 +2317,7 @@ export abstract class IQuery {
 
     abstract person(where: PersonWhereUniqueInput): Person | Promise<Person>;
 
-    abstract resource(where: ResourceWhereUniqueInput): Resource | Promise<Resource>;
+    abstract file(where: FileWhereUniqueInput): File | Promise<File>;
 
     abstract postsConnection(where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): PostConnection | Promise<PostConnection>;
 
@@ -2297,55 +2333,11 @@ export abstract class IQuery {
 
     abstract personsConnection(where?: PersonWhereInput, orderBy?: PersonOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): PersonConnection | Promise<PersonConnection>;
 
-    abstract resourcesConnection(where?: ResourceWhereInput, orderBy?: ResourceOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): ResourceConnection | Promise<ResourceConnection>;
+    abstract filesConnection(where?: FileWhereInput, orderBy?: FileOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): FileConnection | Promise<FileConnection>;
 
     abstract node(id: string): Node | Promise<Node>;
 
     abstract temp__(): boolean | Promise<boolean>;
-}
-
-export class Resource implements Node {
-    id: string;
-    createdAt: DateTime;
-    updatedAt: DateTime;
-    deleted: boolean;
-    lastModified?: DateTime;
-    name: string;
-    size: number;
-    type: string;
-    base64: string;
-    description?: string;
-}
-
-export class ResourceConnection {
-    pageInfo: PageInfo;
-    edges?: ResourceEdge[];
-    aggregate: AggregateResource;
-}
-
-export class ResourceEdge {
-    node: Resource;
-    cursor: string;
-}
-
-export class ResourcePreviousValues {
-    id: string;
-    createdAt: DateTime;
-    updatedAt: DateTime;
-    deleted: boolean;
-    lastModified?: DateTime;
-    name: string;
-    size: number;
-    type: string;
-    base64: string;
-    description?: string;
-}
-
-export class ResourceSubscriptionPayload {
-    mutation: MutationType;
-    node?: Resource;
-    updatedFields: string[];
-    previousValues?: ResourcePreviousValues;
 }
 
 export abstract class ISubscription {
@@ -2363,12 +2355,12 @@ export abstract class ISubscription {
 
     abstract person(where?: PersonSubscriptionWhereInput): PersonSubscriptionPayload | Promise<PersonSubscriptionPayload>;
 
-    abstract resource(where?: ResourceSubscriptionWhereInput): ResourceSubscriptionPayload | Promise<ResourceSubscriptionPayload>;
+    abstract file(where?: FileSubscriptionWhereInput): FileSubscriptionPayload | Promise<FileSubscriptionPayload>;
 }
 
 export class Token {
-    expiresIn?: number;
     accessToken?: string;
+    expiresIn?: number;
 }
 
 export class User implements Node {
@@ -2379,7 +2371,7 @@ export class User implements Node {
     email: string;
     name: string;
     hpassword: string;
-    avatar?: Resource;
+    avatar?: File;
     person?: Person;
     posts: Post[];
     boxes: Box[];
@@ -2416,6 +2408,6 @@ export class UserSubscriptionPayload {
     previousValues?: UserPreviousValues;
 }
 
-export type Date = any;
 export type DateTime = any;
 export type Long = any;
+export type Upload = any;

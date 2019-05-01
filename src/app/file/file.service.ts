@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {fileUploadGql} from './queries/fileUpload.gql';
-import {Resource, ResourceCreateInput} from '../graphql.schema';
+import {File, Upload} from '../graphql.schema';
+import {fileUpload} from './gql/file.mutations.gql';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,18 @@ export class FileService {
 
   constructor(private readonly apollo: Apollo) { }
 
-  public uploadFile(data: ResourceCreateInput) {
+  public uploadFile(file: Upload) {
+    console.log(file);
     const uploadFileSub = this.apollo
       .mutate({
-        mutation: fileUploadGql,
-        variables: data
+        mutation: fileUpload,
+        variables: {data: file},
+        context: {
+          useMultipart: true
+        },
       })
-      .subscribe((file: Resource) => {
-        console.log(file);
+      .subscribe((data: File) => {
+        console.log(data);
       },
       (err) => {
         console.log(err);

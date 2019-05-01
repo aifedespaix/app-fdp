@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {UserService} from '../user.service';
-import {AbstractControl, ValidationErrors, Validators} from '@angular/forms';
-import gql from 'graphql-tag';
-import {User} from '../user';
 import {FdpSnackbarComponent} from '../../fdp/fdp-snackbar/fdp-snackbar.component';
-import {register} from '../queries/register.gql';
+import {RegisterInput} from '../../graphql.schema';
+import {register} from '../gql/auth.mutations.gql';
 
 class UserRegister {
   login: string;
@@ -25,7 +23,7 @@ class UserRegister {
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
 
@@ -36,8 +34,8 @@ export class RegisterComponent {
     private apollo: Apollo,
     private snackBar: MatSnackBar,
     private userService: UserService,
-    private dialogRef: MatDialogRef<null>
-    ) {
+    private dialogRef: MatDialogRef<null>,
+  ) {
     this.showPassword = false;
     this.userRegisterModel = new UserRegister();
   }
@@ -48,34 +46,41 @@ export class RegisterComponent {
 
   public register() {
     const loginSub = this.apollo
-    .mutate({
-      mutation: register,
-      variables: {email: this.userRegisterModel.email, password: this.userRegisterModel.password, name: this.userRegisterModel.login},
-    })
-    .subscribe(({data}) => {
-        this.userService.user = {token: data.signup.token, ...data.signup.user} as User;
-        this.snackBar.openFromComponent(FdpSnackbarComponent, {
-          duration: 5000,
+      .mutate({
+        mutation: register,
+        variables: {
           data: {
-            icon: 'done',
-            message: 'Vous êtes inscrit et connecté',
-          },
-        });
-        this.closeRegister();
-      },
-      () => {
-        this.snackBar.openFromComponent(FdpSnackbarComponent, {
-          duration: 5000,
-          data: {
-            icon: 'error',
-            color: 'warn',
-            message: `L'utilisateur existe déjà`,
-          },
-        });
-      },
-      () => {
-        loginSub.unsubscribe();
-      },
-    );
+            email: this.userRegisterModel.email,
+            name: this.userRegisterModel.login,
+            password: this.userRegisterModel.password,
+          } as RegisterInput,
+        },
+      })
+      .subscribe(({data}) => {
+          this.userService.auth = data.authRegister;
+          this.userService.updateStorage();
+          this.snackBar.openFromComponent(FdpSnackbarComponent, {
+            duration: 5000,
+            data: {
+              icon: 'done',
+              message: 'Vous êtes inscrit et connecté',
+            },
+          });
+          this.closeRegister();
+        },
+        () => {
+          this.snackBar.openFromComponent(FdpSnackbarComponent, {
+            duration: 5000,
+            data: {
+              icon: 'error',
+              color: 'warn',
+              message: `L'utilisateur existe déjà`,
+            },
+          });
+        },
+        () => {
+          loginSub.unsubscribe();
+        },
+      );
   }
 }

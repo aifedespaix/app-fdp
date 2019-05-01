@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.authent();
+    this.userService.authenticate();
 
     this.router.events.subscribe(() => {
       if (this.responsiveService.isMobileScreen) {

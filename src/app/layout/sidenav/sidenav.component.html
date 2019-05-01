@@ -1,7 +1,7 @@
 <app-menu-button (toggle)="close.emit()"></app-menu-button>
 
 <mat-nav-list class="mobile-navNist">
-  <mat-list-item *ngFor="let item of items" [routerLink]="item.routerLink" routerLinkActive="active"
+  <mat-list-item *ngFor="let item of menu.items" [routerLink]="item.routerLink" routerLinkActive="active"
                  [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }" (click)="close.emit()">
     <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
     <a>{{item.name}}</a>

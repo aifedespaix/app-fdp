@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const menu = gql`
+export const mainMenu = gql`
   {
     menu(where: {name: "main"}) {
       id

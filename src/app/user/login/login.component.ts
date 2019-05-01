@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import gql from 'graphql-tag';
+import {Component} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {FdpSnackbarComponent} from '../../fdp/fdp-snackbar/fdp-snackbar.component';
-import {User} from '../user';
 import {UserService} from '../user.service';
+import {login} from '../gql/auth.queries.gql';
+import {Auth, LoginInput} from '../../graphql.schema';
+import {ApolloQueryResult} from 'apollo-client';
 
 class UserLogin {
   login: string;
@@ -42,53 +43,36 @@ export class LoginComponent {
 
   public login() {
     const loginSub = this.apollo
-    .query({
-      query: gql`
-        query login($login: String!, $password: String!) {
-          login(loginInput: {login: $login, password: $password}) {
-            token {
-              expiresIn
-              accessToken
-            }
-            user {
-              id
-              email
-              login
-              createdAt
-              editedAt
-            }
-          }
-        }
-      `,
-      variables: {login: this.userLoginModel.login, password: this.userLoginModel.password},
-    })
-    .subscribe(({data}: any) => {
-      console.log(data);
-        this.userService.user = {token: data.login.token, ...data.login.user} as User;
-        this.snackBar.openFromComponent(FdpSnackbarComponent, {
-          duration: 5000,
-          data: {
-            icon: 'done',
-            message: 'Vous êtes connecté',
-          },
-        });
-        this.closeLogin();
-      },
-      () => {
-      console.log('aaaaaaaaaaa');
-        this.snackBar.openFromComponent(FdpSnackbarComponent, {
-          duration: 5000,
-          data: {
-            icon: 'error',
-            color: 'warn',
-            message: 'Identifiants incorrects',
-          },
-        });
-      },
-      () => {
-        loginSub.unsubscribe();
-      },
-    );
+      .query({
+        query: login,
+        variables: {data: {login: this.userLoginModel.login, password: this.userLoginModel.password} as LoginInput},
+      })
+      .subscribe(({data}: ApolloQueryResult<Auth>) => {
+          console.log(data);
+          // this.userService.user = {token: data.login.token, ...data.login.user} as User;
+          // this.snackBar.openFromComponent(FdpSnackbarComponent, {
+          //   duration: 5000,
+          //   data: {
+          //     icon: 'done',
+          //     message: 'Vous êtes connecté',
+          //   },
+          // });
+          this.closeLogin();
+        },
+        () => {
+          this.snackBar.openFromComponent(FdpSnackbarComponent, {
+            duration: 5000,
+            data: {
+              icon: 'error',
+              color: 'warn',
+              message: 'Identifiants incorrects',
+            },
+          });
+        },
+        () => {
+          loginSub.unsubscribe();
+        },
+      );
   }
 
 }
