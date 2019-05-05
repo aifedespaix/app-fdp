@@ -61,9 +61,7 @@ export enum FileOrderByInput {
     url_ASC = "url_ASC",
     url_DESC = "url_DESC",
     description_ASC = "description_ASC",
-    description_DESC = "description_DESC",
-    test_ASC = "test_ASC",
-    test_DESC = "test_DESC"
+    description_DESC = "description_DESC"
 }
 
 export enum MenuItemOrderByInput {
@@ -361,8 +359,8 @@ export class BoxCreateInput {
     deleted?: boolean;
     name: string;
     description?: string;
-    author: UserCreateOneWithoutBoxesInput;
-    miniature: FileCreateOneInput;
+    author?: UserCreateOneWithoutBoxesInput;
+    thumbnail: FileCreateOneInput;
     sound: FileCreateOneInput;
 }
 
@@ -376,7 +374,7 @@ export class BoxCreateWithoutAuthorInput {
     deleted?: boolean;
     name: string;
     description?: string;
-    miniature: FileCreateOneInput;
+    thumbnail: FileCreateOneInput;
     sound: FileCreateOneInput;
 }
 
@@ -461,8 +459,8 @@ export class BoxUpdateInput {
     deleted?: boolean;
     name?: string;
     description?: string;
-    author?: UserUpdateOneRequiredWithoutBoxesInput;
-    miniature?: FileUpdateOneRequiredInput;
+    author?: UserUpdateOneWithoutBoxesInput;
+    thumbnail?: FileUpdateOneRequiredInput;
     sound?: FileUpdateOneRequiredInput;
 }
 
@@ -499,7 +497,7 @@ export class BoxUpdateWithoutAuthorDataInput {
     deleted?: boolean;
     name?: string;
     description?: string;
-    miniature?: FileUpdateOneRequiredInput;
+    thumbnail?: FileUpdateOneRequiredInput;
     sound?: FileUpdateOneRequiredInput;
 }
 
@@ -579,7 +577,7 @@ export class BoxWhereInput {
     description_ends_with?: string;
     description_not_ends_with?: string;
     author?: UserWhereInput;
-    miniature?: FileWhereInput;
+    thumbnail?: FileWhereInput;
     sound?: FileWhereInput;
 }
 
@@ -595,7 +593,6 @@ export class FileCreateInput {
     size: number;
     url: string;
     description?: string;
-    test?: string;
 }
 
 export class FileCreateOneInput {
@@ -621,7 +618,6 @@ export class FileUpdateDataInput {
     size?: number;
     url?: string;
     description?: string;
-    test?: string;
 }
 
 export class FileUpdateInput {
@@ -631,7 +627,6 @@ export class FileUpdateInput {
     size?: number;
     url?: string;
     description?: string;
-    test?: string;
 }
 
 export class FileUpdateManyMutationInput {
@@ -641,7 +636,6 @@ export class FileUpdateManyMutationInput {
     size?: number;
     url?: string;
     description?: string;
-    test?: string;
 }
 
 export class FileUpdateOneInput {
@@ -759,20 +753,6 @@ export class FileWhereInput {
     description_not_starts_with?: string;
     description_ends_with?: string;
     description_not_ends_with?: string;
-    test?: string;
-    test_not?: string;
-    test_in: string[];
-    test_not_in: string[];
-    test_lt?: string;
-    test_lte?: string;
-    test_gt?: string;
-    test_gte?: string;
-    test_contains?: string;
-    test_not_contains?: string;
-    test_starts_with?: string;
-    test_not_starts_with?: string;
-    test_ends_with?: string;
-    test_not_ends_with?: string;
 }
 
 export class FileWhereUniqueInput {
@@ -1692,18 +1672,20 @@ export class UserUpdateManyWithWhereNestedInput {
     data: UserUpdateManyDataInput;
 }
 
-export class UserUpdateOneRequiredWithoutBoxesInput {
-    create?: UserCreateWithoutBoxesInput;
-    connect?: UserWhereUniqueInput;
-    update?: UserUpdateWithoutBoxesDataInput;
-    upsert?: UserUpsertWithoutBoxesInput;
-}
-
 export class UserUpdateOneRequiredWithoutPostsInput {
     create?: UserCreateWithoutPostsInput;
     connect?: UserWhereUniqueInput;
     update?: UserUpdateWithoutPostsDataInput;
     upsert?: UserUpsertWithoutPostsInput;
+}
+
+export class UserUpdateOneWithoutBoxesInput {
+    create?: UserCreateWithoutBoxesInput;
+    connect?: UserWhereUniqueInput;
+    disconnect?: boolean;
+    delete?: boolean;
+    update?: UserUpdateWithoutBoxesDataInput;
+    upsert?: UserUpsertWithoutBoxesInput;
 }
 
 export class UserUpdateWithoutBoxesDataInput {
@@ -1948,8 +1930,8 @@ export class Box implements Node {
     deleted: boolean;
     name: string;
     description?: string;
-    author: User;
-    miniature: File;
+    author?: User;
+    thumbnail: File;
     sound: File;
 }
 
@@ -1990,7 +1972,6 @@ export class File implements Node {
     size: number;
     url: string;
     description?: string;
-    test?: string;
 }
 
 export class FileConnection {
@@ -2014,7 +1995,6 @@ export class FilePreviousValues {
     size: number;
     url: string;
     description?: string;
-    test?: string;
 }
 
 export class FileSubscriptionPayload {

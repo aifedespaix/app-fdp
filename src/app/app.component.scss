@@ -21,6 +21,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "header" "main";
+  overflow: hidden;
 }
 
 .main {
@@ -28,6 +29,9 @@
   grid-area: main;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;
+  width: 100%;
+  //height: 100%;
+  overflow-x: hidden;
 }
 
 app-header {

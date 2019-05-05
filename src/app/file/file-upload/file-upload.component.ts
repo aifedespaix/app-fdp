@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FileService} from '../file.service';
 import {File} from '../../graphql.schema';
 import {ApolloQueryResult} from 'apollo-client';
@@ -17,7 +17,7 @@ export class FileUploadComponent {
   @Input() private label: string;
   @Input() private fileTypes: string[];
 
-  // @Output() fileSaved = new EventEmitter<FdpFile>();
+  @Output() fileSaved = new EventEmitter<File>();
 
   constructor(
     private readonly fileService: FileService,
@@ -30,14 +30,16 @@ export class FileUploadComponent {
   }
 
   public handleFileInput(files: FileList) {
+    this.loading = true;
     const fileSub = this.fileService.uploadFile(files.item(0)).subscribe((res: ApolloQueryResult<{fileUpload: File}>) => {
-        console.log(res.data.fileUpload.url);
         this.file = res.data.fileUpload;
+        this.fileSaved.emit(this.file);
       },
       (err) => {
         console.log(err);
       },
       () => {
+        this.loading = false;
         fileSub.unsubscribe();
       });
   }

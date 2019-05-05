@@ -31,7 +31,9 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
     const mainMenuSub = this.layoutService.mainMenu()
       .subscribe((res: any) => {
-        this.menu = res.data.menu;
+        if (res.data.menu) {
+          this.menu = res.data.menu;
+        }
       }, (err) => {
         console.log(err);
       }, () => {

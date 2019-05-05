@@ -5,6 +5,7 @@ export const fileUpload = gql`
     fileUpload(data: $data) {
       id
       url
+      name
     }
   }
 `;

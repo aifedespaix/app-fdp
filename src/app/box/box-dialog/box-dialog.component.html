@@ -1,0 +1,54 @@
+<mat-horizontal-stepper linear="true" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <mat-tab-group #tabs>
+
+      <mat-tab>
+        <ng-template matStepLabel>Box</ng-template>
+        <ng-template mat-tab-label>
+          <mat-icon>person</mat-icon>
+          <div>Importer</div>
+        </ng-template>
+
+
+        <div class="importFiles">
+          <app-file-upload (fileSaved)="setThumbnail($event)" [fileTypes]="['audio/*']" label="Son"></app-file-upload>
+          <app-file-upload (fileSaved)="setSound($event)" [fileTypes]="['image/*']" label="Minuature"></app-file-upload>
+        </div>
+
+      </mat-tab>
+      <mat-tab>
+
+        <ng-template mat-tab-label>
+          <mat-icon>person_add</mat-icon>
+          <div>Youtube</div>
+        </ng-template>
+
+        <p>
+          youtube
+        </p>
+
+      </mat-tab>
+    </mat-tab-group>
+  </mat-step>
+<!--  <mat-step [stepControl]="secondFormGroup">-->
+<!--    <form [formGroup]="secondFormGroup">-->
+<!--      <ng-template matStepLabel>Fill out your address</ng-template>-->
+<!--      <mat-form-field>-->
+<!--        <input matInput placeholder="Address" formControlName="secondCtrl" required>-->
+<!--      </mat-form-field>-->
+<!--      <div>-->
+<!--        <button mat-button matStepperPrevious>Back</button>-->
+<!--        <button mat-button matStepperNext>Next</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </mat-step>-->
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
