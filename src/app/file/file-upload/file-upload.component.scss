@@ -1,0 +1,49 @@
+.fdpFileForm {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  background-color: #666;
+  margin: 4px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  &_ {
+    &dragged {
+      background-color: #555;
+    }
+
+    &draggable {
+      &:hover {
+        background-color: #fff;
+        margin: 0;
+        border: 4px dashed #444;
+        color: #333;
+      }
+    }
+
+    &preview {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &previewTxt {
+      position: absolute;
+      z-index: 2;
+    }
+  }
+
+  input {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+}

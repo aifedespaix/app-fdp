@@ -58,12 +58,12 @@ export enum FileOrderByInput {
     name_DESC = "name_DESC",
     size_ASC = "size_ASC",
     size_DESC = "size_DESC",
-    type_ASC = "type_ASC",
-    type_DESC = "type_DESC",
-    base64_ASC = "base64_ASC",
-    base64_DESC = "base64_DESC",
+    url_ASC = "url_ASC",
+    url_DESC = "url_DESC",
     description_ASC = "description_ASC",
-    description_DESC = "description_DESC"
+    description_DESC = "description_DESC",
+    test_ASC = "test_ASC",
+    test_DESC = "test_DESC"
 }
 
 export enum MenuItemOrderByInput {
@@ -593,9 +593,9 @@ export class FileCreateInput {
     lastModified?: DateTime;
     name: string;
     size: number;
-    type: string;
-    base64: string;
+    url: string;
     description?: string;
+    test?: string;
 }
 
 export class FileCreateOneInput {
@@ -619,9 +619,9 @@ export class FileUpdateDataInput {
     lastModified?: DateTime;
     name?: string;
     size?: number;
-    type?: string;
-    base64?: string;
+    url?: string;
     description?: string;
+    test?: string;
 }
 
 export class FileUpdateInput {
@@ -629,9 +629,9 @@ export class FileUpdateInput {
     lastModified?: DateTime;
     name?: string;
     size?: number;
-    type?: string;
-    base64?: string;
+    url?: string;
     description?: string;
+    test?: string;
 }
 
 export class FileUpdateManyMutationInput {
@@ -639,9 +639,9 @@ export class FileUpdateManyMutationInput {
     lastModified?: DateTime;
     name?: string;
     size?: number;
-    type?: string;
-    base64?: string;
+    url?: string;
     description?: string;
+    test?: string;
 }
 
 export class FileUpdateOneInput {
@@ -731,34 +731,20 @@ export class FileWhereInput {
     size_lte?: number;
     size_gt?: number;
     size_gte?: number;
-    type?: string;
-    type_not?: string;
-    type_in: string[];
-    type_not_in: string[];
-    type_lt?: string;
-    type_lte?: string;
-    type_gt?: string;
-    type_gte?: string;
-    type_contains?: string;
-    type_not_contains?: string;
-    type_starts_with?: string;
-    type_not_starts_with?: string;
-    type_ends_with?: string;
-    type_not_ends_with?: string;
-    base64?: string;
-    base64_not?: string;
-    base64_in: string[];
-    base64_not_in: string[];
-    base64_lt?: string;
-    base64_lte?: string;
-    base64_gt?: string;
-    base64_gte?: string;
-    base64_contains?: string;
-    base64_not_contains?: string;
-    base64_starts_with?: string;
-    base64_not_starts_with?: string;
-    base64_ends_with?: string;
-    base64_not_ends_with?: string;
+    url?: string;
+    url_not?: string;
+    url_in: string[];
+    url_not_in: string[];
+    url_lt?: string;
+    url_lte?: string;
+    url_gt?: string;
+    url_gte?: string;
+    url_contains?: string;
+    url_not_contains?: string;
+    url_starts_with?: string;
+    url_not_starts_with?: string;
+    url_ends_with?: string;
+    url_not_ends_with?: string;
     description?: string;
     description_not?: string;
     description_in: string[];
@@ -773,6 +759,20 @@ export class FileWhereInput {
     description_not_starts_with?: string;
     description_ends_with?: string;
     description_not_ends_with?: string;
+    test?: string;
+    test_not?: string;
+    test_in: string[];
+    test_not_in: string[];
+    test_lt?: string;
+    test_lte?: string;
+    test_gt?: string;
+    test_gte?: string;
+    test_contains?: string;
+    test_not_contains?: string;
+    test_starts_with?: string;
+    test_not_starts_with?: string;
+    test_ends_with?: string;
+    test_not_ends_with?: string;
 }
 
 export class FileWhereUniqueInput {
@@ -1988,9 +1988,9 @@ export class File implements Node {
     lastModified?: DateTime;
     name: string;
     size: number;
-    type: string;
-    base64: string;
+    url: string;
     description?: string;
+    test?: string;
 }
 
 export class FileConnection {
@@ -2012,9 +2012,9 @@ export class FilePreviousValues {
     lastModified?: DateTime;
     name: string;
     size: number;
-    type: string;
-    base64: string;
+    url: string;
     description?: string;
+    test?: string;
 }
 
 export class FileSubscriptionPayload {

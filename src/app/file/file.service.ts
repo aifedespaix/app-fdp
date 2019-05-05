@@ -11,23 +11,13 @@ export class FileService {
   constructor(private readonly apollo: Apollo) { }
 
   public uploadFile(file: Upload) {
-    console.log(file);
-    const uploadFileSub = this.apollo
+    return this.apollo
       .mutate({
         mutation: fileUpload,
         variables: {data: file},
         context: {
           useMultipart: true
         },
-      })
-      .subscribe((data: File) => {
-        console.log(data);
-      },
-      (err) => {
-        console.log(err);
-      },
-      () => {
-        uploadFileSub.unsubscribe();
-    });
+      });
   }
 }
