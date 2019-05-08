@@ -1,0 +1,47 @@
+<div class="fdpPlaylist">
+  <mat-tab-group>
+
+    <mat-tab label="Streaming">
+      <div class="fdpStreaming">
+
+        <mat-list class="fdpStreaming_platform fdpScrollable">
+          <h3 mat-subheader>Plateformes</h3>
+          <mat-list-item [ngClass]="{'fdpItem-selected': plateform === plateforms.deezer}" class="fdpItem"
+                         (click)="setPlateform(plateforms.deezer)" role="listitem">Deezer
+          </mat-list-item>
+          <mat-list-item [ngClass]="{'fdpItem-selected': plateform === plateforms.spotify}" class="fdpItem"
+                         (click)="setPlateform(plateforms.spotify)" role="listitem">Spotify
+          </mat-list-item>
+          <mat-list-item [ngClass]="{'fdpItem-selected': plateform === plateforms.apple}" class="fdpItem"
+                         (click)="setPlateform(plateforms.apple)" role="listitem">Apple Music
+          </mat-list-item>
+        </mat-list>
+
+        <mat-list class="fdpStreaming_playlist" *ngIf="plateform">
+          <h3 mat-subheader>Playlists</h3>
+          <mat-list-item *ngFor="let playlistResult of playlists" (click)="setPlaylist(playlistResult)" class="fdpItem"
+                         [ngClass]="{'fdpItem-selected': playlist ? playlist.title === playlistResult.title : false}">
+            {{playlistResult.title}}
+          </mat-list-item>
+
+        </mat-list>
+
+        <div class="fdpEmbed fdpEmbed-full fdpStreaming_embed" *ngIf="playlist" [ngSwitch]="plateform">
+
+          <iframe *ngSwitchCase="plateforms.deezer" [src]="playlist.deezer | urlUnsecure" scrolling="no" frameborder="0"
+                  allowTransparency="true"></iframe>
+          <iframe *ngSwitchCase="plateforms.spotify" [src]="playlist.spotify | urlUnsecure" frameborder="0"
+                  allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe *ngSwitchCase="plateforms.apple" [src]="playlist.apple | urlUnsecure"
+                  allow="autoplay *; encrypted-media *;" frameborder="0"
+                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Youtube">
+      <app-fdp-video title="Playlists" [videos]="youtubePlaylists"></app-fdp-video>
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

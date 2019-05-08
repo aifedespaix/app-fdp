@@ -1,0 +1,11 @@
+linters:
+  Indentation:
+    enabled: true
+  StringQuotes:
+    enabled: true
+  UrlQuotes:
+    enabled: true
+  SelectorFormat:
+    enabled: false
+  NestingDepth:
+    enabled: false

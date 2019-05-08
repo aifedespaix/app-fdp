@@ -1,0 +1,19 @@
+<div class="fdpListContainer">
+
+  <div class="fdpList fdpList-listable">
+    <div *ngFor="let video of videos" class="fdpTuile fdpTuile-listable fdpTuile-full fdpTuile-hoverable fdpClickable fdpAnim_pulse usn"
+         [title]="video.title" (click)="loadVideo(video)">
+
+      <div class="fdpTuile_content">
+        <img class="fdpImgFull" [src]="video | youtubeMiniature"
+             [alt]="'Miniature vidéo '+video.title">
+      </div>
+
+      <div class="fdpTuile_title">
+        {{video.title}}
+      </div>
+
+    </div>
+  </div>
+
+</div>

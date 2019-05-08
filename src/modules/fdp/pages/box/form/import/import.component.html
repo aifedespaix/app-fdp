@@ -1,0 +1,9 @@
+<form [formGroup]="filesForm">
+  <input type="hidden" [(ngModel)]="sound.id" formControlName="box_sound" required>
+  <input type="hidden" [(ngModel)]="image.id" formControlName="box_miniature" required>
+</form>
+
+<div class="BoxForm BoxForm_files">
+  <app-file label="Son" [fileTypes]="['audioHTML/*']" (fileSaved)="onAudioSaved($event)"></app-file>
+  <app-file label="Miniature" [fileTypes]="['image/*']" (fileSaved)="onImageSaved($event)"></app-file>
+</div>

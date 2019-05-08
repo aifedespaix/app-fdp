@@ -1,0 +1,18 @@
+<div class="fdpBox_list">
+
+  <div class="fdpBloc fdpBloc-centrer fdpBloc-fullW fdpBloc-padded" *ngIf="error">
+    <div *ngIf="error">{{error}}</div>
+    <div class="fdpTitle" *ngIf="!isResults() && !error && !isLoading">Aucun resultat</div>
+  </div>
+
+  <div class="fdpListContainer" (scroll)="onScroll()" #scrollableList>
+    <div class="fdpList fdpList-allFive">
+      <app-box-element *ngFor="let box of boxes" [box]="box"
+                       class="fdpAnim_pulse fdpBloc-fullW fdpBloc-fullH"></app-box-element>
+    </div>
+    <div *ngIf="isLoading" class="fdpBloc fdpBloc-centrer fdpBloc-fullW fdpBloc-padded">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+
+</div>

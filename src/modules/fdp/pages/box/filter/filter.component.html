@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()" *ngIf="isListActive()">
+  <mat-form-field>
+    <input [(ngModel)]="filter" name="filter" type="text" matInput placeholder="Filtrer les boxes"
+           [matAutocomplete]="auto" (keyup)="updateFilterResults()">
+    <mat-autocomplete #auto="matAutocomplete" (closed)="onSubmit()">
+      <mat-option *ngFor="let filterResult of filterResults" [value]="filterResult.title">
+        {{filterResult.title}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

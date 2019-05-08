@@ -1,0 +1,27 @@
+.fdpAuth_register {
+  display: grid;
+  grid-template: '.' 'email' 'identifiant' 'password' 'passwordConfirm' '.' 'submit';
+  grid-template-rows: 1fr auto auto auto auto 1fr auto;
+  height: 360px;
+  //overflow: hidden;
+
+  .gEmail {
+    grid-area: email;
+  }
+
+  .gIdentifiant {
+    grid-area: identifiant;
+  }
+
+  .gPassword {
+    grid-area: password;
+  }
+
+  .gPasswordConfirm {
+    grid-area: passwordConfirm;
+  }
+
+  .gSubmit {
+    grid-area: submit;
+  }
+}

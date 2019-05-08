@@ -1,0 +1,36 @@
+// http://paletton.com/#uid=73G0R0kB4IckVLCqTJfHRtGITn3
+
+$color-bg-neutral: #fff;
+$color-bg-aneutral: #fafafa; // alter
+$color-bg-ineutral: #2a2a2a; // inverse
+
+$color-neutral: #000;
+$color-aneutral: $color-bg-ineutral; // alter
+$color-ineutral: $color-bg-neutral; // inverse
+
+$color-white-mid: rgba(255, 255, 255, .5);
+$color-black-mid: rgba(0, 0, 0, .3);
+$color-black-trsp: rgba(0, 0, 0, .7);
+
+$color-main: #043686;
+$color-main-light: #518be7;
+$color-main-medium: #2671e8;
+$color-main-dark: #0b61e8;
+$color-main-vador: #0547b1;
+$color-secondary: #7509e9;
+$color-secondary-light: #994fe8;
+$color-secondary-medium: #8223e9;
+$color-secondary-dark: #5904b4;
+$color-secondary-vador: #440489;
+$color-tertiary: #00f110;
+$color-tertiary-light: #45f050;
+$color-tertiary-medium: #13f122;
+$color-tertiary-dark: #00ce0d;
+$color-tertiary-vador: #00a00a;
+$color-quaternary: #ffa200;
+$color-quaternary-light: #ffbd49;
+$color-quaternary-medium: #ffaa14;
+$color-quaternary-dark: #ffa200;
+$color-quaternary-vador: #cb8100;
+$color-good: $color-main-vador;
+$color-bad: #d50000;

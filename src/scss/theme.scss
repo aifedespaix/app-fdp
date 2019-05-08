@@ -1,0 +1,44 @@
+@import '~@angular/material/theming';
+@include mat-core();
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'fdp-colors';
+
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Define the default theme (same as the example above).
+$fdp-primary: mat-palette($mat-blue, 800, 900, A700);
+$fdp-accent: mat-palette($mat-red, 800, 900, A700);
+$fdp-theme: mat-light-theme($fdp-primary, $fdp-accent);
+
+// Include the default theme styles.
+@include angular-material-theme($fdp-theme);
+
+// Dark Theme
+
+// Define an alternate dark theme.
+//$dark-primary: mat-palette($mat-blue-grey);
+//$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+//$dark-warn: mat-palette($mat-deep-orange);
+//$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+//.unicorn-dark-theme {
+//  @include angular-material-theme($dark-theme);
+//}
+
+//  FDP 1.0 Theme
+
+//$fdp-primary: mat-palette($mat-blue-gray);
+//$fdp-accent: mat-palette($mat-green, A200, A100, A400);
+//$fdp-warn: mat-palette($mat-red);
+//
+//$fdp-theme: mat-dark-theme($mat-blue-gray, $fdp-accent, $fdp-warn);
+
+//@include angular-material-theme($fdp-theme);
+@import "material";

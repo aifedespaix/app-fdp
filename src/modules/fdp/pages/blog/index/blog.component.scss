@@ -1,0 +1,83 @@
+@import "sizes";
+@import "fdp-colors";
+
+$articleWidth: 350px;
+
+.fdp {
+  &List-blog {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 550px));
+    grid-auto-rows: 500px;
+  }
+  &Blog {
+    padding: 25px 0;
+  }
+
+  .fdpArticle {
+    &_content {
+      height: calc(100% - 68px);
+      overflow: auto;
+    }
+
+    &Prv {
+      width: $articleWidth;
+      height: $articleWidth;
+      margin: 10px;
+      cursor: pointer;
+
+      &_ {
+        &header {
+          height: 120px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        &content {
+          color: #111111;
+          height: calc(100% - 120px);
+          overflow: hidden;
+          position: relative;
+          text-align: justify;
+
+          h3 {
+            border-bottom: 2px solid fade-out($color-main, .8);
+            margin: 8px 15px;
+            overflow: hidden;
+            padding: 0 0 5px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        &bgImg {
+          display: flex;
+          height: 100%;
+          justify-content: center;
+          left: 0;
+          overflow: hidden;
+          position: absolute;
+          text-align: center;
+          top: 0;
+          width: 100%;
+          z-index: 1;
+        }
+
+        &description {
+          height: calc(100% - 62px);
+          margin-right: 18px;
+          overflow: hidden;
+          padding: 0 20px 20px;
+          position: absolute;
+          z-index: 2;
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,22 @@
+.fdpTemplate-editDialog {
+  display: grid;
+  grid-template-areas: "title image" "description image" "submit submit";
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.gTitle {
+  grid-area: title;
+}
+
+.gDescription {
+  grid-area: description;
+}
+
+.gImage {
+  grid-area: image;
+}
+
+.gSubmit {
+  grid-area: submit;
+}

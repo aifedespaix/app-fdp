@@ -1,0 +1,47 @@
+<form class="fdpAuth_register" #registerForm="ngForm" (ngSubmit)="register()" [formGroup]="userRegisterFormGroup">
+
+  <mat-form-field class="gEmail">
+    <input type="email" placeholder="Email" id="register_email" name="register_email"
+           formControlName="register_email"
+           matInput required
+           [(ngModel)]="userRegister.email">
+    <mat-error *ngIf="userRegisterFormGroup.controls.register_email.errors">
+      <span *ngIf="userRegisterFormGroup.controls.register_email.errors.email">Email invalide</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="gIdentifiant">
+    <input type="text" placeholder="Identifiant" id="register_username" name="register_username"
+           matInput required
+           formControlName="register_username"
+           [(ngModel)]="userRegister.username">
+    <mat-hint>Au moins 3 caractères</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="gPassword">
+    <input [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" id="register_password"
+           name="register_password"
+           matInput required
+           formControlName="register_password"
+           [(ngModel)]="userRegister.password">
+    <mat-hint>Au moins 8 caractères</mat-hint>
+    <!--<mat-icon class="fdpClickable" matSuffix (click)="showPassword = !showPassword">-->
+    <!--{{showPassword ? 'visibility' : 'visibility_off'}}-->
+    <!--</mat-icon>-->
+  </mat-form-field>
+
+  <mat-form-field *ngIf="!showPassword" class="gPasswordConfirm">
+    <input type="password" placeholder="Confirmation mot de passe" id="register_confirmPassword"
+           formControlName="register_confirmPassword"
+           name="register_confirmPassword"
+           matInput required
+           [(ngModel)]="userRegister.confirmPassword">
+    <mat-hint>Répéter le mot de passe</mat-hint>
+  </mat-form-field>
+
+  <button class="gSubmit" mat-raised-button color="primary" type="submit" [disabled]="userRegisterFormGroup.invalid">
+    Inscription
+  </button>
+
+</form>
+

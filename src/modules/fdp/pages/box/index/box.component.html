@@ -1,0 +1,15 @@
+<div class="fdpBox">
+  <mat-card>
+    <mat-card-content>
+      <app-box-filter (filtered)="askFilter($event)"></app-box-filter>
+    </mat-card-content>
+  </mat-card>
+
+  <app-box-list class="fdpBloc-fullW"></app-box-list>
+</div>
+
+<button mat-fab color="primary" class="fdpBtn_add" (click)="openAddBoxDialog()" *ngIf="isLoged()"
+        matTooltip="Ajouter une Box" matTooltipPosition="left"
+        aria-label="Bouton permettant d'afficher le formulaire d'envoi d'une SoundBox">
+  <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,17 @@
+@import 'sizes';
+
+.mat-tab- {
+  &body-wrapper, &group {
+    height: 100%;
+  }
+}
+
+.mat-horizontal-content-container {
+  max-height: calc(100vh - 150px);
+  overflow-y: auto !important;
+}
+
+.mat-card {
+  max-width: 100%;
+  overflow: hidden;
+}

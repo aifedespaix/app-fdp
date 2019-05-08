@@ -1,0 +1,76 @@
+@import 'sizes';
+
+.fdpHeader {
+  display: grid;
+  grid-template: "title search login" 100% / 1fr 1fr 1fr;
+  height: 100%;
+  justify-content: space-between;
+
+  &- {
+    &social {
+      margin: 0 10px;
+
+      a {
+        margin: 0 5px;
+      }
+
+      @media screen and (max-width: $responsive-width-m) {
+        display: none;
+      }
+    }
+  }
+
+  &_ {
+    &title {
+      align-items: center;
+      display: flex;
+      grid-area: title;
+      justify-content: flex-start;
+    }
+
+    &search {
+      display: flex;
+      grid-area: search;
+      justify-content: center;
+
+      @media screen and (max-width: $responsive-width-s) {
+        display: none;
+      }
+    }
+
+    &login {
+      align-items: center;
+      display: flex;
+      grid-area: login;
+      justify-content: flex-end;
+    }
+
+    &home {
+      align-items: center;
+      display: flex;
+      font-size: 25px;
+
+      @media screen and (max-width: $responsive-width-m) {
+        .fdpFont {
+          display: none;
+        }
+      }
+    }
+
+    &logo {
+      align-items: center;
+      display: flex;
+      height: $header-height;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    &menuIcon {
+      @media screen and (min-width: $responsive-width-m) {
+        display: none;
+      }
+    }
+  }
+}

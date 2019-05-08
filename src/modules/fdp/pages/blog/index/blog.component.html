@@ -1,0 +1,19 @@
+<div class="fdpContent fdpContent-text">
+  <div class="fdpBlog">
+    <div class="fdpList fdpList-blog usn">
+        <a *ngFor="let article of articles" class="fdpTuile fdpTuile-full fdpTuile-hoverable usn fdpClickable fdpAnim_pulse" [routerLink]="['/blog/article/', article.id]" routerLinkActive="active">
+          <h3 class="fdpTuile_title">{{article.title}}</h3>
+
+          <div class="fdpTuile_content fdpTuile_title-img">
+            <img class="fdpImgFull" src="{{article.image.url}}" alt="{{article.image.alt}}">
+          </div>
+        </a>
+    </div>
+  </div>
+
+  <!--<button mat-fab color="primary" class="fdpBtn_add" *ngIf="isLoged()"  routerLink="./article/new"-->
+          <!--matTooltip="Rédiger un article" matTooltipPosition="left"-->
+          <!--aria-label="Bouton permettant d'accéder à la page de rédaction d'article">-->
+    <!--<mat-icon>add</mat-icon>-->
+  <!--</button>-->
+</div>

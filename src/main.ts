@@ -1,14 +1,13 @@
-import { enableProdMode } from "@angular/core";
-import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { FdpModule } from "./fdp-app/fdp.module";
-import { environment } from "./environments/environment";
+import 'hammerjs'; // todo à voir : problèmes avec ssr (window + document) https://github.com/hammerjs/hammer.js/issues/930
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(FdpModule)
-  .then(success => console.log(`Ouèche`))
-  .catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule);

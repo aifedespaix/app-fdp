@@ -1,0 +1,5 @@
+<div class="fdpVideo">
+  <app-fdp-video-player [video]="video" class="fdpBloc-centrer gPlayer"></app-fdp-video-player>
+  <h3 class="fdpTitle gTitle">{{title}}</h3>
+  <app-fdp-video-list [title]="title" [videos]="videos" class="fdpBloc-padded gVideos" (changeVideo)="changeVideo($event)"></app-fdp-video-list>
+</div>

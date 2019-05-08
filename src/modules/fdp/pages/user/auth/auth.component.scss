@@ -1,0 +1,16 @@
+$login-height: 425px;
+$max-login-width: 600px;
+
+.fdpAuth {
+  height: $login-height;
+  padding-bottom: 15px;
+
+  @media screen and (max-height: $login-height) {
+    height: calc(100% - 25px);
+  }
+
+  @media screen and (max-width: $max-login-width) {
+    width: 100%;
+  }
+
+}

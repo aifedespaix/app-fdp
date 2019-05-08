@@ -1,0 +1,6 @@
+.fdpBox {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 100px calc(100% - 100px);
+}

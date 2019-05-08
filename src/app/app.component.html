@@ -1,0 +1,15 @@
+<div class="fdpTemplateGrid">
+
+  <header>
+    <app-header (toggleSidenav)="toggleSidenav()" [isSidenavActived]="isSidenavActive"></app-header>
+  </header>
+
+  <nav class="fdpSidenav" [ngClass]="{'fdpSidenav-hide' : !isSidenavActive}">
+    <app-sidenav [isSidenavActive]="isSidenavActive" (itemClick)="toggleSidenav()"></app-sidenav>
+  </nav>
+
+  <main class="fdpMain" [ngClass]="{'fdpMain-blur' : isSidenavActive}" (click)="closeSidenav()">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

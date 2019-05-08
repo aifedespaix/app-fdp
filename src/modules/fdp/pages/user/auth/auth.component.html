@@ -1,0 +1,23 @@
+<div class="fdpAuth fdpBoxBloc fdpBoxBloc-noAnim" (click)="$event.stopPropagation()">
+
+  <div class="fdpAuth_fields">
+    <mat-tab-group>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon mat-list-icon>person</mat-icon> Connexion
+        </ng-template>
+        <app-user-auth-login (loginDone)="closeDialog()"></app-user-auth-login>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon mat-list-icon>person_add</mat-icon> Inscription
+        </ng-template>
+        <app-user-auth-register (registerDone)="closeDialog()"></app-user-auth-register>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+
+</div>

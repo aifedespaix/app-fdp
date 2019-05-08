@@ -1,0 +1,13 @@
+<div class="fdpSidenav">
+  <div class="fdpNav">
+    <a *ngFor="let item of menuItems" class="fdpNavLink" routerLink={{item.link}} routerLinkActive="fdpNavLink-active"
+       [routerLinkActiveOptions]="{ exact: item.exact }"
+       (click)="itemClicked()">
+      <i class="fdpNavLinkIcon material-icons">{{item.icon}}</i>
+      <span>{{item.text}}</span>
+    </a>
+  </div>
+  <app-sound></app-sound>
+</div>
+
+<div *ngIf="isSidenavActive" class="fdpSidenav_hide" (click)="toggleSidenav()"></div>

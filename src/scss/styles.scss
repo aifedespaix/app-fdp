@@ -1,0 +1,484 @@
+@import 'theme';
+@import 'sizes';
+@import 'fonts';
+@import 'animations';
+@import 'mixins';
+
+html,
+body {
+  font-family: Roboto, sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+a,
+button {
+  @include cursor;
+}
+
+a {
+  color: $color-main-vador;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans Light', sans-serif;
+  text-align: center;
+}
+
+.usn {
+  user-select: none;
+  user-drag: none;
+}
+
+.tac {
+  text-align: center;
+}
+
+.fdp {
+  &Blur {
+    filter: blur(5px);
+  }
+
+  &Btn {
+    &_add {
+      bottom: 10px;
+      right: 25px;
+
+      &.mat-fab {
+        position: fixed;
+      }
+    }
+
+    &-bgImage {
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  &Clickable {
+    @include cursor;
+  }
+
+  &Circle {
+    border-radius: 50%;
+
+    &- {
+      &small {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+  &Content {
+    &- {
+      &text {
+        margin: 15px;
+        padding: 15px;
+      }
+
+      &card {
+        padding: 15px;
+
+        @media screen and (max-width: $responsive-width-m) {
+          padding: 0;
+        }
+      }
+    }
+
+    @media screen and (max-width: $responsive-width-s) {
+      margin: 0;
+    }
+  }
+
+  &Embed {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+    min-width: 200px;
+    width: 100%;
+
+    &-16x9 {
+      padding-bottom: 56.25%;
+    }
+
+    &-4x3 {
+      padding-bottom: 75%;
+    }
+
+    &-full {
+      height: 100%;
+      padding-bottom: 0;
+      padding-top: 0;
+      width: 100%;
+    }
+
+    &Container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    iframe,
+    object,
+    embed {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &ImgFull {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+
+    &-circle {
+      border-radius: 50%;
+    }
+  }
+
+  &Font {
+    font-family: 'Gloria Hallelujah', sans-serif;
+  }
+
+  &Form {
+    background-color: $color-bg-neutral;
+    display: flex;
+
+    &_ {
+      &vertical {
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &Fields {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &Bloc {
+    &-fullW {
+      width: 100%;
+    }
+
+    &-fullH {
+      height: 100%;
+    }
+    &-padded {
+      box-sizing: border-box;
+      padding: 15px;
+    }
+
+    &-centrer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-noOverflow {
+      overflow: hidden;
+    }
+
+    &-overflow {
+      overflow: auto;
+    }
+  }
+
+  &Bold {
+    font-weight: bold;
+  }
+
+  &Icon {
+    &-z {
+      color: $color-bg-neutral;
+
+      svg {
+        fill: $color-bg-neutral;
+      }
+    }
+  }
+
+  &Item {
+    background-color: $color-bg-neutral;
+    cursor: pointer;
+
+    &:hover,
+    &-selected {
+      background-color: $color-main;
+      color: $color-bg-neutral !important;
+    }
+  }
+
+  &List {
+    align-items: center;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-rows: 200px;
+    grid-auto-flow: row dense;
+    grid-auto-rows: 200px;
+    justify-content: space-around;
+    width: 100%;
+    overflow: hidden;
+
+    &Container {
+      height: 100%;
+      width: 100%;
+      overflow: visible auto;
+    }
+
+    @media screen and (max-width: $responsive-width-m) {
+      grid-gap: 0;
+    }
+
+    &- {
+      &indian {
+        display: flex;
+      }
+
+      &simple {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      &allFive {
+        div:nth-child(5n) { // todo : a virer pour une class option
+          grid-column: span 2;
+          grid-row: span 2;
+        }
+      }
+
+      &listable {
+        grid-template-columns: 100%;
+        grid-auto-rows: auto;
+      }
+    }
+  }
+
+  &Modale {
+    display: grid;
+    grid-template: '. . .' 1fr '. content .' 1fr '. . .' 1fr
+      /1fr 1fr 1fr;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    &_ {
+      &content {
+        grid-area: content;
+      }
+    }
+  }
+
+  &Padded {
+    &-h {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+
+  &Scrollable {
+    overflow: hidden;
+
+    &:hover {
+      overflow: auto;
+    }
+  }
+
+  &Slider {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - #{$content-padding});
+    padding: $content-padding 0 0;
+    width: 100%;
+
+    &- {
+      &title {
+        flex: 0 1 auto;
+        padding: 0 $content-padding;
+      }
+
+      &content {
+        flex: 1 1 auto;
+        overflow: hidden;
+      }
+    }
+
+    .fdpTitle {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &TextLine {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &Title {
+    align-items: center;
+    cursor: default;
+    display: flex;
+    justify-content: center;
+
+    &_ {
+      &padded {
+        padding: 15px;
+      }
+    }
+  }
+
+  &Subtitle {
+    cursor: default;
+    background-color: $color-black-trsp;
+    color: $color-ineutral;
+    font-size: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    text-align: center;
+  }
+
+  &Spaces {
+    &- {
+      &a {
+        margin: 10px;
+      }
+
+      &v {
+        margin: 10px 0;
+      }
+
+      &h {
+        margin: 0 10px;
+      }
+    }
+  }
+
+  &Tuile {
+    @include border;
+
+    align-self: center;
+    background-color: $color-bg-neutral;
+    border-radius: 2px;
+    height: $tuile-height;
+    justify-self: center;
+    overflow: hidden;
+    width: $tuile-height;
+
+    &- {
+      &full {
+        height: 100%;
+        width: 100%;
+      }
+
+      &important {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      &dark {
+        background-color: $color-bg-ineutral;
+        color: $color-ineutral;
+      }
+
+      &listable {
+        $tuile-size: 50px;
+        display: flex;
+        height: $tuile-size;
+        .fdpTuile_ {
+          &content {
+            height: 100%;
+            min-width: $tuile-size;
+          }
+          &details {
+            width: auto;
+            height: 100%;
+          }
+          &title {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    &_ {
+      &content {
+        height: calc(100% - 40px);
+        position: relative;
+
+        img {
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+      &details {
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+      }
+
+      &title {
+        color: $color-neutral;
+        background-color: $color-bg-neutral;
+        font-size: 1.3em;
+        height: 40px;
+        margin: 0;
+        overflow: hidden;
+        padding: 6px;
+        text-align: center;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      &vote {
+        color: $color-bg-ineutral;
+        opacity: .3;
+        padding: 5px;
+
+        &- {
+          &good:hover {
+            color: $color-main-vador;
+          }
+
+          &bad:hover {
+            color: $color-bad;
+          }
+        }
+
+        &:hover {
+          background-color: $color-white-mid;
+          opacity: 1;
+        }
+
+      }
+    }
+  }
+}

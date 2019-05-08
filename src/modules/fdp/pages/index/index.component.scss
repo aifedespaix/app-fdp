@@ -1,0 +1,47 @@
+@keyframes funLowl {
+  0% {
+    filter: invert(100%) hue-rotate(0deg) contrast(150%);
+  }
+  50% {
+    filter: invert(100%) hue-rotate(180deg) contrast(200%);
+  }
+  100% {
+    filter: invert(100%) hue-rotate(360deg) contrast(150%);
+  }
+}
+
+.fdpIndex * {
+  z-index: 1;
+}
+
+.fdpIndex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0;
+  padding-left: 0;
+  position: relative;
+  height: 100%;
+}
+
+.fdpIndex_background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url(/assets/images/pages/index/aifedespaix_crew.jpg);
+  background-size: cover;
+  background-position: top center;
+  filter: blur(3px);
+  animation: funLowl 3s infinite;
+}
+
+.fdpTitle_main {
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 30px;
+  width: 100%;
+  text-align: center;
+  color: #eee;
+  padding: 25px;
+}

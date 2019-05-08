@@ -1,0 +1,92 @@
+@import 'sizes';
+
+.fdpBox {
+  &_detail {
+    display: grid;
+    grid-template:
+      "box     similars" 400px
+      "infos   similars" 2fr
+      / 400px 1fr;
+    height: 100%;
+    width: 100%;
+    grid-gap: $content-padding;
+    align-content: baseline;
+
+    @media screen and (max-aspect-ratio: 3/2) {
+      $info-height: 150px;
+      grid-template:
+        "box box" minmax($info-height, 1fr)
+        "infos similars" 1fr
+        / 1fr 1fr;
+
+      .fdpBoxDetail_same h2 {
+        display: none;
+      }
+    }
+  }
+  &Detail {
+    &_ {
+      &same {
+        grid-row: span 2;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        overflow-y: auto;
+        min-height: 100%;
+        grid-area: similars;
+
+        @media screen and (max-aspect-ratio: 3/2) {
+          overflow: visible;
+        }
+      }
+      &box {
+        grid-area: box;
+        overflow: hidden;
+      }
+      &info {
+        grid-area: infos;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        grid-gap: $content-padding;
+        padding: 0 $content-padding;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        @media screen and (max-aspect-ratio: 3/2) {
+          overflow: auto;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr;
+          //grid-template-col: auto 1fr;
+        }
+        @media screen and (max-width: $responsive-width-s) {
+          padding: 5px;
+        }
+      }
+    }
+    &Info_ {
+      &title {
+        grid-column: span 2;
+      }
+      &info {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        overflow: hidden;
+
+        h3 {
+          grid-column: span 2;
+        }
+      }
+      &detail {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: $content-padding;
+        overflow: auto;
+
+        @media screen and (max-aspect-ratio: 3/2) {
+          grid-template-columns: auto;
+          grid-template-rows: auto;
+        }
+      }
+    }
+  }
+}

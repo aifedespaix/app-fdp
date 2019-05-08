@@ -1,0 +1,34 @@
+<form [formGroup]="youtubeForm" (submit)="send()" class="BoxForm BoxForm_fields"
+      *ngIf="!saving && !(this.audioSaved && this.imageSaved); else loading">
+
+  <mat-form-field>
+    <input matInput formControlName="url" placeholder="Url" required>
+  </mat-form-field>
+
+  <app-fdp-video-player [video]="video" *ngIf="video.youtubeId" class="BoxForm_player"></app-fdp-video-player>
+
+  <div *ngIf="url.status === 'VALID'">
+    <mat-form-field>
+      <input type="time" matInput formControlName="start" placeholder="Début" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="time" matInput formControlName="end" placeholder="Fin" required>
+    </mat-form-field>
+  </div>
+
+  <div class="BoxForm BoxForm_submit">
+    <button mat-raised-button color="primary" [disabled]="!youtubeForm.valid">Générer la box</button>
+  </div>
+</form>
+
+<ng-template #loading>
+
+  <div class="fdpBloc-centrer fdpBloc-padded fdpBloc-noOverflow" *ngIf="!(this.audioSaved && this.imageSaved); else success">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <ng-template #success>
+      <h1 class="fdpTitle">Importé avec succés !</h1>
+  </ng-template>
+</ng-template>

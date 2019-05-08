@@ -1,0 +1,16 @@
+@import "fdp-colors";
+.fdpArticle {
+  background-color: $color-bg-neutral;
+  padding: 10px;
+  &_ {
+    &title {
+      height: 90px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center; //background-color: fade_out($color_main, 0.5);
+      color: #111;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@import 'fdp-colors';
+@import 'sizes';
+
+.fdpVideo {
+  display: grid;
+  grid-template: "player" "title" "videos";
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+
+  @media screen and (min-aspect-ratio: 3/2) {
+    grid-template: "player ." "player title" "player videos" "player .";
+    grid-template-columns: 2fr minmax(250px, 1fr);
+    grid-template-rows: 1fr auto 6fr 1fr;
+  }
+
+  @media screen and (max-width: $responsive-width-m) {
+    .fdpBloc-padded {
+      padding: 0;
+    }
+  }
+
+  &_title {
+    color: $color-main;
+    margin: 0;
+    padding: $content-padding;
+  }
+
+  .gPlayer {
+    grid-area: player;
+  }
+
+  .gTitle {
+    grid-area: title;
+  }
+
+  .gVideos {
+    grid-area: videos;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}

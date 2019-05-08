@@ -1,0 +1,36 @@
+@import "sizes";
+
+.fdpPlaylist {
+  height: 100%;
+}
+
+.fdpStreaming {
+  display: grid;
+  grid-template:
+    "platform embed"
+    "playlist embed";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+
+  &_platform {
+    grid-area: platform;
+  }
+
+  &_playlist {
+    grid-area: playlist;
+  }
+
+  &_embed {
+    grid-area: embed;
+  }
+
+  @media screen and (max-width: 250px * 4) {
+    grid-gap: 10px;
+    grid-template: "platform"
+                   "playlist"
+                   "embed";
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 150px 1fr;
+  }
+}

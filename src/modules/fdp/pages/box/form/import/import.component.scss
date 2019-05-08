@@ -1,0 +1,16 @@
+.BoxForm {
+  display: flex;
+  flex-wrap: wrap;
+  &_ {
+    &files {
+      justify-content: space-around;
+    }
+    &submit {
+      justify-content: right;
+    }
+    &fields {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

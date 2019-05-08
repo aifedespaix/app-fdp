@@ -1,0 +1,39 @@
+<div class="fdpBox_detail" *ngIf="box !== null; else loading">
+
+  <div class="fdpBoxDetail_box">
+    <app-box-element [box]="box"></app-box-element>
+  </div>
+
+  <div class="fdpBoxDetail_same">
+    <h2 class="fdpTitle">Boxes similaires</h2>
+    <app-box-list [filter]="box.title" class="fdpBloc-noOverflow"></app-box-list>
+  </div>
+
+  <div class="fdpBoxDetail_info">
+    <!--<h2 class="fdpBoxDetailInfo_title">{{box.title}}</h2>-->
+    <div class="fdpBoxDetailInfo_info">
+      <h3>Informations</h3>
+      <div class="fdpBoxDetailInfo_detail">
+        <span class="fdpBold">Description</span>
+        <span>{{box.description.length > 0 ? box.description : 'Aucune description'}}</span>
+
+        <span class="fdpBold">Tags</span>
+        <span>{{box.tags.length > 0 ? box.tags : 'Aucun tag'}}</span>
+      </div>
+    </div>
+    <div class="fdpBoxDetailInfo_info">
+      <h3>Auteur</h3>
+      <div class="fdpBoxDetailInfo_detail">
+        <span class="fdpBold">Nom</span>
+        <span>{{box.owner.username}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="fdpBloc-centrer fdpBloc-fullH fdpBloc-fullW">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

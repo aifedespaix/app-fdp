@@ -1,0 +1,59 @@
+<mat-horizontal-stepper linear="true" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="boxImportForm" label="La Box" editable="false">
+
+    <mat-tab-group>
+      <mat-tab label="Importer">
+        <app-box-form-import (importDone)="importFiles($event)"></app-box-form-import>
+      </mat-tab>
+
+      <mat-tab label="Youtube">
+        <app-box-form-youtube (importDone)="importFiles($event)"></app-box-form-youtube>
+      </mat-tab>
+    </mat-tab-group>
+
+    <div class="BoxForm BoxForm_submit fdpBloc-padded">
+      <button mat-raised-button color="primary" matStepperNext [disabled]="!isBoxImported">Continuer</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="boxDetailsForm" label="Infos" editable="false">
+    <ng-template matStepLabel>Informations générales</ng-template>
+
+    <form [formGroup]="boxDetailsForm" class="BoxForm BoxForm_fields">
+      <mat-form-field>
+        <input matInput formControlName="box_title" placeholder="Titre" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput formControlName="box_description"
+                  placeholder="Description"></textarea>
+      </mat-form-field>
+
+      <!--<app-tag></app-tag>-->
+
+      <div class="BoxForm BoxForm_submit">
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!boxDetailsForm.valid"
+                (click)="sendBox()">Envoyer
+        </button>
+      </div>
+    </form>
+
+  </mat-step>
+
+  <mat-step label="Fini">
+
+    <ng-template matStepperIcon="edit">
+      <mat-icon svgIcon="thumbs-up"></mat-icon>
+    </ng-template>
+
+    <div>
+      Bravo c'est en ligne, maintenant casse toi.
+    </div>
+
+    <button mat-raised-button color="primary" (click)="closeDialog()">
+      ok tamere
+    </button>
+
+  </mat-step>
+
+</mat-horizontal-stepper>

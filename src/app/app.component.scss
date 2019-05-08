@@ -1,0 +1,67 @@
+@import 'sizes';
+@import 'fdp-colors';
+@import 'mixins';
+
+.fdp {
+  &Sidenav-hide {
+    @media screen and (max-width: $responsive-width-m) {
+      display: none;
+    }
+  }
+
+  &Main {
+    background-color: $color-bg-aneutral;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+
+    &-blur {
+      @media screen and (max-width: $responsive-width-m) {
+        filter: blur(5px);
+        user-select: none;
+      }
+    }
+  }
+
+  &TemplateGrid {
+    display: grid;
+    grid-template-areas: "header header header" "sidenav main main";
+    grid-template-columns: $sidenav-width 1fr $sidenav-width;
+    grid-template-rows: $header-height calc(100% - #{$header-height});
+    height: 100%;
+    width: 100%;
+
+    @media screen and (max-width: $responsive-width-m){
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    nav {
+      @include border;
+      background-color: $color-bg-neutral;
+      grid-area: sidenav;
+    }
+
+    header {
+      @include border;
+      background-color: $color-bg-neutral;
+      grid-area: header;
+    }
+
+    main {
+      grid-area: main;
+      overflow: auto;
+    }
+
+    @media screen and (max-width: $responsive-width-m) {
+      grid-template-areas: "header header header" "main main main";
+
+      nav {
+        height: calc(100% - #{$header-height});
+        position: absolute;
+        top: $header-height;
+        width: $sidenav-width;
+        z-index: 2;
+      }
+    }
+  }
+}

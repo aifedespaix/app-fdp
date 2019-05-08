@@ -1,0 +1,28 @@
+<div class="fdpContent fdpContent-card">
+
+  <div *ngIf="authService.isLoged;else noProfile">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="fdpProfilePicture"
+             [style.background-image]="'url(assets/images/logos/fdp_logo_v2.png)'"></div>
+        <mat-card-title>{{user.username}}</mat-card-title>
+        <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>Encore un profil de merde</p>
+      </mat-card-content>
+    </mat-card>
+
+    <app-box-my-list></app-box-my-list>
+  </div>
+
+  <ng-template #noProfile>
+    <mat-card>
+      <mat-card-content>
+        T'as pas de profil car t'es pas connecté enculé.
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+
+</div>
