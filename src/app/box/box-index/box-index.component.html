@@ -1,9 +1,0 @@
-<div *ngFor="let box of boxes">
-<!--  <img [src]="box.thumbnail.url" [alt]="box.name">-->
-<!--  <p>{{box.sound.url}}</p>-->
-  <app-box-sound [box]="box"></app-box-sound>
-</div>
-
-<button (click)="openAddBox()" mat-fab>
-  <mat-icon class="mat-18">add</mat-icon>
-</button>

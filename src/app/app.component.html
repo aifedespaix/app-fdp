@@ -1,6 +1,7 @@
 <mat-sidenav-container class="app" (backdropClick)="toggleSidenav(false)">
 
-  <mat-sidenav #sidenav (keydown.escape)="toggleSidenav(false)" disableClose [mode]="sidenavMode()" [position]="sidenavPosition()" >
+  <mat-sidenav #sidenav disableClose class="sidenav"
+               (keydown.escape)="toggleSidenav(false)" [mode]="sidenavMode()" [position]="sidenavPosition()" >
     <app-sidenav (close)="toggleSidenav(false)" class="mobile-sidenav"></app-sidenav>
   </mat-sidenav>
 

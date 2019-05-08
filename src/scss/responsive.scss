@@ -8,7 +8,8 @@
     }
 
     &-sidenav {
-      flex-direction: column-reverse !important;
+      grid-template-rows: 1fr auto $header-height !important;
+      grid-template-areas: "menu" "audio" "title" !important;
     }
 
     &-modale {

@@ -3,15 +3,24 @@
 :host {
   width: $sidenav-width;
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: $header-height 1fr auto;
+  grid-template-areas: "title" "menu" "audio";
+  background-color: #fff;
+
+  @media screen and (max-width: $sidenav-width){
+    width: 100vw;
+  }
 }
 
 app-menu-button {
+  grid-area: title;
   height: $header-height;
 }
 
 mat-nav-list {
+  grid-area: menu;
   user-select: none;
   display: flex;
   flex-direction: column;

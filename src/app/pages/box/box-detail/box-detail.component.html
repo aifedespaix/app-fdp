@@ -1,0 +1,35 @@
+<app-box-sound [box]="box"></app-box-sound>
+
+<div class="boxDetail" *ngIf="box">
+  <h2 class="fdpBoxDetailInfo_title">{{box.name}}</h2>
+
+  <app-sound-edit [file]="box.sound"></app-sound-edit>
+  <div *ngIf="box.author || box.description" class="fdpBoxDetailInfo_info">
+    <h3>Informations</h3>
+    <div *ngIf="box.description" class="fdpBoxDetailInfo_detail">
+      <span class="fdpBold">Description</span>
+      <span>{{box.description ? box.description : 'Aucune description'}}</span>
+
+      <!--        <span class="fdpBold">Tags</span>-->
+      <!--        <span>{{box.tags.length > 0 ? box.tags : 'Aucun tag'}}</span>-->
+    </div>
+  </div>
+
+  <div *ngIf="box.author" class="fdpBoxDetailInfo_info">
+    <h3>Auteur</h3>
+    <div class="fdpBoxDetailInfo_detail">
+      <span>{{box.author.name}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="boxSimilar">
+  <h2 class="fdpTitle">Boxes similaires</h2>
+  <app-box-list></app-box-list>
+</div>
+
+<ng-template #loading>
+  <div class="fdpBloc-centrer fdpBloc-fullH fdpBloc-fullW">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

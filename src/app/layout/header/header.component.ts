@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {ResponsiveService} from '../responsive.service';
-import {UserService} from '../../user/user.service';
+import {UserService} from '../../fdp/user/user.service';
 
 @Component({
   selector: 'app-header',

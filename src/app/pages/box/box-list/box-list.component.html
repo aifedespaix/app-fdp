@@ -1,0 +1,5 @@
+<div *ngFor="let box of boxes">
+  <a [routerLink]="boxUrl(box)">
+    <app-box-sound [box]="box" class="fdpPulsable" (click)="play(box)" ></app-box-sound>
+  </a>
+</div>

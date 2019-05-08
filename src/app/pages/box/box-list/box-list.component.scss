@@ -1,0 +1,47 @@
+@import "app.variables";
+
+:host {
+  width: 100%;
+  overflow: auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  grid-auto-flow: row dense;
+  grid-auto-rows: 150px;
+  justify-content: center;
+  grid-gap: 5px;
+
+  padding: 5px;
+  box-sizing: border-box;
+
+  $max: 4;
+  @for $i from $max through 1 {
+    @media screen and (max-width: #{($mobile-width / $max) * $i}) {
+      grid-template-columns: repeat($i, 1fr);
+      grid-template-rows: calc(100vw / #{$i});
+      grid-auto-rows: calc(100vw / #{$i});
+      padding: 0;
+      grid-gap: 0;
+      width: 100vw;
+    }
+  }
+
+  //@media screen and (max-width: $mobile-width){
+  //  grid-template-columns: repeat(3, 1fr);
+  //  grid-template-rows: calc(100vw / 3);
+  //  grid-auto-rows: calc(100vw / 3);
+  //
+  //}
+  //
+  //@media screen and (max-width: 450px) {
+  //    grid-template-columns: repeat(2, 1fr);
+  //    grid-template-rows: calc(100vw / 2);
+  //    grid-auto-rows: calc(100vw / 2);
+  //}
+  //
+  //@media screen and (max-width: 200px) {
+  //    grid-template-columns: 1fr;
+  //    grid-template-rows: 100vw;
+  //    grid-auto-rows: 100vw;
+  //}
+}

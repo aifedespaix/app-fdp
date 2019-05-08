@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material';
 import {ResponsiveService} from './layout/responsive.service';
 import {Router} from '@angular/router';
-import {UserService} from './user/user.service';
+import {UserService} from './fdp/user/user.service';
+import {HeadService} from './layout/head/head.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,19 @@ import {UserService} from './user/user.service';
 export class AppComponent implements OnInit {
   @ViewChild('sidenav') private sidenav: MatSidenav;
 
-  constructor(public responsiveService: ResponsiveService, private router: Router, private userService: UserService) {
+  constructor(
+    public responsiveService: ResponsiveService,
+    private router: Router,
+    private userService: UserService,
+    private readonly headService: HeadService,
+  ) {
   }
 
   ngOnInit(): void {
+    this.headService.title = 'Accueil';
+    this.headService.description = 'aifedespaix, site communautaire de partage de fichiers multimédia';
+    this.headService.keywords = 'aifedespaix, fun, geek, soundbox, memes, music, audio';
+
     this.userService.authenticate();
 
     this.router.events.subscribe(() => {

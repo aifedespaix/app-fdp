@@ -1,0 +1,11 @@
+<div class="importFiles">
+  <ng-container *ngIf="file then audio else file"></ng-container>
+
+  <ng-template #file>
+    azaz
+    <app-file-upload (fileSaved)="setSound($event)" [fileTypes]="['audio/*']" label="Son"></app-file-upload>
+  </ng-template>
+
+  <app-sound-edit #audio [file]="file"></app-sound-edit>
+
+</div>

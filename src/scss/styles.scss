@@ -1,5 +1,6 @@
 @import "../../node_modules/@angular/material/theming";
 @import "responsive";
+@import "animations";
 
 /** Global styles **/
 body, html {
@@ -13,5 +14,22 @@ body, html {
 .fdp {
   &Cursor {
     cursor: pointer;
+  }
+
+  &Font {
+    &_veryVisible {
+      font-size: 2em;
+      z-index: 2;
+      color: #fff;
+      text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    }
+  }
+
+  &Tac {
+    text-align: center;
+  }
+
+  &Pulsable:hover {
+    animation: pulse .2s;
   }
 }

@@ -1,0 +1,20 @@
+<mat-vertical-stepper linear="true" #stepper>
+  <mat-step [stepControl]="soundForm" editable="false">
+    <ng-template matStepLabel>Son</ng-template>
+    <app-sound-import></app-sound-import>
+  </mat-step>
+
+  <mat-step editable="false">
+    <ng-template matStepLabel>Miniature</ng-template>
+    <app-file-upload (fileSaved)="setThumbnail($event)" [fileTypes]="['image/*']" label="Miniature"></app-file-upload>
+  </mat-step>
+
+  <mat-step editable="false">
+    <ng-template matStepLabel>Infos</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

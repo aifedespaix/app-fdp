@@ -10,6 +10,7 @@
 
 ### Run Mobile
 `yarn start --host 192.168.1.[XXX]`
+`yarn start --host 192.168.1.38`
 
 ### Update all 
 `yarn ng update @angular/cli @angular/core [--all=true]`

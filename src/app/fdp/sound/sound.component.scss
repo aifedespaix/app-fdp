@@ -1,0 +1,38 @@
+@import "app.colors";
+
+:host {
+  width: 100%;
+}
+
+.fdpSound {
+  background-color: $color-aneutral;
+  color: $color-ineutral;
+  overflow: hidden;
+  padding: 8px;
+
+  &_ {
+    &visualizer {
+      height: 50px;
+      width: 100%;
+    }
+
+    &controls {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    &controlbar {
+      align-items: center;
+      display: flex;
+    }
+
+    &title {
+      padding: 4px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      span {
+        text-align: center;
+      }
+    }
+  }
+}

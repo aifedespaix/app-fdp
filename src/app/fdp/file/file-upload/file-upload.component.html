@@ -1,0 +1,23 @@
+<div class="form-group fdpFileForm fdpHover fdpFileForm_{{file.id ? 'dragged' : 'draggable'}}">
+
+  <ng-container *ngIf="loading">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+  </ng-container>
+
+  <ng-container *ngIf="!loading">
+
+    <ng-container *ngIf="file.id">
+      <img *ngIf="isImage()" class="fdpFileForm_preview" alt="loadedImage" [src]="getSafeUrl()">
+      <span class="fdpFont fdpFont_veryVisible">{{file.name}}</span>
+    </ng-container>
+
+    <ng-container *ngIf="!file.id">
+      <label class="fdpFont" for="file">{{label}}</label>
+      <input type="file" id="file" [accept]="acceptTypes()" (change)="handleFileInput($event.target.files)">
+    </ng-container>
+
+  </ng-container>
+
+</div>
+
+<div>{{error}}</div>
