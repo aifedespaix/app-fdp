@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {File} from '../../../graphql.schema';
 import {OnInit} from '@angular/core/src/metadata/lifecycle_hooks';
-import { Howl } from 'howler';
 
 
 @Component({
@@ -12,6 +11,7 @@ import { Howl } from 'howler';
 export class SoundEditComponent implements OnInit {
 
   @Input() private readonly file: File;
+  private _audio: HTMLAudioElement;
 
   constructor() {
     this.file = null;
@@ -19,13 +19,14 @@ export class SoundEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const sound = new Howl({
-      src: [this.file.url],
-      html5 :true
-    });
 
+    this._audio = new Audio(this.file.url);
     // sound.play();
+    this._audio.play().then();
 
   }
 
+  get audio(): HTMLAudioElement {
+    return this._audio;
+  }
 }
