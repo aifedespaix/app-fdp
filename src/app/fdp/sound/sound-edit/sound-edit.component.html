@@ -1,5 +1,19 @@
-<div>visualizer</div>
+<div class="visualizer" #visualizer>
+  <div class="slicer slicer_from" cdkDragLockAxis="x" (cdkDragMoved)="slicing($event)"
+       cdkDrag cdkDragBoundary=".visualizer" #slicerLeft>
+    <div class="slicer_bar"></div>
+  </div>
+  <div class="slicer slicer_to" cdkDragLockAxis="x" (cdkDragMoved)="slicing($event)"
+       cdkDrag cdkDragBoundary=".visualizer" #slicerRight>
+    <div class="slicer_bar"></div>
+  </div>
+</div>
 <div>
-  start {{audio.duration}}
+  <input type="number" [value]="slice.start">
+  <input type="number" [value]="slice.end">
+  <div (click)="play()">
+    aazezae zarza razr za
+  </div>
   end
 </div>
+

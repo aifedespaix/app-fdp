@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {SoundService} from './sound.service';
 import {SoundComponent} from './sound.component';
 import {MatButtonModule, MatIconModule, MatSliderModule, MatTooltipModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
@@ -8,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {SoundImportComponent} from './sound-import/sound-import.component';
 import {FileModule} from '../file/file.module';
 import {SoundEditComponent} from './sound-edit/sound-edit.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -22,18 +22,19 @@ import {SoundEditComponent} from './sound-edit/sound-edit.component';
   ],
   imports: [
     CommonModule,
-    ConnectionModule,
-    FileModule,
-
     FormsModule,
+
+    ConnectionModule,
+    DragDropModule,
+    FileModule,
 
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
     MatSliderModule,
   ],
-  providers: [
-  ]
+  providers: [],
 })
 
-export class SoundModule {}
+export class SoundModule {
+}

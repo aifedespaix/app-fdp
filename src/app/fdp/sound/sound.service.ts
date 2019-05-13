@@ -1,9 +1,10 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {Sound} from './sound';
 import {isPlatformBrowser} from '@angular/common';
+import {BufferSource} from 'tone';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SoundService {
   public sound: Sound;
