@@ -2,7 +2,8 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {File} from '../../../graphql.schema';
 import {OnInit} from '@angular/core/src/metadata/lifecycle_hooks';
 import {CdkDragMove} from '@angular/cdk/drag-drop';
-import {HttpClient} from '@angular/common/http';
+import WaveSurfer from 'wavesurfer.js';
+import WaveSurferCursor from 'wavesurfer.js/dist/plugin/wavesurfer.cursor';
 
 
 @Component({
@@ -15,51 +16,71 @@ export class SoundEditComponent implements OnInit {
   @Input() private readonly file: File;
   @ViewChild('slicerLeft') private readonly slicerLeft: ElementRef;
   @ViewChild('slicerRight') private readonly slicerRight: ElementRef;
-  @ViewChild('visualizer') private readonly visualizer: ElementRef;
+  @ViewChild('audio') private readonly audio: ElementRef<HTMLAudioElement>;
+  @ViewChild('wave') private readonly wave: ElementRef<HTMLBaseElement>;
+  @ViewChild('timeline') private readonly timeline: ElementRef<HTMLBaseElement>;
   private readonly _slice: { start: number, end: number };
+  private waveSurfer = WaveSurfer.create;
+  private waveSurferCursor = WaveSurferCursor.create;
+  private sound;
 
-  constructor(private readonly http: HttpClient) {
+  public start: number;
+  public end: number;
+
+  constructor() {
+  console.log(WaveSurfer.cursor);
     this.file = null;
-    this._slice = {start: 0, end: 0};
+    this._slice = {start: 2, end: 2.3};
   }
 
   ngOnInit(): void {
-    const sound = new Audio();
-    sound.src = this.file.url;
-    sound.volume = .05;
-    sound.currentTime = this._slice.start;
-    sound.currentTime = 1;
-    sound.addEventListener('canplaythrough', () => {
-      console.log(sound.currentTime);
-      sound.play();
-      this._slice.end = sound.duration;
-    }, false);
-    sound.load();
-    this._slice.start = 0;
-    console.log(sound.buffered);
-    console.log(sound.buffered.length);
-    console.log(sound.duration);
+    this.sound = this.waveSurfer({
+      container: this.wave.nativeElement,
+      waveColor: '#333',
+      progressColor: '#fafafa',
+      backend: 'MediaElement',
+      plugins: [
+        this.waveSurferCursor({
+          showTime: true,
+          opacity: 1,
+          customShowTimeStyle: {
+            'background-color': '#000',
+            color: '#fff',
+            padding: '2px',
+            'font-size': '10px'
+          }
+        }),
+      ]
+    });
+
+    this.audio.nativeElement.addEventListener('loadeddata', () => {
+      this.sound.load(this.audio.nativeElement);
+    });
+    // this.sound.load(this.file.url);
   }
 
   slicing(e: CdkDragMove) {
     const x1 = this.slicerLeft.nativeElement.getBoundingClientRect().x;
     const x2 = this.slicerRight.nativeElement.getBoundingClientRect().x;
-    const xRef = this.visualizer.nativeElement.getBoundingClientRect().x;
+    // const xRef = this.editor.nativeElement.getBoundingClientRect().x;
 
-    // const duration = this._player.buffer.duration;
+    // const duration = this.sound.getDuration();
     // const t1 = ((duration / xRef) * x1 - duration) * 2;
     // const t2 = ((duration / xRef) * x2 - duration) * 2;
     //
-    // this._slice.start = t1 > t2 ? t2 : t1;
-    // this._slice.end = t1 <= t2 ? t2 : t1;
+    // this.start = t1 > t2 ? t2 : t1;
+    // this.end = t1 < t2 ? t2 : t1;
   }
 
   play() {
-    // this._player.start(0, 0, 4);
+    // this.sound.setCurrentTime(this.start);
+    // console.log(this.start);
+    this.sound.play();
   }
 
-  get slice(): { start: number; end: number } {
-    return this._slice;
-  }
+
+  // get nativeAudio() {
+  //   return this.audio.nativeElement;
+  // }
 
 }

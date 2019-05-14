@@ -56,6 +56,7 @@
     "node": "^11.14.0",
     "rxjs": "^6.4.0",
     "tone": "^13.4.9",
+    "wavesurfer.js": "^2.2.1",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {

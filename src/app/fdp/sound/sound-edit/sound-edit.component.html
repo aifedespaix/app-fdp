@@ -1,19 +1,16 @@
-<div class="visualizer" #visualizer>
-  <div class="slicer slicer_from" cdkDragLockAxis="x" (cdkDragMoved)="slicing($event)"
-       cdkDrag cdkDragBoundary=".visualizer" #slicerLeft>
-    <div class="slicer_bar"></div>
-  </div>
-  <div class="slicer slicer_to" cdkDragLockAxis="x" (cdkDragMoved)="slicing($event)"
-       cdkDrag cdkDragBoundary=".visualizer" #slicerRight>
-    <div class="slicer_bar"></div>
-  </div>
-</div>
+<audio preload="auto" [src]="this.file.url" #audio></audio>
+
 <div>
-  <input type="number" [value]="slice.start">
-  <input type="number" [value]="slice.end">
+  <div #wave></div>
+  <div #timeline id="timeline"></div>
+
+</div>
+
+<div>
+  <input type="number" [(ngModel)]="start" name="start">
+  <input type="number" [(ngModel)]="end" name="end">
   <div (click)="play()">
-    aazezae zarza razr za
+    play
   </div>
   end
 </div>
-
