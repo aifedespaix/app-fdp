@@ -8,12 +8,16 @@ import {SoundImportComponent} from './sound-import/sound-import.component';
 import {FileModule} from '../file/file.module';
 import {SoundEditComponent} from './sound-edit/sound-edit.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {SoundEditCursorComponent} from './sound-edit-cursor/sound-edit-cursor.component';
+import {SoundWaveComponent} from './sound-wave/sound-wave.component';
 
 @NgModule({
   declarations: [
     SoundComponent,
     SoundImportComponent,
     SoundEditComponent,
+    SoundEditCursorComponent,
+    SoundWaveComponent,
   ],
   exports: [
     SoundComponent,

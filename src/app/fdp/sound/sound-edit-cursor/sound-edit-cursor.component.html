@@ -1,0 +1,4 @@
+<!--<div (drag)="test()" #from></div>-->
+<!--<div (drag)="test()" #actual></div>-->
+<div #from (cdkDragMoved)="drag()" cdkDragLockAxis="x" cdkDrag [cdkDragBoundary]="parent"></div>
+<!--<canvas #canvas (drag)="drag($event)"></canvas>-->

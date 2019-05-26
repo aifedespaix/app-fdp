@@ -6,7 +6,7 @@
 `yarn ng generate m [MODULE]`
 
 ### Generate Component
-`yarn ng generate c [COMPONENT] --module=[MODULE]`
+`yarn ng generate c [path]/[COMPONENT] --module=[MODULE]`
 
 ### Run Mobile
 `yarn start --host 192.168.1.[XXX]`

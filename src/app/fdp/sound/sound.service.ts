@@ -1,17 +1,17 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {Sound} from './sound';
 import {isPlatformBrowser} from '@angular/common';
-import {BufferSource} from 'tone';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SoundService {
   public sound: Sound;
-  private readonly _audioHTML: HTMLAudioElement;
-  private _title: String;
   public isPlaying: boolean;
 
+  private _title: String;
+  private readonly _audioContext: AudioContext;
+  private readonly _audioHTML: HTMLAudioElement;
   private _speed: number;
   private _volume: number;
 
@@ -19,6 +19,7 @@ export class SoundService {
     this.sound = null;
     this._title = '';
     this.isPlaying = false;
+    this._audioContext = new AudioContext();
 
     const speed = parseInt(localStorage.getItem('service_sound-speed'), 10);
     this._speed = speed ? speed : 100;
@@ -125,4 +126,7 @@ export class SoundService {
     return this._volume;
   }
 
+  get audioContext(): AudioContext {
+    return this._audioContext;
+  }
 }

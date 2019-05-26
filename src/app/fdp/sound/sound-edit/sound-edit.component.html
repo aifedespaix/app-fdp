@@ -1,16 +1,14 @@
-<audio preload="auto" [src]="this.file.url" #audio></audio>
+<!--<audio preload="auto" [src]="this.file.url" #audio controls></audio>-->
 
-<div>
-  <div #wave></div>
-  <div #timeline id="timeline"></div>
+<!--<div #timeline id="timeline">-->
+  <app-sound-wave></app-sound-wave>
+<!--</div>-->
 
-</div>
-
-<div>
-  <input type="number" [(ngModel)]="start" name="start">
-  <input type="number" [(ngModel)]="end" name="end">
-  <div (click)="play()">
-    play
-  </div>
-  end
-</div>
+<!--<div>-->
+<!--  <input type="number" [(ngModel)]="start" name="start">-->
+<!--  <input type="number" [(ngModel)]="end" name="end">-->
+<!--  <div (click)="play()">-->
+<!--    play-->
+<!--  </div>-->
+<!--  end-->
+<!--</div>-->
