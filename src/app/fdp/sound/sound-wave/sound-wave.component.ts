@@ -36,7 +36,7 @@ export class SoundWaveComponent implements OnInit {
     private readonly soundService: SoundService,
     private readonly elementRef: ElementRef<HTMLElement>,
   ) {
-    this.smoothing = 2;
+    this.smoothing = 4;
     this.drag = false;
     this.actualSlicer = null;
   }
@@ -54,32 +54,33 @@ export class SoundWaveComponent implements OnInit {
       this.actualSlicer = this.getNearestSlicer(position * this.audioBuffer.duration);
     });
 
+    this.waveSlice.nativeElement.addEventListener('click', e => {
+      this.play();
+      e.stopPropagation();
+    });
+
     this.http.get('http://192.168.1.38:3000/file/5cd2b6c2f83d75631421a787/Yd5H-Pui-nA-1557152350219.flv.mp3', {
       responseType: 'blob',
+
     }).subscribe(async (blob: Blob) => {
       this.initWaveViewers();
       const arrayBuffer = await new Response(blob).arrayBuffer();
-
       const observable = from(this.soundService.audioContext.decodeAudioData(arrayBuffer));
       observable.subscribe((audioBuffer: AudioBuffer) => {
         this.audioBuffer = audioBuffer;
-        const waveformData = this.getWaveformData(audioBuffer);
+
+        const waveformData = this.getWaveformData(this.audioBuffer);
         this.svg.nativeElement
           .querySelector('path')
           .setAttribute('d', this.getSVGPath(waveformData));
 
-        this.audioSliceFrom = 1;
-        this.audioSliceTo = 2.4;
+        this.audioSliceFrom = 0;
+        this.audioSliceTo = this.audioBuffer.duration;
       });
     });
-
-    // this.source..ontimeupdate = (e) => {
-    // this.updateAudioPosition();
-    // };
-
   }
 
-  @HostListener('window:mouseup', ['$event']) mouseUp(event) {
+  @HostListener('window:mouseup', ['$event']) mouseUp() {
     if (this.drag) {
       this.drag = false;
       this.actualSlicer = null;
@@ -87,14 +88,20 @@ export class SoundWaveComponent implements OnInit {
     }
   }
 
-  @HostListener('window:mousemove', ['$event']) mouseMove(e) {
-    console.log('this.svg.nativeElement.getBoundingClientRect().width');
-    console.log(this.svg.nativeElement.getBoundingClientRect().width);
-    console.log(e.offsetX);
-    console.log(this.elementRef.nativeElement.offsetLeft);
+  @HostListener('window:mousemove', ['$event']) mouseMove(e: MouseEvent) {
     if (this.drag) {
-      const position = e.offsetX / this.svg.nativeElement.getBoundingClientRect().width;
-      this.moveSlicer(position * this.audioBuffer.duration);
+      let position: number;
+      const widowLeft = this.elementRef.nativeElement.getBoundingClientRect().left;
+      if (e.pageX < widowLeft) {
+        position = 0;
+      } else if (e.pageX > (widowLeft + this.elementRef.nativeElement.offsetWidth)) {
+        position = this.audioBuffer.duration;
+      } else {
+        position = e.offsetX / this.svg.nativeElement.getBoundingClientRect().width;
+        position = position * this.audioBuffer.duration;
+      }
+
+      this.moveSlicer(position);
     }
   }
 
@@ -110,11 +117,8 @@ export class SoundWaveComponent implements OnInit {
   }
 
   private getNearestSlicer(audioValue: number) {
-    if (Math.abs(audioValue - this.audioSliceFrom) < Math.abs(audioValue - this.audioSliceTo)) {
-      return this.FROM;
-    } else {
-      return this.TO;
-    }
+    return Math.abs(audioValue - this.audioSliceFrom) < Math.abs(audioValue - this.audioSliceTo) ?
+      this.FROM : this.TO;
   }
 
   private initWaveViewers() {
@@ -139,7 +143,7 @@ export class SoundWaveComponent implements OnInit {
     this.waveSlice.nativeElement.setAttribute('width', this.width.toString());
     this.waveSlice.nativeElement.setAttribute('height', this.height.toString());
     this.waveSlice.nativeElement.setAttribute('x', '0');
-    this.waveSlice.nativeElement.setAttribute('fill', '#00aadd');
+    this.waveSlice.nativeElement.setAttribute('fill', 'rgb(0, 92, 177)');
 
     this.waveReaded.nativeElement.setAttribute('width', (0).toString());
     this.waveReaded.nativeElement.setAttribute('height', this.height.toString());
@@ -203,8 +207,8 @@ export class SoundWaveComponent implements OnInit {
     if (value >= 0 && value <= this.audioBuffer.duration && value < this.audioSliceTo) {
       const newFrom = this.fromAudioToPhysicalValue(value).toString();
       this.sliceFrom.nativeElement.setAttribute('x', newFrom.toString());
+      this.updateSlicer();
     }
-    this.updateSlicer();
   }
 
   get audioSliceTo(): number {
@@ -215,8 +219,8 @@ export class SoundWaveComponent implements OnInit {
     if (value >= 0 && value <= this.audioBuffer.duration && value > this.audioSliceFrom) {
       const newTo = this.fromAudioToPhysicalValue(value);
       this.sliceTo.nativeElement.setAttribute('x', newTo.toString());
+      this.updateSlicer();
     }
-    this.updateSlicer();
   }
 
   private updateSlicer() {
@@ -232,7 +236,7 @@ export class SoundWaveComponent implements OnInit {
     return parseInt(this.sliceTo.nativeElement.getAttribute('x'), 10);
   }
 
-  play() {
+  async play() {
     if (this.source) {
       this.source.stop();
     }
@@ -240,6 +244,7 @@ export class SoundWaveComponent implements OnInit {
     this.source.buffer = this.audioBuffer;
     this.source.connect(this.soundService.audioContext.destination);
     this.source.start(0, this.audioSliceFrom, this.audioSliceTo - this.audioSliceFrom);
+    console.log(this.soundService.audioContext.currentTime);
   }
 
 }
