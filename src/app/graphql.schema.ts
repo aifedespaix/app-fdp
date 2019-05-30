@@ -585,6 +585,12 @@ export class BoxWhereUniqueInput {
     id?: string;
 }
 
+export class FileAudioSliceInput {
+    idFile: string;
+    from: number;
+    to: number;
+}
+
 export class FileCreateInput {
     id?: string;
     deleted?: boolean;
@@ -2082,6 +2088,8 @@ export abstract class IMutation {
 
     abstract fileUpload(data?: Upload): File | Promise<File>;
 
+    abstract fileAudioSlice(data?: FileAudioSliceInput): File | Promise<File>;
+
     abstract createPost(data: PostCreateInput): Post | Promise<Post>;
 
     abstract createBox(data: BoxCreateInput): Box | Promise<Box>;
@@ -2263,7 +2271,7 @@ export class PostSubscriptionPayload {
 }
 
 export abstract class IQuery {
-    abstract authProfile(): User | Promise<User>;
+    abstract authProfile(): Auth | Promise<Auth>;
 
     abstract authLogin(data?: LoginInput): Auth | Promise<Auth>;
 
@@ -2316,8 +2324,6 @@ export abstract class IQuery {
     abstract filesConnection(where?: FileWhereInput, orderBy?: FileOrderByInput, skip?: number, after?: string, before?: string, first?: number, last?: number): FileConnection | Promise<FileConnection>;
 
     abstract node(id: string): Node | Promise<Node>;
-
-    abstract temp__(): boolean | Promise<boolean>;
 }
 
 export abstract class ISubscription {

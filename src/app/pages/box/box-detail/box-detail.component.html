@@ -3,7 +3,6 @@
 <div class="boxDetail" *ngIf="box">
   <h2 class="fdpBoxDetailInfo_title">{{box.name}}</h2>
 
-  <app-sound-edit [file]="box.sound"></app-sound-edit>
   <div *ngIf="box.author || box.description" class="fdpBoxDetailInfo_info">
     <h3>Informations</h3>
     <div *ngIf="box.description" class="fdpBoxDetailInfo_detail">

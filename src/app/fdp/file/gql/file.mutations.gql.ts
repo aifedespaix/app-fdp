@@ -6,6 +6,7 @@ export const fileUpload = gql`
       id
       url
       name
+      size
     }
   }
 `;

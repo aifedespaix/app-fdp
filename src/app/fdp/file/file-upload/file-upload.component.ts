@@ -31,7 +31,8 @@ export class FileUploadComponent {
 
   public handleFileInput(files: FileList) {
     this._loading = true;
-    const fileSub = this.fileService.uploadFile(files.item(0)).subscribe((res: ApolloQueryResult<{ fileUpload: FileSaved }>) => {
+    const fileSub = this.fileService.uploadFile(files.item(0))
+      .subscribe((res: ApolloQueryResult<{ fileUpload: FileSaved }>) => {
         this.file = res.data.fileUpload;
         this.fileSaved.emit(this.file);
       },

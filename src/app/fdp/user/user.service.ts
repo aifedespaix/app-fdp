@@ -2,8 +2,11 @@ import {Injectable} from '@angular/core';
 import {LocalStorageService} from '../storage/local-storage.service';
 import {Apollo} from 'apollo-angular';
 
-import {Auth, User} from '../../graphql.schema';
-import {profile} from './gql/auth.queries.gql';
+import {Auth, LoginInput, RegisterInput, User} from '../../graphql.schema';
+import {login, profile} from './gql/auth.queries.gql';
+import {register} from './gql/auth.mutations.gql';
+import {map} from 'rxjs/operators';
+import {ApolloQueryResult} from 'apollo-client';
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +31,8 @@ export class UserService {
     if (token) {
       const profileSub = this.apollo
         .query({query: profile})
-        .subscribe(({data}: any) => {
-            this.auth = data.authProfile as Auth;
+        .subscribe(({data}: ApolloQueryResult<{ authProfile: Auth }>) => {
+            this.auth = data.authProfile;
           },
           () => {
           },
@@ -38,6 +41,28 @@ export class UserService {
           },
         );
     }
+  }
+
+  public login(loginInput: LoginInput) {
+    return this.apollo
+      .query({
+        query: login,
+        variables: {data: loginInput},
+      }).pipe(map(({data}: ApolloQueryResult<{ authLogin: Auth }>) => {
+        this.auth = data.authLogin;
+      }));
+  }
+
+  public register(registerInput: RegisterInput) {
+    return this.apollo
+      .mutate({
+        mutation: register,
+        variables: {
+          data: registerInput,
+        },
+      }).pipe(map(({data}: ApolloQueryResult<{ authRegister: Auth }>) => {
+        this.auth = data.authRegister;
+      }));
   }
 
   get user(): User {
@@ -51,6 +76,7 @@ export class UserService {
   set auth(value: Auth) {
     this._auth = value;
     this._isLoged = true;
+    this.updateStorage();
   }
 
 }

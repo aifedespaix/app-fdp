@@ -26,22 +26,8 @@
     }
   }
 
-  //@media screen and (max-width: $mobile-width){
-  //  grid-template-columns: repeat(3, 1fr);
-  //  grid-template-rows: calc(100vw / 3);
-  //  grid-auto-rows: calc(100vw / 3);
-  //
-  //}
-  //
-  //@media screen and (max-width: 450px) {
-  //    grid-template-columns: repeat(2, 1fr);
-  //    grid-template-rows: calc(100vw / 2);
-  //    grid-auto-rows: calc(100vw / 2);
-  //}
-  //
-  //@media screen and (max-width: 200px) {
-  //    grid-template-columns: 1fr;
-  //    grid-template-rows: 100vw;
-  //    grid-auto-rows: 100vw;
-  //}
+  a {
+    text-decoration: none;
+    color: unset;
+  }
 }

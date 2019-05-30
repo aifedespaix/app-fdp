@@ -1,5 +1,3 @@
 <app-logo *ngIf="responsiveService.isMobileScreen"></app-logo>
-
 <app-auth-button *ngIf="!userService.isLogged" class="user"></app-auth-button>
-
 <app-menu-button *ngIf="responsiveService.isMobileScreen" (toggle)="open.emit()"></app-menu-button>

@@ -1,7 +1,8 @@
-import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {from} from 'rxjs';
 import {SoundService} from '../sound.service';
+import {File} from '../../../graphql.schema';
 
 @Component({
   selector: 'app-sound-wave',
@@ -12,6 +13,11 @@ export class SoundWaveComponent implements OnInit {
 
   private readonly FROM = 1;
   private readonly TO = 2;
+
+  @Input() file: File;
+  @Output() changeFrom = new EventEmitter<number>();
+  @Output() changeTo = new EventEmitter<number>();
+
   private audioBuffer: AudioBuffer;
   private source: AudioBufferSourceNode;
 
@@ -59,25 +65,23 @@ export class SoundWaveComponent implements OnInit {
       e.stopPropagation();
     });
 
-    this.http.get('http://192.168.1.38:3000/file/5cd2b6c2f83d75631421a787/Yd5H-Pui-nA-1557152350219.flv.mp3', {
-      responseType: 'blob',
+    this.http.get(this.file.url, {responseType: 'blob'})
+      .subscribe(async (blob: Blob) => {
+        this.initWaveViewers();
+        const arrayBuffer = await new Response(blob).arrayBuffer();
+        const observable = from(this.soundService.audioContext.decodeAudioData(arrayBuffer));
 
-    }).subscribe(async (blob: Blob) => {
-      this.initWaveViewers();
-      const arrayBuffer = await new Response(blob).arrayBuffer();
-      const observable = from(this.soundService.audioContext.decodeAudioData(arrayBuffer));
-      observable.subscribe((audioBuffer: AudioBuffer) => {
-        this.audioBuffer = audioBuffer;
+        observable.subscribe((audioBuffer: AudioBuffer) => {
+          this.audioBuffer = audioBuffer;
+          const waveformData = this.getWaveformData(this.audioBuffer);
+          this.svg.nativeElement
+            .querySelector('path')
+            .setAttribute('d', this.getSVGPath(waveformData));
 
-        const waveformData = this.getWaveformData(this.audioBuffer);
-        this.svg.nativeElement
-          .querySelector('path')
-          .setAttribute('d', this.getSVGPath(waveformData));
-
-        this.audioSliceFrom = 0;
-        this.audioSliceTo = this.audioBuffer.duration;
+          this.audioSliceFrom = 0;
+          this.audioSliceTo = this.audioBuffer.duration;
+        });
       });
-    });
   }
 
   @HostListener('window:mouseup', ['$event']) mouseUp() {
@@ -159,7 +163,7 @@ export class SoundWaveComponent implements OnInit {
     return values.reduce((sum, value) => sum + value, 0) / values.length;
   }
 
-  public getWaveformData(audioBuffer: AudioBuffer) {
+  private getWaveformData(audioBuffer: AudioBuffer) {
     const dataPoints = this.width / this.smoothing;
     const leftChannel = audioBuffer.getChannelData(0);
     const rightChannel = audioBuffer.getChannelData(1);
@@ -178,7 +182,7 @@ export class SoundWaveComponent implements OnInit {
     return values;
   }
 
-  public getSVGPath(waveformData: Float32Array) {
+  private getSVGPath(waveformData: Float32Array) {
     const maxValue = this.max(waveformData);
     let path = `M 0 ${this.height} `;
 
@@ -208,6 +212,7 @@ export class SoundWaveComponent implements OnInit {
       const newFrom = this.fromAudioToPhysicalValue(value).toString();
       this.sliceFrom.nativeElement.setAttribute('x', newFrom.toString());
       this.updateSlicer();
+      this.changeFrom.emit(this.audioSliceFrom);
     }
   }
 
@@ -220,6 +225,7 @@ export class SoundWaveComponent implements OnInit {
       const newTo = this.fromAudioToPhysicalValue(value);
       this.sliceTo.nativeElement.setAttribute('x', newTo.toString());
       this.updateSlicer();
+      this.changeTo.emit(this.audioSliceTo);
     }
   }
 
@@ -236,7 +242,7 @@ export class SoundWaveComponent implements OnInit {
     return parseInt(this.sliceTo.nativeElement.getAttribute('x'), 10);
   }
 
-  async play() {
+  private play() {
     if (this.source) {
       this.source.stop();
     }
@@ -244,7 +250,6 @@ export class SoundWaveComponent implements OnInit {
     this.source.buffer = this.audioBuffer;
     this.source.connect(this.soundService.audioContext.destination);
     this.source.start(0, this.audioSliceFrom, this.audioSliceTo - this.audioSliceFrom);
-    console.log(this.soundService.audioContext.currentTime);
   }
 
 }

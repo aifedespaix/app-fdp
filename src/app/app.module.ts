@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -11,8 +11,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material';
 import {MainModule} from './main/main.module';
 import {GraphQLModule} from './fdp/graphql/graphql.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
+
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+    pan: { direction: Hammer.DIRECTION_ALL },
+    swipe: { direction: Hammer.DIRECTION_VERTICAL },
+  };
+}
 
 @NgModule({
+  providers: [ {
+    provide: HAMMER_GESTURE_CONFIG,
+    useClass: MyHammerConfig
+  }],
   imports: [
     AppRoutingModule,
     BrowserModule.withServerTransition({appId: 'app-fdp'}),
@@ -23,6 +35,7 @@ import {GraphQLModule} from './fdp/graphql/graphql.module';
 
     LayoutModule,
     MainModule,
+    FlexLayoutModule,
   ],
   declarations: [
     AppComponent,
@@ -38,3 +51,4 @@ export class AppModule {
     console.log(`Running ${platform} with appId=${appId}`);
   }
 }
+

@@ -3,8 +3,9 @@ import {Apollo} from 'apollo-angular';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {UserService} from '../user.service';
 import {SnackbarComponent} from '../../snackbar/snackbar.component';
-import {RegisterInput} from '../../../graphql.schema';
+import {Auth, RegisterInput} from '../../../graphql.schema';
 import {register} from '../gql/auth.mutations.gql';
+import {ApolloQueryResult} from 'apollo-client';
 
 class UserRegister {
   login: string;
@@ -45,40 +46,28 @@ export class RegisterComponent {
   }
 
   public register() {
-    const loginSub = this.apollo
-      .mutate({
-        mutation: register,
-        variables: {
-          data: {
-            email: this.userRegisterModel.email,
-            name: this.userRegisterModel.login,
-            password: this.userRegisterModel.password,
-          } as RegisterInput,
-        },
-      })
-      .subscribe(({data}) => {
-          this.userService.auth = data.authRegister;
-          this.userService.updateStorage();
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {
-              icon: 'done',
-              message: 'Vous êtes inscrit et connecté',
-            },
-          });
+    let success = false;
+
+    const loginSub = this.userService.register({
+      email: this.userRegisterModel.email,
+      name: this.userRegisterModel.login,
+      password: this.userRegisterModel.password,
+    } as RegisterInput)
+      .subscribe(() => {
+          success = true;
           this.closeRegister();
         },
         () => {
+        },
+        () => {
           this.snackBar.openFromComponent(SnackbarComponent, {
             duration: 5000,
             data: {
-              icon: 'error',
-              color: 'warn',
-              message: `L'utilisateur existe déjà`,
+              icon: success ? 'done' : 'error',
+              color: success ? '' : 'warn',
+              message: success ? 'Vous êtes inscrit et connecté' : `L'utilisateur existe déjà`,
             },
           });
-        },
-        () => {
           loginSub.unsubscribe();
         },
       );

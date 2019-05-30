@@ -29,8 +29,24 @@ export const login = gql`
 export const profile = gql`
   query profile {
     authProfile {
-      id
-      email
-      name
+      token {
+        expiresIn
+        accessToken
+      }
+      user {
+        id
+        createdAt
+        updatedAt
+        deleted
+        email
+        name
+        #        hpassword
+        #        avatar
+        #        person
+        #        posts
+        #        boxes
+        #        friends
+        level
+      }
     }
   }`;

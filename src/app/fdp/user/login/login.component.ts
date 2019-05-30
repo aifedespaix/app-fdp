@@ -42,35 +42,27 @@ export class LoginComponent {
   }
 
   public login() {
-    const loginSub = this.apollo
-      .query({
-        query: login,
-        variables: {data: {login: this.userLoginModel.login, password: this.userLoginModel.password} as LoginInput},
-      })
-      .subscribe(({data}: ApolloQueryResult<Auth>) => {
-          console.log(data);
-          // this.userService.user = {token: data.login.token, ...data.login.user} as User;
-          // this.snackBar.openFromComponent(FdpSnackbarComponent, {
-          //   duration: 5000,
-          //   data: {
-          //     icon: 'done',
-          //     message: 'Vous êtes connecté',
-          //   },
-          // });
+    let success = false;
+    const loginSub = this.userService.login({
+      login: this.userLoginModel.login,
+      password: this.userLoginModel.password,
+    } as LoginInput)
+      .subscribe(() => {
+          success = true;
           this.closeLogin();
         },
         () => {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {
-              icon: 'error',
-              color: 'warn',
-              message: 'Identifiants incorrects',
-            },
-          });
         },
         () => {
           loginSub.unsubscribe();
+          this.snackBar.openFromComponent(SnackbarComponent, {
+            duration: 5000,
+            data: {
+              icon: success ? 'done' : 'error',
+              color: success ? '' : 'warn',
+              message: success ? 'Vous êtes connecté' : 'Identifiants incorrects',
+            },
+          });
         },
       );
   }

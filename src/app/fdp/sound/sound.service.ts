@@ -1,6 +1,9 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {Sound} from './sound';
 import {isPlatformBrowser} from '@angular/common';
+import {FileAudioSliceInput} from '../../graphql.schema';
+import {Apollo} from 'apollo-angular';
+import {fileAudioSlice} from './gql/sound.mutations.gql';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +18,10 @@ export class SoundService {
   private _speed: number;
   private _volume: number;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private readonly apollo: Apollo,
+  ) {
     this.sound = null;
     this._title = '';
     this.isPlaying = false;
@@ -39,7 +45,7 @@ export class SoundService {
     }
   }
 
-  load(sound: Sound, title: String) {
+  public load(sound: Sound, title: String) {
     if (!this._audioHTML) {
       return false;
     }
@@ -56,7 +62,7 @@ export class SoundService {
     return true;
   }
 
-  play() {
+  public play() {
     if (!this._audioHTML) {
       return false;
     }
@@ -68,7 +74,7 @@ export class SoundService {
     });
   }
 
-  stop() {
+  public stop() {
     if (!this._audioHTML) {
       return false;
     }
@@ -76,18 +82,28 @@ export class SoundService {
     this.verifyIfPlaying();
   }
 
-  reset() {
+  public reset() {
     if (!this._audioHTML) {
       return false;
     }
     this._audioHTML.currentTime = 0;
   }
 
-  verifyIfPlaying() {
+  public verifyIfPlaying() {
     this.isPlaying = this._audioHTML
       && this._audioHTML.duration > 0
       && !this._audioHTML.paused
       && !this._audioHTML.ended;
+  }
+
+  public sliceAudio(fileAudioSliceInput: FileAudioSliceInput) {
+    return this.apollo
+      .mutate({
+        mutation: fileAudioSlice,
+        variables: {
+          data: fileAudioSliceInput,
+        },
+      });
   }
 
   private updateVolume() {
