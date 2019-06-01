@@ -11,7 +11,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material';
 import {MainModule} from './main/main.module';
 import {GraphQLModule} from './fdp/graphql/graphql.module';
-import {FlexLayoutModule} from '@angular/flex-layout';
 
 export class MyHammerConfig extends HammerGestureConfig  {
   overrides = <any>{
@@ -35,7 +34,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
 
     LayoutModule,
     MainModule,
-    FlexLayoutModule,
   ],
   declarations: [
     AppComponent,
