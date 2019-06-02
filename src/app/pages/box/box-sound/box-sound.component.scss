@@ -21,13 +21,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 1;
   }
 }
 
 .box {
-
   &_title {
+    z-index: 2;
     grid-area: title;
     margin: 0;
     display: flex;
@@ -38,6 +38,7 @@
   }
 
   &_vote {
+    z-index: 2;
     opacity: .3;
     cursor: pointer;
 

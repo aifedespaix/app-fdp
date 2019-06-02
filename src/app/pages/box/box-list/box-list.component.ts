@@ -24,10 +24,8 @@ export class BoxListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.boxesSub = this.boxService.getBoxes().subscribe(({data}: ApolloQueryResult<{ boxes: Box[] }>) => {
-        console.log(data);
         this.boxes = data.boxes;
       }, (e) => {
-        this.boxesSub.unsubscribe();
         console.log(e);
       },
       () => {

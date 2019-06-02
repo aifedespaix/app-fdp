@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, HostBinding, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatTabGroup} from '@angular/material';
 import {BoxCreateInput, File, FileCreateInput} from '../../../graphql.schema';
 import {FormControl, Validators} from '@angular/forms';
@@ -9,14 +9,14 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./box-dialog.component.scss'],
 })
 export class BoxDialogComponent implements OnInit {
-  @ViewChild('tabs') tabGroup: MatTabGroup;
   private readonly boxCreate: BoxCreateInput;
 
   public soundForm: FormControl;
   public thumbnailForm: FormControl;
   private _sound: FileCreateInput;
 
-  // @HostBinding('class.mobile-modaleContent') mobile: boolean;
+  @ViewChild('tabs') tabGroup: MatTabGroup;
+  @HostBinding('class.mobile-modaleContent') private readonly mobile = true;
 
   constructor(
     private dialogRef: MatDialogRef<BoxDialogComponent>,
@@ -25,7 +25,6 @@ export class BoxDialogComponent implements OnInit {
     dialogRef.disableClose = true;
     this.boxCreate = new BoxCreateInput();
     this._sound = new FileCreateInput();
-    // this.mobile = false;
   }
 
   ngOnInit(): void {
@@ -41,6 +40,10 @@ export class BoxDialogComponent implements OnInit {
     // });
   }
 
+  @HostListener('window:keyup.esc') onKeyUp() {
+    this.dialogRef.close();
+  }
+
   setThumbnail(thumbnail: File) {
     this.thumbnailForm.patchValue(thumbnail);
     // this.boxCreate.thumbnail.connect = {id: thumbnail.id};
@@ -49,4 +52,5 @@ export class BoxDialogComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
+
 }

@@ -8,14 +8,13 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatTabGroup} from '@angular/material';
 })
 export class AuthDialogComponent implements OnInit {
   @ViewChild('tabs') tabGroup: MatTabGroup;
-  @HostBinding('class.mobile-modaleContent') mobile: boolean;
+  @HostBinding('class.mobile-modaleContent') private readonly mobile = true;
 
   constructor(
     private dialogRef: MatDialogRef<AuthDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public register: boolean,
   ) {
     dialogRef.disableClose = true;
-    this.mobile = false;
   }
 
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -26,10 +25,10 @@ export class AuthDialogComponent implements OnInit {
     if (this.register) {
       this.tabGroup.selectedIndex = 1;
     }
-    this.mobile = true;
   }
 
   close() {
     this.dialogRef.close();
   }
+
 }

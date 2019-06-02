@@ -1,14 +1,38 @@
-<button mat-icon-button [matMenuTriggerFor]="user">
-  <mat-icon class="mat-18">person</mat-icon>
-</button>
 
-<mat-menu #user="matMenu">
-  <button mat-menu-item (click)="authenticate(false)">
-    <mat-icon>person</mat-icon>
-    Connexion
+<ng-container *ngIf="isUserLoged() then logged else notLogged"></ng-container>
+
+<ng-template #logged>
+
+  <button class="profile" mat-button mat-mini-fab
+          [matMenuTriggerFor]="userActions" [style.backgroundImage]="userProfilPictureSrc()">
   </button>
-  <button mat-menu-item (click)="authenticate(true)">
-    <mat-icon>person_add</mat-icon>
-    Inscription
+
+  <mat-menu #userActions="matMenu">
+    <button mat-menu-item (click)="disconnect()">
+      <mat-icon>exit_to_app</mat-icon>
+      Se deconnecter
+    </button>
+  </mat-menu>
+
+</ng-template>
+
+<ng-template #notLogged>
+
+  <button mat-icon-button [matMenuTriggerFor]="authentication">
+    <mat-icon class="mat-18">person</mat-icon>
   </button>
-</mat-menu>
+
+  <mat-menu #authentication="matMenu">
+    <button mat-menu-item (click)="authenticate(false)">
+      <mat-icon>person</mat-icon>
+      Connexion
+    </button>
+
+    <button mat-menu-item (click)="authenticate(true)">
+      <mat-icon>person_add</mat-icon>
+      Inscription
+    </button>
+  </mat-menu>
+
+</ng-template>
+

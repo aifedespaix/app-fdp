@@ -65,6 +65,11 @@ export class UserService {
       }));
   }
 
+  public logout() {
+    this._auth = new Auth();
+    this._isLoged = false;
+  }
+
   get user(): User {
     return this._auth.user;
   }

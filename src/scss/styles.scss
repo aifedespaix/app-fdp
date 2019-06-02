@@ -1,4 +1,3 @@
-@import "../../node_modules/@angular/material/theming";
 @import "responsive";
 @import "animations";
 
@@ -17,9 +16,8 @@ body, html {
   }
 
   &Font {
-    &_veryVisible {
+    &-veryVisible {
       font-size: 2em;
-      z-index: 2;
       color: #fff;
       text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
     }

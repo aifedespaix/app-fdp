@@ -3,20 +3,21 @@
 :host {
   display: grid;
   grid-template-columns: 33vmin 1fr;
-  grid-template-rows: 33vmin 2fr;
-  grid-template-areas: "sound details" "similar similar";
+  grid-template-rows: 33vmin 1fr;
+  grid-template-areas: "sound similar" "details similar";
 
-  @media screen and (max-width: $mobile-width) {
+  @media (max-aspect-ratio: 5/4) {
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: 1fr 80px;
     grid-template-areas: "similar similar" "sound details";
-    grid-template-columns:33vmin 1fr;
-    grid-template-rows: 2fr 33vmin;
-
-    app-box-list {
-    }
   }
 
   app-box-sound {
     grid-area: sound;
+  }
+
+  .boxDetail {
+    grid-area: details;
   }
 
   .boxSimilar {
@@ -28,9 +29,10 @@
     app-box-list {
       overflow: hidden auto;
     }
+
+    h2 {
+      text-align: center;
+    }
   }
 
-  .boxDetail {
-    grid-area: details;
-  }
 }

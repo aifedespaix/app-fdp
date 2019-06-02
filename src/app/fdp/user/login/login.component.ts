@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
-import {Apollo} from 'apollo-angular';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {SnackbarComponent} from '../../snackbar/snackbar.component';
 import {UserService} from '../user.service';
-import {login} from '../gql/auth.queries.gql';
-import {Auth, LoginInput} from '../../../graphql.schema';
-import {ApolloQueryResult} from 'apollo-client';
+import {LoginInput} from '../../../graphql.schema';
 
 class UserLogin {
   login: string;
@@ -28,7 +25,6 @@ export class LoginComponent {
   public showPassword;
 
   constructor(
-    private apollo: Apollo,
     private snackBar: MatSnackBar,
     private userService: UserService,
     private dialogRef: MatDialogRef<null>,
@@ -48,21 +44,29 @@ export class LoginComponent {
       password: this.userLoginModel.password,
     } as LoginInput)
       .subscribe(() => {
-          success = true;
-          this.closeLogin();
-        },
-        () => {
         },
         () => {
           loginSub.unsubscribe();
           this.snackBar.openFromComponent(SnackbarComponent, {
             duration: 5000,
             data: {
-              icon: success ? 'done' : 'error',
-              color: success ? '' : 'warn',
-              message: success ? 'Vous êtes connecté' : 'Identifiants incorrects',
+              icon: 'error',
+              color: 'warn',
+              message: 'Identifiants incorrects',
             },
           });
+        },
+        () => {
+          this.snackBar.openFromComponent(SnackbarComponent, {
+            duration: 5000,
+            data: {
+              icon: 'done',
+              color: '',
+              message: 'Vous êtes connecté',
+            },
+          });
+          loginSub.unsubscribe();
+          this.closeLogin();
         },
       );
   }
