@@ -2,7 +2,8 @@
 @import "animations";
 
 /** Global styles **/
-body, html {
+body,
+html {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -19,7 +20,8 @@ body, html {
     &-veryVisible {
       font-size: 2em;
       color: #fff;
-      text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+      text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
+        1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
     }
   }
 
@@ -28,6 +30,6 @@ body, html {
   }
 
   &Pulsable:hover {
-    animation: pulse .2s;
+    animation: pulse 0.2s;
   }
 }

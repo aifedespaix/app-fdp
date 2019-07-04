@@ -24,7 +24,7 @@
     "aifedespaix"
   ],
   "author": "aifedespaix",
-  "license": "MIT",
+  "license": "FDP",
   "dependencies": {
     "@angular/animations": "^7.2.4",
     "@angular/cdk": "^7.3.2",
@@ -80,7 +80,6 @@
     "phantomjs-prebuilt": "^2.1.16",
     "protractor": "^5.4.2",
     "ts-loader": "^5.3.3",
-    "ts-node": "^8.0.2",
     "tslint": "^5.12.1",
     "typescript": "3.2.4",
     "webpack": "^4.29.4",
