@@ -11,7 +11,7 @@ import {HeadService} from './layout/head/head.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild('sidenav') private sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: true }) private sidenav: MatSidenav;
 
   constructor(
     public responsiveService: ResponsiveService,

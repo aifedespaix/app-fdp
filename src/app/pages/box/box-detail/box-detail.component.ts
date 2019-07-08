@@ -12,7 +12,7 @@ import {ApolloQueryResult} from 'apollo-client';
   styleUrls: ['./box-detail.component.scss'],
 })
 export class BoxDetailComponent implements OnInit, OnDestroy {
-  @ViewChild(BoxListComponent) listComponent: BoxListComponent;
+  @ViewChild(BoxListComponent, { static: true }) listComponent: BoxListComponent;
   public boxSub;
   @Input() public box: Box;
 

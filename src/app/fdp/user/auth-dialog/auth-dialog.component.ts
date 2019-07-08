@@ -7,7 +7,7 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatTabGroup} from '@angular/material';
   styleUrls: ['./auth-dialog.component.scss'],
 })
 export class AuthDialogComponent implements OnInit {
-  @ViewChild('tabs') tabGroup: MatTabGroup;
+  @ViewChild('tabs', { static: true }) tabGroup: MatTabGroup;
   @HostBinding('class.mobile-modaleContent') private readonly mobile = true;
 
   constructor(

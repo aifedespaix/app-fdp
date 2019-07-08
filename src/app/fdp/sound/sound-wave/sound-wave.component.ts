@@ -21,14 +21,14 @@ export class SoundWaveComponent implements OnInit {
   private audioBuffer: AudioBuffer;
   private source: AudioBufferSourceNode;
 
-  @ViewChild('svg') private svg: ElementRef<SVGElement>;
+  @ViewChild('svg', { static: true }) private svg: ElementRef<SVGElement>;
 
-  @ViewChild('wave') private wave: ElementRef<SVGRectElement>;
-  @ViewChild('waveReaded') private waveReaded: ElementRef<SVGRectElement>;
-  @ViewChild('waveSlice') private waveSlice: ElementRef<SVGRectElement>;
+  @ViewChild('wave', { static: true }) private wave: ElementRef<SVGRectElement>;
+  @ViewChild('waveReaded', { static: true }) private waveReaded: ElementRef<SVGRectElement>;
+  @ViewChild('waveSlice', { static: true }) private waveSlice: ElementRef<SVGRectElement>;
 
-  @ViewChild('sliceFrom') private sliceFrom: ElementRef<SVGRectElement>;
-  @ViewChild('sliceTo') private sliceTo: ElementRef<SVGRectElement>;
+  @ViewChild('sliceFrom', { static: true }) private sliceFrom: ElementRef<SVGRectElement>;
+  @ViewChild('sliceTo', { static: true }) private sliceTo: ElementRef<SVGRectElement>;
 
   private actualSlicer: number;
 

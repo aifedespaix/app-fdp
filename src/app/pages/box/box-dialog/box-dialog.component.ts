@@ -15,7 +15,7 @@ export class BoxDialogComponent implements OnInit {
   public thumbnailForm: FormControl;
   private _sound: FileCreateInput;
 
-  @ViewChild('tabs') tabGroup: MatTabGroup;
+  @ViewChild('tabs', { static: false }) tabGroup: MatTabGroup;
   @HostBinding('class.mobile-modaleContent') private readonly mobile = true;
 
   constructor(

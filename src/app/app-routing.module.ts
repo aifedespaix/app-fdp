@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
   {
     path: 'box',
-    loadChildren: './pages/box/box.module#BoxModule'
+    loadChildren: () => import('./pages/box/box.module').then(m => m.BoxModule)
   },
   {
     path: '',
