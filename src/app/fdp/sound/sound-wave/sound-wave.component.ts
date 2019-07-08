@@ -14,21 +14,13 @@ export class SoundWaveComponent implements OnInit {
   private readonly FROM = 1;
   private readonly TO = 2;
 
-  @Input() file: File;
+  @Input() private _file: File;
+
   @Output() changeFrom = new EventEmitter<number>();
   @Output() changeTo = new EventEmitter<number>();
 
   private audioBuffer: AudioBuffer;
   private source: AudioBufferSourceNode;
-
-  @ViewChild('svg', { static: true }) private svg: ElementRef<SVGElement>;
-
-  @ViewChild('wave', { static: true }) private wave: ElementRef<SVGRectElement>;
-  @ViewChild('waveReaded', { static: true }) private waveReaded: ElementRef<SVGRectElement>;
-  @ViewChild('waveSlice', { static: true }) private waveSlice: ElementRef<SVGRectElement>;
-
-  @ViewChild('sliceFrom', { static: true }) private sliceFrom: ElementRef<SVGRectElement>;
-  @ViewChild('sliceTo', { static: true }) private sliceTo: ElementRef<SVGRectElement>;
 
   private actualSlicer: number;
 
@@ -36,6 +28,15 @@ export class SoundWaveComponent implements OnInit {
   private height: number;
   private readonly smoothing: number;
   private drag: boolean;
+
+  @ViewChild('svg', {static: true}) private svg: ElementRef<SVGElement>;
+
+  @ViewChild('wave', {static: true}) private wave: ElementRef<SVGRectElement>;
+  @ViewChild('waveReaded', {static: true}) private waveReaded: ElementRef<SVGRectElement>;
+  @ViewChild('waveSlice', {static: true}) private waveSlice: ElementRef<SVGRectElement>;
+
+  @ViewChild('sliceFrom', {static: true}) private sliceFrom: ElementRef<SVGRectElement>;
+  @ViewChild('sliceTo', {static: true}) private sliceTo: ElementRef<SVGRectElement>;
 
   constructor(
     private readonly http: HttpClient,
@@ -65,7 +66,7 @@ export class SoundWaveComponent implements OnInit {
       e.stopPropagation();
     });
 
-    this.http.get(this.file.url, {responseType: 'blob'})
+    this.http.get(this._file.url, {responseType: 'blob'})
       .subscribe(async (blob: Blob) => {
         this.initWaveViewers();
         const arrayBuffer = await new Response(blob).arrayBuffer();
@@ -84,7 +85,8 @@ export class SoundWaveComponent implements OnInit {
       });
   }
 
-  @HostListener('window:mouseup', ['$event']) mouseUp() {
+  @HostListener('window:mouseup')
+  mouseUp() {
     if (this.drag) {
       this.drag = false;
       this.actualSlicer = null;
@@ -92,7 +94,8 @@ export class SoundWaveComponent implements OnInit {
     }
   }
 
-  @HostListener('window:mousemove', ['$event']) mouseMove(e: MouseEvent) {
+  @HostListener('window:mousemove', ['$event.target'])
+  mouseMove(e: MouseEvent) {
     if (this.drag) {
       let position: number;
       const widowLeft = this.elementRef.nativeElement.getBoundingClientRect().left;
@@ -212,7 +215,7 @@ export class SoundWaveComponent implements OnInit {
       const newFrom = this.fromAudioToPhysicalValue(value).toString();
       this.sliceFrom.nativeElement.setAttribute('x', newFrom.toString());
       this.updateSlicer();
-      this.changeFrom.emit(this.audioSliceFrom);
+      // this.changeFrom.emit(this.audioSliceFrom);
     }
   }
 
@@ -225,7 +228,7 @@ export class SoundWaveComponent implements OnInit {
       const newTo = this.fromAudioToPhysicalValue(value);
       this.sliceTo.nativeElement.setAttribute('x', newTo.toString());
       this.updateSlicer();
-      this.changeTo.emit(this.audioSliceTo);
+      // this.changeTo.emit(this.audioSliceTo);
     }
   }
 

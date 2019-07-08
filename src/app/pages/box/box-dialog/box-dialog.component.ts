@@ -17,7 +17,7 @@ export class BoxDialogComponent implements OnInit {
   private _sound: FileCreateInput;
 
   @ViewChild('tabs', { static: false }) tabGroup: MatTabGroup;
-  @HostBinding('class.mobile-modaleContent') private readonly mobile = true;
+  @HostBinding('class.mobile-modaleContent') public readonly mobile = true;
 
   constructor(
     private dialogRef: MatDialogRef<BoxDialogComponent>,

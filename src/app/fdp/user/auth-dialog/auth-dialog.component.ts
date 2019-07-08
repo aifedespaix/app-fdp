@@ -9,7 +9,7 @@ import { MatTabGroup } from '@angular/material/tabs';
 })
 export class AuthDialogComponent implements OnInit {
   @ViewChild('tabs', { static: true }) tabGroup: MatTabGroup;
-  @HostBinding('class.mobile-modaleContent') private readonly mobile = true;
+  @HostBinding('class.mobile-modaleContent') public readonly mobile = true;
 
   constructor(
     private dialogRef: MatDialogRef<AuthDialogComponent>,

@@ -3,11 +3,11 @@
   <ng-container *ngIf="file then audioTpl else fileTpl"></ng-container>
 
   <ng-template #fileTpl>
-    <app-file-upload (fileSaved)="setSound($event)" [fileTypes]="['audio/*']" label="Son"></app-file-upload>
+    <app-file-upload (fileSaved)="setSound($event)" [fileTypes]="['audio/*']" _label="Son"></app-file-upload>
   </ng-template>
 
   <ng-template #audioTpl>
-    <app-sound-wave [file]="file" (changeFrom)="updateFrom($event)" (changeTo)="updateTo($event)"></app-sound-wave>
+    <app-sound-wave [_file]="file" (changeFrom)="updateFrom($event)" (changeTo)="updateTo($event)"></app-sound-wave>
     <button>
       <mat-icon mat-list-icon (click)="sliceAudio()">add</mat-icon>
     </button>

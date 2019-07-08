@@ -14,7 +14,7 @@ export class FileUploadComponent {
   public file: FileSaved;
   private _loading: boolean;
   private _error: string;
-  @Input() private label: string;
+  @Input() private _label: string;
   @Input() private fileTypes: string[];
 
   @Output() fileSaved = new EventEmitter<FileSaved | File>();
@@ -65,4 +65,7 @@ export class FileUploadComponent {
     return this._error;
   }
 
+  get label(): string {
+    return this._label;
+  }
 }

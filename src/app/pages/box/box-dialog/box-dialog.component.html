@@ -7,7 +7,7 @@
 
   <mat-step editable="false">
     <ng-template matStepLabel>Miniature</ng-template>
-    <app-file-upload (fileSaved)="setThumbnail($event)" [fileTypes]="['image/*']" label="Miniature"></app-file-upload>
+    <app-file-upload (fileSaved)="setThumbnail($event)" [fileTypes]="['image/*']" _label="Miniature"></app-file-upload>
   </mat-step>
 
   <mat-step editable="false">
