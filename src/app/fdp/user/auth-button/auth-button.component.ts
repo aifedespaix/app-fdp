@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthDialogComponent} from '../auth-dialog/auth-dialog.component';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {UserService} from '../user.service';
 
 @Component({

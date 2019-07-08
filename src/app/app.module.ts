@@ -8,7 +8,7 @@ import {PLATFORM_ID, APP_ID, Inject} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import {LayoutModule} from './layout/layout.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import {MainModule} from './main/main.module';
 import {GraphQLModule} from './fdp/graphql/graphql.module';
 

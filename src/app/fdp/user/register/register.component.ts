@@ -1,5 +1,6 @@
 import {Component, OnDestroy} from '@angular/core';
-import {MatDialogRef, MatSnackBar} from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {UserService} from '../user.service';
 import {SnackbarComponent} from '../../snackbar/snackbar.component';
 import {RegisterInput} from '../../../graphql.schema';

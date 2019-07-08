@@ -3,16 +3,15 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {AuthDialogComponent} from './auth-dialog/auth-dialog.component';
 import {AuthButtonComponent} from './auth-button/auth-button.component';
-import {
-  MatButtonModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatMenuModule, MatSnackBarModule,
-  MatTabsModule,
-  MatTooltipModule,
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';

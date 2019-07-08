@@ -4,15 +4,13 @@ import {BoxIndexComponent} from './box-index/box-index.component';
 import {BoxRoutingModule} from './box.routing.module';
 import {FileModule} from '../../fdp/file/file.module';
 import {BoxDialogComponent} from './box-dialog/box-dialog.component';
-import {
-  MatButtonModule,
-  MatDialogModule,
-  MatIconModule,
-  MatInputModule,
-  MatProgressSpinnerModule,
-  MatStepperModule,
-  MatTabsModule,
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
 import {BoxService} from './box.service';
 import {BoxSoundComponent} from './box-sound/box-sound.component';
 import {SoundModule} from '../../fdp/sound/sound.module';

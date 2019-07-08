@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSidenav} from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import {ResponsiveService} from './layout/responsive.service';
 import {Router} from '@angular/router';
 import {UserService} from './fdp/user/user.service';

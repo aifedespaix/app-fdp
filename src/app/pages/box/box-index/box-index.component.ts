@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {BoxDialogComponent} from '../box-dialog/box-dialog.component';
 import {Box} from '../../../graphql.schema';
 import {BoxService} from '../box.service';

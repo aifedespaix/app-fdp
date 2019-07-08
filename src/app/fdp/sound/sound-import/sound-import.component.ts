@@ -1,9 +1,7 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {Auth, File, FileAudioSliceInput} from '../../../graphql.schema';
-import {OnInit} from '@angular/core/src/metadata/lifecycle_hooks';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {File, FileAudioSliceInput} from '../../../graphql.schema';
 import {SoundService} from '../sound.service';
 import {ApolloQueryResult} from 'apollo-client';
-import {fileAudioSlice} from '../gql/sound.mutations.gql';
 
 @Component({
   selector: 'app-sound-import',
