@@ -1,0 +1,13 @@
+<form>
+  <mat-form-field>
+    <input matInput placeholder="Vidéo Youtube" name="Vidéo Youtube" type="text" [formControl]="url">
+  </mat-form-field>
+  <mat-error *ngIf="!isIdValid">
+    L'url est éronnée
+  </mat-error>
+</form>
+<div>
+</div>
+<div *ngIf="isIdValid">
+  {{youtube}}
+</div>
