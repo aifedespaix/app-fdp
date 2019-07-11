@@ -8,7 +8,7 @@ import {ResponsiveService} from '../responsive.service';
 })
 export class HeaderComponent {
 
-  @Output() open = new EventEmitter();
+  @Output() openSidenav = new EventEmitter();
 
   constructor(public readonly responsiveService: ResponsiveService) {
   }

@@ -2,7 +2,14 @@
 
   <mat-step [stepControl]="soundForm" editable="false">
     <ng-template matStepLabel>Son</ng-template>
-    <app-sound-import></app-sound-import>
+    <mat-tab-group>
+      <mat-tab label="Youtube">
+        <app-sound-import-youtube></app-sound-import-youtube>
+      </mat-tab>
+      <mat-tab label="Importer">
+        <app-sound-import></app-sound-import>
+      </mat-tab>
+    </mat-tab-group>
   </mat-step>
 
   <mat-step editable="false">
@@ -20,3 +27,4 @@
   </mat-step>
 
 </mat-vertical-stepper>
+<button (click)="close()"></button>

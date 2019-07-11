@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {IndexComponent} from './index/index.component';
 import {MainRoutingModule} from './main.routing.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -10,7 +10,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
   imports: [
     CommonModule,
     MainRoutingModule,
-    DragDropModule
-  ]
+    DragDropModule,
+  ],
 })
-export class MainModule { }
+export class MainModule {
+}

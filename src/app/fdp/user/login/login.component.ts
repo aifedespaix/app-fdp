@@ -39,7 +39,6 @@ export class LoginComponent {
   }
 
   public login() {
-    let success = false;
     const loginSub = this.userService.login({
       login: this.userLoginModel.login,
       password: this.userLoginModel.password,
@@ -50,21 +49,13 @@ export class LoginComponent {
           loginSub.unsubscribe();
           this.snackBar.openFromComponent(SnackbarComponent, {
             duration: 5000,
-            data: {
-              icon: 'error',
-              color: 'warn',
-              message: 'Identifiants incorrects',
-            },
+            data: {icon: 'error', color: 'warn', message: 'Identifiants incorrects'},
           });
         },
         () => {
           this.snackBar.openFromComponent(SnackbarComponent, {
             duration: 5000,
-            data: {
-              icon: 'done',
-              color: '',
-              message: 'Vous êtes connecté',
-            },
+            data: {icon: 'done', color: '', message: 'Vous êtes connecté'},
           });
           loginSub.unsubscribe();
           this.closeLogin();

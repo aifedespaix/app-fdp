@@ -16,7 +16,7 @@ export class BoxService {
   public getBox(id) {
     return this.apollo.query({
       query: boxQuery,
-      variables: {where: {id: id} as BoxWhereUniqueInput},
+      variables: {where: {id} as BoxWhereUniqueInput},
     });
   }
 }

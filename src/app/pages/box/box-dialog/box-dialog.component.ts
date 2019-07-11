@@ -45,12 +45,12 @@ export class BoxDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  setThumbnail(thumbnail: File) {
+  public setThumbnail(thumbnail: File) {
     this.thumbnailForm.patchValue(thumbnail);
     // this.boxCreate.thumbnail.connect = {id: thumbnail.id};
   }
 
-  close() {
+  public close() {
     this.dialogRef.close();
   }
 

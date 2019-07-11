@@ -1,5 +1,5 @@
 <app-box-list></app-box-list>
 
-<button (click)="openAddBox()" mat-fab>
+<button (click)="openAddBox()" mat-fab *ngIf="userService.isLogged">
   <mat-icon class="mat-18">add</mat-icon>
 </button>

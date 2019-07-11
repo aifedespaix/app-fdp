@@ -4,6 +4,7 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://192.168.1.38:3000',
+  youtubeApiKey: 'AIzaSyDX8fW4rlsn15mErAap13UMxh8Tmt4lU6s',
 };
 
 /*

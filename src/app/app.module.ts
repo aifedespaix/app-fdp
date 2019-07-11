@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -12,18 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MainModule} from './main/main.module';
 import {GraphQLModule} from './fdp/graphql/graphql.module';
 
-export class MyHammerConfig extends HammerGestureConfig  {
-  overrides = <any>{
-    pan: { direction: Hammer.DIRECTION_ALL },
-    swipe: { direction: Hammer.DIRECTION_VERTICAL },
-  };
-}
-
 @NgModule({
-  providers: [ {
-    provide: HAMMER_GESTURE_CONFIG,
-    useClass: MyHammerConfig
-  }],
   imports: [
     AppRoutingModule,
     BrowserModule.withServerTransition({appId: 'app-fdp'}),
@@ -39,10 +28,11 @@ export class MyHammerConfig extends HammerGestureConfig  {
     AppComponent,
   ],
   bootstrap: [AppComponent],
+  providers: [],
 })
 export class AppModule {
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId,
     @Inject(APP_ID) private appId: string
   ) {
     const platform = isPlatformBrowser(platformId) ? 'in the browser' : 'on the server';

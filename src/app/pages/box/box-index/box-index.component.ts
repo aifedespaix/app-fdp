@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {BoxDialogComponent} from '../box-dialog/box-dialog.component';
 import {Box} from '../../../graphql.schema';
 import {BoxService} from '../box.service';
 import {HeadService} from '../../../layout/head/head.service';
+import {UserService} from '../../../fdp/user/user.service';
 
 @Component({
   selector: 'app-box-index',
@@ -16,6 +17,7 @@ export class BoxIndexComponent implements OnInit {
     private readonly boxDialog: MatDialog,
     private readonly boxService: BoxService,
     private readonly headService: HeadService,
+    public readonly userService: UserService,
   ) {
   }
 
@@ -28,6 +30,5 @@ export class BoxIndexComponent implements OnInit {
   openAddBox() {
     this.boxDialog.open(BoxDialogComponent, {data: false, panelClass: 'mobile-modale'});
   }
-
 
 }

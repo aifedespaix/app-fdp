@@ -2,11 +2,11 @@
 
   <mat-sidenav #sidenav disableClose class="sidenav"
                (keydown.escape)="toggleSidenav(false)" [mode]="sidenavMode()" [position]="sidenavPosition()" >
-    <app-sidenav (close)="toggleSidenav(false)" class="mobile-sidenav"></app-sidenav>
+    <app-sidenav (closeSidenav)="toggleSidenav(false)" class="mobile-sidenav"></app-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content class="content mobile-content">
-    <app-header (open)="toggleSidenav(true)"></app-header>
+    <app-header (openSidenav)="toggleSidenav(true)"></app-header>
     <div class="main">
       <router-outlet></router-outlet>
     </div>

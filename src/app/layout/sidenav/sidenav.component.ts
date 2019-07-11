@@ -11,14 +11,14 @@ import {LayoutService} from '../layout.service';
 })
 export class SidenavComponent implements OnInit {
 
-  @Output() close = new EventEmitter();
+  @Output() closeSidenav = new EventEmitter();
   public menu: Menu;
   public activeRoute: string;
 
   constructor(
     private readonly layoutService: LayoutService,
     private readonly router: Router,
-    @Inject(PLATFORM_ID) private readonly platformId: Object) {
+    @Inject(PLATFORM_ID) private readonly platformId) {
 
     this.menu = new Menu();
 

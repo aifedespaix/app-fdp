@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fdp-app": {
+    "app-fdp": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -85,21 +85,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fdp-app:build"
+            "browserTarget": "app-fdp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fdp-app:production"
+              "browserTarget": "app-fdp:production"
             },
             "dev": {
-              "browserTarget": "fdp-app:build:dev"
+              "browserTarget": "app-fdp:build:dev"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fdp-app:build"
+            "browserTarget": "app-fdp:build"
           }
         },
         "test": {
@@ -109,6 +109,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "src/scss/custom-theme.scss",
               "src/scss/styles.scss"
@@ -118,11 +122,7 @@
                 "src/scss"
               ]
             },
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -138,6 +138,18 @@
             ]
           }
         },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "app-fdp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app-fdp:serve:production"
+            }
+          }
+        },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
@@ -149,38 +161,25 @@
                 "src/scss"
               ]
             }
-          }
-        }
-      }
-    },
-    "fdp-app-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "fdp-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "fdp-app:serve:production"
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
     }
   },
-  "defaultProject": "fdp-app"
+  "defaultProject": "app-fdp"
 }

@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   app:
-    container_name: fdp-app-${NODE_ENV}
+    container_name: app-fdp-${NODE_ENV}
     build:
       context: .
       dockerfile: Dockerfile

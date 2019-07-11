@@ -12,14 +12,14 @@ export class SoundService {
   public sound: Sound;
   public isPlaying: boolean;
 
-  private _title: String;
+  private _title: string;
   private readonly _audioContext: AudioContext;
   private readonly _audioHTML: HTMLAudioElement;
   private _speed: number;
   private _volume: number;
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId,
     private readonly apollo: Apollo,
   ) {
     this.sound = null;
@@ -45,7 +45,7 @@ export class SoundService {
     }
   }
 
-  public load(sound: Sound, title: String) {
+  public load(sound: Sound, title: string) {
     if (!this._audioHTML) {
       return false;
     }
@@ -114,7 +114,7 @@ export class SoundService {
     this._audioHTML.playbackRate = this._speed / 100;
   }
 
-  get title(): String {
+  get title(): string {
     return this._title;
   }
 
