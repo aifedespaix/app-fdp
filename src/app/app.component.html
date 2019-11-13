@@ -1,23 +1,20 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>Third Line</span>
-      <span class="example-spacer"></span>
-      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
-      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
-      <div class="example-sidenav-content">
-        <button type="button" mat-button (click)="drawer.toggle()">
-          Toggle sidenav
-        </button>
-      </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<header>
+  <h1>titre</h1>
+</header>
 
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
-</mat-drawer-container>
+<nav>
+  <a href="">🏠</a>
+  <a href="">✒</a>
+</nav>
+
+<div>
+  <main role="main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <address>
+      Contact <a href="mailto:me@htmlg.com">me</a>
+    </address>
+  </footer>
+</div>
