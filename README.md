@@ -14,6 +14,10 @@ ng g s model/[MODEL]
 ng g s services/[SERVICE]
 ```
 
+## Expose Local
+ng serve --host 0.0.0.0
+
+
 # AppFdp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
