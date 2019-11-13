@@ -1,14 +1,9 @@
-<header>
-  <h1>titre</h1>
-</header>
+<app-header class="bg-main text-main"></app-header>
+<app-nav></app-nav>
 
-<nav>
-  <a href="">🏠</a>
-  <a href="">✒</a>
-</nav>
-
-<div>
+<div class="content" [class]="colorService.theme">
   <main role="main">
+    {{responsiveService.isLargeScreen}}
     <router-outlet></router-outlet>
   </main>
 

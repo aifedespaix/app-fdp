@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+@mixin theme-color-grabber($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  // For debug
+  //@debug $foreground;
+  //@debug map-get($foreground, base);
+
+  .bg-main {background-color: map-get($background, background);}
+  .bg-primary {background-color: mat-color($primary);}
+  .bg-accent {background-color: mat-color($accent);}
+  .bg-warn {background-color: mat-color($warn);}
+
+  .text-main {color: map-get($foreground, base);}
+  .text-primary {color: mat-color($primary);}
+  .text-accent {color: mat-color($accent);}
+  .text-warn {color: mat-color($warn);}
+}

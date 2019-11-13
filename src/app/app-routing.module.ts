@@ -9,6 +9,7 @@ const routes: Routes = [
     data: {
       icon: 'home',
       name: 'Accueil',
+      index: 1,
     },
   },
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
     data: {
       icon: 'keyboard',
       name: 'Cours',
+      index: 2,
     },
   },
   {
@@ -25,6 +27,7 @@ const routes: Routes = [
     data: {
       icon: 'chrome_reader_mode',
       name: 'Blog',
+      index: 3,
     },
   },
   {

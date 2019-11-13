@@ -1,5 +1,27 @@
-:root {
-  width: 100vw;
-  height: 100vh;
+@import "theme";
+@import "responsive";
 
+:host {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: "content nav" "header header";
+
+  @include largeScreen {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "header header" "nav content" ;
+  }
+}
+
+app-header {
+  grid-area: header;
+}
+
+app-nav {
+  grid-area: nav;
+}
+
+.content {
+  grid-area: content;
 }

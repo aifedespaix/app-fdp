@@ -1,0 +1,8 @@
+<nav>
+  <ng-container *ngFor="let route of routes">
+    <a matRipple [routerLink]="route.url">
+      <mat-icon class="mat-18">{{route.icon}}</mat-icon>
+      <span>{{route.name}}</span>
+    </a>
+  </ng-container>
+</nav>

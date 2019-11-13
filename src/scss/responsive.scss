@@ -1,0 +1,4 @@
+
+@mixin largeScreen {
+  @media (min-aspect-ratio: 1/1) { @content; }
+}

@@ -1,0 +1,17 @@
+@import 'material-theme.scss';
+
+nav {
+  display: flex;
+  flex-direction: column;
+  margin: .2rem;
+}
+
+a {
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+
+  & span {
+    padding-left: .5rem;
+  }
+}
