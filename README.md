@@ -9,6 +9,10 @@ ng g m pages/[PAGE] --route=[PAGE] --module=[PARENT]
 ng g m model/[MODEL]
 ng g s model/[MODEL]
 ```
+## New Global service
+```
+ng g s services/[SERVICE]
+```
 
 # AppFdp
 
