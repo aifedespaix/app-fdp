@@ -1,17 +1,10 @@
-@import 'material-theme.scss';
-
-nav {
-  display: flex;
-  flex-direction: column;
-  margin: .2rem;
-}
+@import "responsive";
+@import "layout";
 
 a {
-  padding: .5rem;
-  display: flex;
-  align-items: center;
+  width: $nav-width;
 
-  & span {
-    padding-left: .5rem;
+  &.active-link {
+    background-color: rgba(0,0,0,.05);
   }
 }

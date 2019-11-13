@@ -1,8 +1,33 @@
 <app-header class="bg-main text-main"></app-header>
-<app-nav></app-nav>
+<app-nav
+  class="bg-main text-main flex items-end"
+  [ngClass]="layoutService.isMenuVisible || responsiveService.isLargeScreen ? 'flex' : 'hidden'"
+></app-nav>
 
-<div class="content" [class]="colorService.theme">
+<div class="content overflow-auto">
   <main role="main">
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>
+    <h3>{{responsiveService.isLargeScreen}}</h3>d
     {{responsiveService.isLargeScreen}}
     <router-outlet></router-outlet>
   </main>

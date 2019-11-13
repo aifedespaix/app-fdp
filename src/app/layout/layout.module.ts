@@ -14,6 +14,7 @@ import { ThemeComponent } from './header/actions/theme/theme.component';
 import { AuthComponent } from './header/actions/auth/auth.component';
 import {RouterModule} from '@angular/router';
 import {MatRippleModule} from '@angular/material';
+import {LayoutService} from './layout.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,9 @@ import {MatRippleModule} from '@angular/material';
     HeaderComponent,
     NavComponent,
   ],
+  providers: [
+    LayoutService,
+  ]
 })
 export class LayoutModule {
 }

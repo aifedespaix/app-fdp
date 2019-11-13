@@ -1,8 +1,14 @@
-<nav>
-  <ng-container *ngFor="let route of routes">
-    <a matRipple [routerLink]="route.url">
+<nav class="flex" [ngClass]="responsiveService.isLargeScreen ? 'flex-col' : 'flex-col-reverse'">
+    <a
+      *ngFor="let route of routes"
+      class="text-main p-4 flex items-center"
+      [ngClass]="responsiveService.isLargeScreen ? 'flex-row' : 'flex-row-reverse'"
+      matRipple
+      [routerLink]="route.url"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{exact: !route.url}"
+    >
       <mat-icon class="mat-18">{{route.icon}}</mat-icon>
-      <span>{{route.name}}</span>
+      <span class="m-x-2">{{route.name}}</span>
     </a>
-  </ng-container>
 </nav>

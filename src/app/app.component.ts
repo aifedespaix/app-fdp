@@ -2,6 +2,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {ResponsiveService} from './responsive/responsive.service';
 import {ColorService} from './color/color.service';
 import {ThemeEnum} from './color/theme.enum';
+import {LayoutService} from './layout/layout.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   constructor(
     public readonly responsiveService: ResponsiveService,
     public readonly colorService: ColorService,
+    public readonly layoutService: LayoutService,
   ) {
   }
 

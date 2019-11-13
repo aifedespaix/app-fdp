@@ -36,7 +36,6 @@ export class ResponsiveService {
   private verifyScreenRatioChange() {
     const isActuallyLargeScreen = this.calcIsLargeScreen();
     if (this._isLargeScreen !== isActuallyLargeScreen) {
-      console.log('change');
       this._isLargeScreen = isActuallyLargeScreen;
     }
   }

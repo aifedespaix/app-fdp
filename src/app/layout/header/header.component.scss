@@ -1,9 +1,7 @@
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+@import "responsive";
 
-app-logo {
-  display: flex;
+header {
+  @include largeScreen {
+    flex-direction: row;
+  }
 }
