@@ -7,6 +7,7 @@
       [routerLink]="route.url"
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{exact: !route.url}"
+      (click)="layoutService.toggleMenu()"
     >
       <mat-icon class="mat-18">{{route.icon}}</mat-icon>
       <span class="m-x-2">{{route.name}}</span>

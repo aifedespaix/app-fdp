@@ -4,31 +4,12 @@
   [ngClass]="layoutService.isMenuVisible || responsiveService.isLargeScreen ? 'flex' : 'hidden'"
 ></app-nav>
 
-<div class="content overflow-auto">
+<div
+  class="content overflow-auto"
+  [ngClass]="{blur: layoutService.isMenuVisible && !responsiveService.isLargeScreen}"
+  (click)="layoutService.isMenuVisible && !responsiveService.isLargeScreen ? layoutService.toggleMenu() : null"
+>
   <main role="main">
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>
-    <h3>{{responsiveService.isLargeScreen}}</h3>d
-    {{responsiveService.isLargeScreen}}
     <router-outlet></router-outlet>
   </main>
 

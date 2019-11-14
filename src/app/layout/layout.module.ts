@@ -15,6 +15,7 @@ import { AuthComponent } from './header/actions/auth/auth.component';
 import {RouterModule} from '@angular/router';
 import {MatRippleModule} from '@angular/material';
 import {LayoutService} from './layout.service';
+import {SeoModule} from '../seo/seo.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {LayoutService} from './layout.service';
     MatIconModule,
     RouterModule,
     MatRippleModule,
+    SeoModule,
   ],
   exports: [
     HeaderComponent,
