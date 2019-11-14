@@ -8,14 +8,14 @@ export class ResponsiveService {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    @Inject('Window') private readonly window: Window,
   ) {
-    this._isLargeScreen = this.calcIsLargeScreen();
-
     if (isPlatformBrowser(platformId)) {
-      this.window.onresize = () => {
+      this._isLargeScreen = this.calcIsLargeScreen();
+      this.nativeWindow.onresize = () => {
         this.verifyScreenRatioChange();
       };
+    } else {
+      this._isLargeScreen = false;
     }
   }
 
@@ -23,14 +23,14 @@ export class ResponsiveService {
 
   /**
    * angular seems read this on every window.onresize
-   * todo : change this comportment
+   * todo : if perf problem, do something lol
    */
   get isLargeScreen(): boolean {
     return this._isLargeScreen;
   }
 
   private calcIsLargeScreen() {
-    return this.window.innerWidth > this.window.innerHeight;
+    return this.nativeWindow.innerWidth >= this.nativeWindow.innerHeight;
   }
 
   private verifyScreenRatioChange() {
@@ -38,6 +38,10 @@ export class ResponsiveService {
     if (this._isLargeScreen !== isActuallyLargeScreen) {
       this._isLargeScreen = isActuallyLargeScreen;
     }
+  }
+
+  private get nativeWindow() {
+    return window;
   }
 
 }

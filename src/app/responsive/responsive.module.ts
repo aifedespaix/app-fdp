@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {ResponsiveService} from './responsive.service';
 
 
@@ -8,7 +8,6 @@ import {ResponsiveService} from './responsive.service';
   imports: [],
   providers: [
     ResponsiveService,
-    {provide: 'Window', useValue: window},
   ],
 })
 export class ResponsiveModule { }

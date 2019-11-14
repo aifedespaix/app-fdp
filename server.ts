@@ -19,6 +19,7 @@ import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
 import {join} from 'path';
+import {RESPONSE} from '@nguniversal/express-engine/tokens';
 
 // Express server
 const app = express();
@@ -33,8 +34,8 @@ const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModule
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
   providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
+    provideModuleMap(LAZY_MODULE_MAP),
+  ],
 }));
 
 app.set('view engine', 'html');
@@ -44,12 +45,28 @@ app.set('views', DIST_FOLDER);
 // app.get('/api/**', (req, res) => { });
 // Serve static files from /browser
 app.get('*.*', express.static(DIST_FOLDER, {
-  maxAge: '1y'
+  maxAge: '1y',
 }));
 
 // All regular routes use the Universal engine
-app.get('*', (req, res) => {
-  res.render('index', { req });
+app.get('*', async (req, res) => {
+  res.render('index', {
+    req, res, extraProviders: [{
+      provide: RESPONSE,
+      useValue: res,
+    }],
+  }, (error: Error, html: string) => {
+    if (error) {
+      console.log(`Error generating html for req ${req.url}`, error);
+      return (req as any).next(error);
+    }
+    res.send(html);
+    if (!error) {
+      if (res.statusCode === 200) {
+        // toCache(req.url, html);
+      }
+    }
+  });
 });
 
 // Start up the Node server
