@@ -3,9 +3,12 @@
 <ng-template #logged>
 
   <button
-    class="profile"
-    mat-button mat-mini-fab
-    [matMenuTriggerFor]="userActions">
+    mat-button
+    mat-mini-fab
+    [matMenuTriggerFor]="userActions"
+    matTooltipPosition="before"
+    matTooltip="Mes actions"
+  >
   </button>
 
   <mat-menu #userActions="matMenu">
@@ -14,14 +17,14 @@
       (click)="authService.logout()"
     >
       <mat-icon>person</mat-icon>
-      Profil
+      <span>Profil</span>
     </button>
     <button
       mat-menu-item
       (click)="authService.logout()"
     >
       <mat-icon>exit_to_app</mat-icon>
-      Se deconnecter
+      <span>Se deconnecter</span>
     </button>
   </mat-menu>
 
@@ -31,7 +34,9 @@
   <button
     mat-icon-button
     [matMenuTriggerFor]="menu"
-    aria-label="Changer de theme"
+    aria-label="Authentification"
+    matTooltipPosition="before"
+    matTooltip="Authentification"
   >
     <mat-icon>person</mat-icon>
   </button>

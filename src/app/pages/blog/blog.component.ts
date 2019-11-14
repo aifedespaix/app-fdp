@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {ArticleModelService} from '../../model/article/article-model.service';
 import {Subscription} from 'rxjs';
 import {ArticleType} from '../../model/graphql';
+import {getArticlesMock} from '../../model/article/tests/article.mocks';
 
 @Component({
   selector: 'app-blog',
@@ -28,7 +29,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.headService.setHead(
       new Metas(
-        'Un blog pour apprendre à développer de beaux sites webs dynamiques',
+        'Un blog technique pour apprendre à dev ou comprendre des trucs',
         'Blog',
         // tslint:disable-next-line:max-line-length
         'Un blog technique pour apprendre plein de choses dans le domaine du web moderne. Du javascript, nodejs, typescript, tu comprendras tout !',
@@ -40,7 +41,10 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.articles$ = this.articleModelService.articles({first: 10})
       .subscribe((articles) => {
         this.articles = articles;
-      });
+      },
+        (err) => {
+          this.articles = getArticlesMock();
+        });
   }
 
   ngOnDestroy(): void {

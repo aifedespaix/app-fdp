@@ -38,7 +38,6 @@ export class LoginComponent {
           });
           loginSub.unsubscribe();
           this.closeLogin();
-
         },
         () => {
           this.snackBar.openFromComponent(SnackbarComponent, {

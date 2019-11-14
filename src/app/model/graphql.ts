@@ -55,6 +55,7 @@ export class ArticleType {
     updatedAt: DateTime;
     title: string;
     content: string;
+    thumbnail: string;
     author: UserType;
     likes?: LikeType[];
     tags?: TagType[];

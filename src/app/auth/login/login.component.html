@@ -36,8 +36,16 @@
   </mat-form-field>
 
   <div class="submitButtons">
-    <button (click)="closeLogin()" mat-flat-button color="warn" class="btn btn-success" matTooltipPosition="below"
-            matTooltip="Quitter" type="button" aria-label="Boutton permettant de quitter le formulaire de connection">
+    <button
+      mat-flat-button
+      color="warn"
+      class="btn btn-success"
+      matTooltipPosition="below"
+      matTooltip="Quitter"
+      type="button"
+      aria-label="Quitter la modale d'authentification"
+      mat-dialog-close
+    >
       <mat-icon>close</mat-icon>
     </button>
 

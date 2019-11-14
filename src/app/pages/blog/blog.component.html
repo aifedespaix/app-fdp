@@ -1,4 +1,4 @@
-<article *ngFor="let article of articles">
-    <h3>{{article.title}}</h3>
+<article *ngFor="let article of articles" class="text-justify bg-main text-main">
+    <h3 [backgroundImage]="article.thumbnail">{{article.title}}</h3>
     <div>{{article.content}}</div>
 </article>

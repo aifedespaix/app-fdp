@@ -19,6 +19,7 @@ import {SeoModule} from '../seo/seo.module';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {AuthModule} from '../auth/auth.module';
 import {AuthDialogComponent} from '../auth/auth-dialog/auth-dialog.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {AuthDialogComponent} from '../auth/auth-dialog/auth-dialog.component';
     SeoModule,
     MatDialogModule,
     AuthModule,
+    MatTooltipModule,
   ],
   exports: [
     HeaderComponent,

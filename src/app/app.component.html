@@ -1,6 +1,6 @@
-<app-header class="bg-main text-main"></app-header>
+<app-header class="bg-second text-second"></app-header>
 <app-nav
-  class="bg-main text-main flex items-end"
+  class="bg-second text-second flex items-end"
   [ngClass]="layoutService.isMenuVisible || responsiveService.isLargeScreen ? 'flex' : 'hidden'"
 ></app-nav>
 
@@ -9,7 +9,7 @@
   [ngClass]="{blur: layoutService.isMenuVisible && !responsiveService.isLargeScreen}"
   (click)="layoutService.isMenuVisible && !responsiveService.isLargeScreen ? layoutService.toggleMenu() : null"
 >
-  <main role="main">
+  <main role="main" class="bg-second text-second">
     <router-outlet></router-outlet>
   </main>
 

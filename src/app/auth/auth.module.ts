@@ -9,19 +9,19 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
-import {EqualValidatorDirective} from '../directives/equal-validator.directive';
 import {CommonModule} from '@angular/common';
 import {SnackbarModule} from '../components/snackbar/snackbar.module';
 import {AuthService} from './auth.service';
 import {AuthModelService} from '../model/auth/auth.model.service';
 import {UserModelService} from '../model/user/user-model.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import {DirectivesModule} from '../directives/directives.module';
 
 @NgModule({
   declarations: [
     AuthDialogComponent,
     LoginComponent,
     RegisterComponent,
-    EqualValidatorDirective,
   ],
   imports: [
     MatTabsModule,
@@ -33,6 +33,8 @@ import {UserModelService} from '../model/user/user-model.service';
     MatButtonModule,
     CommonModule,
     SnackbarModule,
+    MatDialogModule,
+    DirectivesModule,
   ],
   providers: [
     AuthService,

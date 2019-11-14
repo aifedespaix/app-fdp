@@ -63,14 +63,14 @@
 
   <div class="submitButtons">
     <button
-      (click)="closeRegister()"
+      mat-dialog-close
       mat-flat-button
       color="warn"
       class="btn btn-success"
       matTooltipPosition="below"
       matTooltip="Quitter"
+      aria-label="Quitter la modale d'authentification"
       type="button"
-      aria-label="Boutton permettant de quitter le formulaire d'inscription"
     >
       <mat-icon>close</mat-icon>
     </button>
