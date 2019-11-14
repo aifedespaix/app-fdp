@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Meta, Title} from '@angular/platform-browser';
 import {Metas, OgImage, OgMetas, OgType, TwitterMetas} from './head';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class HeadService {
@@ -21,7 +22,7 @@ export class HeadService {
   }
 
   public setHead(metas: Metas) {
-    this.meta.updateTag({property: 'fb:app_id', content: '182305972365278'}); // todo env
+    this.meta.updateTag({property: 'fb:app_id', content: environment.fbApiId});
     this.setCanonicalUrl(metas.canonicalUrl);
     this._actualTitle = metas.shortTitle;
     this.setTitle(`${metas.title} - aifedespaix`);

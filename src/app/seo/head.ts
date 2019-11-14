@@ -1,4 +1,5 @@
 // https://ogp.me/
+import {environment} from '../../environments/environment';
 
 const mainImage: OgImage = {
   url: '',
@@ -35,7 +36,7 @@ export class Metas {
     this.title = title;
     this.description = description;
     this.author = author;
-    url = `https://aifedespaix.com/${url}`; // todo env
+    url = `${environment.host}/${url}`;
     this.canonicalUrl = url;
 
     if (!image) {

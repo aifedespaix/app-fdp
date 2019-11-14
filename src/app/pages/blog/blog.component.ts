@@ -1,20 +1,28 @@
-import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {Metas} from '../../seo/head';
 import {HeadService} from '../../seo/head.service';
 import {Router} from '@angular/router';
+import {ArticleModelService} from '../../model/article/article-model.service';
+import {Subscription} from 'rxjs';
+import {ArticleType} from '../../model/graphql';
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
+
+  private articles$: Subscription;
+  private articles: ArticleType[];
 
   constructor(
     private readonly headService: HeadService,
     private readonly router: Router,
+    private readonly articleModelService: ArticleModelService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
+    this.articles = [];
   }
 
   ngOnInit() {
@@ -28,6 +36,14 @@ export class BlogComponent implements OnInit {
         this.router.url,
       ),
     );
+
+    this.articles$ = this.articleModelService.articles({first: 10})
+      .subscribe((articles) => {
+        this.articles = articles;
+      });
   }
 
+  ngOnDestroy(): void {
+    this.articles$.unsubscribe();
+  }
 }

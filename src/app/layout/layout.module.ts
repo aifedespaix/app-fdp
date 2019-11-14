@@ -8,14 +8,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
-import { LogoComponent } from './logo/logo.component';
-import { ActionsComponent } from './header/actions/actions.component';
-import { ThemeComponent } from './header/actions/theme/theme.component';
-import { AuthComponent } from './header/actions/auth/auth.component';
+import {LogoComponent} from './logo/logo.component';
+import {ActionsComponent} from './header/actions/actions.component';
+import {ThemeComponent} from './header/actions/theme/theme.component';
+import {AuthComponent} from './header/actions/auth/auth.component';
 import {RouterModule} from '@angular/router';
 import {MatRippleModule} from '@angular/material';
 import {LayoutService} from './layout.service';
 import {SeoModule} from '../seo/seo.module';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {AuthModule} from '../auth/auth.module';
+import {AuthDialogComponent} from '../auth/auth-dialog/auth-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import {SeoModule} from '../seo/seo.module';
     RouterModule,
     MatRippleModule,
     SeoModule,
+    MatDialogModule,
+    AuthModule,
   ],
   exports: [
     HeaderComponent,
@@ -44,6 +49,13 @@ import {SeoModule} from '../seo/seo.module';
   ],
   providers: [
     LayoutService,
+    [{
+      provide: MatDialogRef,
+      useValue: {},
+    }],
+  ],
+  entryComponents: [
+    AuthDialogComponent,
   ]
 })
 export class LayoutModule {

@@ -8,6 +8,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {LayoutModule} from './layout/layout.module';
 import {ResponsiveModule} from './responsive/responsive.module';
+import {GraphQLModule} from './graphql/graphql.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,17 @@ import {ResponsiveModule} from './responsive/responsive.module';
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    GraphQLModule,
     AppRoutingModule,
     ResponsiveModule,
     LayoutModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [
+    GraphQLModule,
+  ],
+  bootstrap: [
+    AppComponent
+  ],
 })
 export class AppModule {
 }

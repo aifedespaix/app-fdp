@@ -1,8 +1,10 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, HostBinding, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ResponsiveService} from './responsive/responsive.service';
 import {ColorService} from './color/color.service';
 import {ThemeEnum} from './color/theme.enum';
 import {LayoutService} from './layout/layout.service';
+import {AuthService} from './auth/auth.service';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +13,13 @@ import {LayoutService} from './layout/layout.service';
 })
 export class AppComponent implements OnInit {
   @HostBinding('class') class: ThemeEnum;
-  private title: string;
 
   constructor(
+    @Inject(PLATFORM_ID) private readonly platformId: object,
     public readonly responsiveService: ResponsiveService,
     public readonly colorService: ColorService,
     public readonly layoutService: LayoutService,
+    private readonly authService: AuthService,
   ) {
   }
 
@@ -25,6 +28,10 @@ export class AppComponent implements OnInit {
       this.class = theme;
     });
     this.colorService.setThemeLight();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.authService.loadProfile();
+    }
   }
 
 }

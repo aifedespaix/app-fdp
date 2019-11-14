@@ -1,0 +1,50 @@
+<form #loginForm="ngForm" (ngSubmit)="login()">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Identifiant / Mail"
+      name="login"
+      [(ngModel)]="loginInput.login"
+      required
+    >
+    <mat-error>Identifiant incorrect</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Mot de passe"
+      [type]="showPassword ? 'text' : 'password'"
+      name="password"
+      [(ngModel)]="loginInput.password"
+      minlength="8"
+      maxlength="30"
+      required
+    >
+    <mat-icon
+      class="fdpCursor"
+      [color]="showPassword ? 'warn' : 'primary'"
+      matSuffix
+      (click)="showPassword = !showPassword"
+    >
+      {{showPassword ? 'visibility' : 'visibility_off'}}
+    </mat-icon>
+
+    <mat-error>
+      Mot de passe incorrect 8 caractères minimum
+    </mat-error>
+  </mat-form-field>
+
+  <div class="submitButtons">
+    <button (click)="closeLogin()" mat-flat-button color="warn" class="btn btn-success" matTooltipPosition="below"
+            matTooltip="Quitter" type="button" aria-label="Boutton permettant de quitter le formulaire de connection">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <button mat-flat-button color="primary" type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">
+      <mat-icon>person</mat-icon>
+      Se Connecter
+    </button>
+  </div>
+</form>
+
