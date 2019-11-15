@@ -5,6 +5,9 @@ import { BlogComponent } from './blog.component';
 import {ArticleModelService} from '../../model/article/article-model.service';
 import {ArticleModule} from '../../components/article/article.module';
 import {DirectivesModule} from '../../directives/directives.module';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {PipesModule} from '../../pipes/pipes.module';
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import {DirectivesModule} from '../../directives/directives.module';
     BlogRoutingModule,
     ArticleModule,
     DirectivesModule,
+    MatButtonModule,
+    MatCardModule,
+    PipesModule,
   ],
   providers: [
     ArticleModelService,
