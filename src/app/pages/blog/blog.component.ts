@@ -4,8 +4,9 @@ import {HeadService} from '../../seo/head.service';
 import {Router} from '@angular/router';
 import {ArticleModelService} from '../../model/article/article-model.service';
 import {Subscription} from 'rxjs';
-import {ArticleType} from '../../model/graphql';
+import {ArticleType} from '../../model/graphql.schema';
 import {getArticlesMock} from '../../model/article/tests/article.mocks';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-blog',
@@ -21,6 +22,7 @@ export class BlogComponent implements OnInit, OnDestroy {
     private readonly headService: HeadService,
     private readonly router: Router,
     private readonly articleModelService: ArticleModelService,
+    private readonly authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
     this.articles = [];

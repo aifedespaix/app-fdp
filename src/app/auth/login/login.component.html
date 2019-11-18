@@ -1,4 +1,4 @@
-<form #loginForm="ngForm" (ngSubmit)="login()">
+<form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="on">
   <mat-form-field>
     <input
       matInput
@@ -6,6 +6,7 @@
       name="login"
       [(ngModel)]="loginInput.login"
       required
+      autocomplete="username email"
     >
     <mat-error>Identifiant incorrect</mat-error>
   </mat-form-field>
@@ -20,6 +21,7 @@
       minlength="8"
       maxlength="30"
       required
+      autocomplete="current-password"
     >
     <mat-icon
       class="fdpCursor"
@@ -49,7 +51,13 @@
       <mat-icon>close</mat-icon>
     </button>
 
-    <button mat-flat-button color="primary" type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="btn btn-success"
+      [disabled]="!loginForm.form.valid"
+    >
       <mat-icon>person</mat-icon>
       Se Connecter
     </button>

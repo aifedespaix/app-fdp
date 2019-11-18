@@ -1,5 +1,6 @@
-import {ArticleType} from '../../graphql';
+import {ArticleType} from '../../graphql.schema';
 import * as faker from 'faker';
+import {getResourceMock} from '../../resource/tests/resource.mock';
 
 export function getArticlesMock(): ArticleType[] {
   const articles = [];
@@ -14,6 +15,6 @@ export function getArticleMock(): ArticleType {
   article.id = faker.random.uuid();
   article.title = faker.random.words(5);
   article.content = faker.random.words(50);
-  article.thumbnail = faker.random.image(); // todo faire carrement ressource (cool pour seo)
+  article.thumbnail = getResourceMock();
   return article;
 }

@@ -1,24 +1,27 @@
 <ng-container *ngIf="authService.user then logged else notLogged"></ng-container>
 
 <ng-template #logged>
-
   <button
     mat-button
     mat-mini-fab
     [matMenuTriggerFor]="userActions"
     matTooltipPosition="before"
     matTooltip="Mes actions"
+    class="profilBtn"
+    color="none"
+    [ngStyle]="{'background-image': 'url(' + avatar.url + ')'}"
   >
   </button>
 
   <mat-menu #userActions="matMenu">
-    <button
+    <a
+      routerLink="/profile"
+      title="Profil"
       mat-menu-item
-      (click)="authService.logout()"
     >
       <mat-icon>person</mat-icon>
       <span>Profil</span>
-    </button>
+    </a>
     <button
       mat-menu-item
       (click)="authService.logout()"

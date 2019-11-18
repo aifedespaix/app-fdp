@@ -24,14 +24,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.authService.loadProfile();
+    }
     this.colorService.theme.subscribe((theme) => {
       this.class = theme;
     });
     this.colorService.setThemeLight();
 
-    if (isPlatformBrowser(this.platformId)) {
-      this.authService.loadProfile();
-    }
   }
 
 }

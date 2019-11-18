@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../auth.service';
-import {LoginInput} from '../../model/graphql';
+import {LoginInput} from '../../model/graphql.schema';
 import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
 
 @Component({
@@ -36,7 +36,6 @@ export class LoginComponent {
             duration: 5000,
             data: {icon: 'done', color: '', message: 'Vous êtes connecté'},
           });
-          loginSub.unsubscribe();
           this.closeLogin();
         },
         () => {
@@ -44,6 +43,8 @@ export class LoginComponent {
             duration: 5000,
             data: {icon: 'error', color: 'warn', message: 'Identifiants incorrects'},
           });
+        },
+        () => {
           loginSub.unsubscribe();
         },
       );

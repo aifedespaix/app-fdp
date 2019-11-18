@@ -8,11 +8,18 @@ import {DirectivesModule} from '../../directives/directives.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {PipesModule} from '../../pipes/pipes.module';
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { NewArticleComponent } from './new-article/new-article.component';
+import {MarkdownModule} from 'ngx-markdown';
+import {FormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     BlogComponent,
+    NewArticleComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +29,12 @@ import {PipesModule} from '../../pipes/pipes.module';
     MatButtonModule,
     MatCardModule,
     PipesModule,
+    MatIconModule,
+    MatTooltipModule,
+    MarkdownModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     ArticleModelService,

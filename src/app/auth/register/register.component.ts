@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../auth.service';
-import {RegisterInput} from '../../model/graphql';
+import {RegisterInput} from '../../model/graphql.schema';
 import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
 import {Register} from './register';
 

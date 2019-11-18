@@ -2,9 +2,13 @@
 @import 'material-theme';
 @import 'framework';
 
+html{
+  height: 100%;
+}
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  height: 100vh;
+  height: 100%;
 }
 
 app-root {
@@ -15,4 +19,8 @@ app-root {
 a {
   @extend .text-primary;
   text-decoration: none;
+}
+
+.content {
+  background-color: #fafafa;
 }

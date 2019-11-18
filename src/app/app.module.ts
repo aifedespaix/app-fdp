@@ -8,6 +8,8 @@ import {environment} from '../environments/environment';
 import {LayoutModule} from './layout/layout.module';
 import {ResponsiveModule} from './responsive/responsive.module';
 import {GraphQLModule} from './graphql/graphql.module';
+import { MarkdownModule } from 'ngx-markdown';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {GraphQLModule} from './graphql/graphql.module';
     AppRoutingModule,
     ResponsiveModule,
     LayoutModule,
+    HttpClientModule,
+    MarkdownModule.forRoot({ loader: HttpClient }),
   ],
   providers: [
     GraphQLModule,

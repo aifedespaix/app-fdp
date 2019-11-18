@@ -18,6 +18,10 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
+  public get avatar() {
+    return this.authService.user.avatar;
+  }
+
   public authenticate(register: boolean) {
     this.authentDialog.open(AuthDialogComponent, {data: register, panelClass: 'mobile-modale'});
   }

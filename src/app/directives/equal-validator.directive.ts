@@ -30,7 +30,7 @@ export class EqualValidatorDirective implements Validator {
       };
     }
     if (equals && validate === equals.value && this.isReverse) {
-      delete equals.errors['validateEqual'];
+      delete equals.errors.validateEqual;
       if (!Object.keys(equals.errors).length) {
         equals.setErrors(null);
       }

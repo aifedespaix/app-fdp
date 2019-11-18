@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {LoginInput, LoginType, RegisterInput} from '../model/graphql';
+import {LoginInput, LoginType, RegisterInput, UserEditInput, UserType} from '../model/graphql.schema';
 import {AuthModelService} from '../model/auth/auth.model.service';
 import {map} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 import {UserModelService} from '../model/user/user-model.service';
+import {getAvatarMock} from '../model/resource/tests/resource.mock';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,10 @@ export class AuthService {
     private readonly userModelService: UserModelService,
   ) {
     this.loginType = new LoginType();
+  }
+
+  public get isLoged() {
+    return this.loginType.user;
   }
 
   get user() {
@@ -54,12 +59,29 @@ export class AuthService {
     this.userModelService.myProfile()
       .subscribe(
         (user) => {
-          this.loginType.user = user;
+          this.updateUser(user);
         },
         () => {
           this.clearToken();
         },
-      )
+      );
+  }
+
+  public updateProfile(userEditInput: UserEditInput): Observable<boolean> {
+    return this.userModelService.editMyUser(userEditInput)
+      .pipe(map((user) => {
+        this.updateUser(user);
+        return true;
+      }));
+  }
+
+  private updateUser(user: UserType) {
+    // this.zone.run(() => {
+    this.loginType.user = user;
+    if (!this.loginType.user.avatar || !this.loginType.user.avatar.url) {
+      this.loginType.user.avatar = getAvatarMock();
+    }
+    // });
   }
 
   private clearToken() {

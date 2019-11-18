@@ -20,6 +20,7 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {AuthModule} from '../auth/auth.module';
 import {AuthDialogComponent} from '../auth/auth-dialog/auth-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {DirectivesModule} from '../directives/directives.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatDialogModule,
     AuthModule,
     MatTooltipModule,
+    DirectivesModule,
   ],
   exports: [
     HeaderComponent,

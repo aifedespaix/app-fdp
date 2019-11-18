@@ -3,7 +3,7 @@ import {Apollo} from 'apollo-angular';
 import {ARTICLES} from './gql/queries';
 import {Pagination} from '../pagination';
 import {ApolloQueryResult} from 'apollo-client';
-import {ArticleType} from '../graphql';
+import {ArticleType} from '../graphql.schema';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 

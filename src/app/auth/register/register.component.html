@@ -1,6 +1,15 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="on">
   <mat-form-field>
-    <input matInput placeholder="Adresse mail" name="email" type="email" [(ngModel)]="registerModel.registerInput.email" email required>
+    <input
+      matInput
+      placeholder="Adresse mail"
+      name="email"
+      type="email"
+      [(ngModel)]="registerModel.registerInput.email"
+      email
+      required
+      autocomplete="email"
+    >
     <mat-error>Mail incorrect</mat-error>
   </mat-form-field>
 
@@ -14,6 +23,7 @@
       minlength="5"
       maxlength="30"
       required
+      autocomplete="username"
     >
     <mat-error>Identifiant incorrect</mat-error>
   </mat-form-field>
@@ -27,6 +37,7 @@
       [(ngModel)]="registerModel.registerInput.password"
       minlength="8"
       maxlength="50"
+      autocomplete="new-password"
       required
       validateEqual="confirmPassword"
       reverse="true"
@@ -52,6 +63,7 @@
       name="confirmPassword"
       validateEqual="password"
       [(ngModel)]="registerModel.passwordConfirm"
+      autocomplete="current-password"
       minlength="8"
       maxlength="50"
       required

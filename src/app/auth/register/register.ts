@@ -1,4 +1,4 @@
-import {RegisterInput} from '../../model/graphql';
+import {RegisterInput} from '../../model/graphql.schema';
 
 export class Register {
   registerInput: RegisterInput;

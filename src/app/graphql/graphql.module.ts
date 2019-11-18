@@ -14,8 +14,8 @@ export function createApollo(httpLink: HttpLink, cookieService: CookieService) {
       let authorization: string;
 
       // if (typeof cookieService !== 'undefined') { // todo verif ssr
-        const token = cookieService.get('token');
-        authorization = token ? token : '';
+      const token = cookieService.get('token');
+      authorization = token ? token : '';
       // }
 
       return {
@@ -28,6 +28,10 @@ export function createApollo(httpLink: HttpLink, cookieService: CookieService) {
       httpLink.create({
           uri: `${environment.apiEndpoint}`,
           withCredentials: true,
+          useMultipart: true,
+          // includeExtensions: {
+          //
+          // },
         },
       )),
     cache: new InMemoryCache(),
