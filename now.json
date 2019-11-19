@@ -7,9 +7,6 @@
       "use": "@now/node"
     }
   ],
-  "engines": {
-    "node": "10.x"
-  },
   "routes": [
     {
       "src": "/(assets/.+|.+.css|.+.js)",

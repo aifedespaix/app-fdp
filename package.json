@@ -14,6 +14,10 @@
     "build:client-and-server-bundles": "ng build --prod && ng run app-fdp:server:production --bundleDependencies all",
     "now-build": "yarn build:ssr"
   },
+  "engines": {
+    "node": ">=0.10.3 <0.12",
+    "yarn": "^1.19.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.13",
