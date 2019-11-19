@@ -8,7 +8,7 @@ import {ArticleType} from '../../model/graphql.schema';
 })
 export class ArticleComponent implements OnInit {
 
-  @Input() private readonly article: ArticleType;
+  @Input() public readonly article: ArticleType;
 
   constructor() { }
 

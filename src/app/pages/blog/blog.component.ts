@@ -15,14 +15,14 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class BlogComponent implements OnInit, OnDestroy {
 
+  public articles: ArticleType[];
   private articles$: Subscription;
-  private articles: ArticleType[];
 
   constructor(
     private readonly headService: HeadService,
     private readonly router: Router,
     private readonly articleModelService: ArticleModelService,
-    private readonly authService: AuthService,
+    public readonly authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
     this.articles = [];
@@ -34,7 +34,7 @@ export class BlogComponent implements OnInit, OnDestroy {
         'Un blog technique pour apprendre à dev ou comprendre des trucs',
         'Blog',
         // tslint:disable-next-line:max-line-length
-        'Un blog technique pour apprendre plein de choses dans le domaine du web moderne. Du javascript, nodejs, typescript, tu comprendras tout !',
+        `Un blog technique pour apprendre plein de choses dans le domaine du web moderne. Javascript, nodejs, Typescript, il y a de tout !`,
         'clapette',
         this.router.url,
       ),
@@ -42,9 +42,10 @@ export class BlogComponent implements OnInit, OnDestroy {
 
     this.articles$ = this.articleModelService.articles({first: 10})
       .subscribe((articles) => {
-        this.articles = articles;
-      },
+          this.articles = articles;
+        },
         (err) => {
+          console.log('use mocks');
           this.articles = getArticlesMock();
         });
   }
