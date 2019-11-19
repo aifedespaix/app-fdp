@@ -1,17 +1,67 @@
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Changer de theme">
-  <mat-icon>person</mat-icon>
-</button>
+<ng-container *ngIf="authService.user then logged else notLogged"></ng-container>
 
-<mat-menu #menu="matMenu">
+<ng-template #logged>
+  <button
+    mat-button
+    mat-mini-fab
+    [matMenuTriggerFor]="userActions"
+    matTooltipPosition="before"
+    matTooltip="Mes actions"
+    class="profilBtn"
+    color="none"
+    [ngStyle]="{'background-image': 'url(' + avatar.url + ')'}"
+  >
+  </button>
 
-  <button mat-menu-item>
+  <mat-menu #userActions="matMenu">
+    <a
+      routerLink="/profile"
+      title="Profil"
+      mat-menu-item
+    >
+      <mat-icon>person</mat-icon>
+      <span>Profil</span>
+    </a>
+    <button
+      mat-menu-item
+      (click)="authService.logout()"
+    >
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Se deconnecter</span>
+    </button>
+  </mat-menu>
+
+</ng-template>
+
+<ng-template #notLogged>
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Authentification"
+    matTooltipPosition="before"
+    matTooltip="Authentification"
+  >
     <mat-icon>person</mat-icon>
-    <span>Connection</span>
   </button>
 
-  <button mat-menu-item>
-    <mat-icon>person_add</mat-icon>
-    <span>Inscription</span>
-  </button>
+  <mat-menu #menu="matMenu">
 
-</mat-menu>
+    <button
+      mat-menu-item
+      (click)="authenticate(false)"
+    >
+      <mat-icon>person</mat-icon>
+      <span>Connection</span>
+    </button>
+
+    <button
+      mat-menu-item
+      (click)="authenticate(true)"
+    >
+      <mat-icon>person_add</mat-icon>
+      <span>Inscription</span>
+    </button>
+
+  </mat-menu>
+
+</ng-template>

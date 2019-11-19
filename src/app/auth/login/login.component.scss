@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 250px;
+}
+
+.submitButtons {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 5px;
+}
+
+mat-form-field {
+  margin-bottom: 10px;
+}

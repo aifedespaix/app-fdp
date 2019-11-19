@@ -1,0 +1,102 @@
+<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="on">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Adresse mail"
+      name="email"
+      type="email"
+      [(ngModel)]="registerModel.registerInput.email"
+      email
+      required
+      autocomplete="email"
+    >
+    <mat-error>Mail incorrect</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Identifiant"
+      name="login"
+      type="text"
+      [(ngModel)]="registerModel.registerInput.login"
+      minlength="5"
+      maxlength="30"
+      required
+      autocomplete="username"
+    >
+    <mat-error>Identifiant incorrect</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Mot de passe"
+      [type]="showPassword ? 'text' : 'password'"
+      name="password"
+      [(ngModel)]="registerModel.registerInput.password"
+      minlength="8"
+      maxlength="50"
+      autocomplete="new-password"
+      required
+      validateEqual="confirmPassword"
+      reverse="true"
+    >
+    <mat-icon
+      class="fdpCursor"
+      [color]="showPassword ? 'warn' : 'primary'"
+      matSuffix
+      (click)="showPassword = !showPassword"
+    >
+      {{showPassword ? 'visibility' : 'visibility_off'}}
+    </mat-icon>
+    <mat-error>
+      Mot de passe incorrect 8 caractères minimum
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="!showPassword">
+    <input
+      matInput
+      placeholder="Confirmer le mot de passe"
+      type="password"
+      name="confirmPassword"
+      validateEqual="password"
+      [(ngModel)]="registerModel.passwordConfirm"
+      autocomplete="current-password"
+      minlength="8"
+      maxlength="50"
+      required
+    >
+    <mat-error>
+      Mots de passe non similaires
+    </mat-error>
+  </mat-form-field>
+
+  <div class="submitButtons">
+    <button
+      mat-dialog-close
+      mat-flat-button
+      color="warn"
+      class="btn btn-success"
+      matTooltipPosition="below"
+      matTooltip="Quitter"
+      aria-label="Quitter la modale d'authentification"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="btn btn-success"
+      [disabled]="!registerForm.form.valid"
+    >
+      <mat-icon>person_add</mat-icon>
+      S'inscrire
+    </button>
+  </div>
+</form>
+

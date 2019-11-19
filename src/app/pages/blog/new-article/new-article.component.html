@@ -1,0 +1,14 @@
+<markdown [data]="articleInput.content" lineHighlight ></markdown>
+
+
+<form #articleForm="ngForm">
+  <input type="text" placeholder="Titre" class="title">
+  <textarea
+    name="content"
+    placeholder="Content"
+    [(ngModel)]="articleInput.content"
+  ></textarea>
+  <input type="text" placeholder="Description">
+  <input type="text" placeholder="Tags">
+  <input type="file" placeholder="Image">
+</form>

@@ -1,9 +1,15 @@
-<app-header class="bg-main text-main"></app-header>
-<app-nav></app-nav>
+<app-header class="bg-second text-second"></app-header>
+<app-nav
+  class="bg-second text-second flex items-end"
+  [ngClass]="layoutService.isMenuVisible || responsiveService.isLargeScreen ? 'flex' : 'hidden'"
+></app-nav>
 
-<div class="content" [class]="colorService.theme">
-  <main role="main">
-    {{responsiveService.isLargeScreen}}
+<div
+  class="content overflow-auto"
+  [ngClass]="{blur: layoutService.isMenuVisible && !responsiveService.isLargeScreen}"
+  (click)="layoutService.isMenuVisible && !responsiveService.isLargeScreen ? layoutService.toggleMenu() : null"
+>
+  <main role="main" class="bg-second text-second">
     <router-outlet></router-outlet>
   </main>
 

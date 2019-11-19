@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
+import {RESPONSE} from '@nguniversal/express-engine/tokens';
+import {Response} from 'express';
+
 
 @Component({
   selector: 'app-not-found',
   templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss']
+  styleUrls: ['./not-found.component.scss'],
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Optional() @Inject(RESPONSE) private readonly response: Response,
+  ) {
+  }
 
   ngOnInit() {
+    if (this.response) {
+      this.response.status(404);
+    }
   }
 
 }

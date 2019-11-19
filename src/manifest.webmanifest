@@ -1,7 +1,7 @@
 {
   "name": "aifedespaix",
   "short_name": "app-fdp",
-  "theme_color": "#1976d2",
+  "theme_color": "#E21DA4",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",

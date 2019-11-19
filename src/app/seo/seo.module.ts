@@ -1,13 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HeadComponent } from './head/head.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HeadService} from './head.service';
 
 
 @NgModule({
-  declarations: [HeadComponent],
+  declarations: [],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  ],
+  providers: [
+    HeadService,
+  ],
 })
-export class SeoModule { }
+export class SeoModule {
+}

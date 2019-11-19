@@ -31,9 +31,18 @@ const routes: Routes = [
     },
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
+  },
+  {
     path: '404',
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
   },
+  {
+    path: '**',
+    redirectTo: '/404',
+  },
+  { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
 ];
 
 @NgModule({

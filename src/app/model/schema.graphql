@@ -1,0 +1,205 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type ArticleType {
+  author: UserType!
+  comments: [CommentType!]
+  content: String!
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  likes: [LikeType!]
+  tags: [TagType!]
+  thumbnail: ResourceType!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type BoxType {
+  author: UserType!
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  isParent: Boolean!
+  title: String!
+  updatedAt: DateTime!
+  value: String!
+}
+
+type CommentType {
+  author: UserType!
+  childCommentTypes: [CommentType!]!
+  childs: [CommentType!]!
+  createdAt: DateTime!
+  id: ID!
+  isParent: Boolean!
+  likes: [LikeType!]!
+  parentCommentType: CommentType!
+  updatedAt: DateTime!
+  value: String!
+}
+
+type LikeType {
+  author: UserType!
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  value: LikeEnum!
+}
+
+type LoginType {
+  token: String!
+  user: UserType!
+}
+
+type MenuItemType {
+  createdAt: DateTime!
+  icon: String!
+  id: ID!
+  name: String!
+  routerLink: String!
+  updatedAt: DateTime!
+}
+
+type MenuType {
+  createdAt: DateTime!
+  id: ID!
+  items: [MenuItemType!]
+  name: String!
+  updatedAt: DateTime!
+}
+
+type Mutation {
+  addItem(item: MenuItemInput!, name: String!): MenuType!
+  authAifedespaix(secret: String!): LoginType!
+  authLogin(login: LoginInput!): LoginType!
+  authRegister(data: RegisterInput!): LoginType!
+  changeLike(like: String!, likeId: String!): Boolean!
+  createArticle(article: ArticleInput!): ArticleType!
+  createArticleComment(articleId: String!, comment: String!): ArticleType!
+  createArticleLike(articleId: String!, like: String!): ArticleType!
+  createBox(data: BoxInput!): BoxType!
+  createBoxComment(boxId: String!, comment: String!): ArticleType!
+  createBoxLike(boxId: String!, like: String!): BoxType!
+  createCommentAnswer(comment: String!, parentId: String!): CommentType!
+  createCommentLike(commentId: String!, like: String!): CommentType!
+  createMenu(menu: MenuInput!): MenuType!
+  createResource(file: Upload!, resource: ResourceInput!): ResourceType!
+  createResourceImage(file: Upload!, resource: ResourceInput!): ResourceType!
+  deleteUser(id: String!): UserType!
+  editMyUser(user: UserEditInput!): UserType!
+}
+
+type Query {
+  article(id: String!): ArticleType!
+  articles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]!
+  box(id: String!): BoxType!
+  boxes(after: Int, before: Int, first: Int, last: Int, skip: Int): [BoxType!]!
+  helloWorld: String!
+  menu(name: String!): MenuType!
+  menus: [MenuType!]!
+  myArticles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]!
+  myComments: [CommentType!]!
+  myLikes: [LikeType!]!
+  myProfile: UserType!
+  resources(after: Int, before: Int, first: Int, last: Int, skip: Int): [ResourceType!]!
+  users: [UserType!]!
+}
+
+type ResourceType {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  title: String!
+  updatedAt: DateTime!
+  url: String!
+}
+
+type TagType {
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  value: String!
+}
+
+type UserType {
+  articles: [ArticleType!]
+  avatar: ResourceType
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  login: String!
+  role: Role!
+  updatedAt: DateTime!
+}
+
+enum LikeEnum {
+  DISLIKE
+  FDP
+  FUCK
+  LIKE
+}
+
+enum Role {
+  AIFEDESPAIX
+  USER
+}
+
+input ArticleInput {
+  content: String!
+  description: String!
+  tags: [String!]
+  thumbnail: ResourceInput!
+  title: String!
+}
+
+input BoxInput {
+  description: String!
+  title: String!
+}
+
+input CommentInput {
+  comment: String!
+  parent: ID
+}
+
+input LoginInput {
+  login: String!
+  password: String!
+}
+
+input MenuInput {
+  name: String!
+}
+
+input MenuItemInput {
+  icon: String!
+  name: String!
+  routerLink: String!
+}
+
+input RegisterInput {
+  email: String!
+  login: String!
+  password: String!
+}
+
+input ResourceInput {
+  description: String!
+  title: String!
+}
+
+input UserEditInput {
+  avatarId: ID
+}
+
+
+"Date custom scalar type"
+scalar DateTime
+
+"Upload custom scalar type"
+scalar Upload

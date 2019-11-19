@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {ResponsiveService} from '../../responsive/responsive.service';
+import {LayoutService} from '../layout.service';
 
 @Component({
   selector: 'app-nav',
@@ -17,6 +19,8 @@ export class NavComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
+    public readonly responsiveService: ResponsiveService,
+    public readonly layoutService: LayoutService,
   ) {
     this.routes = [];
   }
@@ -24,7 +28,6 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     this.setRoutes();
   }
-
 
   private setRoutes() {
     for (const route of this.router.config) {

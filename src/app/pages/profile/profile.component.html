@@ -1,0 +1,54 @@
+<mat-card class="profile" *ngIf="user">
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>{{user.login}}</mat-card-title>
+    <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <div
+    mat-card-image
+    class="avatar"
+    matTooltipPosition="below"
+    matTooltip="Changer d'avatar">
+
+    <ng-container *ngIf="isLoading then loading else notLoading"></ng-container>
+
+    <ng-template #notLoading>
+      <img mat-card-image [src]="avatar.url" [alt]="avatar.title">
+      <input
+        id="file"
+        type="file"
+        [accept]="['image/png', 'image/jpg']"
+        (change)="onFileChange($event)"
+      >
+    </ng-template>
+
+    <ng-template #loading>
+      <mat-progress-spinner
+        *ngIf="loading"
+        color="primary"
+        mode="indeterminate"
+      ></mat-progress-spinner>
+    </ng-template>
+
+  </div>
+
+  <mat-card-content>
+    <div *ngIf="user.articles">
+      <h3>Articles</h3>
+      <table mat-table [dataSource]="user.articles" class="mat-elevation-z8">
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Titre</th>
+          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+      </table>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="modified" mat-raised-button color="primary" (click)="save()">Enregistrer</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,11 +1,12 @@
 @import "theme";
 @import "responsive";
+@import "layout";
 
 :host {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr auto;
-  grid-template-areas: "content nav" "header header";
+  grid-template-areas: "content content" "header header";
 
   @include largeScreen {
     grid-template-columns: auto 1fr;
@@ -20,8 +21,21 @@ app-header {
 
 app-nav {
   grid-area: nav;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: $header-height;
+
+  @include largeScreen {
+    position: relative;
+    flex-direction: column;
+  }
 }
 
 .content {
   grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
 }
