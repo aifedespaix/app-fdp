@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ArticleInput} from '../../../model/graphql.schema';
+import {ArticleInput, ArticleType} from '../../../model/graphql.schema';
+import {getResourceMock} from '../../../model/resource/tests/resource.mock';
 
 @Component({
   selector: 'app-new-article',
@@ -8,11 +9,12 @@ import {ArticleInput} from '../../../model/graphql.schema';
 })
 export class NewArticleComponent implements OnInit {
 
-  public articleInput: ArticleInput;
+  public article: ArticleType;
   public markdown: string;
 
   constructor() {
-    this.articleInput = new ArticleInput();
+    this.article = new ArticleType();
+    this.article.thumbnail = getResourceMock();
   }
 
   ngOnInit() {

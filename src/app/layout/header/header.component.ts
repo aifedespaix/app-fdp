@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LayoutService} from '../layout.service';
 import {ResponsiveService} from '../../responsive/responsive.service';
 import {HeadService} from '../../seo/head.service';
@@ -6,7 +6,7 @@ import {HeadService} from '../../seo/head.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
 
@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit {
     public readonly layoutService: LayoutService,
     public readonly responsiveService: ResponsiveService,
     public readonly headService: HeadService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }

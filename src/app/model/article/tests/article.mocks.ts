@@ -1,6 +1,7 @@
 import {ArticleType} from '../../graphql.schema';
 import * as faker from 'faker';
 import {getResourceMock} from '../../resource/tests/resource.mock';
+import {getUserMock} from '../../user/tests/user.mocks';
 
 export function getArticlesMock(): ArticleType[] {
   const articles = [];
@@ -16,5 +17,6 @@ export function getArticleMock(): ArticleType {
   article.title = faker.random.words(5);
   article.content = faker.random.words(50);
   article.thumbnail = getResourceMock();
+  article.author = getUserMock();
   return article;
 }

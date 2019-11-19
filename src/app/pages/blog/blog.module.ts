@@ -15,6 +15,7 @@ import {MarkdownModule} from 'ngx-markdown';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MarkdownEditModule} from '../../components/markdown/markdown-edit.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatInputModule} from '@angular/material/input';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MarkdownEditModule,
   ],
   providers: [
     ArticleModelService,

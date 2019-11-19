@@ -3,22 +3,22 @@
 :host {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 50% 50%;
   height: 100%;
 
   @include largeScreen {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
   }
 
   .title,
-  textarea {
+  app-markdown-edit {
     grid-column: span 3;
   }
 
   form {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr auto;
   }
 }

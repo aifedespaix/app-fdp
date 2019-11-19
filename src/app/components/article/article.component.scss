@@ -1,0 +1,9 @@
+:root {
+  overflow: auto;
+}
+
+.thumbnail {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+}
