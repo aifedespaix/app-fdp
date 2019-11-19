@@ -15,7 +15,7 @@
     "now-build": "yarn build:ssr"
   },
   "engines": {
-    "node": ">=0.10.3 <0.12",
+    "node": "10.x",
     "yarn": "^1.19.0"
   },
   "private": true,
