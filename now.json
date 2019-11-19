@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "fdp-app",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/node"
+    }
+  ]
+}
