@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {HeadService} from '../../seo/head.service';
 import {Metas} from '../../seo/head';
 import {Router} from '@angular/router';
+import {PictureType} from '../../model/graphql.schema';
+import {getPictureMock} from '../../model/picture/tests/picture.mocks';
 
 @Component({
   selector: 'app-index',
@@ -10,10 +12,13 @@ import {Router} from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
+  public picture: PictureType;
+
   constructor(
     private readonly headService: HeadService,
     private readonly router: Router,
   ) {
+    this.picture = getPictureMock();
   }
 
   ngOnInit() {

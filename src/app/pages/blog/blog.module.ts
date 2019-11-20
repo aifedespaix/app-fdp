@@ -16,6 +16,9 @@ import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MarkdownEditModule} from '../../components/markdown/markdown-edit.module';
+import {PictureModule} from '../../components/picture/picture.module';
+import {MatChipsModule} from '@angular/material';
+import {TagModule} from '../../components/tag/tag.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import {MarkdownEditModule} from '../../components/markdown/markdown-edit.module
     MatFormFieldModule,
     MatInputModule,
     MarkdownEditModule,
+    PictureModule,
+    MatChipsModule,
+    TagModule,
   ],
   providers: [
     ArticleModelService,

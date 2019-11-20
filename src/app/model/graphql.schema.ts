@@ -21,7 +21,7 @@ export class ArticleEditInput {
   title?: string;
   content?: string;
   description?: string;
-  thumbnail?: ResourceCreateInput;
+  thumbnail?: PictureCreateInput;
   tags?: string[];
 }
 
@@ -29,7 +29,7 @@ export class ArticleInput {
   title: string;
   content: string;
   description: string;
-  thumbnail: ResourceCreateInput;
+  thumbnail: PictureCreateInput;
   tags?: string[];
 }
 
@@ -56,6 +56,16 @@ export class MenuItemInput {
   icon: string;
   name: string;
   routerLink: string;
+}
+
+export class PictureCreateInput {
+  create?: ResourceInput[];
+  connect?: string[];
+}
+
+export class PictureInput {
+  title: string;
+  description: string;
 }
 
 export class RegisterInput {
@@ -90,7 +100,7 @@ export class ArticleType {
   title: string;
   content: string;
   description: string;
-  thumbnail: ResourceType;
+  thumbnail: PictureType;
   author: UserType;
   likes?: LikeType[];
   tags?: TagType[];
@@ -119,6 +129,13 @@ export class CommentType {
   childCommentTypes: CommentType[];
   likes: LikeType[];
   childs: CommentType[];
+}
+
+export class ImageType {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
 }
 
 export class LikeType {
@@ -180,13 +197,20 @@ export abstract class IMutation {
 
   abstract addItem(item: MenuItemInput, name: string): MenuType | Promise<MenuType>;
 
-  abstract createResource(resource: ResourceInput, file: Upload): ResourceType | Promise<ResourceType>;
-
-  abstract createResourceImage(resource: ResourceInput, file: Upload): ResourceType | Promise<ResourceType>;
+  abstract createPicture(picture: PictureInput, file: Upload): PictureType | Promise<PictureType>;
 
   abstract deleteUser(id: string): UserType | Promise<UserType>;
 
   abstract editMyUser(user: UserEditInput): UserType | Promise<UserType>;
+}
+
+export class PictureType {
+  id: string;
+  createdAt: DateTime;
+  updatedAt: DateTime;
+  title: string;
+  description: string;
+  images: ImageType[];
 }
 
 export abstract class IQuery {
@@ -210,7 +234,11 @@ export abstract class IQuery {
 
   abstract menus(): MenuType[] | Promise<MenuType[]>;
 
+  abstract myPictures(picture: PictureInput, file: Upload): PictureType | Promise<PictureType>;
+
   abstract resources(skip?: number, after?: number, before?: number, first?: number, last?: number): ResourceType[] | Promise<ResourceType[]>;
+
+  abstract tags(skip?: number, after?: number, before?: number, first?: number, last?: number): TagType[] | Promise<TagType[]>;
 
   abstract users(): UserType[] | Promise<UserType[]>;
 

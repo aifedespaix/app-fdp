@@ -17,7 +17,6 @@ export class FileUploadComponent {
 
   constructor(
     private readonly resourceService: ResourceService,
-    private readonly sanitizer: DomSanitizer,
   ) {
     this.isLoading = false;
     this.resourceInput = new ResourceInput();

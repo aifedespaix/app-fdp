@@ -11,7 +11,12 @@ export const ARTICLES = gql`
             thumbnail {
                 id
                 title
-                url
+                images {
+                    url
+                    height
+                    width
+                    id
+                }
                 description
             }
             author {

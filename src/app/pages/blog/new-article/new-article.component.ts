@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ArticleInput, ArticleType} from '../../../model/graphql.schema';
-import {getResourceMock} from '../../../model/resource/tests/resource.mock';
+import {ArticleType, PictureType} from '../../../model/graphql.schema';
 
 @Component({
   selector: 'app-new-article',
@@ -14,10 +13,14 @@ export class NewArticleComponent implements OnInit {
 
   constructor() {
     this.article = new ArticleType();
-    this.article.thumbnail = getResourceMock();
+    this.article.thumbnail = new PictureType();
   }
 
   ngOnInit() {
+  }
+
+  setPicture(picture: PictureType) {
+    this.article.thumbnail = picture;
   }
 
 }

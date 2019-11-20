@@ -14,7 +14,7 @@ type ArticleType {
   id: ID!
   likes: [LikeType!]
   tags: [TagType!]
-  thumbnail: ResourceType!
+  thumbnail: PictureType!
   title: String!
   updatedAt: DateTime!
 }
@@ -41,6 +41,13 @@ type CommentType {
   parentCommentType: CommentType!
   updatedAt: DateTime!
   value: String!
+}
+
+type ImageType {
+  height: Int!
+  id: ID!
+  url: String!
+  width: Int!
 }
 
 type LikeType {
@@ -88,10 +95,18 @@ type Mutation {
   createCommentAnswer(comment: String!, parentId: String!): CommentType!
   createCommentLike(commentId: String!, like: String!): CommentType!
   createMenu(menu: MenuInput!): MenuType!
-  createResource(file: Upload!, resource: ResourceInput!): ResourceType!
-  createResourceImage(file: Upload!, resource: ResourceInput!): ResourceType!
+  createPicture(file: Upload!, picture: PictureInput!): PictureType!
   deleteUser(id: String!): UserType!
   editMyUser(user: UserEditInput!): UserType!
+}
+
+type PictureType {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  images: [ImageType]!
+  title: String!
+  updatedAt: DateTime!
 }
 
 type Query {
@@ -105,8 +120,10 @@ type Query {
   myArticles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]!
   myComments: [CommentType!]!
   myLikes: [LikeType!]!
+  myPictures(file: Upload!, picture: PictureInput!): PictureType!
   myProfile: UserType!
   resources(after: Int, before: Int, first: Int, last: Int, skip: Int): [ResourceType!]!
+  tags(after: Int, before: Int, first: Int, last: Int, skip: Int): TagType
   users: [UserType!]!
 }
 
@@ -149,11 +166,19 @@ enum Role {
   USER
 }
 
+input ArticleEditInput {
+  content: String
+  description: String
+  tags: [String!]
+  thumbnail: PictureCreateInput
+  title: String
+}
+
 input ArticleInput {
   content: String!
   description: String!
   tags: [String!]
-  thumbnail: ResourceInput!
+  thumbnail: PictureCreateInput!
   title: String!
 }
 
@@ -182,10 +207,30 @@ input MenuItemInput {
   routerLink: String!
 }
 
+input PictureCreateInput {
+  connect: [ID!]
+  create: [ResourceInput!]
+}
+
+input PictureInput {
+  description: String!
+  title: String!
+}
+
 input RegisterInput {
   email: String!
   login: String!
   password: String!
+}
+
+input ResourceCreateInput {
+  connect: ResourceInput!
+  create: ResourceInput!
+}
+
+input ResourceCreateManyInput {
+  connect: [ResourceInput!]
+  create: [ResourceInput!]
 }
 
 input ResourceInput {

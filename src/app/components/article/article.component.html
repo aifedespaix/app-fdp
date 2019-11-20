@@ -1,9 +1,11 @@
 <h1>{{article.title}}</h1>
 <article>
   <h2>{{article.description}}</h2>
-  <img class="thumbnail" [src]="article.thumbnail.url | safe: 'url' " alt="{{article.thumbnail.description}}">
-  <div  [innerHTML]="article.content | markdown">
-  </div>
+  <app-picture
+    class="thumbnail"
+    [picture]="article.thumbnail"
+  ></app-picture>
+  <div [innerHTML]="article.content | markdown"></div>
   <footer>
     <div>{{article.tags}}</div>
     <div>{{article.likes}}</div>
