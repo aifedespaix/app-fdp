@@ -3,10 +3,10 @@ import {ArticleType, PictureType} from '../../../model/graphql.schema';
 
 @Component({
   selector: 'app-new-article',
-  templateUrl: './new-article.component.html',
-  styleUrls: ['./new-article.component.scss']
+  templateUrl: './article-form.component.html',
+  styleUrls: ['./article-form.component.scss']
 })
-export class NewArticleComponent implements OnInit {
+export class ArticleFormComponent implements OnInit {
 
   public article: ArticleType;
   public markdown: string;

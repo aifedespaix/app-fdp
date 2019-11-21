@@ -1,9 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { LayoutService } from './layout.service';
+import {ResponsiveService} from '../responsive/responsive.service';
 
 describe('LayoutService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [
+      ResponsiveService,
+      LayoutService,
+    ],
+  }));
 
   it('should be created', () => {
     const service: LayoutService = TestBed.get(LayoutService);

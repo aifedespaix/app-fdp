@@ -1,14 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MarkdownEditComponent } from './markdown-edit.component';
+import {MatIconModule} from '@angular/material';
 
-describe('MarkdownComponent', () => {
+describe('MarkdownEditComponent', () => {
   let component: MarkdownEditComponent;
   let fixture: ComponentFixture<MarkdownEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MarkdownEditComponent ]
+      declarations: [ MarkdownEditComponent ],
+      imports: [
+        MatIconModule,
+      ]
     })
     .compileComponents();
   }));

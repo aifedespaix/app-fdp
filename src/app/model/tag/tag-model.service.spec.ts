@@ -1,20 +1,19 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {ResourceService} from './resource.service';
+import { TagModelService } from './tag-model.service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 
-describe('ResourceService', () => {
+describe('TagModelService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       ApolloTestingModule,
     ],
     providers: [
-      ResourceService,
-    ],
-  }));
+      TagModelService,
+    ]}));
 
   it('should be created', () => {
-    const service: ResourceService = TestBed.get(ResourceService);
+    const service: TagModelService = TestBed.get(TagModelService);
     expect(service).toBeTruthy();
   });
 });

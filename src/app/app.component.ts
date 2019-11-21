@@ -31,7 +31,6 @@ export class AppComponent implements OnInit {
       this.class = theme;
     });
     this.colorService.setThemeLight();
-
   }
 
 }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LoginInput, LoginType, RegisterInput, UserEditInput, UserType} from '../model/graphql.schema';
-import {AuthModelService} from '../model/auth/auth.model.service';
+import {AuthModelService} from '../model/auth/auth-model.service';
 import {map} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';

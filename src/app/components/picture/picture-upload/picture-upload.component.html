@@ -1,0 +1,3 @@
+<label [for]="uuid">{{name}}</label>
+<input type="file" name="file" [id]="uuid" (change)="onFileChange($event)">
+<app-picture *ngIf="picture" [picture]="picture"></app-picture>

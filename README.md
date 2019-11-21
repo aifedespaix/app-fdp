@@ -14,6 +14,18 @@ ng g s model/[MODEL]
 ng g s services/[SERVICE]
 ```
 
+## Use Markdown Feature
+```ts
+import {MarkdownModule} from './markdown.module'; 
+import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown'; 
+{
+  imports: [
+    MarkdownModule,
+    NgxMarkdownModule.forChild(),
+  ]
+}
+```
+
 ## Expose Local
 ng serve --host 0.0.0.0
 

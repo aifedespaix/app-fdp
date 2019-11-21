@@ -7,8 +7,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {LayoutModule} from './layout/layout.module';
 import {ResponsiveModule} from './responsive/responsive.module';
-import {MarkdownModule} from 'ngx-markdown';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {InMemoryCache, NormalizedCacheObject} from 'apollo-cache-inmemory';
 import {Apollo, ApolloModule} from 'apollo-angular';
 import {HttpLink, HttpLinkHandler, HttpLinkModule} from 'apollo-angular-link-http';
@@ -24,13 +23,12 @@ const STATE_KEY = makeStateKey<any>('apollo.state');
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
-    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    BrowserAnimationsModule,
     AppRoutingModule,
     ResponsiveModule,
     LayoutModule,
     HttpClientModule,
-    MarkdownModule.forRoot({loader: HttpClient}),
     ApolloModule,
     HttpLinkModule,
     BrowserTransferStateModule,

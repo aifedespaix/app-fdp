@@ -1,0 +1,25 @@
+:host {
+  position: relative;
+}
+
+input,
+app-picture,
+label {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  position: absolute;
+}
+
+input {
+  opacity: 0;
+}
+
+app-picture {
+  z-index: 1;
+}
+
+label {
+  z-index: 2;
+}

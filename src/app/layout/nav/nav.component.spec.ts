@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavComponent } from './nav.component';
+import {MatIconModule} from '@angular/material';
+import {LayoutService} from '../layout.service';
+import {ResponsiveService} from '../../responsive/responsive.service';
+import {AppRoutingModule} from '../../app-routing.module';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -8,7 +12,15 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent ]
+      declarations: [ NavComponent ],
+      imports: [
+        MatIconModule,
+        AppRoutingModule,
+      ],
+      providers: [
+        LayoutService,
+        ResponsiveService,
+      ],
     })
     .compileComponents();
   }));

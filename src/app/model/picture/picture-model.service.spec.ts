@@ -1,20 +1,20 @@
 import {TestBed} from '@angular/core/testing';
 
-import {ResourceService} from './resource.service';
+import {PictureModelService} from './picture-model.service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 
-describe('ResourceService', () => {
+describe('PictureModelService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       ApolloTestingModule,
     ],
     providers: [
-      ResourceService,
+      PictureModelService,
     ],
   }));
 
   it('should be created', () => {
-    const service: ResourceService = TestBed.get(ResourceService);
+    const service: PictureModelService = TestBed.get(PictureModelService);
     expect(service).toBeTruthy();
   });
 });

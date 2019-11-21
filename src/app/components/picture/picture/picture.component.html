@@ -1,0 +1,9 @@
+<picture *ngIf="picture && picture.images">
+  <img
+    [title]="this.picture.title"
+    [alt]="this.picture.description"
+    [src]="src"
+    [srcset]="srcset"
+    [sizes]="sizes"
+  >
+</picture>

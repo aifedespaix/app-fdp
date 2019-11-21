@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileComponent } from './profile.component';
+import {ProfileModule} from './profile.module';
+import {AppRoutingModule} from '../../app-routing.module';
+import {MatSnackBarModule} from '@angular/material';
+import {AuthModule} from '../../auth/auth.module';
+import {CookieService} from 'ngx-cookie-service';
+import {ApolloTestingModule} from 'apollo-angular/testing';
+import {LayoutModule} from '../../layout/layout.module';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -8,7 +15,17 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      imports: [
+        ProfileModule,
+        AppRoutingModule,
+        MatSnackBarModule,
+        AuthModule,
+        ApolloTestingModule,
+        LayoutModule,
+      ],
+      providers: [
+        CookieService,
+      ]
     })
     .compileComponents();
   }));

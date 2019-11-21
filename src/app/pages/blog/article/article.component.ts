@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ArticleType} from '../../model/graphql.schema';
+import {ArticleType} from '../../../model/graphql.schema';
 
 @Component({
   selector: 'app-article',
@@ -8,7 +8,7 @@ import {ArticleType} from '../../model/graphql.schema';
 })
 export class ArticleComponent implements OnInit {
 
-  @Input() public readonly article: ArticleType;
+  @Input() public article: ArticleType;
 
   constructor() { }
 
