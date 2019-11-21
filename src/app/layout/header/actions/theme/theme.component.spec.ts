@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ThemeComponent} from './theme.component';
-import {ColorService} from '../../../../color/color.service';
 import {MatIconModule, MatMenuModule} from '@angular/material';
 
 describe('ThemeComponent', () => {
@@ -14,9 +13,6 @@ describe('ThemeComponent', () => {
       imports: [
         MatIconModule,
         MatMenuModule,
-      ],
-      providers: [
-        ColorService,
       ],
     })
       .compileComponents();

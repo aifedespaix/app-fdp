@@ -21,6 +21,8 @@ import {AuthModule} from '../auth/auth.module';
 import {AuthDialogComponent} from '../auth/auth-dialog/auth-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DirectivesModule} from '../directives/directives.module';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {ThemeStorageService} from './header/actions/theme/theme-storage/theme-storage.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import {DirectivesModule} from '../directives/directives.module';
     AuthModule,
     MatTooltipModule,
     DirectivesModule,
+    MatGridListModule,
   ],
   exports: [
     HeaderComponent,
@@ -53,6 +56,7 @@ import {DirectivesModule} from '../directives/directives.module';
   ],
   providers: [
     LayoutService,
+    ThemeStorageService,
     [{
       provide: MatDialogRef,
       useValue: {},

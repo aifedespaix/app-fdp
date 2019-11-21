@@ -19,12 +19,14 @@ import {MatChipsModule} from '@angular/material';
 import {TagModule} from '../../components/tag/tag.module';
 import {ArticleComponent} from './article/article.component';
 import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';
+import { ArticleListComponent } from './article-list/article-list.component';
 
 @NgModule({
   declarations: [
     BlogComponent,
     ArticleFormComponent,
     ArticleComponent,
+    ArticleListComponent,
   ],
   imports: [
     MarkdownModule,

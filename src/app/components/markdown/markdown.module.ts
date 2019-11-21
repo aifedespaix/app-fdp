@@ -4,6 +4,8 @@ import {FormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';
+import {PictureDialogComponent} from '../picture/picture-modale/picture-dialog.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -14,10 +16,14 @@ import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';
     MatIconModule,
     MatButtonModule,
     NgxMarkdownModule.forRoot({}),
+    MatDialogModule,
   ],
   exports: [
     MarkdownEditComponent,
   ],
+  entryComponents: [
+    PictureDialogComponent,
+  ]
 })
 export class MarkdownModule {
 }

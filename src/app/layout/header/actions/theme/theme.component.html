@@ -1,23 +1,26 @@
 <button
   mat-icon-button
-  [matMenuTriggerFor]="menu"
-  aria-label="Changer de theme"
-  matTooltipPosition="before"
-  matTooltip="Changer de theme"
+  [mat-menu-trigger-for]="themeMenu"
+  matTooltip="Change de thème"
+  tabindex="-1"
 >
-  <mat-icon>color_lens</mat-icon>
+  <mat-icon>format_color_fill</mat-icon>
 </button>
 
-<mat-menu #menu="matMenu">
-
-  <button mat-menu-item (click)="colorService.setThemeDark()">
-    <mat-icon>nights_stay</mat-icon>
-    <span>Dark</span>
-  </button>
-
-  <button mat-menu-item (click)="colorService.setThemeLight()">
-    <mat-icon>wb_sunny</mat-icon>
-    <span>Light</span>
-  </button>
-
+<mat-menu
+  class="docs-theme-picker-menu"
+  #themeMenu="matMenu"
+  matTooltipPosition="left"
+  matTooltip="Change de thème"
+>
+  <mat-grid-list [cols]="2">
+    <mat-grid-tile *ngFor="let theme of themes">
+      <div
+        mat-menu-item (click)="setTheme(theme.name)"
+        matTooltipPosition="before"
+        [matTooltip]="theme.description">
+        <mat-icon class="docs-theme-chosen-icon">{{theme.icon}}</mat-icon>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </mat-menu>

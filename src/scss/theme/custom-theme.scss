@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+
+// @src/app/app.component.scss
+@mixin app-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  @debug $primary;
+
+  app-header {
+    background-color: mat-color($background, app-bar);
+    color: mat-color($foreground, text)
+  }
+
+  app-nav {
+    background-color: mat-color($background, background);
+    a {
+      color: mat-color($foreground, text)
+    }
+  }
+
+  .content {
+    background-color: mat-color($background, app-bar);
+    color: mat-color($foreground, text);
+  }
+
+  footer {
+
+  }
+}

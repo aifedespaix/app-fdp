@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {PictureType} from '../../../model/graphql.schema';
 import {PictureModelService} from '../../../model/picture/picture-model.service';
-import {v1 as uuid} from 'uuid';
+
 
 @Component({
   selector: 'app-picture-upload',
@@ -13,18 +13,18 @@ export class PictureUploadComponent implements OnInit {
   public isLoading: boolean;
   public picture: PictureType;
   private file: File;
-  private uuid: string;
+  public uuid: string;
 
   @Output() private pictureSaved: EventEmitter<PictureType>;
-  @Input() private title = '';
-  @Input() private name = '';
-  @Input() private description = '';
+  @Input() public title = '';
+  @Input() public name = '';
+  @Input() public description = '';
 
   constructor(
     private readonly pictureModelService: PictureModelService,
+    @Inject('UUID') private readonly UUID: () => string,
   ) {
     this.pictureSaved = new EventEmitter<PictureType>();
-    this.uuid = uuid();
   }
 
   private _error: string;
@@ -34,6 +34,7 @@ export class PictureUploadComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.uuid = this.UUID();
   }
 
   public onFileChange({target: {validity, files: [file]}}: any) {

@@ -1,6 +1,6 @@
-@import "theme";
 @import "responsive";
-@import "layout";
+@import "layout-variables";
+@import '~@angular/material/theming';
 
 :host {
   display: grid;

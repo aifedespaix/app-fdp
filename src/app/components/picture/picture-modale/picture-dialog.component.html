@@ -1,0 +1,22 @@
+<form
+  #pictureForm="ngForm"
+  (ngSubmit)="submitPicture()" autocomplete="on"
+>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Titre"
+      name="title"
+      [(ngModel)]="title"
+      maxlength="50"
+      required
+    >
+    <mat-error>Veuillez saisir un titre</mat-error>
+  </mat-form-field>
+
+  <app-picture-upload
+    [title]="title"
+    [name]="name"
+    [description]="description"
+  ></app-picture-upload>
+</form>

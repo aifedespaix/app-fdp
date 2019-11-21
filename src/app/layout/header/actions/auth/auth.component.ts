@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {AuthService} from '../../../../auth/auth.service';
 import {AuthDialogComponent} from '../../../../auth/auth-dialog/auth-dialog.component';
@@ -6,24 +6,25 @@ import {AuthDialogComponent} from '../../../../auth/auth-dialog/auth-dialog.comp
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
 
   constructor(
     private readonly authentDialog: MatDialog,
     public readonly authService: AuthService,
-  ) { }
-
-  ngOnInit() {
+  ) {
   }
 
   public get avatar() {
     return this.authService.user.avatar;
   }
 
+  ngOnInit() {
+  }
+
   public authenticate(register: boolean) {
-    this.authentDialog.open(AuthDialogComponent, {data: register, panelClass: 'mobile-modale'});
+    this.authentDialog.open(AuthDialogComponent, {data: register});
   }
 
 }

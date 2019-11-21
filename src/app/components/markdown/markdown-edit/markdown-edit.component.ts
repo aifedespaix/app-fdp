@@ -1,26 +1,29 @@
 import {AfterContentInit, Component, ContentChild, ElementRef, Input, OnInit} from '@angular/core';
+import {AuthDialogComponent} from '../../../auth/auth-dialog/auth-dialog.component';
+import {MatDialog} from '@angular/material';
+import {PictureDialogComponent} from '../../picture/picture-modale/picture-dialog.component';
 
 @Component({
   selector: 'app-markdown-edit',
   templateUrl: './markdown-edit.component.html',
   styleUrls: ['./markdown-edit.component.scss'],
 })
-export class MarkdownEditComponent implements OnInit, AfterContentInit  {
+export class MarkdownEditComponent implements OnInit, AfterContentInit {
 
   public content: string;
   @Input() targetArea: any;
   @ContentChild('area', {static: false}) private textArea: ElementRef<HTMLTextAreaElement>;
 
-  ngAfterContentInit(): void {
-    console.log(this.textArea);
-  }
-
-  constructor() {
+  constructor(
+    private readonly pictureDialog: MatDialog,
+  ) {
     this.content = '';
   }
 
+  ngAfterContentInit(): void {
+  }
+
   ngOnInit() {
-    console.log(this.targetArea);
   }
 
   public addTitle(level: number) {
@@ -36,6 +39,7 @@ export class MarkdownEditComponent implements OnInit, AfterContentInit  {
   }
 
   public addImage() {
+    this.pictureDialog.open(PictureDialogComponent);
     this.placeText(`![alt text](URL "`, '")');
   }
 
