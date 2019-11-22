@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ArticleType} from '../../../model/graphql.schema';
+import {ArticleType} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-article-list',

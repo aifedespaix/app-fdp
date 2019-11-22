@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {AuthService} from '../../../../auth/auth.service';
 import {AuthDialogComponent} from '../../../../auth/auth-dialog/auth-dialog.component';
@@ -8,7 +8,7 @@ import {AuthDialogComponent} from '../../../../auth/auth-dialog/auth-dialog.comp
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
 
   constructor(
     private readonly authentDialog: MatDialog,
@@ -20,11 +20,12 @@ export class AuthComponent implements OnInit {
     return this.authService.user.avatar;
   }
 
-  ngOnInit() {
-  }
-
   public authenticate(register: boolean) {
     this.authentDialog.open(AuthDialogComponent, {data: register});
+  }
+
+  public getBackgroundImage() {
+    return `url('${this.avatar.images[this.avatar.images.length - 1].url})`;
   }
 
 }

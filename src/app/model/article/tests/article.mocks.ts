@@ -1,4 +1,4 @@
-import {ArticleType} from '../../graphql.schema';
+import {ArticleType} from '../../_generated/graphql.schema';
 import * as faker from 'faker';
 import {getUserMock} from '../../user/tests/user.mocks';
 import {getPictureMock} from '../../picture/tests/picture.mocks';

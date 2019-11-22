@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
 import {ResourceService} from '../../../model/resource/resource.service';
-import {ResourceInput, ResourceType} from '../../../model/graphql.schema';
+import {ResourceInput, ResourceType} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-file-upload',
@@ -47,7 +46,6 @@ export class FileUploadComponent {
     this.isLoading = true;
     const fileSub = this.resourceService.createResource(this.resourceInput, this.file)
       .subscribe((res) => {
-          console.log(res);
           this._resourceType = res;
         },
         (err) => {

@@ -10,8 +10,14 @@ export const MY_PROFILE = gql`
             updatedAt
             avatar {
                 id
-                url
+                title
                 description
+                images {
+                    id
+                    url
+                    width
+                    height
+                }
                 updatedAt
                 createdAt
             }
@@ -32,8 +38,14 @@ export const EDIT_MY_USER = gql`
             updatedAt
             avatar {
                 id
-                url
+                title
                 description
+                images {
+                    id
+                    url
+                    width
+                    height
+                }
                 updatedAt
                 createdAt
             }

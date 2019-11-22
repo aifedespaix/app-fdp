@@ -3,8 +3,8 @@ import {Pagination} from '../pagination';
 import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
-import {TagType} from '../graphql.schema';
-import {TAGS} from './queries';
+import {TagType} from '../_generated/graphql.schema';
+import {TAGS} from './graphql';
 import {Observable} from 'rxjs';
 
 @Injectable()

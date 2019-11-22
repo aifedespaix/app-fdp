@@ -1,6 +1,17 @@
-import {PictureType} from '../../graphql.schema';
+import {PictureType} from '../../_generated/graphql.schema';
 import * as faker from 'faker';
 import {getImagesMock} from '../../image/tests/image.mocks';
+
+export function getUndefinedPictureMock(): PictureType {
+  const picture = new PictureType();
+  picture.images = [{
+    url: '/assets/images/undefined.jpg',
+    width: 900,
+    height: 900,
+    id: '0'
+  }];
+  return picture;
+}
 
 export function getPictureMock(): PictureType {
   const picture = new PictureType();

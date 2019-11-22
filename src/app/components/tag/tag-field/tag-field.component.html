@@ -1,5 +1,5 @@
 <mat-form-field class="example-chip-list">
-  <mat-chip-list #chipList aria-label="Fruit selection">
+  <mat-chip-list #chipList aria-label="Sélection de tag">
     <mat-chip
       *ngFor="let tag of tags"
       [selectable]="selectable"
@@ -15,7 +15,7 @@
       </mat-icon>
     </mat-chip>
     <input
-      placeholder="Tag"
+      placeholder="Tags"
       #tagInput
       [formControl]="tagsCtrl"
       [matAutocomplete]="auto"
@@ -25,8 +25,8 @@
       (matChipInputTokenEnd)="add($event)">
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let fruit of filteredTags | async" [value]="fruit">
-      {{fruit}}
+    <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+      {{tag}}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

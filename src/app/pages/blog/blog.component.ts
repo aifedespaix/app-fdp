@@ -1,12 +1,13 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {Metas} from '../../seo/head';
-import {HeadService} from '../../seo/head.service';
+import {Metas} from '../../seo/seo-head/seo-head';
+import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 import {Router} from '@angular/router';
 import {ArticleModelService} from '../../model/article/article-model.service';
 import {Subscription} from 'rxjs';
-import {ArticleType} from '../../model/graphql.schema';
+import {ArticleType} from '../../model/_generated/graphql.schema';
 import {getArticlesMock} from '../../model/article/tests/article.mocks';
 import {AuthService} from '../../auth/auth.service';
+import {BlogRoutes} from './blog-routes';
 
 @Component({
   selector: 'app-blog',
@@ -19,7 +20,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   private articles$: Subscription;
 
   constructor(
-    private readonly headService: HeadService,
+    private readonly headService: SeoHeadService,
     private readonly router: Router,
     private readonly articleModelService: ArticleModelService,
     public readonly authService: AuthService,
@@ -52,5 +53,9 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.articles$.unsubscribe();
+  }
+
+  getRouteWrite() {
+    return BlogRoutes.Write;
   }
 }

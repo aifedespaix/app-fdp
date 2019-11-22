@@ -208,6 +208,7 @@ export class PictureType {
   id: string;
   createdAt: DateTime;
   updatedAt: DateTime;
+  author: UserType;
   title: string;
   description: string;
   images: ImageType[];
@@ -234,7 +235,7 @@ export abstract class IQuery {
 
   abstract menus(): MenuType[] | Promise<MenuType[]>;
 
-  abstract myPictures(picture: PictureInput, file: Upload): PictureType | Promise<PictureType>;
+  abstract myPictures(skip?: number, after?: number, before?: number, first?: number, last?: number): PictureType[] | Promise<PictureType[]>;
 
   abstract resources(skip?: number, after?: number, before?: number, first?: number, last?: number): ResourceType[] | Promise<ResourceType[]>;
 
@@ -268,7 +269,7 @@ export class UserType {
   login: string;
   email: string;
   role: Role;
-  avatar?: ResourceType;
+  avatar?: PictureType;
   articles?: ArticleType[];
 }
 

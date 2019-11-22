@@ -7,7 +7,12 @@
   ></app-picture>
   <div [innerHTML]="article.content | markdown"></div>
   <footer>
-    <div>{{article.tags}}</div>
+    <div>
+      <app-tag
+        *ngFor="let tag of article.tags"
+        [tag]="tag"
+      ></app-tag>
+    </div>
     <div>{{article.likes}}</div>
   </footer>
 </article>

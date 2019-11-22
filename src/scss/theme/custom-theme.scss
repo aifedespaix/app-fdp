@@ -6,7 +6,7 @@
   $accent: map-get($theme, accent);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
-  @debug $primary;
+  //@debug $primary;
 
   app-header {
     background-color: mat-color($background, app-bar);

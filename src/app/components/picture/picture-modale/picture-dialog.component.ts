@@ -1,29 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
+import {PictureType} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-picture-dialog',
   templateUrl: './picture-dialog.component.html',
   styleUrls: ['./picture-dialog.component.scss'],
 })
-export class PictureDialogComponent implements OnInit {
-  public title;
-  public name;
-  public description;
+export class PictureDialogComponent {
+  public title: string;
+  public name: string;
+  public description: string;
+  private picture: PictureType;
 
   constructor(
     private dialogRef: MatDialogRef<PictureDialogComponent>,
   ) {
-  }
-
-  ngOnInit() {
-  }
-
-  close() {
-    this.dialogRef.close();
+    this.picture = null;
   }
 
   submitPicture() {
-    console.log('RETOURNE !');
+    this.dialogRef.close(this.picture);
+  }
+
+  setPicture(picture: PictureType) {
+    this.picture = picture;
   }
 }

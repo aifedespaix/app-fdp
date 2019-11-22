@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {PictureType} from '../../../model/graphql.schema';
+import {PictureType} from '../../../model/_generated/graphql.schema';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-picture',
@@ -9,23 +10,18 @@ import {PictureType} from '../../../model/graphql.schema';
 export class PictureComponent implements OnInit, OnChanges {
 
   @Input() public picture: PictureType;
+  @Input() public objectFit: 'cover' | 'contain' = 'contain';
   public src: string;
   public srcset: string;
   public sizes: string;
 
-  constructor() {
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.picture) {
+    if (changes.picture.previousValue && changes.picture.previousValue.id !== changes.picture.currentValue.id) {
       this.calcDatas();
     }
   }
 
   ngOnInit() {
-    /**
-     * todo ajouter width = et height = en fonction de la taille de la window (par palier)
-     */
     this.calcDatas();
   }
 
@@ -33,18 +29,17 @@ export class PictureComponent implements OnInit, OnChanges {
     this.srcset = '';
     this.sizes = '';
 
-    if (this.picture.images) {
-      this.picture.images = this.picture.images.sort((image, lastImage) => image.width - lastImage.width);
-      const largestImage = this.picture.images.pop();
+    const calcPicture = _.cloneDeep(this.picture);
+    calcPicture.images = calcPicture.images.sort((image, lastImage) => image.width - lastImage.width);
+    const largestImage = calcPicture.images.pop();
 
-      this.picture.images.forEach((image, i) => {
-        this.srcset += `${image.url} ${image.width}w,`;
-        this.sizes += `(max-width: ${image.width - 20}px) ${image.width}px,`;
-      });
+    calcPicture.images.forEach((image) => {
+      this.srcset += `${image.url} ${image.width}w,`;
+      this.sizes += `(max-width: ${image.width - 20}px) ${image.width}px,`;
+    });
 
-      this.srcset += `${largestImage.url} ${largestImage.width}w`;
-      this.sizes += `${largestImage.width}px`;
-      this.src = largestImage.url;
-    }
+    this.srcset += `${largestImage.url} ${largestImage.width}w`;
+    this.sizes += `${largestImage.width}px`;
+    this.src = largestImage.url;
   }
 }

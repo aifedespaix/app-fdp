@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Meta, Title} from '@angular/platform-browser';
-import {Metas, OgImage, OgMetas, OgType, TwitterMetas} from './head';
+import {Metas, OgImage, OgMetas, OgType, TwitterMetas} from './seo-head';
 import {Router} from '@angular/router';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
-export class HeadService {
+export class SeoHeadService {
 
   constructor(
     protected readonly _title: Title,

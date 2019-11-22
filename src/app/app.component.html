@@ -7,7 +7,7 @@
 
 <div
   class="content overflow-auto"
-  [ngClass]="{blur: layoutService.isMenuVisible && !responsiveService.isLargeScreen}"
+  [ngClass]="{'blur cursor-pointer': layoutService.isMenuVisible && !responsiveService.isLargeScreen}"
   (click)="layoutService.isMenuVisible && !responsiveService.isLargeScreen ? layoutService.toggleMenu() : null"
 >
   <main role="main" class="bg-second text-second">

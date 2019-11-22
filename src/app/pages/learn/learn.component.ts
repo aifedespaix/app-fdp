@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Metas} from '../../seo/head';
-import {HeadService} from '../../seo/head.service';
+import {Metas} from '../../seo/seo-head/seo-head';
+import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class LearnComponent implements OnInit {
 
   constructor(
-    private readonly headService: HeadService,
+    private readonly headService: SeoHeadService,
     private readonly router: Router,
   ) {
   }

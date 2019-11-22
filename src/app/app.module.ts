@@ -52,8 +52,18 @@ export class AppModule {
     @Inject(PLATFORM_ID) readonly platformId: object,
   ) {
     const isBrowser = isPlatformBrowser(platformId);
-
-    this.cache = new InMemoryCache();
+    this.cache = new InMemoryCache({
+      addTypename: true,
+      resultCaching: true,
+      cacheRedirects: {
+        // PictureType: {
+        //   images: (_, args, { getCacheKey }) => {
+        //     console.log('wwwwwwwwww');
+        //     return getCacheKey({ __typename: 'ImageType', id: args.id });
+        //   }
+        // }
+      }
+    });
     this.link = this.httpLink.create({
       uri: `${environment.apiEndpoint}`,
       withCredentials: true,
@@ -63,7 +73,7 @@ export class AppModule {
     apollo.create({
       cache: this.cache,
       ...(isBrowser ? {
-        ssrForceFetchDelay: 200000,
+        ssrForceFetchDelay: 20000,
       } : {
         ssrMode: true,
       }),

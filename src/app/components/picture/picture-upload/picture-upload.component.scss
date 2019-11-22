@@ -1,5 +1,6 @@
 :host {
   position: relative;
+  display: grid;
 }
 
 input,
@@ -7,9 +8,15 @@ app-picture,
 label {
   width: 100%;
   height: 100%;
-  display: block;
+  display: grid;
   cursor: pointer;
   position: absolute;
+}
+
+label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 input {

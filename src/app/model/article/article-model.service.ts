@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {ARTICLES} from './gql/queries';
+import {ARTICLES} from './graphql';
 import {Pagination} from '../pagination';
 import {ApolloQueryResult} from 'apollo-client';
-import {ArticleType} from '../graphql.schema';
+import {ArticleType} from '../_generated/graphql.schema';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 

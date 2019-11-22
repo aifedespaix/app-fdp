@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {EDIT_MY_USER, MY_PROFILE} from './gql/queries';
+import {EDIT_MY_USER, MY_PROFILE} from './graphql';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
-import {UserEditInput, UserType} from '../graphql.schema';
+import {UserEditInput, UserType} from '../_generated/graphql.schema';
 import {Observable} from 'rxjs';
 
 @Injectable()

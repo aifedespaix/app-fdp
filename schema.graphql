@@ -101,6 +101,7 @@ type Mutation {
 }
 
 type PictureType {
+  author: UserType!
   createdAt: DateTime!
   description: String!
   id: ID!
@@ -111,19 +112,19 @@ type PictureType {
 
 type Query {
   article(id: String!): ArticleType!
-  articles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]!
+  articles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]
   box(id: String!): BoxType!
   boxes(after: Int, before: Int, first: Int, last: Int, skip: Int): [BoxType!]!
   helloWorld: String!
   menu(name: String!): MenuType!
   menus: [MenuType!]!
-  myArticles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]!
+  myArticles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]
   myComments: [CommentType!]!
   myLikes: [LikeType!]!
-  myPictures(file: Upload!, picture: PictureInput!): PictureType!
+  myPictures(after: Int, before: Int, first: Int, last: Int, skip: Int): [PictureType!]
   myProfile: UserType!
   resources(after: Int, before: Int, first: Int, last: Int, skip: Int): [ResourceType!]!
-  tags(after: Int, before: Int, first: Int, last: Int, skip: Int): TagType
+  tags(after: Int, before: Int, first: Int, last: Int, skip: Int): [TagType]
   users: [UserType!]!
 }
 
@@ -145,7 +146,7 @@ type TagType {
 
 type UserType {
   articles: [ArticleType!]
-  avatar: ResourceType
+  avatar: PictureType
   createdAt: DateTime!
   email: String!
   id: ID!

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HeadService} from './head.service';
+import {SeoHeadService} from './seo-head/seo-head.service';
 
 
 @NgModule({
@@ -9,7 +9,7 @@ import {HeadService} from './head.service';
     CommonModule,
   ],
   providers: [
-    HeadService,
+    SeoHeadService,
   ],
 })
 export class SeoModule {

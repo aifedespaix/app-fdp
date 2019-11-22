@@ -1,7 +1,7 @@
 import {AfterContentInit, Component, ContentChild, ElementRef, Input, OnInit} from '@angular/core';
-import {AuthDialogComponent} from '../../../auth/auth-dialog/auth-dialog.component';
 import {MatDialog} from '@angular/material';
 import {PictureDialogComponent} from '../../picture/picture-modale/picture-dialog.component';
+import {PictureType} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-markdown-edit',
@@ -39,8 +39,10 @@ export class MarkdownEditComponent implements OnInit, AfterContentInit {
   }
 
   public addImage() {
-    this.pictureDialog.open(PictureDialogComponent);
-    this.placeText(`![alt text](URL "`, '")');
+    const dialogRef = this.pictureDialog.open(PictureDialogComponent);
+    dialogRef.afterClosed().subscribe((picture: PictureType) => {
+      this.placeText(`![${picture.description}](${picture.images.pop().url} "`, `${picture.title}")`);
+    });
   }
 
   public addCode() {

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HeadService } from './head.service';
-import {AppRoutingModule} from '../app-routing.module';
+import { SeoHeadService } from './seo-head.service';
+import {AppRoutingModule} from '../../app-routing.module';
 
 describe('HeadService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -9,12 +9,12 @@ describe('HeadService', () => {
       AppRoutingModule,
     ],
     providers: [
-      HeadService,
+      SeoHeadService,
     ]
   }));
 
   it('should be created', () => {
-    const service: HeadService = TestBed.get(HeadService);
+    const service: SeoHeadService = TestBed.get(SeoHeadService);
     expect(service).toBeTruthy();
   });
 });

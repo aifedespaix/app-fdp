@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {ResourceInput, ResourceType} from '../graphql.schema';
-import {CREATE_RESOURCE} from './gql/mutations';
+import {ResourceInput, ResourceType} from '../_generated/graphql.schema';
+import {CREATE_RESOURCE} from './graphql';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
 import {Observable} from 'rxjs';

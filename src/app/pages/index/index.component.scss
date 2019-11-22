@@ -1,8 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 1fr;
   height: 100%;
-  grid-template-rows: repeat(2, 50%);
 }
 
 app-picture {

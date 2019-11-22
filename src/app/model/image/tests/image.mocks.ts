@@ -1,4 +1,4 @@
-import {ImageType} from '../../graphql.schema';
+import {ImageType} from '../../_generated/graphql.schema';
 import * as faker from 'faker';
 
 export function getImageMock(width: number): ImageType {

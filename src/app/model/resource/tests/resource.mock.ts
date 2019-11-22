@@ -1,5 +1,5 @@
 import * as faker from 'faker';
-import {ResourceType} from '../../graphql.schema';
+import {ResourceType} from '../../_generated/graphql.schema';
 
 export function getResourcesMock(): ResponseType[] {
   const resources = [];

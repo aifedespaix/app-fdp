@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LayoutService} from '../layout.service';
 import {ResponsiveService} from '../../responsive/responsive.service';
-import {HeadService} from '../../seo/head.service';
+import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public readonly layoutService: LayoutService,
     public readonly responsiveService: ResponsiveService,
-    public readonly headService: HeadService,
+    public readonly headService: SeoHeadService,
   ) {
   }
 

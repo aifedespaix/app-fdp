@@ -1,6 +1,7 @@
-import {Role, UserType} from '../../graphql.schema';
+import {Role, UserType} from '../../_generated/graphql.schema';
 import * as faker from 'faker';
 import {getResourceMock} from '../../resource/tests/resource.mock';
+import {getPictureMock} from '../../picture/tests/picture.mocks';
 
 export function getUsersMock(): UserType[] {
   const users = [];
@@ -14,8 +15,7 @@ export function getUserMock(): UserType {
   const user = new UserType();
   user.id = faker.random.uuid();
   user.login = faker.internet.userName();
-  user.avatar = getResourceMock();
-  user.avatar.url = faker.internet.avatar();
+  user.avatar = getPictureMock();
   user.email = faker.internet.email();
   user.role = Role.USER;
   return user;

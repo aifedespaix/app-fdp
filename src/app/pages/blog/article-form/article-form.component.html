@@ -11,6 +11,23 @@
     >
   </mat-form-field>
 
+  <mat-form-field>
+    <textarea
+      matInput
+      name="description"
+      placeholder="Description"
+      [(ngModel)]="article.description"
+    >
+    </textarea>
+  </mat-form-field>
+
+  <app-tag-field
+    name="test"
+    [(ngModel)]="article.tags"
+  ></app-tag-field>
+
+  <app-picture-library-pick (pictureSelected)="setPicture($event)"></app-picture-library-pick>
+
   <app-markdown-edit>
     <textarea
       #area
@@ -19,17 +36,5 @@
       [(ngModel)]="article.content"
     ></textarea>
   </app-markdown-edit>
-
-  <mat-form-field>
-    <textarea
-      matInput
-      type="text"
-      placeholder="Description"
-    >
-    </textarea>
-  </mat-form-field>
-
-  <app-tag-field></app-tag-field>
-  <app-picture-upload (pictureSaved)="setPicture($event)"></app-picture-upload>
 
 </form>

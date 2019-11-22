@@ -1,5 +1,5 @@
 <form
-  #pictureForm="ngForm"
+  #form="ngForm"
   (ngSubmit)="submitPicture()" autocomplete="on"
 >
   <mat-form-field>
@@ -14,9 +14,35 @@
     <mat-error>Veuillez saisir un titre</mat-error>
   </mat-form-field>
 
+  <mat-form-field *ngIf="title">
+    <textarea
+      matInput
+      placeholder="Description"
+      name="description"
+      [(ngModel)]="description"
+      maxlength="250"
+      required
+    >
+    </textarea>
+    <mat-error>Veuillez saisir une desccription</mat-error>
+  </mat-form-field>
+
   <app-picture-upload
+    *ngIf="description && title"
     [title]="title"
-    [name]="name"
     [description]="description"
+    (pictureSaved)="setPicture($event)"
   ></app-picture-upload>
+
+  <button
+    *ngIf="picture && title && description"
+    mat-flat-button
+    color="primary"
+    type="submit"
+    class="btn btn-success"
+    [disabled]="!form.form.valid"
+  >
+    <mat-icon>add_circle</mat-icon>
+    Ajouter l'image
+  </button>
 </form>

@@ -1,8 +1,8 @@
 <app-article-list [articles]="articles"></app-article-list>
 
 <a
-  routerLink="new"
-  *ngIf="authService.isLoged"
+  [routerLink]="getRouteWrite()"
+  *ngIf="authService.isAuthenticated"
   class="add"
   mat-fab
   color="primary"

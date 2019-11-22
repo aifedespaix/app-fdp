@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {PictureInput, PictureType} from '../graphql.schema';
+import {PictureInput, PictureType} from '../_generated/graphql.schema';
 import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
-import {CREATE_PICTURE} from './gql/queries';
+import {CREATE_PICTURE, MY_PICTURES} from './graphql';
 
 @Injectable()
 export class PictureModelService {
@@ -22,6 +22,16 @@ export class PictureModelService {
       })
       .pipe(map(
         ({data}: ApolloQueryResult<{ createPicture: PictureType }>) => data.createPicture),
+      );
+  }
+
+  public myPictures(): Observable<PictureType[]> {
+    return this.apollo
+      .query({
+        query: MY_PICTURES,
+      })
+      .pipe(map(
+        ({data}: ApolloQueryResult<{ myPictures: PictureType[] }>) => data.myPictures),
       );
   }
 }

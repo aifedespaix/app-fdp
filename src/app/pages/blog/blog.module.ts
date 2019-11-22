@@ -19,7 +19,8 @@ import {MatChipsModule} from '@angular/material';
 import {TagModule} from '../../components/tag/tag.module';
 import {ArticleComponent} from './article/article.component';
 import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';
-import { ArticleListComponent } from './article-list/article-list.component';
+import {ArticleListComponent} from './article-list/article-list.component';
+import {PictureLibraryModule} from '../../components/picture-library/picture-library.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
     PictureModule,
     MatChipsModule,
     TagModule,
+    PictureLibraryModule,
   ],
   providers: [
     ArticleModelService,

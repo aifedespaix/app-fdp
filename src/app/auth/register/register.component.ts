@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../auth.service';
-import {RegisterInput} from '../../model/graphql.schema';
+import {RegisterInput} from '../../model/_generated/graphql.schema';
 import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
 import {Register} from './register';
 
@@ -42,7 +42,6 @@ export class RegisterComponent {
               message: 'Vous êtes inscrit et connecté',
             },
           });
-          registerSub.unsubscribe();
           this.closeRegister();
         },
         () => {
@@ -54,10 +53,9 @@ export class RegisterComponent {
               message: `L'utilisateur existe déjà`,
             },
           });
-          registerSub.unsubscribe();
         },
         () => {
-          console.log('auth end');
+          registerSub.unsubscribe();
         },
       );
   }

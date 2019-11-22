@@ -1,39 +1,47 @@
 import {Injectable} from '@angular/core';
-import {LoginInput, LoginType, RegisterInput, UserEditInput, UserType} from '../model/graphql.schema';
+import {LoginInput, RegisterInput, UserEditInput, UserType} from '../model/_generated/graphql.schema';
 import {AuthModelService} from '../model/auth/auth-model.service';
 import {map} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 import {UserModelService} from '../model/user/user-model.service';
-import {getAvatarMock} from '../model/resource/tests/resource.mock';
+import {getPictureMock} from '../model/picture/tests/picture.mocks';
+import {Apollo} from 'apollo-angular';
 
 @Injectable()
 export class AuthService {
 
-  private loginType: LoginType;
+  private readonly tokenKey = 'token';
 
   constructor(
     private readonly cookieService: CookieService,
     private readonly authModelService: AuthModelService,
     private readonly userModelService: UserModelService,
+    private readonly apollo: Apollo,
   ) {
-    this.loginType = new LoginType();
+    this._user = null;
   }
 
-  public get isLoged() {
-    return this.loginType.user;
+  get isAuthenticated() {
+    return this.getToken() && this.user;
   }
+
+  private _user: UserType;
 
   get user() {
-    return this.loginType.user;
+    return this._user;
+  }
+
+  public getToken() {
+    return this.cookieService.get(this.tokenKey);
   }
 
   public login(loginInput: LoginInput): Observable<boolean> {
     return this.authModelService.login(loginInput)
       .pipe(map(
         (loginType) => {
-          this.loginType = loginType;
-          this.cookieService.set('token', this.loginType.token);
+          this.updateUser(loginType.user);
+          this.setToken(loginType.token);
           return true;
         },
       ));
@@ -43,31 +51,35 @@ export class AuthService {
     return this.authModelService.register(registerInput)
       .pipe(map(
         (loginType) => {
-          this.loginType = loginType;
-          this.cookieService.set('token', this.loginType.token);
+          this.updateUser(loginType.user);
+          this.setToken(loginType.token);
           return true;
         },
       ));
   }
 
   public logout() {
-    this.loginType = new LoginType();
+    this._user = null;
+    this.apollo.getClient().resetStore();
     this.clearToken();
   }
 
   public loadProfile() {
-    const sub = this.userModelService.myProfile()
-      .subscribe(
-        (user) => {
-          this.updateUser(user);
-        },
-        () => {
-          this.clearToken();
-        },
-        () => {
-          sub.unsubscribe();
-        }
-      );
+    if (this.getToken()) {
+      const sub = this.userModelService.myProfile()
+        .subscribe(
+          (user) => {
+            this.updateUser(user);
+          },
+          (err) => {
+            console.log(err);
+            this.logout();
+          },
+          () => {
+            sub.unsubscribe();
+          },
+        );
+    }
   }
 
   public updateProfile(userEditInput: UserEditInput): Observable<boolean> {
@@ -78,15 +90,19 @@ export class AuthService {
       }));
   }
 
+  private setToken(value: string) {
+    this.cookieService.set(this.tokenKey, value);
+  }
+
   private updateUser(user: UserType) {
-    this.loginType.user = user;
-    if (!this.loginType.user.avatar || !this.loginType.user.avatar.url) {
-      this.loginType.user.avatar = getAvatarMock();
+    this._user = user;
+    if (!this.user.avatar || !this.user.avatar.images) {
+      this._user.avatar = getPictureMock();
     }
   }
 
   private clearToken() {
-    this.cookieService.set('token', '');
+    this.setToken('');
   }
 
 }

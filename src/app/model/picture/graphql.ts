@@ -7,6 +7,25 @@ export const CREATE_PICTURE = gql`
             title
             description
             images {
+                id
+                url
+                width
+                height
+            }
+            createdAt
+            updatedAt
+        }
+    }
+`;
+
+export const MY_PICTURES = gql`
+    query myPictures {
+        myPictures {
+            id
+            title
+            description
+            images {
+                id
                 url
                 width
                 height

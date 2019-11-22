@@ -1,4 +1,4 @@
-<ng-container *ngIf="authService.user then logged else notLogged"></ng-container>
+<ng-container *ngIf="authService.isAuthenticated then logged else notLogged"></ng-container>
 
 <ng-template #logged>
   <button
@@ -9,7 +9,7 @@
     matTooltip="Mes actions"
     class="profilBtn"
     color="none"
-    [ngStyle]="{'background-image': 'url(' + avatar.url + ')'}"
+    [ngStyle]="{'background-image': getBackgroundImage()}"
   >
   </button>
 

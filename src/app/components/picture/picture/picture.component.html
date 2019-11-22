@@ -1,9 +1,10 @@
-<picture *ngIf="picture && picture.images">
+<picture>
   <img
-    [title]="this.picture.title"
-    [alt]="this.picture.description"
-    [src]="src"
+    [title]="picture.title"
+    [alt]="picture.description"
+    [src]="src | safe: 'resourceUrl'"
     [srcset]="srcset"
     [sizes]="sizes"
+    [ngStyle]="{objectFit: objectFit}"
   >
 </picture>

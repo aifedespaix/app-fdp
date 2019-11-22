@@ -17,7 +17,12 @@ export const REGISTER = gql`
                 avatar {
                     id
                     title
-                    url
+                    images {
+                        id
+                        url
+                        width
+                        height
+                    }
                 }
             }
         }
@@ -38,7 +43,12 @@ export const LOGIN = gql`
                 avatar {
                     id
                     title
-                    url
+                    images {
+                        id
+                        url
+                        width
+                        height
+                    }
                 }
             }
         }

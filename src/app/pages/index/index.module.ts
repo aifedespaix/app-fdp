@@ -5,6 +5,7 @@ import { IndexRoutingModule } from './index-routing.module';
 import { IndexComponent } from './index.component';
 import {FileModule} from '../../components/file/file.module';
 import {PictureModule} from '../../components/picture/picture.module';
+import {PictureLibraryModule} from '../../components/picture-library/picture-library.module';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import {PictureModule} from '../../components/picture/picture.module';
     CommonModule,
     IndexRoutingModule,
     FileModule,
-    PictureModule,
+    PictureLibraryModule, // todo remove
   ],
 })
 export class IndexModule { }

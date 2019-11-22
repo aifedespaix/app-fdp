@@ -9,6 +9,7 @@ import {FileModule} from '../../components/file/file.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {PictureModule} from '../../components/picture/picture.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ProfileRoutingModule,
     MatCardModule,
     MatButtonModule,
+    PictureModule,
     FileModule,
     MatTooltipModule,
     MatTableModule,

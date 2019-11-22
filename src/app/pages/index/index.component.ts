@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {HeadService} from '../../seo/head.service';
-import {Metas} from '../../seo/head';
+import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
+import {Metas} from '../../seo/seo-head/seo-head';
 import {Router} from '@angular/router';
-import {PictureType} from '../../model/graphql.schema';
-import {getPictureMock} from '../../model/picture/tests/picture.mocks';
+import {PictureType} from '../../model/_generated/graphql.schema';
+import {AuthService} from '../../auth/auth.service';
+import {PictureLibraryService} from '../../components/picture-library/picture-library.service';
+import {PictureModelService} from '../../model/picture/picture-model.service';
 
 @Component({
   selector: 'app-index',
@@ -12,13 +14,29 @@ import {getPictureMock} from '../../model/picture/tests/picture.mocks';
 })
 export class IndexComponent implements OnInit {
 
-  public picture: PictureType;
+  public pictures: PictureType[];
 
   constructor(
-    private readonly headService: HeadService,
+    private readonly headService: SeoHeadService,
     private readonly router: Router,
+    public readonly auth: AuthService, // todo remove
+    public readonly pictureLibraryService: PictureLibraryService, // todo remove
+    private readonly pictureModelService: PictureModelService, // todo remove
   ) {
-    this.picture = getPictureMock();
+    this.test();
+  }
+
+  test() {
+    const a = this.pictureModelService
+      .myPictures()
+      .subscribe((pictures) => {
+        this.pictures = pictures;
+        a.unsubscribe();
+      });
+  }
+
+  reset() {
+    this.pictures = [];
   }
 
   ngOnInit() {
