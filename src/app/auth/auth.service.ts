@@ -56,7 +56,7 @@ export class AuthService {
   }
 
   public loadProfile() {
-    this.userModelService.myProfile()
+    const sub = this.userModelService.myProfile()
       .subscribe(
         (user) => {
           this.updateUser(user);
@@ -64,6 +64,9 @@ export class AuthService {
         () => {
           this.clearToken();
         },
+        () => {
+          sub.unsubscribe();
+        }
       );
   }
 
@@ -76,12 +79,10 @@ export class AuthService {
   }
 
   private updateUser(user: UserType) {
-    // this.zone.run(() => {
     this.loginType.user = user;
     if (!this.loginType.user.avatar || !this.loginType.user.avatar.url) {
       this.loginType.user.avatar = getAvatarMock();
     }
-    // });
   }
 
   private clearToken() {
