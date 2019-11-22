@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(1fr, 300px));
+  grid-auto-rows: minmax(300px, 1fr);
   grid-gap: 1rem;
   padding: 1rem;
 
