@@ -1,6 +1,6 @@
 <app-article [article]="article"></app-article>
 
-<form #articleForm="ngForm">
+<form #articleForm="ngForm" (ngSubmit)="createArticle()">
   <mat-form-field class="title">
     <input
       matInput
@@ -22,11 +22,16 @@
   </mat-form-field>
 
   <app-tag-field
-    name="test"
+    name="tags"
     [(ngModel)]="article.tags"
   ></app-tag-field>
 
-  <app-picture-library-pick (pictureSelected)="setPicture($event)"></app-picture-library-pick>
+  <app-picture-library-pick
+    (pictureSelected)="setPicture($event)"
+    [title]="article.title"
+    [description]="article.description"
+    label="Image de couverture"
+  ></app-picture-library-pick>
 
   <app-markdown-edit>
     <textarea
@@ -37,4 +42,12 @@
     ></textarea>
   </app-markdown-edit>
 
+  <button
+    [disabled]="!(isSubmitable())"
+    class="submit"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >Envoyer
+  </button>
 </form>

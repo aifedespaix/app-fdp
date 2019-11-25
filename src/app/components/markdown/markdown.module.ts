@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';
 import {PictureDialogComponent} from '../picture/picture-modale/picture-dialog.component';
 import {MatDialogModule} from '@angular/material';
+import {PictureLibraryModule} from '../picture-library/picture-library.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {MatDialogModule} from '@angular/material';
     MatButtonModule,
     NgxMarkdownModule.forRoot({}),
     MatDialogModule,
+    PictureLibraryModule,
   ],
   exports: [
     MarkdownEditComponent,

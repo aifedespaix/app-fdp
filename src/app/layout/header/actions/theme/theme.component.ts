@@ -37,8 +37,6 @@ export class ThemeComponent implements OnInit {
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.setTheme(this.themeStorage.getStoredThemeName());
-    } else {
-      this.setTheme(Theme.LIGHT);
     }
   }
 
@@ -54,6 +52,7 @@ export class ThemeComponent implements OnInit {
     this.removeTheme(Theme.DARK);
     this.installTheme(Theme.LIGHT);
   }
+
   private removeTheme(name: string) {
     this.overlay.getContainerElement().classList.remove(name);
     document.body.classList.remove(name);

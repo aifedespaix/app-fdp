@@ -1,16 +1,49 @@
-<label [for]="uuid">{{label}}</label>
-
-<input
-  type="file"
-  name="file"
-  [id]="uuid"
-  [accept]="types.join(',')"
-  (change)="onFileChange($event)"
+<form
+  #form="ngForm"
+  autocomplete="on"
 >
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Titre"
+      name="title"
+      [(ngModel)]="title"
+      maxlength="50"
+      required
+    >
+    <mat-error>Veuillez saisir un titre</mat-error>
+  </mat-form-field>
 
-<app-loading [isLoading]="isLoading">
-  <app-picture
-    *ngIf="picture"
-    [picture]="picture"
-  ></app-picture>
-</app-loading>
+  <mat-form-field *ngIf="title">
+    <textarea
+      matInput
+      placeholder="Description"
+      name="description"
+      [(ngModel)]="description"
+      maxlength="250"
+      required
+    >
+    </textarea>
+    <mat-error>Veuillez saisir une description</mat-error>
+  </mat-form-field>
+
+  <div
+    class="picture-upload"
+    *ngIf="title && description"
+  >
+    <label [for]="uuid">{{label}}</label>
+    <input
+      type="file"
+      name="file"
+      [id]="uuid"
+      [accept]="types.join(',')"
+      (change)="onFileChange($event)"
+    >
+    <app-loading [isLoading]="isLoading">
+      <app-picture
+        *ngIf="picture"
+        [picture]="picture"
+      ></app-picture>
+    </app-loading>
+  </div>
+</form>

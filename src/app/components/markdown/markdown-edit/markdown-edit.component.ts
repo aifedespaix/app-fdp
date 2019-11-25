@@ -35,13 +35,12 @@ export class MarkdownEditComponent implements OnInit, AfterContentInit {
   }
 
   public addLink() {
-    this.placeText(`[`, ']: URL');
+    this.placeText(`[`, '](URL)');
   }
 
   public addImage() {
     const dialogRef = this.pictureDialog.open(PictureDialogComponent);
     dialogRef.afterClosed().subscribe((picture: PictureType) => {
-      this.placeText(`![${picture.description}](${picture.images.pop().url} "`, `${picture.title}")`);
     });
   }
 
@@ -63,5 +62,9 @@ export class MarkdownEditComponent implements OnInit, AfterContentInit {
     this.textArea.nativeElement.selectionEnd = this.textArea.nativeElement.selectionStart + inner.length;
     this.textArea.nativeElement.focus();
     this.textArea.nativeElement.dispatchEvent(new Event('change'));
+  }
+
+  public addPicture(picture: PictureType) {
+    this.placeText(`![${picture.description}](${picture.images.pop().url} "`, `${picture.title}")`);
   }
 }

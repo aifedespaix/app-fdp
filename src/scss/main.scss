@@ -26,6 +26,10 @@ a {
   text-decoration: none;
 }
 
+main {
+  overflow: hidden;
+}
+
 .content {
   background-color: #fafafa;
   overflow-y: scroll;
@@ -34,4 +38,7 @@ a {
 
 .mat-tab-body-content {
   margin-right: calc(-1rem - 1px);
+}
+.cdk-global-scrollblock {
+  overflow-y: auto;
 }

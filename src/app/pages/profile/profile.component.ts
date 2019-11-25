@@ -4,12 +4,11 @@ import {Metas} from '../../seo/seo-head/seo-head';
 import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 import {Router} from '@angular/router';
 import {UserModelService} from '../../model/user/user-model.service';
-import {ResourceService} from '../../model/resource/resource.service';
 import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
 import {MatSnackBar} from '@angular/material';
 import {UserEditInput} from '../../model/_generated/graphql.schema';
-import {getAvatarMock} from '../../model/resource/tests/resource.mock';
 import {PictureModelService} from '../../model/picture/picture-model.service';
+import {getAvatarMock} from '../../model/picture/tests/picture.mocks';
 
 @Component({
   selector: 'app-profile',

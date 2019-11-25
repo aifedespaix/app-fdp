@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {PictureType} from '../../../model/_generated/graphql.schema';
 import {MatDialogRef} from '@angular/material';
 import {PictureModelService} from '../../../model/picture/picture-model.service';
+import {PictureLibraryData} from './picture-library.data';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-picture-library',
@@ -15,6 +17,7 @@ export class PictureLibraryDialogComponent implements OnInit {
   constructor(
     private readonly dialogRef: MatDialogRef<PictureLibraryDialogComponent>,
     private readonly pictureModelService: PictureModelService,
+    @Inject(MAT_DIALOG_DATA) public data: PictureLibraryData,
   ) {
     this.pictures = [];
   }
@@ -34,5 +37,6 @@ export class PictureLibraryDialogComponent implements OnInit {
 
   public addPicture(picture: PictureType) {
     this.pictures.push(picture);
+    this.submitPicture(picture);
   }
 }

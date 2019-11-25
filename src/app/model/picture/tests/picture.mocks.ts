@@ -1,4 +1,4 @@
-import {PictureType} from '../../_generated/graphql.schema';
+import {PictureType, ResourceType} from '../../_generated/graphql.schema';
 import * as faker from 'faker';
 import {getImagesMock} from '../../image/tests/image.mocks';
 
@@ -30,4 +30,15 @@ export function getPicturesMock(nb: number): PictureType[] {
     pictures.push(getPictureMock());
   }
   return pictures;
+}
+
+export function getAvatarMock(): PictureType {
+  const picture = new PictureType();
+  picture.id = '666';
+  picture.title = `Pas d'avatar`;
+  picture.description = `L'avatar est inconnu`;
+  picture.createdAt = new Date();
+  picture.updatedAt = new Date();
+  picture.images = getUndefinedPictureMock().images;
+  return picture;
 }

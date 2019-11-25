@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {ARTICLES} from './graphql';
+import {ARTICLES, CREATE_ARTICLE} from './graphql';
 import {Pagination} from '../pagination';
 import {ApolloQueryResult} from 'apollo-client';
-import {ArticleType} from '../_generated/graphql.schema';
+import {ArticleInput, ArticleType} from '../_generated/graphql.schema';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
@@ -28,4 +28,25 @@ export class ArticleModelService {
       ));
   }
 
+  public createArticle(article: ArticleType): Observable<ArticleType> {
+    const articleInput: ArticleInput = {
+      title: article.title,
+      description: article.description,
+      content: article.content,
+      tags: article.tags.map((t) => t.value),
+      thumbnailId: article.thumbnail.id,
+    };
+    return this.apollo
+      .mutate({
+        mutation: CREATE_ARTICLE,
+        variables: {
+          article: articleInput,
+        },
+      })
+      .pipe(map(
+        (res: ApolloQueryResult<{ createArticle: ArticleType }>) => {
+          return res.data.createArticle;
+        },
+      ));
+  }
 }

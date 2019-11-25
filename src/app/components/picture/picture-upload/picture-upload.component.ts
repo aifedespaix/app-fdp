@@ -14,6 +14,7 @@ export class PictureUploadComponent implements OnInit {
   @Input() public title = '';
   @Input() public description = '';
   @Input() public label = 'Choisir une image';
+  @Output() private pictureSaved: EventEmitter<PictureType>;
 
   public isLoading: boolean;
   public picture: PictureType;
@@ -21,7 +22,6 @@ export class PictureUploadComponent implements OnInit {
   public types = ['image/png', 'image/jpg', 'image/gif'];
   private file: File;
 
-  @Output() private pictureSaved: EventEmitter<PictureType>;
 
   constructor(
     private readonly snackBar: MatSnackBar,

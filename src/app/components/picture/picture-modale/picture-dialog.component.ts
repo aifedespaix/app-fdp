@@ -11,7 +11,7 @@ export class PictureDialogComponent {
   public title: string;
   public name: string;
   public description: string;
-  private picture: PictureType;
+  public picture: PictureType;
 
   constructor(
     private dialogRef: MatDialogRef<PictureDialogComponent>,

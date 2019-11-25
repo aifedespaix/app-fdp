@@ -171,7 +171,7 @@ input ArticleEditInput {
   content: String
   description: String
   tags: [String!]
-  thumbnail: PictureCreateInput
+  thumbnailId: String
   title: String
 }
 
@@ -179,7 +179,7 @@ input ArticleInput {
   content: String!
   description: String!
   tags: [String!]
-  thumbnail: PictureCreateInput!
+  thumbnailId: String!
   title: String!
 }
 

@@ -14,7 +14,7 @@
     <ng-container *ngIf="isLoading then loading else notLoading"></ng-container>
 
     <ng-template #notLoading>
-      <img mat-card-image [src]="avatar.url" [alt]="avatar.title">
+      <app-picture [picture]="avatar"></app-picture>
       <input
         id="file"
         type="file"

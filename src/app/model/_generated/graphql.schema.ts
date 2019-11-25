@@ -21,7 +21,7 @@ export class ArticleEditInput {
   title?: string;
   content?: string;
   description?: string;
-  thumbnail?: PictureCreateInput;
+  thumbnailId?: string;
   tags?: string[];
 }
 
@@ -29,7 +29,7 @@ export class ArticleInput {
   title: string;
   content: string;
   description: string;
-  thumbnail: PictureCreateInput;
+  thumbnailId: string;
   tags?: string[];
 }
 

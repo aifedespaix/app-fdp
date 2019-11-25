@@ -19,14 +19,3 @@ export function getResourceMock(): ResourceType {
   resource.url = faker.random.image();
   return resource;
 }
-
-export function getAvatarMock(): ResourceType {
-  const resource = new ResourceType();
-  resource.id = '666';
-  resource.title = `Pas d'avatar`;
-  resource.description = `L'avatar est inconnu`;
-  resource.createdAt = new Date();
-  resource.updatedAt = new Date();
-  resource.url = '/assets/images/no-avatar.png';
-  return resource;
-}
