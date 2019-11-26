@@ -6,7 +6,7 @@
 ></app-nav>
 
 <div
-  class="content overflow-auto"
+  class="content scroll_hidden overflow-auto"
   [ngClass]="{'blur cursor-pointer': layoutService.isMenuVisible && !responsiveService.isLargeScreen}"
   (click)="layoutService.isMenuVisible && !responsiveService.isLargeScreen ? layoutService.toggleMenu() : null"
 >
@@ -14,7 +14,7 @@
     <router-outlet></router-outlet>
   </main>
 
-  <footer *ngIf="layoutService.isFooterVisible">
+  <footer [ngClass]="{hidden: !layoutService.isFooterVisible}">
     <address>
       Contact <a href="mailto:aifedespaix@gmail.com">aifedespaix</a>
     </address>

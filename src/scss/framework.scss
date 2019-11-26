@@ -79,12 +79,15 @@
 .t-0 {
   top: 0;
 }
+
 .l-0 {
   left: 0;
 }
+
 .r-0 {
   right: 0;
 }
+
 .b-0 {
   bottom: 0;
 }
@@ -109,6 +112,42 @@
   text-align: justify;
 }
 
-.over_shadow:hover {
-  box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)
+.hoverable {
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+  }
+}
+
+.hoverable_pump {
+  &:hover {
+    animation: pump .2s ease-in-out;
+  }
+}
+
+@keyframes pump {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  to {
+
+    transform: scale(1);
+  }
+}
+
+.fdpBackground {
+  background: linear-gradient(-45deg, #fbb700, #b60105);
+}
+
+.aifeBackground {
+  background: linear-gradient(-45deg, #6b4587, #230439);
+}
+
+.scroll_hidden {
+  overflow-y: scroll;
+  margin-right: calc(-1rem - 1px);
 }

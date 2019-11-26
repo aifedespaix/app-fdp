@@ -51,8 +51,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: '/404',
   },
-  { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
-  { path: 'music', loadChildren: () => import('./pages/music/music.module').then(m => m.MusicModule) },
 ];
 
 @NgModule({

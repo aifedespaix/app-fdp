@@ -1,19 +1,19 @@
-import {Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {ArticleType, PictureType} from '../../../model/_generated/graphql.schema';
 import {Metas} from '../../../seo/seo-head/seo-head';
 import {SeoHeadService} from '../../../seo/seo-head/seo-head.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
 import {getUndefinedPictureMock} from '../../../model/picture/tests/picture.mocks';
-import {LayoutService} from '../../../layout/layout.service';
+import {LayoutService} from '../../../services/layout.service';
 import {ArticleModelService} from '../../../model/article/article-model.service';
+import {ComponentCanDeactivate} from '../../../guards/pending-changes.guard';
 
 @Component({
   selector: 'app-new-article',
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.scss'],
 })
-export class ArticleFormComponent implements OnInit, OnDestroy {
+export class ArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
 
   public article: ArticleType;
   public markdown: string;
@@ -29,12 +29,9 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.article = new ArticleType();
     this.article.thumbnail = getUndefinedPictureMock();
     this.isSaved = false;
+    layoutService.footerVisibility(false);
   }
 
-  @HostListener('window:beforeunload')
-  canDeactivate(): Observable<boolean> | boolean {
-    return this.isSaved;
-  }
 
   ngOnInit() {
     this.headService.setHead(
@@ -46,11 +43,14 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         this.router.url,
       ),
     );
-    this.layoutService.footerVisibility(false);
   }
 
   ngOnDestroy(): void {
     this.layoutService.footerVisibility(true);
+  }
+
+  canDeactivate(): boolean {
+    return this.isSaved;
   }
 
   public setPicture(picture: PictureType) {
@@ -61,7 +61,8 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.articleModelService
       .createArticle(this.article)
       .subscribe((article) => {
-        console.log(article);
+        this.isSaved = true;
+        this.router.navigate(['../articles', article.id, article.title]);
       });
   }
 

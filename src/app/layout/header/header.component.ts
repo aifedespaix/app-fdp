@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LayoutService} from '../layout.service';
+import {LayoutService} from '../../services/layout.service';
 import {ResponsiveService} from '../../responsive/responsive.service';
 import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 

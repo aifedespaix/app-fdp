@@ -59,6 +59,14 @@ export class MenuItemInput {
   routerLink: string;
 }
 
+export class PaginationInput {
+  skip?: number;
+  after?: number;
+  before?: number;
+  first?: number;
+  last?: number;
+}
+
 export class PictureCreateInput {
   create?: ResourceInput[];
   connect?: string[];
@@ -219,10 +227,26 @@ export class PictureType {
   images: ImageType[];
 }
 
+export class PlaylistStreamingType {
+  plateform: string;
+  playlists: PlaylistsType[];
+}
+
+export class PlaylistsType {
+  name: string;
+  iframe: string;
+}
+
+export class PlaylistYoutubeType {
+  title: string;
+  youtubeId: string;
+  year: string;
+}
+
 export abstract class IQuery {
   abstract helloWorld(): string | Promise<string>;
 
-  abstract articles(skip?: number, after?: number, before?: number, first?: number, last?: number): ArticleType[] | Promise<ArticleType[]>;
+  abstract articles(published: boolean, pagination?: PaginationInput): ArticleType[] | Promise<ArticleType[]>;
 
   abstract article(id: string): ArticleType | Promise<ArticleType>;
 

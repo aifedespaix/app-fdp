@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavComponent } from './nav.component';
 import {MatIconModule} from '@angular/material';
-import {LayoutService} from '../layout.service';
+import {LayoutService} from '../../services/layout.service';
 import {ResponsiveService} from '../../responsive/responsive.service';
 import {AppRoutingModule} from '../../app-routing.module';
 

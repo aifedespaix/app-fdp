@@ -2,5 +2,5 @@
   *ngFor="let article of articles"
   [routerLink]="['/blog/articles', article.id, article.title]"
 >
-  <app-article-card [article]="article" class="over_shadow"></app-article-card>
+  <app-article-card [article]="article" class="hoverable"></app-article-card>
 </a>

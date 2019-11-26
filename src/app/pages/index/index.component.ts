@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 import {Metas} from '../../seo/seo-head/seo-head';
 import {Router} from '@angular/router';
-import {PictureType} from '../../model/_generated/graphql.schema';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -10,8 +10,6 @@ import {PictureType} from '../../model/_generated/graphql.schema';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-
-  public pictures: PictureType[];
 
   constructor(
     private readonly headService: SeoHeadService,

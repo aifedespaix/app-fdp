@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthComponent } from './auth.component';
 import {MatButtonModule, MatDialogModule, MatIconModule, MatMenuModule} from '@angular/material';
-import {AuthService} from '../../../../auth/auth.service';
+import {AuthService} from '../../../../services/auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthModelService} from '../../../../model/auth/auth-model.service';
 import {ApolloTestingModule} from 'apollo-angular/testing';

@@ -20,6 +20,8 @@ import {ArticleModule} from '../../components/article/article.module';
 import {ArticlePageComponent} from './article/article-page.component';
 import {ArticleFormComponent} from './article-form/article-form.component';
 import {SeoModule} from '../../seo/seo.module';
+import {LayoutModule} from '../../layout/layout.module';
+import {AuthModule} from '../../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -43,11 +45,11 @@ import {SeoModule} from '../../seo/seo.module';
     TagModule,
     LoadingModule,
     ArticleModule,
+    AuthModule,
     SeoModule,
+    LayoutModule,
     MarkdownModule,
     NgxMarkdownModule.forChild(),
-  ],
-  providers: [
   ],
 })
 export class BlogModule {

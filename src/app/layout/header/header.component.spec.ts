@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HeaderComponent} from './header.component';
-import {LayoutService} from '../layout.service';
+import {LayoutService} from '../../services/layout.service';
 import {ResponsiveService} from '../../responsive/responsive.service';
 import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 import {MatDialogModule, MatIconModule, MatMenuModule} from '@angular/material';
@@ -9,7 +9,7 @@ import {LogoComponent} from '../logo/logo.component';
 import {ThemeComponent} from './actions/theme/theme.component';
 import {AuthComponent} from './actions/auth/auth.component';
 import {AppRoutingModule} from '../../app-routing.module';
-import {AuthService} from '../../auth/auth.service';
+import {AuthService} from '../../services/auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthModelService} from '../../model/auth/auth-model.service';
 import {ApolloTestingModule} from 'apollo-angular/testing';

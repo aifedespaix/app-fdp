@@ -1,8 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
-import {LayoutService} from '../../layout/layout.service';
+import {LayoutService} from '../../services/layout.service';
 import {Metas} from '../../seo/seo-head/seo-head';
 import {Router} from '@angular/router';
+import {YOUTUBE_PLAYLISTS} from '../../model/playlist/tests/playlists.mock';
+import {PlaylistModelService} from '../../model/playlist/playlist-model.service';
 
 @Component({
   selector: 'app-music',
@@ -11,16 +13,17 @@ import {Router} from '@angular/router';
 })
 export class MusicComponent implements OnInit, OnDestroy {
 
+
   constructor(
     private readonly seoHeadService: SeoHeadService,
     private readonly layoutService: LayoutService,
     private readonly router: Router,
   ) {
+    layoutService.footerVisibility(false);
   }
 
   ngOnInit() {
     this.updateMetas();
-    this.layoutService.footerVisibility(false);
   }
 
   ngOnDestroy(): void {
@@ -30,9 +33,9 @@ export class MusicComponent implements OnInit, OnDestroy {
   updateMetas() {
     this.seoHeadService.setHead(
       new Metas(
-        'Les Meilleures playlists de musique',
+        'Les Meilleures playlists de musique of da world bitch',
         'Musique',
-        'Écoute du son',
+        `Écoute ces sons poto, Youtube Spotify, Apple Music et Deezer, y'a tout partout`,
         'clapette',
         this.router.url,
       ),

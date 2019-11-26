@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {ResponsiveService} from '../responsive/responsive.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class LayoutService {
 
   private _isMenuVisible: boolean;

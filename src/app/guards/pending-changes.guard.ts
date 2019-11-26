@@ -6,8 +6,11 @@ export interface ComponentCanDeactivate {
   canDeactivate: () => boolean | Observable<boolean>;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class PendingChangesGuard implements CanDeactivate<ComponentCanDeactivate> {
+
   canDeactivate(component: ComponentCanDeactivate): boolean | Observable<boolean> {
     const warnMsg = 'Attention : Il y a des changements non sauvegardés.';
     const saveMsg = 'Appuyez sur "Annuler" et enregistrer ces changements';

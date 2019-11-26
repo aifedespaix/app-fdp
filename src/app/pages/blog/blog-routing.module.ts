@@ -7,17 +7,22 @@ import {BlogComponent} from './index/blog.component';
 import {ArticleFormComponent} from './article-form/article-form.component';
 import {ArticlePageComponent} from './article/article-page.component';
 import {BlogRoutes} from './blog-routes';
+import {AuthGuard} from '../../guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: BlogComponent},
-  {path: BlogRoutes.Write, component: ArticleFormComponent, canDeactivate: [PendingChangesGuard]},
+  {
+    path: BlogRoutes.Write,
+    component: ArticleFormComponent,
+    canDeactivate: [PendingChangesGuard],
+    canActivate: [AuthGuard],
+  },
   {path: 'articles/:id/:title', component: ArticlePageComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [PendingChangesGuard],
 })
 export class BlogRoutingModule {
 }

@@ -11,7 +11,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {CommonModule} from '@angular/common';
 import {SnackbarModule} from '../components/snackbar/snackbar.module';
-import {AuthService} from './auth.service';
 import {AuthModelService} from '../model/auth/auth-model.service';
 import {UserModelService} from '../model/user/user-model.service';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -37,7 +36,6 @@ import {DirectivesModule} from '../directives/directives.module';
     DirectivesModule,
   ],
   providers: [
-    AuthService,
     AuthModelService,
     UserModelService,
   ]

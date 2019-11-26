@@ -9,10 +9,13 @@ import {getPictureMock} from '../model/picture/tests/picture.mocks';
 import {Apollo} from 'apollo-angular';
 import {Router} from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
   private readonly tokenKey = 'token';
+  private _isAuthenticated;
 
   constructor(
     private readonly cookieService: CookieService,
@@ -22,16 +25,17 @@ export class AuthService {
     private readonly router: Router,
   ) {
     this._user = null;
-  }
-
-  get isAuthenticated() {
-    return this.getToken() && this.user;
+    this._isAuthenticated = false;
   }
 
   private _user: UserType;
 
   get user() {
     return this._user;
+  }
+
+  get isAuthenticated() {
+    return this._isAuthenticated;
   }
 
   public getToken() {
@@ -44,6 +48,7 @@ export class AuthService {
         (loginType) => {
           this.updateUser(loginType.user);
           this.setToken(loginType.token);
+          this._isAuthenticated = true;
           return true;
         },
       ));
@@ -55,6 +60,7 @@ export class AuthService {
         (loginType) => {
           this.updateUser(loginType.user);
           this.setToken(loginType.token);
+          this._isAuthenticated = true;
           return true;
         },
       ));
@@ -63,6 +69,7 @@ export class AuthService {
   public async logout() {
     this._user = null;
     this.clearToken();
+    this._isAuthenticated = false;
     await this.apollo.getClient().resetStore();
     await this.router.navigateByUrl('/');
   }
@@ -73,10 +80,10 @@ export class AuthService {
         .subscribe(
           (user) => {
             this.updateUser(user);
+            this._isAuthenticated = true;
           },
-          (err) => {
-            console.log(err);
-            this.logout();
+          async (err) => {
+            await this.logout();
           },
           () => {
             sub.unsubscribe();

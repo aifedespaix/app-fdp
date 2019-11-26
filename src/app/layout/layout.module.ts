@@ -14,7 +14,6 @@ import {ThemeComponent} from './header/actions/theme/theme.component';
 import {AuthComponent} from './header/actions/auth/auth.component';
 import {RouterModule} from '@angular/router';
 import {MatRippleModule} from '@angular/material';
-import {LayoutService} from './layout.service';
 import {SeoModule} from '../seo/seo.module';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {AuthModule} from '../auth/auth.module';
@@ -55,7 +54,6 @@ import {ThemeStorageService} from './header/actions/theme/theme-storage/theme-st
     NavComponent,
   ],
   providers: [
-    LayoutService,
     ThemeStorageService,
     [{
       provide: MatDialogRef,

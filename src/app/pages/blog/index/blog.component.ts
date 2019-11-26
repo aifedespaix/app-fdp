@@ -6,7 +6,7 @@ import {ArticleModelService} from '../../../model/article/article-model.service'
 import {Subscription} from 'rxjs';
 import {ArticleType} from '../../../model/_generated/graphql.schema';
 import {getArticlesMock} from '../../../model/article/tests/article.mocks';
-import {AuthService} from '../../../auth/auth.service';
+import {AuthService} from '../../../services/auth.service';
 import {BlogRoutes} from '../blog-routes';
 
 @Component({
