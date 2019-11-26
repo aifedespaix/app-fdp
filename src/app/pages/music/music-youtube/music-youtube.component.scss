@@ -1,0 +1,32 @@
+@import "layout-variables";
+@import "mixins";
+
+$playlist-size: 8rem;
+
+:host {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+}
+
+.playlists_container {
+  max-height: 3 * $playlist-size;
+}
+
+.playlists {
+  @include squareGrid($playlist-size);
+  grid-gap: $padding;
+  padding: $padding;
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+
+    .subtitle {
+      font-size: .6em;
+    }
+  }
+}

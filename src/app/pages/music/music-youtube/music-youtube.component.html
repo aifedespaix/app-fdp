@@ -1,0 +1,17 @@
+<div>
+  <router-outlet name="youtube"></router-outlet>
+</div>
+
+<div class="playlists_container scroll_hidden">
+  <div class="playlists">
+    <a
+      *ngFor="let playlist of playlists"
+      class="playlists-item main-color hoverable hoverable_pump fdpBackground"
+      [routerLink]="[{ outlets: { youtube: [playlist.title] } }]"
+    >
+      <div>{{playlist.title}}</div>
+      <div class="subtitle">{{playlist.year}}</div>
+    </a>
+  </div>
+
+</div>

@@ -1,0 +1,44 @@
+<div class="player">
+  <iframe
+    allow="autoplay *; encrypted-media *;"
+    allowTransparency="true"
+    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+    [src]="playlists[plateformId].playlists[playlistId].iframe | safe: 'resourceUrl'"
+    frameborder="0"
+  ></iframe>
+</div>
+
+<div class="list">
+  <div class="group">
+    <div class="title">Plateforme</div>
+    <div class="sublist">
+      <div
+        class="elem hoverable"
+        *ngFor="let plateform of playlists | keyvalue"
+        (click)="plateformId = plateform.key"
+        [ngClass]="{active: plateform.key == plateformId}"
+      >
+        {{plateform.value.plateform}}
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="title">Playlist</div>
+    <div class="sublist scroll_hidden">
+      <div
+        *ngFor="let plateform of playlists | keyvalue"
+        [ngClass]="{hidden: plateform.key != plateformId}"
+      >
+        <div
+          class="elem hoverable"
+          *ngFor="let playlist of plateform.value.playlists | keyvalue"
+          (click)="playlistId = playlist.key"
+          [ngClass]="{active: playlist.key == playlistId}"
+        >
+          {{playlist.value.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
