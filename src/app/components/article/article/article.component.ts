@@ -4,15 +4,8 @@ import {ArticleType} from '../../../model/_generated/graphql.schema';
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  styleUrls: ['./article.component.scss'],
 })
-export class ArticleComponent implements OnInit {
-
+export class ArticleComponent {
   @Input() public article: ArticleType;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

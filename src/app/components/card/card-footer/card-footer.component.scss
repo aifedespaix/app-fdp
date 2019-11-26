@@ -1,0 +1,6 @@
+@import "layout-variables";
+
+:host {
+  grid-area: footer;
+  padding: $padding;
+}

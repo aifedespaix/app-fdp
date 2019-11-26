@@ -25,7 +25,9 @@
     color: mat-color($foreground, text);
   }
 
-  footer {
-
+  .card {
+    background-color: mat-color($background, card);
+    color: mat-color($foreground, text);
   }
+
 }

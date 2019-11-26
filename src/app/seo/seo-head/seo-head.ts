@@ -57,6 +57,9 @@ export class Metas {
     if (!twitter) {
       twitter = '@aifedespaix';
     }
+    if (!type) {
+      type = {website: true};
+    }
 
     this.ogMetas = new OgMetas(
       title,
@@ -112,6 +115,7 @@ export class OgMetas {
 
 export class OgType {
   article?: OgArticleType;
+  website?: boolean;
   // musicSong: any;
   // musicAlbum: any;
   // musicPlaylist: any;
@@ -135,8 +139,8 @@ export class OgArticleType {
   modifiedTime: Date;
   expirationTime: Date;
   author: string;
-  section: string;
-  tags: string[];
+  section: string; // todo preparer champ pour ce cas
+  tags: string[];  // todo preparer champ pour ce cas
 }
 
 export class TwitterMetas {

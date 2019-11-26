@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {ARTICLES, CREATE_ARTICLE} from './graphql';
+import {ARTICLE, ARTICLES, CREATE_ARTICLE, UPDATE_ARTICLE} from './graphql';
 import {Pagination} from '../pagination';
 import {ApolloQueryResult} from 'apollo-client';
-import {ArticleInput, ArticleType} from '../_generated/graphql.schema';
+import {ArticleEditInput, ArticleInput, ArticleType} from '../_generated/graphql.schema';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
@@ -18,7 +18,7 @@ export class ArticleModelService {
   public articles(pagination: Pagination): Observable<ArticleType[]> {
     return this.apollo.watchQuery({
       query: ARTICLES,
-      variables: pagination,
+      variables: {pagination, published: true},
     })
       .valueChanges
       .pipe(map(
@@ -44,9 +44,30 @@ export class ArticleModelService {
         },
       })
       .pipe(map(
-        (res: ApolloQueryResult<{ createArticle: ArticleType }>) => {
-          return res.data.createArticle;
-        },
+        ({data}: ApolloQueryResult<{ createArticle: ArticleType }>) => data.createArticle,
       ));
   }
+
+  public article(id: string): Observable<ArticleType> {
+    return this.apollo
+      .query({
+        query: ARTICLE,
+        variables: {id},
+      })
+      .pipe(map(
+        ({data}: ApolloQueryResult<{ article: ArticleType }>) => data.article,
+      ));
+  }
+
+  public updateArticle(articleId: string, article: ArticleEditInput) {
+    return this.apollo
+      .mutate({
+        mutation: UPDATE_ARTICLE,
+        variables: {articleId, article},
+      })
+      .pipe(map(
+        ({data}: ApolloQueryResult<{ updateArticle: ArticleType }>) => data.updateArticle,
+      ));
+  }
+
 }

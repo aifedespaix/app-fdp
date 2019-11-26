@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticleFormComponent } from './article-form.component';
-import {ArticleComponent} from '../article/article.component';
+import {ArticleComponent} from '../../../components/article/article/article.component';
 import {MatFormFieldControl, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {MarkdownModule} from '../../../components/markdown/markdown.module';

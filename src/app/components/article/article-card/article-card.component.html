@@ -1,0 +1,21 @@
+<app-card>
+  <app-card-header>
+    <h2>{{article.title}}</h2>
+  </app-card-header>
+
+  <app-card-picture>
+    <app-picture [picture]="article.thumbnail"></app-picture>
+  </app-card-picture>
+
+  <app-card-content>
+    {{article.description}}
+  </app-card-content>
+
+  <app-card-footer>
+    <address class="author">Par {{article.author.login}}</address>
+    <time>Le {{article.createdAt | date:'d MMM y'}}</time>
+    <div class="tags">
+      <app-tag *ngFor="let tag of article.tags" [tag]="tag"></app-tag>
+    </div>
+  </app-card-footer>
+</app-card>

@@ -1,0 +1,8 @@
+@import "layout-variables";
+
+:host {
+  grid-area: header;
+  overflow: hidden;
+  padding: 0 $padding;
+  overflow-wrap: break-word;
+}

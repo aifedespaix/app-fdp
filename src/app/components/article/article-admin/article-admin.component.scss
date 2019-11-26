@@ -1,0 +1,17 @@
+@import "layout-variables";
+
+table {
+  width: 100%;
+
+  th, td {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: $padding;
+}

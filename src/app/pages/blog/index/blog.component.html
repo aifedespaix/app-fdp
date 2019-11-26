@@ -1,4 +1,6 @@
-<app-article-list [articles]="articles"></app-article-list>
+<app-loading [isLoading]="isLoading">
+  <app-article-list [articles]="articles"></app-article-list>
+</app-loading>
 
 <a
   [routerLink]="getRouteWrite()"
@@ -8,7 +10,6 @@
   color="primary"
   matTooltip="Rédiger un nouvel article"
   matTooltipPosition="left"
-  aria-label="Rédiger un nouvel article"
 >
   <mat-icon>add</mat-icon>
 </a>

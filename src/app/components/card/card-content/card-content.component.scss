@@ -1,0 +1,7 @@
+@import "layout-variables";
+
+:host {
+  padding: 0 $padding;
+  grid-area: content;
+  overflow: auto;
+}

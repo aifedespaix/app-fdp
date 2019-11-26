@@ -80,13 +80,17 @@ export class SeoHeadService {
       this.meta.updateTag({property: 'og:type', content: 'article'});
       this.meta.updateTag({property: 'article:published_time', content: ogType.article.publishedTime.toISOString()});
       this.meta.updateTag({property: 'article:modified_time', content: ogType.article.modifiedTime.toISOString()});
-      this.meta.updateTag({property: 'article:expiration_time', content: ogType.article.expirationTime.toISOString()});
+      if (ogType.article.expirationTime) {
+        this.meta.updateTag({property: 'article:expiration_time', content: ogType.article.expirationTime.toISOString()});
+      }
       this.meta.updateTag({property: 'article:author', content: ogType.article.author});
       this.meta.updateTag({property: 'article:section', content: ogType.article.section});
 
       for (const tag of ogType.article.tags) {
         this.meta.addTag({property: 'article:tag', content: tag});
       }
+    } else if (ogType.website) {
+      this.meta.updateTag({property: 'og:type', content: 'website'});
     }
   }
 

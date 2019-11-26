@@ -31,6 +31,15 @@ const routes: Routes = [
     },
   },
   {
+    path: 'music',
+    loadChildren: () => import('./pages/music/music.module').then(m => m.MusicModule),
+    data: {
+      icon: 'audiotrack',
+      name: 'Musique',
+      index: 4,
+    },
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
   },
@@ -43,6 +52,7 @@ const routes: Routes = [
     redirectTo: '/404',
   },
   { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
+  { path: 'music', loadChildren: () => import('./pages/music/music.module').then(m => m.MusicModule) },
 ];
 
 @NgModule({

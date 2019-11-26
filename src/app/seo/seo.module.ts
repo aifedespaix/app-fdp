@@ -4,7 +4,6 @@ import {SeoHeadService} from './seo-head/seo-head.service';
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
   ],

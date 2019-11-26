@@ -13,6 +13,7 @@ type ArticleType {
   description: String!
   id: ID!
   likes: [LikeType!]
+  published: Boolean!
   tags: [TagType!]
   thumbnail: PictureType!
   title: String!
@@ -46,6 +47,7 @@ type CommentType {
 type ImageType {
   height: Int!
   id: ID!
+  mimetype: String!
   url: String!
   width: Int!
 }
@@ -98,6 +100,7 @@ type Mutation {
   createPicture(file: Upload!, picture: PictureInput!): PictureType!
   deleteUser(id: String!): UserType!
   editMyUser(user: UserEditInput!): UserType!
+  updateArticle(article: ArticleEditInput!, articleId: String!): ArticleType!
 }
 
 type PictureType {
@@ -112,7 +115,7 @@ type PictureType {
 
 type Query {
   article(id: String!): ArticleType!
-  articles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]
+  articles(pagination: PaginationInput, published: Boolean!): [ArticleType!]
   box(id: String!): BoxType!
   boxes(after: Int, before: Int, first: Int, last: Int, skip: Int): [BoxType!]!
   helloWorld: String!
@@ -170,6 +173,7 @@ enum Role {
 input ArticleEditInput {
   content: String
   description: String
+  published: Boolean
   tags: [String!]
   thumbnailId: String
   title: String
@@ -206,6 +210,14 @@ input MenuItemInput {
   icon: String!
   name: String!
   routerLink: String!
+}
+
+input PaginationInput {
+  after: Int
+  before: Int
+  first: Int
+  last: Int
+  skip: Int
 }
 
 input PictureCreateInput {

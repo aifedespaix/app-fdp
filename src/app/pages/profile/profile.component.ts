@@ -3,12 +3,10 @@ import {AuthService} from '../../auth/auth.service';
 import {Metas} from '../../seo/seo-head/seo-head';
 import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 import {Router} from '@angular/router';
-import {UserModelService} from '../../model/user/user-model.service';
 import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
 import {MatSnackBar} from '@angular/material';
-import {UserEditInput} from '../../model/_generated/graphql.schema';
-import {PictureModelService} from '../../model/picture/picture-model.service';
-import {getAvatarMock} from '../../model/picture/tests/picture.mocks';
+import {PictureType, UserEditInput, UserType} from '../../model/_generated/graphql.schema';
+import {UserModelService} from '../../model/user/user-model.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +17,7 @@ export class ProfileComponent implements OnInit {
 
   public isLoading: boolean;
   public modified: boolean;
+  public user: UserType;
   private readonly userEditInput: UserEditInput;
 
   constructor(
@@ -27,11 +26,11 @@ export class ProfileComponent implements OnInit {
     private readonly headService: SeoHeadService,
     private readonly router: Router,
     private readonly userModelService: UserModelService,
-    private readonly pictureModelService: PictureModelService,
   ) {
     this.userEditInput = new UserEditInput();
     this.isLoading = false;
     this.modified = false;
+    this.user = null;
   }
 
   ngOnInit() {
@@ -44,38 +43,13 @@ export class ProfileComponent implements OnInit {
         this.router.url,
       ),
     );
-  }
 
-  get user() {
-    return this.authService.user;
-  }
-
-  get avatar() {
-    return this.user && this.user.avatar ? this.user.avatar : getAvatarMock();
-  }
-
-  public onFileChange({target: {validity, files: [file]}}: any) {
-    this.isLoading = true;
-    const sub = this.pictureModelService.createPicture({title: `Avatar de ${this.user.login}`, description: ''}, file)
-      .subscribe((res) => {
-          this.user.avatar = res;
-          this.userEditInput.avatarId = res.id;
-          this.isLoading = false;
-          this.modified = true;
-        },
-        (error) => {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {
-              icon: 'error',
-              color: '',
-              message: `Erreur, impossible de changer l'avatar, reessayez plus tard`,
-            },
-          });
-        },
-        () => {
-          sub.unsubscribe();
-        });
+    this.userModelService
+      .completeProfile()
+      .subscribe((user) => {
+        this.user = user;
+        console.log(this.user);
+      });
   }
 
   public save() {
@@ -90,7 +64,7 @@ export class ProfileComponent implements OnInit {
               message: `Votre profil est à jour !`,
             },
           });
-          },
+        },
         () => {
 
           this.snackBar.openFromComponent(SnackbarComponent, {
@@ -109,4 +83,9 @@ export class ProfileComponent implements OnInit {
       );
   }
 
+  public updateAvatar(avatar: PictureType) {
+    this.userEditInput.avatarId = avatar.id;
+    this.user.avatar = avatar;
+    this.modified = true;
+  }
 }

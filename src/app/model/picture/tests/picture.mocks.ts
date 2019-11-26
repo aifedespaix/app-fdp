@@ -8,7 +8,8 @@ export function getUndefinedPictureMock(): PictureType {
     url: '/assets/images/undefined.jpg',
     width: 900,
     height: 900,
-    id: '0'
+    id: '0',
+    mimetype: 'image/jpg',
   }];
   return picture;
 }

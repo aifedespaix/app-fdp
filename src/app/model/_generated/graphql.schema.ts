@@ -19,6 +19,7 @@ export enum Role {
 
 export class ArticleEditInput {
   title?: string;
+  published?: boolean;
   content?: string;
   description?: string;
   thumbnailId?: string;
@@ -97,6 +98,7 @@ export class ArticleType {
   id: string;
   createdAt: DateTime;
   updatedAt: DateTime;
+  published: boolean;
   title: string;
   content: string;
   description: string;
@@ -136,6 +138,7 @@ export class ImageType {
   url: string;
   width: number;
   height: number;
+  mimetype: string;
 }
 
 export class LikeType {
@@ -169,6 +172,8 @@ export class MenuType {
 }
 
 export abstract class IMutation {
+  abstract updateArticle(article: ArticleEditInput, articleId: string): ArticleType | Promise<ArticleType>;
+
   abstract createArticle(article: ArticleInput): ArticleType | Promise<ArticleType>;
 
   abstract createArticleComment(articleId: string, comment: string): ArticleType | Promise<ArticleType>;

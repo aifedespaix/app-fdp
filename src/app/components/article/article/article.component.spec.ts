@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticleComponent } from './article.component';
-import {PictureModule} from '../../../components/picture/picture.module';
-import {MarkdownModule} from '../../../components/markdown/markdown.module';
+import {PictureModule} from '../../picture/picture.module';
+import {MarkdownModule} from '../../markdown/markdown.module';
 import {MatIconModule} from '@angular/material';
 import {getArticleMock} from '../../../model/article/tests/article.mocks';
 import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';

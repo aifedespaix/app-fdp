@@ -1,0 +1,29 @@
+@import "layout-variables";
+
+:host {
+  height: 100%;
+}
+
+app-card-footer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: "tags tags tags" "author . date";
+  padding: 0 $padding;
+
+  address {
+    grid-area: author;
+    font-size: .8rem;
+  }
+
+  time {
+    grid-area: date;
+    font-size: .8rem;
+  }
+
+  .tags {
+    grid-area: tags;
+    display: flex;
+    justify-content: space-between;
+  }
+}

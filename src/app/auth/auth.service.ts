@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {UserModelService} from '../model/user/user-model.service';
 import {getPictureMock} from '../model/picture/tests/picture.mocks';
 import {Apollo} from 'apollo-angular';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -18,6 +19,7 @@ export class AuthService {
     private readonly authModelService: AuthModelService,
     private readonly userModelService: UserModelService,
     private readonly apollo: Apollo,
+    private readonly router: Router,
   ) {
     this._user = null;
   }
@@ -58,10 +60,11 @@ export class AuthService {
       ));
   }
 
-  public logout() {
+  public async logout() {
     this._user = null;
-    this.apollo.getClient().resetStore();
     this.clearToken();
+    await this.apollo.getClient().resetStore();
+    await this.router.navigateByUrl('/');
   }
 
   public loadProfile() {

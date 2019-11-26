@@ -1,12 +1,15 @@
-<nav class="flex" [ngClass]="responsiveService.isLargeScreen ? 'flex-col' : 'flex-col-reverse'">
+<nav
+  class="flex"
+  [ngClass]="responsiveService.isLargeScreen ? 'flex-col' : 'flex-col-reverse'"
+>
     <a
       *ngFor="let route of routes"
-      class="text-main p-4 flex items-center"
-      [ngClass]="responsiveService.isLargeScreen ? 'flex-row' : 'flex-row-reverse'"
-      matRipple
       [routerLink]="route.url"
-      routerLinkActive="active-link"
+      [ngClass]="responsiveService.isLargeScreen ? 'flex-row' : 'flex-row-reverse'"
       [routerLinkActiveOptions]="{exact: !route.url}"
+      class="text-main p-4 flex items-center"
+      matRipple
+      routerLinkActive="active-link"
       (click)="layoutService.toggleMenu()"
     >
       <mat-icon class="mat-18">{{route.icon}}</mat-icon>
