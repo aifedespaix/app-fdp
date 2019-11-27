@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ThemeComponent} from './theme.component';
-import {MatIconModule, MatMenuModule} from '@angular/material';
+import {LayoutModule} from '../../../layout.module';
 
 describe('ThemeComponent', () => {
   let component: ThemeComponent;
@@ -9,10 +9,8 @@ describe('ThemeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ThemeComponent],
       imports: [
-        MatIconModule,
-        MatMenuModule,
+        LayoutModule,
       ],
     })
       .compileComponents();

@@ -22,6 +22,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {DirectivesModule} from '../directives/directives.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {ThemeStorageService} from './header/actions/theme/theme-storage/theme-storage.service';
+import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import {ThemeStorageService} from './header/actions/theme/theme-storage/theme-st
     ActionsComponent,
     ThemeComponent,
     AuthComponent,
+    LayoutFooterComponent,
   ],
   imports: [
     CommonModule,
@@ -40,25 +43,23 @@ import {ThemeStorageService} from './header/actions/theme/theme-storage/theme-st
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    RouterModule,
     MatRippleModule,
-    SeoModule,
     MatDialogModule,
-    AuthModule,
     MatTooltipModule,
-    DirectivesModule,
     MatGridListModule,
+    AuthModule,
+    DirectivesModule,
+    RouterModule,
+    SeoModule,
+    InlineSVGModule,
   ],
   exports: [
     HeaderComponent,
     NavComponent,
+    LayoutFooterComponent,
   ],
   providers: [
     ThemeStorageService,
-    [{
-      provide: MatDialogRef,
-      useValue: {},
-    }],
   ],
   entryComponents: [
     AuthDialogComponent,

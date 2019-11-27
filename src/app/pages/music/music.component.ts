@@ -1,10 +1,8 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
 import {LayoutService} from '../../services/layout.service';
 import {Metas} from '../../seo/seo-head/seo-head';
 import {Router} from '@angular/router';
-import {YOUTUBE_PLAYLISTS} from '../../model/playlist/tests/playlists.mock';
-import {PlaylistModelService} from '../../model/playlist/playlist-model.service';
 
 @Component({
   selector: 'app-music',
@@ -12,7 +10,6 @@ import {PlaylistModelService} from '../../model/playlist/playlist-model.service'
   styleUrls: ['./music.component.scss'],
 })
 export class MusicComponent implements OnInit, OnDestroy {
-
 
   constructor(
     private readonly seoHeadService: SeoHeadService,
@@ -30,7 +27,7 @@ export class MusicComponent implements OnInit, OnDestroy {
     this.layoutService.footerVisibility(true);
   }
 
-  updateMetas() {
+  private updateMetas() {
     this.seoHeadService.setHead(
       new Metas(
         'Les Meilleures playlists de musique of da world bitch',

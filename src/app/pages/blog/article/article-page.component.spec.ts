@@ -1,14 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticlePageComponent } from './article-page.component';
+import {BlogModule} from '../blog.module';
+import {AppRoutingModule} from '../../../app-routing.module';
+import {ApolloTestingModule} from 'apollo-angular/testing';
 
-describe('ArticleComponent', () => {
+describe('ArticlePageComponent', () => {
   let component: ArticlePageComponent;
   let fixture: ComponentFixture<ArticlePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticlePageComponent ]
+      imports: [
+        BlogModule,
+        AppRoutingModule,
+        ApolloTestingModule,
+      ]
     })
     .compileComponents();
   }));

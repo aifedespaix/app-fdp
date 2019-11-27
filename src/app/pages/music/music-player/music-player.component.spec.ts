@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MusicPlayerComponent } from './music-player.component';
+import {MusicPlayerComponent} from './music-player.component';
+import {MusicModule} from '../music.module';
+import {AppRoutingModule} from '../../../app-routing.module';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 describe('MusicPlayerComponent', () => {
   let component: MusicPlayerComponent;
@@ -8,14 +12,26 @@ describe('MusicPlayerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MusicPlayerComponent ]
-    })
-    .compileComponents();
+        imports: [
+          MusicModule,
+          AppRoutingModule,
+        ],
+        providers: [{
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {data: {playlist: 'test'}},
+          },
+        },
+        ],
+      },
+    )
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MusicPlayerComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

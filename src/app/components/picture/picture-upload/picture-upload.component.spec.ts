@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PictureUploadComponent } from './picture-upload.component';
-import {PictureComponent} from '../picture/picture.component';
-import {PictureModelService} from '../../../model/picture/picture-model.service';
+import {PictureModule} from '../picture.module';
 import {ApolloTestingModule} from 'apollo-angular/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('PictureUploadComponent', () => {
   let component: PictureUploadComponent;
@@ -11,15 +11,10 @@ describe('PictureUploadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        PictureUploadComponent,
-        PictureComponent,
-      ],
       imports: [
+        PictureModule,
         ApolloTestingModule,
-      ],
-      providers: [
-        PictureModelService,
+        BrowserAnimationsModule,
       ],
     })
     .compileComponents();

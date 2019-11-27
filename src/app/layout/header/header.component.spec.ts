@@ -14,6 +14,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {AuthModelService} from '../../model/auth/auth-model.service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 import {UserModelService} from '../../model/user/user-model.service';
+import {LayoutModule} from '../layout.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -21,27 +22,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        HeaderComponent,
-        ActionsComponent,
-        LogoComponent,
-        ThemeComponent,
-        AuthComponent,
-      ],
       imports: [
-        MatIconModule,
-        MatMenuModule,
+        LayoutModule,
         AppRoutingModule,
-        MatDialogModule,
         ApolloTestingModule,
       ],
       providers: [
-        LayoutService,
-        ResponsiveService,
-        SeoHeadService,
-        AuthService,
-        AuthModelService,
-        UserModelService,
         CookieService,
       ],
     })

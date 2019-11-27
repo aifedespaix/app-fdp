@@ -7,6 +7,13 @@ $playlist-size: 8rem;
   display: grid;
   grid-template-rows: 1fr auto;
   height: 100%;
+  overflow-x: hidden;
+}
+
+.viewer {
+  background-image: url(/assets/images/clic-poto.png);
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
 
 .playlists_container {

@@ -21,7 +21,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   private articles$: Subscription;
 
   constructor(
-    private readonly headService: SeoHeadService,
+    private readonly seoHeadService: SeoHeadService,
     private readonly router: Router,
     private readonly articleModelService: ArticleModelService,
     public readonly authService: AuthService,
@@ -32,8 +32,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadArticles();
     this.updateHead();
+    this.loadArticles();
   }
 
   ngOnDestroy(): void {
@@ -45,7 +45,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   private updateHead() {
-    this.headService.setHead(
+    this.seoHeadService.setHead(
       new Metas(
         'Un blog technique pour apprendre à dev ou comprendre des trucs',
         'Blog',

@@ -48,8 +48,6 @@ export class ArticlePageComponent implements OnInit {
   }
 
   private updateHead() {
-    console.log(this.article.createdAt);
-    console.log(new Date(this.article.createdAt));
     this.seoHeadService.setHead(
       new Metas(
         this.article.title,

@@ -9,13 +9,13 @@ import {MarkdownModule} from '../markdown/markdown.module';
 import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {PipesModule} from '../../pipes/pipes.module';
 import {RouterModule} from '@angular/router';
 import {ArticleCardComponent} from './article-card/article-card.component';
 import {CardModule} from '../card/card.module';
 import {ArticleAdminComponent} from './article-admin/article-admin.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
+import {PipesModule} from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -27,16 +27,16 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     RouterModule,
-    PictureModule,
-    TagModule,
     MatCardModule,
-    PipesModule,
     MarkdownModule,
-    NgxMarkdownModule.forChild(),
-    CardModule,
     MatTableModule,
     MatCheckboxModule,
+    CardModule,
+    TagModule,
+    PictureModule,
+    PipesModule,
     MatButtonModule,
+    NgxMarkdownModule.forChild(),
   ],
   exports: [
     ArticleComponent,

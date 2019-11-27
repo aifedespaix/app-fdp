@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { YoutubeEmbedComponent } from './youtube-embed.component';
+import {YoutubeModule} from '../youtube.module';
 
 describe('YoutubeEmbedComponent', () => {
   let component: YoutubeEmbedComponent;
@@ -8,7 +9,7 @@ describe('YoutubeEmbedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ YoutubeEmbedComponent ]
+      imports: [ YoutubeModule ]
     })
     .compileComponents();
   }));

@@ -1,0 +1,43 @@
+@import "layout-variables";
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $padding;
+}
+
+.infos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $padding;
+  }
+}
+
+.social {
+  .youtube {background-color: #ff0000;}
+  .twitter {background-color: #1da1f2;}
+  .facebook {background-color: #4267b2;}
+  .instagram {background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);}
+
+  a {
+    fill: #fff;
+    padding: $padding;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    margin: $padding;
+
+    transition: .2s ease-in-out;
+    &:hover {
+      padding: $padding * 2;
+    }
+  }
+
+}

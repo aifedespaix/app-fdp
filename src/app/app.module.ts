@@ -14,6 +14,7 @@ import {HttpLink, HttpLinkHandler, HttpLinkModule} from 'apollo-angular-link-htt
 import {CookieService} from 'ngx-cookie-service';
 import {setContext} from 'apollo-link-context';
 import {isPlatformBrowser} from '@angular/common';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 const STATE_KEY = makeStateKey<any>('apollo.state');
 

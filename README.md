@@ -3,7 +3,7 @@
 ## New page
 ```
 ng g m pages/[PAGE] --route=[PAGE] --module=[PARENT]
-ng g m pages/music --route=music --module=app
+ng g m pages/legal --route=legal --module=app
 ```
 ## New Model
 ```

@@ -20,8 +20,4 @@ export class MusicPlayerComponent implements OnInit {
     this.playlist = this.route.snapshot.data.playlist;
   }
 
-  public playlistUrl() {
-    return `https://www.youtube.com/embed/videoseries?list=${this.playlist.youtubeId}`;
-  }
-
 }

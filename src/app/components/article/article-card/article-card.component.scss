@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+h2 {
+  max-height: 3em;
+}
+
 app-card-footer {
   display: grid;
   grid-template-columns: auto 1fr auto;

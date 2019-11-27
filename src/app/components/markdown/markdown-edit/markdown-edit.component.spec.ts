@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MarkdownEditComponent } from './markdown-edit.component';
 import {MatIconModule} from '@angular/material';
+import {PictureLibraryModule} from '../../picture-library/picture-library.module';
 
 describe('MarkdownEditComponent', () => {
   let component: MarkdownEditComponent;
@@ -12,6 +13,7 @@ describe('MarkdownEditComponent', () => {
       declarations: [ MarkdownEditComponent ],
       imports: [
         MatIconModule,
+        PictureLibraryModule,
       ]
     })
     .compileComponents();

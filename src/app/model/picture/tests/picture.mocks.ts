@@ -5,11 +5,11 @@ import {getImagesMock} from '../../image/tests/image.mocks';
 export function getUndefinedPictureMock(): PictureType {
   const picture = new PictureType();
   picture.images = [{
-    url: '/assets/images/undefined.jpg',
-    width: 900,
-    height: 900,
+    url: '/assets/images/undefined.png',
+    width: 595,
+    height: 595,
     id: '0',
-    mimetype: 'image/jpg',
+    mimetype: 'image/png',
   }];
   return picture;
 }
@@ -21,7 +21,7 @@ export function getPictureMock(): PictureType {
   picture.updatedAt = new Date();
   picture.title = faker.name.title();
   picture.description = faker.lorem.paragraph(1);
-  picture.images = getImagesMock(6);
+  picture.images = getUndefinedPictureMock().images;
   return picture;
 }
 

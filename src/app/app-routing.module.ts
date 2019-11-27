@@ -44,6 +44,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
   },
   {
+    path: 'legal',
+    loadChildren: () => import('./pages/legal/legal.module').then(m => m.LegalModule)
+  },
+  {
     path: '404',
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
   },

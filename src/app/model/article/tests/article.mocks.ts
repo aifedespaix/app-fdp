@@ -15,8 +15,11 @@ export function getArticleMock(): ArticleType {
   const article = new ArticleType();
   article.id = faker.random.uuid();
   article.title = faker.random.words(5);
+  article.description = faker.lorem.paragraph(1);
   article.content = faker.random.words(50);
   article.thumbnail = getPictureMock();
   article.author = getUserMock();
+  article.createdAt = new Date();
+  article.updatedAt = new Date();
   return article;
 }

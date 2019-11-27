@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PictureComponent } from './picture.component';
 import {getPictureMock} from '../../../model/picture/tests/picture.mocks';
+import {PictureModule} from '../picture.module';
 
 describe('PictureComponent', () => {
   let component: PictureComponent;
@@ -9,7 +10,7 @@ describe('PictureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PictureComponent ],
+      imports: [ PictureModule ],
     })
     .compileComponents();
   }));

@@ -1,17 +1,22 @@
 import {TestBed} from '@angular/core/testing';
 
-import {AuthService} from '../services/auth.service';
-import {AuthModule} from './auth.module';
+import {AuthService} from './auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
+import {AppRoutingModule} from '../app-routing.module';
+import {AuthModelService} from '../model/auth/auth-model.service';
+import {UserModelService} from '../model/user/user-model.service';
 
 describe('AuthService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
-      AuthModule,
+      AppRoutingModule,
       ApolloTestingModule,
     ],
     providers: [
+      AuthService,
+      AuthModelService,
+      UserModelService,
       CookieService,
     ],
   }));

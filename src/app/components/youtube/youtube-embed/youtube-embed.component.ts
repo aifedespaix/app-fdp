@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {SafePipe} from '../../../pipes/safe.pipe';
 
 @Component({
   selector: 'app-youtube-embed',

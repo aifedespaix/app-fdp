@@ -17,10 +17,8 @@ export class PictureLibraryService {
 
   myPictures(): PictureType[] {
     if (!this.loaded) {
-      console.log('CHARGEMENT');
       this.loadMyPictures();
     }
-    console.log(this._pictures);
     return this._pictures;
   }
 
@@ -32,7 +30,6 @@ export class PictureLibraryService {
           this.loaded = true;
         },
         (e) => {
-          console.log(e);
         }, () => {
           sub.unsubscribe();
         });
