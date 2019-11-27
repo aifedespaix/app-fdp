@@ -2,9 +2,11 @@ import {Injectable} from '@angular/core';
 import {Meta, Title} from '@angular/platform-browser';
 import {Metas, OgImage, OgMetas, OgType, TwitterMetas} from './seo-head';
 import {Router} from '@angular/router';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SeoHeadService {
 
   constructor(

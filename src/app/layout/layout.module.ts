@@ -14,8 +14,7 @@ import {ThemeComponent} from './header/actions/theme/theme.component';
 import {AuthComponent} from './header/actions/auth/auth.component';
 import {RouterModule} from '@angular/router';
 import {MatRippleModule} from '@angular/material';
-import {SeoModule} from '../seo/seo.module';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {AuthModule} from '../auth/auth.module';
 import {AuthDialogComponent} from '../auth/auth-dialog/auth-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -50,7 +49,6 @@ import {InlineSVGModule} from 'ng-inline-svg';
     AuthModule,
     DirectivesModule,
     RouterModule,
-    SeoModule,
     InlineSVGModule,
   ],
   exports: [

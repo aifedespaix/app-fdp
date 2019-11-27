@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HeaderComponent} from './header.component';
 import {LayoutService} from '../../services/layout.service';
 import {ResponsiveService} from '../../responsive/responsive.service';
-import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
+import {SeoHeadService} from '../../services/seo-head.service';
 import {MatDialogModule, MatIconModule, MatMenuModule} from '@angular/material';
 import {ActionsComponent} from './actions/actions.component';
 import {LogoComponent} from '../logo/logo.component';

@@ -2,8 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {YOUTUBE_PLAYLISTS} from '../../../model/playlist/tests/playlists.mock';
 import {PlaylistModelService} from '../../../model/playlist/playlist-model.service';
 import {LayoutService} from '../../../services/layout.service';
-import {Metas} from '../../../seo/seo-head/seo-head';
-import {SeoHeadService} from '../../../seo/seo-head/seo-head.service';
+import {Metas} from '../../../services/seo-head';
+import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
 
 @Component({

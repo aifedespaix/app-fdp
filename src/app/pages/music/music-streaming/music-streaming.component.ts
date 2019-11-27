@@ -3,8 +3,8 @@ import {MUSIC_STREAMING} from './music-streaming';
 import {PlaylistStreamingType} from '../../../model/_generated/graphql.schema';
 import {LayoutService} from '../../../services/layout.service';
 import {SafePipe} from '../../../pipes/safe.pipe';
-import {Metas} from '../../../seo/seo-head/seo-head';
-import {SeoHeadService} from '../../../seo/seo-head/seo-head.service';
+import {Metas} from '../../../services/seo-head';
+import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
 
 @Component({

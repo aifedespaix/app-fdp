@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
+import {SeoHeadService} from '../../services/seo-head.service';
 import {LayoutService} from '../../services/layout.service';
-import {Metas} from '../../seo/seo-head/seo-head';
+import {Metas} from '../../services/seo-head';
 import {Router} from '@angular/router';
 
 @Component({

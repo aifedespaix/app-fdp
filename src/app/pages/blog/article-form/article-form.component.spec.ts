@@ -5,6 +5,7 @@ import {BlogModule} from '../blog.module';
 import {AppRoutingModule} from '../../../app-routing.module';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LayoutModule} from '../../../layout/layout.module';
 
 describe('ArticleFormComponent', () => {
   let component: ArticleFormComponent;
@@ -17,6 +18,7 @@ describe('ArticleFormComponent', () => {
         AppRoutingModule,
         ApolloTestingModule,
         BrowserAnimationsModule,
+        LayoutModule,
       ],
       providers: [
 

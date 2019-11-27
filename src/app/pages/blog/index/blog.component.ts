@@ -1,6 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {Metas} from '../../../seo/seo-head/seo-head';
-import {SeoHeadService} from '../../../seo/seo-head/seo-head.service';
+import {Metas} from '../../../services/seo-head';
+import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
 import {ArticleModelService} from '../../../model/article/article-model.service';
 import {Subscription} from 'rxjs';

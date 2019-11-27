@@ -1,5 +1,5 @@
 // https://ogp.me/
-import {environment} from '../../../environments/environment';
+import {environment} from '../../environments/environment';
 
 const mainImage: OgImage = {
   url: '',

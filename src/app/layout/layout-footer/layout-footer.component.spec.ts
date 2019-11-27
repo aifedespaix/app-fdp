@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LayoutFooterComponent } from './layout-footer.component';
+import {LayoutFooterComponent} from './layout-footer.component';
+import {LayoutModule} from '../layout.module';
+import {AppRoutingModule} from '../../app-routing.module';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('LayoutFooterComponent', () => {
   let component: LayoutFooterComponent;
@@ -8,9 +12,14 @@ describe('LayoutFooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LayoutFooterComponent ]
+      imports: [
+        LayoutModule,
+        AppRoutingModule,
+        InlineSVGModule,
+        HttpClientModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

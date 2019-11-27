@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { SeoHeadService } from './seo-head.service';
-import {AppRoutingModule} from '../../app-routing.module';
+import {AppRoutingModule} from '../app-routing.module';
 
 describe('HeadService', () => {
   beforeEach(() => TestBed.configureTestingModule({

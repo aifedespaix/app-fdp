@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import {LayoutModule} from './layout/layout.module';
 import {CookieService} from 'ngx-cookie-service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -12,6 +14,8 @@ describe('AppComponent', () => {
         RouterTestingModule,
         LayoutModule,
         ApolloTestingModule,
+        InlineSVGModule,
+        HttpClientModule,
       ],
       declarations: [
         AppComponent

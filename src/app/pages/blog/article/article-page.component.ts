@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleModelService} from '../../../model/article/article-model.service';
 import {ArticleType} from '../../../model/_generated/graphql.schema';
-import {Metas} from '../../../seo/seo-head/seo-head';
-import {SeoHeadService} from '../../../seo/seo-head/seo-head.service';
+import {Metas} from '../../../services/seo-head';
+import {SeoHeadService} from '../../../services/seo-head.service';
 
 @Component({
   templateUrl: './article-page.component.html',

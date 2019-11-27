@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {Metas} from '../../seo/seo-head/seo-head';
-import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
+import {Metas} from '../../services/seo-head';
+import {SeoHeadService} from '../../services/seo-head.service';
 import {Router} from '@angular/router';
 import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
 import {MatSnackBar} from '@angular/material';

@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {ArticleType, PictureType} from '../../../model/_generated/graphql.schema';
-import {Metas} from '../../../seo/seo-head/seo-head';
-import {SeoHeadService} from '../../../seo/seo-head/seo-head.service';
+import {Metas} from '../../../services/seo-head';
+import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
 import {getUndefinedPictureMock} from '../../../model/picture/tests/picture.mocks';
 import {LayoutService} from '../../../services/layout.service';

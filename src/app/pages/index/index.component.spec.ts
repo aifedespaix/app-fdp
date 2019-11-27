@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IndexComponent } from './index.component';
-import {SeoHeadService} from '../../seo/seo-head/seo-head.service';
+import {SeoHeadService} from '../../services/seo-head.service';
 import {IndexModule} from './index.module';
 import {AppRoutingModule} from '../../app-routing.module';
 

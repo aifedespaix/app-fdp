@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BlogComponent} from './blog.component';
 import {AuthModule} from '../../../auth/auth.module';
-import {SeoHeadService} from '../../../seo/seo-head/seo-head.service';
+import {SeoHeadService} from '../../../services/seo-head.service';
 import {AppRoutingModule} from '../../../app-routing.module';
 import {CookieService} from 'ngx-cookie-service';
 import {BlogModule} from '../blog.module';
