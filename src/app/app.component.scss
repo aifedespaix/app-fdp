@@ -35,7 +35,18 @@ app-nav {
 
 .content {
   grid-area: content;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
+
+  @include largeScreen {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+main {
+  min-height: calc(100vh - #{$header-height});
+
+  @include largeScreen {
+    min-height: initial;
+    flex: 1;
+  }
 }

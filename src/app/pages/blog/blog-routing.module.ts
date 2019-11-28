@@ -5,7 +5,7 @@ import {PendingChangesGuard} from '../../guards/pending-changes.guard';
 
 import {BlogComponent} from './index/blog.component';
 import {ArticleFormComponent} from './article-form/article-form.component';
-import {ArticlePageComponent} from './article/article-page.component';
+import {BlogArticleComponent} from './blog-article/blog-article.component';
 import {BlogRoutes} from './blog-routes';
 import {AuthGuard} from '../../guards/auth.guard';
 
@@ -17,7 +17,7 @@ const routes: Routes = [
     canDeactivate: [PendingChangesGuard],
     canActivate: [AuthGuard],
   },
-  {path: 'articles/:id/:title', component: ArticlePageComponent},
+  {path: 'articles/:id/:title', component: BlogArticleComponent},
 ];
 
 @NgModule({

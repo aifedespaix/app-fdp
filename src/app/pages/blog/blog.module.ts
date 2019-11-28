@@ -17,14 +17,14 @@ import {MarkdownModule as NgxMarkdownModule} from 'ngx-markdown';
 import {PictureLibraryModule} from '../../components/picture-library/picture-library.module';
 import {LoadingModule} from '../../components/loading/loading.module';
 import {ArticleModule} from '../../components/article/article.module';
-import {ArticlePageComponent} from './article/article-page.component';
+import {BlogArticleComponent} from './blog-article/blog-article.component';
 import {ArticleFormComponent} from './article-form/article-form.component';
 import {AuthModule} from '../../auth/auth.module';
 
 @NgModule({
   declarations: [
     BlogComponent,
-    ArticlePageComponent,
+    BlogArticleComponent,
     ArticleFormComponent,
   ],
   imports: [

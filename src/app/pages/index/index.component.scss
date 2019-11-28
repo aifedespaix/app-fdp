@@ -1,6 +1,11 @@
+@import "mixins";
+@import "layout-variables";
+
 :host {
   display: grid;
+  grid-template-rows: auto 1fr;
   height: 100%;
+  padding: $padding;
 }
 
 app-picture {
@@ -9,4 +14,24 @@ app-picture {
 
 app-picture-upload {
   background-color: #a9167b;
+}
+
+app-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  @include squareGrid(15rem);
+  grid-gap: $padding;
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+  text-align: justify;
 }

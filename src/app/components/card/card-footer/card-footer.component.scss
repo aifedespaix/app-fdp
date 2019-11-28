@@ -2,5 +2,6 @@
 
 :host {
   grid-area: footer;
-  padding: $padding;
+  margin: 0 $padding $padding $padding;
+  box-sizing: border-box;
 }

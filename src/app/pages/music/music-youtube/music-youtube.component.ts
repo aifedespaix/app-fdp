@@ -36,9 +36,9 @@ export class MusicYoutubeComponent implements OnInit, OnDestroy {
   private updateMetas() {
     this.seoHeadService.setHead(
       new Metas(
-        'Les playlists de aifedespaix',
-        'Playlists Youtube',
-        `Des Playlists Youtubes avec des clips de "Qualitay"`,
+        'Les playlists de aifedespaix sur la plateforme youtube',
+        'Youtube',
+        `Des Playlists Youtube avec des clips de "Qualitay"`,
         '@aifedespaix',
         this.router.url,
       ),

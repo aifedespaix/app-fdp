@@ -6,12 +6,16 @@
 ></app-nav>
 
 <div
-  class="content scroll_hidden overflow-auto"
+  class="content overflow-auto"
   [ngClass]="{'blur cursor-pointer': layoutService.isMenuVisible && !responsiveService.isLargeScreen}"
   (click)="layoutService.isMenuVisible && !responsiveService.isLargeScreen ? layoutService.toggleMenu() : null"
 >
-  <main role="main" class="bg-second text-second">
-    <router-outlet></router-outlet>
+  <main
+    role="main"
+    class="bg-second text-second"
+    [@routeAnimations]="prepareRoute(outlet)"
+  >
+    <router-outlet #outlet="outlet"></router-outlet>
   </main>
 
   <app-layout-footer [ngClass]="{hidden: !layoutService.isFooterVisible}"></app-layout-footer>

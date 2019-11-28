@@ -6,10 +6,10 @@ import {Metas} from '../../../services/seo-head';
 import {SeoHeadService} from '../../../services/seo-head.service';
 
 @Component({
-  templateUrl: './article-page.component.html',
-  styleUrls: ['./article-page.component.scss'],
+  templateUrl: './blog-article.component.html',
+  styleUrls: ['./blog-article.component.scss'],
 })
-export class ArticlePageComponent implements OnInit {
+export class BlogArticleComponent implements OnInit {
 
   public article: ArticleType;
   public isLoading: boolean;

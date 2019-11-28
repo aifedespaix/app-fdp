@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {NotFoundGuard} from './guards/not-found.guard';
 
-
-const routes: Routes = [
+export const APP_ROUTES: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/index/index.module').then(m => m.IndexModule),
@@ -10,6 +10,7 @@ const routes: Routes = [
       icon: 'home',
       name: 'Accueil',
       index: 1,
+      animation: 'Index',
     },
   },
   {
@@ -17,8 +18,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/learn/learn.module').then(m => m.LearnModule),
     data: {
       icon: 'keyboard',
-      name: 'Cours',
+      name: 'Formation',
       index: 2,
+      animation: 'Learn',
     },
   },
   {
@@ -28,6 +30,7 @@ const routes: Routes = [
       icon: 'chrome_reader_mode',
       name: 'Blog',
       index: 3,
+      animation: 'Blog',
     },
   },
   {
@@ -37,6 +40,7 @@ const routes: Routes = [
       icon: 'audiotrack',
       name: 'Musique',
       index: 4,
+      animation: 'Music',
     },
   },
   {
@@ -58,7 +62,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(APP_ROUTES)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

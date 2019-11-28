@@ -25,7 +25,7 @@
 
   <div class="group">
     <div class="title">Playlist</div>
-    <div class="sublist scroll_hidden">
+    <div class="sublist">
       <div
         *ngFor="let plateform of playlists | keyvalue"
         [ngClass]="{hidden: plateform.key != plateformId}"

@@ -19,8 +19,8 @@ export class LearnComponent implements OnInit {
   ngOnInit() {
     this.headService.setHead(
       new Metas(
-        `Cours`,
-        `Cours`,
+        `Formations`,
+        `Formations`,
         'Apprendre à developper des applications web dans des technologies modernes',
         'clapette',
         this.router.url,

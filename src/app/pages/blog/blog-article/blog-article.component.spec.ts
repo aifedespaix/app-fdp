@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArticlePageComponent } from './article-page.component';
+import { BlogArticleComponent } from './blog-article.component';
 import {BlogModule} from '../blog.module';
 import {AppRoutingModule} from '../../../app-routing.module';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 
-describe('ArticlePageComponent', () => {
-  let component: ArticlePageComponent;
-  let fixture: ComponentFixture<ArticlePageComponent>;
+describe('BlogArticleComponent', () => {
+  let component: BlogArticleComponent;
+  let fixture: ComponentFixture<BlogArticleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,7 +21,7 @@ describe('ArticlePageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArticlePageComponent);
+    fixture = TestBed.createComponent(BlogArticleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

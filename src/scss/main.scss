@@ -30,14 +30,10 @@ p {
   overflow-wrap: break-word;
 }
 
-.content {
-  background-color: #fafafa;
-}
-
 .mat-tab-body-content {
-  margin-right: calc(-1rem - 1px);
+  //margin-right: calc(-1rem - 1px); todo
 }
 
 .cdk-global-scrollblock {
-  overflow-y: auto;
+  //overflow-y: auto;
 }

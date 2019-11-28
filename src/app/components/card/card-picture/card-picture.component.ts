@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {PictureType} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-card-picture',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-picture.component.scss']
 })
 export class CardPictureComponent implements OnInit {
+
+  @Input() picture: PictureType;
 
   constructor() { }
 

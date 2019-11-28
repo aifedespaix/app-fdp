@@ -1,10 +1,6 @@
 @import 'responsive';
 @import 'layout-variables';
 
-:host {
-  height: 100%;
-}
-
 a.add {
   position: absolute;
   bottom: calc(1rem + #{$header-height});

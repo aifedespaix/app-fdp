@@ -1,15 +1,11 @@
 @import "responsive";
+@import "layout-variables";
+@import "mixins";
 
 :host {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: minmax(300px, 1fr);
-  grid-gap: 1rem;
-  padding: 1rem;
-
-  @include largeScreen {
-    padding: 4rem;
-  }
+  @include squareGrid(13rem);
+  grid-gap: $padding;
+  padding: $padding;
 }
 
 a {

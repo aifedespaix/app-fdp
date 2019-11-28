@@ -1,0 +1,14 @@
+@import "layout-variables";
+
+:host {
+  padding: $padding;
+  display: block;
+}
+
+h2, h3, p {
+  text-align: center;
+}
+
+p {
+  font-style: italic;
+}

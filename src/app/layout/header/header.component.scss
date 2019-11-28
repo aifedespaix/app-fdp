@@ -4,4 +4,8 @@ header {
   @include largeScreen {
     flex-direction: row;
   }
+
+  h1 {
+    margin: 0;
+  }
 }

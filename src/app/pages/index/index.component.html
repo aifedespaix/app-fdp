@@ -1,1 +1,17 @@
-yo man
+<p>Bienvenue sur aifedespaix.com, le site réservé aux fdps.</p>
+
+<div class="grid-container">
+  <div class="grid">
+    <a *ngFor="let card of cards" [routerLink]="card.link">
+      <app-card>
+        <app-card-header><h2>{{card.title}}</h2></app-card-header>
+        <app-card-picture [picture]="card.picture"></app-card-picture>
+        <app-card-content>
+          <p>
+            {{card.description}}
+          </p>
+        </app-card-content>
+      </app-card>
+    </a>
+  </div>
+</div>

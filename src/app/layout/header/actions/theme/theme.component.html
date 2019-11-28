@@ -18,8 +18,9 @@
       <div
         mat-menu-item (click)="setTheme(theme.name)"
         matTooltipPosition="before"
-        [matTooltip]="theme.description">
-        <mat-icon class="docs-theme-chosen-icon">{{theme.icon}}</mat-icon>
+        [matTooltip]="theme.description"
+      >
+        <mat-icon>{{theme.icon}}</mat-icon>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

@@ -19,11 +19,13 @@ app-card-footer {
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto;
   grid-template-areas: "tags tags tags" "author . date";
-  padding: 0 $padding $padding $padding;
 
   address {
     grid-area: author;
     font-size: .8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 50%;
   }
 
   time {
