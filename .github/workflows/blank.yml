@@ -1,0 +1,28 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    name: Test
+    runs-on: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install
+      run: yarn install
+    - name: Lint
+      run: yarn lint 
+    - name: Build
+      run: yarn test --watch=false 
+
+  build:
+    name: Build SSR
+    runs-on: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install
+      run: yarn install
+    - name: Build
+      run: yarn build:ssr
