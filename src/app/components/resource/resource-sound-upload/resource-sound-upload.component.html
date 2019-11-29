@@ -1,0 +1,30 @@
+<ng-container *ngIf="isLoading then loading else notLoading"></ng-container>
+
+<ng-template #notLoading>
+  <ng-container *ngIf="resource.id then preview else uploadForm"></ng-container>
+
+  <ng-template #preview>
+    <app-sound-wave
+      [resource]="resource"
+      (slice)="emitFile($event)"
+    ></app-sound-wave>
+  </ng-template>
+
+  <ng-template #uploadForm>
+    <form>
+      <label for="resource">Cliquez pour selectionner un fichier...</label>
+      <input
+        id="resource"
+        type="file"
+        [accept]="acceptedMimes()"
+        (change)="uploadResource($event)"
+      >
+    </form>
+  </ng-template>
+</ng-template>
+
+<ng-template #loading>
+  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+</ng-template>
+
+

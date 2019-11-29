@@ -1,0 +1,26 @@
+<svg
+  #svg
+  preserveAspectRatio="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class="fdpBackground"
+  matTooltipPosition="below"
+  matTooltip="Clic : Jouer le son&#13;Clic et déplacer : Déplace le curseur de début ou de fin"
+  [matTooltipClass]="'whitespace-pre-line'">
+>
+
+  <linearGradient id="Gradient" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0%" stop-color="#fff"></stop>
+    <stop offset="100%" stop-color="#fff"></stop>
+  </linearGradient>
+
+  <mask id="Mask">
+    <path fill="url(#Gradient)"></path>
+  </mask>
+
+  <rect class="wave" #wave mask="url(#Mask)" x="0" y="0"></rect>
+  <rect class="waveSlice" #waveSlice mask="url(#Mask)" x="0" y="0"></rect>
+  <rect class="waveReaded" #waveReaded mask="url(#Mask)" x="0" y="0"></rect>
+  <rect class="sliceFrom" #sliceFrom x="0" y="0"></rect>
+  <rect class="sliceTo" #sliceTo x="0" y="0"></rect>
+
+</svg>

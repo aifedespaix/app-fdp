@@ -1,0 +1,40 @@
+@import "layout-variables";
+
+:host {
+  width: $nav-width + 2rem;
+}
+
+.sound {
+  overflow: hidden;
+  padding: $padding;
+
+  &_visualizer {
+    height: 50px;
+    width: 100%;
+  }
+
+  &_controls {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &_controlBar {
+    align-items: center;
+    display: flex;
+  }
+
+  &_title {
+    padding: $padding;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding-left: $padding;
+    }
+  }
+
+}

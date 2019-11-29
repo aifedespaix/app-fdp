@@ -1,4 +1,4 @@
-<footer>
+<footer [@openClose]="isOpen ? 'open' : 'closed'">
   <div class="infos">
     <div>
       <address>
@@ -37,7 +37,8 @@
       <a class="main-color" [routerLink]="['legal']">Mentions légales</a>
     </div>
   </div>
-  <div class="copy">
+
+  <div class="text-center">
     © 2016-{{getYear()}} aifedespaix
   </div>
 </footer>

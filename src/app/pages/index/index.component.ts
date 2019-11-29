@@ -25,7 +25,6 @@ export class IndexComponent implements OnInit {
     this.loadCards();
   }
 
-
   private updateHead() {
     this.headService.setHead(
       new Metas(

@@ -1,0 +1,22 @@
+@import "responsive";
+@import "layout-variables";
+
+.sidenav {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+
+  @include largeScreen {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+a {
+  width: $nav-width;
+  color: #444;
+
+  &.active-link {
+    background-color: rgba(126, 126, 126, .1);
+  }
+}

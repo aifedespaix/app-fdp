@@ -4,11 +4,11 @@ import {ResponsiveService} from '../../responsive/responsive.service';
 import {LayoutService} from '../../services/layout.service';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss'],
+  selector: 'app-layout-nav',
+  templateUrl: './layout-nav.component.html',
+  styleUrls: ['./layout-nav.component.scss'],
 })
-export class NavComponent implements OnInit {
+export class LayoutNavComponent implements OnInit {
 
   public readonly routes: {
     icon: string,
@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
 
   private setRoutes() {
     for (const route of this.router.config) {
-      if (route.data) {
+      if (route.data && route.data.main) {
         this.routes.push({
           icon: route.data.icon,
           name: route.data.name,

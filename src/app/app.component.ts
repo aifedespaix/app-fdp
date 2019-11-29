@@ -4,14 +4,14 @@ import {LayoutService} from './services/layout.service';
 import {AuthService} from './services/auth.service';
 import {isPlatformBrowser} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
-import {slideInAnimation} from './animations/slide-in.animation';
+import {animations} from './animations/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    slideInAnimation
+    animations
   ]
 })
 export class AppComponent implements OnInit {

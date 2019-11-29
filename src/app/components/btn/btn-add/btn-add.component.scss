@@ -1,0 +1,13 @@
+@import 'responsive';
+@import 'layout-variables';
+
+:host {
+  position: absolute;
+  bottom: calc(4 * #{$padding} + #{$header-height});
+  right: 4 * $padding;
+  z-index: 10;
+
+  @include largeScreen {
+    bottom: 4 * $padding;
+  }
+}

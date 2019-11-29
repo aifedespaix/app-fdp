@@ -35,6 +35,7 @@ export class ArticleModelService {
       content: article.content,
       tags: article.tags.map((t) => t.value),
       thumbnailId: article.thumbnail.id,
+      // categoryId:
     };
     return this.apollo
       .mutate({

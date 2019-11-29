@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from './header/header.component';
-import {NavComponent} from './nav/nav.component';
+import {LayoutNavComponent} from './layout-nav/layout-nav.component';
 import {FooterComponent} from './footer/footer.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,11 +23,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {ThemeStorageService} from './header/actions/theme/theme-storage/theme-storage.service';
 import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
 import {InlineSVGModule} from 'ng-inline-svg';
+import {SoundModule} from '../components/sound/sound.module';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    NavComponent,
+    LayoutNavComponent,
     FooterComponent,
     LogoComponent,
     ActionsComponent,
@@ -50,10 +51,11 @@ import {InlineSVGModule} from 'ng-inline-svg';
     DirectivesModule,
     RouterModule,
     InlineSVGModule,
+    SoundModule,
   ],
   exports: [
     HeaderComponent,
-    NavComponent,
+    LayoutNavComponent,
     LayoutFooterComponent,
   ],
   providers: [

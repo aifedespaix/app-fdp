@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavComponent } from './nav.component';
+import { LayoutNavComponent } from './layout-nav.component';
 import {MatIconModule} from '@angular/material';
 import {LayoutService} from '../../services/layout.service';
 import {ResponsiveService} from '../../responsive/responsive.service';
 import {AppRoutingModule} from '../../app-routing.module';
 
 describe('NavComponent', () => {
-  let component: NavComponent;
-  let fixture: ComponentFixture<NavComponent>;
+  let component: LayoutNavComponent;
+  let fixture: ComponentFixture<LayoutNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent ],
+      declarations: [ LayoutNavComponent ],
       imports: [
         MatIconModule,
         AppRoutingModule,
@@ -26,7 +26,7 @@ describe('NavComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavComponent);
+    fixture = TestBed.createComponent(LayoutNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

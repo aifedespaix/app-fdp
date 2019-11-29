@@ -22,13 +22,25 @@ type ArticleType {
 
 type BoxType {
   author: UserType!
+  comments: [CommentType]!
   createdAt: DateTime!
   description: String!
   id: ID!
-  isParent: Boolean!
+  likes: [LikeType]!
+  sound: ResourceType!
+  tags: [TagType]!
+  thumbnail: PictureType!
   title: String!
   updatedAt: DateTime!
-  value: String!
+}
+
+type CategoryType {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  name: String!
+  picture: ResourceType!
+  updatedAt: DateTime!
 }
 
 type CommentType {
@@ -94,13 +106,17 @@ type Mutation {
   createBox(data: BoxInput!): BoxType!
   createBoxComment(boxId: String!, comment: String!): ArticleType!
   createBoxLike(boxId: String!, like: String!): BoxType!
+  createCategory(category: CategoryInput!): CategoryType!
   createCommentAnswer(comment: String!, parentId: String!): CommentType!
   createCommentLike(commentId: String!, like: String!): CommentType!
   createMenu(menu: MenuInput!): MenuType!
   createPicture(file: Upload!, picture: PictureInput!): PictureType!
+  createResourceAudio(resource: ResourceAudioInput!): ResourceType!
   deleteUser(id: String!): UserType!
   editMyUser(user: UserEditInput!): UserType!
   updateArticle(article: ArticleEditInput!, articleId: String!): ArticleType!
+  updateBox(data: BoxUpdateInput!): BoxType!
+  updateCategory(category: CategoryEditInput!): CategoryType!
 }
 
 type PictureType {
@@ -113,11 +129,29 @@ type PictureType {
   updatedAt: DateTime!
 }
 
+type PlaylistStreamingType {
+  plateform: String!
+  playlists: [PlaylistsType!]!
+}
+
+type PlaylistYoutubeType {
+  title: String!
+  year: String!
+  youtubeId: String!
+}
+
+type PlaylistsType {
+  iframe: String!
+  name: String!
+}
+
 type Query {
-  article(id: String!): ArticleType!
+  article(id: ID!): ArticleType!
   articles(pagination: PaginationInput, published: Boolean!): [ArticleType!]
   box(id: String!): BoxType!
-  boxes(after: Int, before: Int, first: Int, last: Int, skip: Int): [BoxType!]!
+  boxes(pagination: PaginationInput): [BoxType!]!
+  categorie(id: String!): CategoryType!
+  categories(pagination: PaginationInput): [CategoryType!]!
   helloWorld: String!
   menu(name: String!): MenuType!
   menus: [MenuType!]!
@@ -126,12 +160,14 @@ type Query {
   myLikes: [LikeType!]!
   myPictures(after: Int, before: Int, first: Int, last: Int, skip: Int): [PictureType!]
   myProfile: UserType!
-  resources(after: Int, before: Int, first: Int, last: Int, skip: Int): [ResourceType!]!
+  resource(id: ID!): ResourceType!
+  resources(pagination: PaginationInput): [ResourceType!]!
   tags(after: Int, before: Int, first: Int, last: Int, skip: Int): [TagType]
   users: [UserType!]!
 }
 
 type ResourceType {
+  author: UserType!
   createdAt: DateTime!
   description: String!
   id: ID!
@@ -171,6 +207,7 @@ enum Role {
 }
 
 input ArticleEditInput {
+  categoryId: String
   content: String
   description: String
   published: Boolean
@@ -180,6 +217,7 @@ input ArticleEditInput {
 }
 
 input ArticleInput {
+  categoryId: String!
   content: String!
   description: String!
   tags: [String!]
@@ -187,9 +225,36 @@ input ArticleInput {
   title: String!
 }
 
+input AudioInput {
+  file: Upload!
+  slice: SliceInput!
+}
+
 input BoxInput {
   description: String!
+  soundId: String!
+  tags: [String]!
+  thumbnailId: String!
   title: String!
+}
+
+input BoxUpdateInput {
+  description: String
+  tags: [String]
+  thumbnailId: String
+  title: String
+}
+
+input CategoryEditInput {
+  description: String
+  name: String
+  pictureId: String
+}
+
+input CategoryInput {
+  description: String!
+  name: String!
+  pictureId: String!
 }
 
 input CommentInput {
@@ -236,19 +301,19 @@ input RegisterInput {
   password: String!
 }
 
-input ResourceCreateInput {
-  connect: ResourceInput!
-  create: ResourceInput!
-}
-
-input ResourceCreateManyInput {
-  connect: [ResourceInput!]
-  create: [ResourceInput!]
+input ResourceAudioInput {
+  audio: AudioInput!
+  resource: ResourceInput!
 }
 
 input ResourceInput {
   description: String!
   title: String!
+}
+
+input SliceInput {
+  from: Float!
+  to: Float!
 }
 
 input UserEditInput {

@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+}
+
+form,
+app-sound-wave {
+  max-width: 100%;
+  width: 20rem;
+  height: 10rem;
+}
+
+form {
+  height: 9rem;
+  position: relative;
+
+  label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+}

@@ -1,11 +1,8 @@
 <app-loading [isLoading]="!user" *ngIf="user">
 
   <app-card>
-    <app-card-header>
-      <h2>Mon profil</h2>
-    </app-card-header>
-
     <app-card-content>
+      <h2>Avatar</h2>
       <div class="avatar">
         <app-picture [picture]="user.avatar"></app-picture>
         <app-picture-library-pick
@@ -15,8 +12,10 @@
         ></app-picture-library-pick>
       </div>
 
-      <div>{{user.login}}</div>
-      <div>{{user.email}}</div>
+      <div class="infos">
+        <div>Nom : {{user.login}}</div>
+        <div>Email : {{user.email}}</div>
+      </div>
 
       <app-article-admin
         *ngIf="user.articles.length"

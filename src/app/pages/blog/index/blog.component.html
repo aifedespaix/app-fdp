@@ -2,14 +2,7 @@
   <app-article-list [articles]="articles"></app-article-list>
 </app-loading>
 
-<a
-  [routerLink]="getRouteWrite()"
-  *ngIf="authService.isAuthenticated"
-  class="add"
-  mat-fab
-  color="primary"
-  matTooltip="Rédiger un nouvel article"
-  matTooltipPosition="left"
->
-  <mat-icon>add</mat-icon>
-</a>
+<app-btn-add
+  label="Rédiger un nouvel article"
+  [route]="getRouteWrite()"
+></app-btn-add>

@@ -2,7 +2,11 @@
 
 <div class="grid-container">
   <div class="grid">
-    <a *ngFor="let card of cards" [routerLink]="card.link">
+    <a
+      *ngFor="let card of cards"
+      [routerLink]="card.link"
+      class="hoverable"
+    >
       <app-card>
         <app-card-header><h2>{{card.title}}</h2></app-card-header>
         <app-card-picture [picture]="card.picture"></app-card-picture>

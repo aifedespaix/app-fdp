@@ -1,0 +1,52 @@
+<form #form="ngForm" (ngSubmit)="createBox()" autocomplete="on">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Title"
+      name="title"
+      type="text"
+      [(ngModel)]="boxInput.title"
+      maxlength="25"
+      minlength="3"
+      required
+    >
+    <mat-error>Titre trop court</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea
+      matInput
+      placeholder="Description"
+      name="description"
+      type="text"
+      [(ngModel)]="boxInput.description"
+      maxlength="150"
+      minlength="15"
+      required
+    ></textarea>
+    <mat-error>Description trop courte</mat-error>
+  </mat-form-field>
+
+  <app-resource-sound-upload
+    [title]="boxInput.title"
+    [description]="boxInput.description"
+    (resourceLoaded)="setAudio($event)"
+  ></app-resource-sound-upload>
+
+  <!--  <div>-->
+  <!--    <app-picture [picture]=""></app-picture>-->
+  <!--  </div>-->
+
+  <div class="submitButtons">
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="btn btn-success"
+      [disabled]="!form.form.valid"
+    >
+      <mat-icon>playlist_add</mat-icon>
+      Créer une box
+    </button>
+  </div>
+</form>

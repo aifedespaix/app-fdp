@@ -22,6 +22,7 @@ export class ArticleEditInput {
   published?: boolean;
   content?: string;
   description?: string;
+  categoryId?: string;
   thumbnailId?: string;
   tags?: string[];
 }
@@ -30,13 +31,41 @@ export class ArticleInput {
   title: string;
   content: string;
   description: string;
+  categoryId: string;
   thumbnailId: string;
   tags?: string[];
 }
 
+export class AudioInput {
+  file: Upload;
+  slice: SliceInput;
+}
+
 export class BoxInput {
-  description: string;
   title: string;
+  description: string;
+  thumbnailId: string;
+  soundId: string;
+  tags: string[];
+}
+
+export class BoxUpdateInput {
+  title?: string;
+  description?: string;
+  thumbnailId?: string;
+  tags?: string[];
+}
+
+export class CategoryEditInput {
+  name?: string;
+  description?: string;
+  pictureId?: string;
+}
+
+export class CategoryInput {
+  name: string;
+  description: string;
+  pictureId: string;
 }
 
 export class CommentInput {
@@ -83,19 +112,19 @@ export class RegisterInput {
   password: string;
 }
 
-export class ResourceCreateInput {
-  create: ResourceInput;
-  connect: ResourceInput;
-}
-
-export class ResourceCreateManyInput {
-  create?: ResourceInput[];
-  connect?: ResourceInput[];
+export class ResourceAudioInput {
+  resource: ResourceInput;
+  audio: AudioInput;
 }
 
 export class ResourceInput {
   title: string;
   description: string;
+}
+
+export class SliceInput {
+  from: number;
+  to: number;
 }
 
 export class UserEditInput {
@@ -121,11 +150,23 @@ export class BoxType {
   id: string;
   createdAt: DateTime;
   updatedAt: DateTime;
-  isParent: boolean;
-  value: string;
   author: UserType;
-  description: string;
   title: string;
+  description: string;
+  thumbnail: PictureType;
+  sound: ResourceType;
+  tags: TagType[];
+  likes: LikeType[];
+  comments: CommentType[];
+}
+
+export class CategoryType {
+  id: string;
+  createdAt: DateTime;
+  updatedAt: DateTime;
+  name: string;
+  description: string;
+  picture: ResourceType;
 }
 
 export class CommentType {
@@ -198,6 +239,12 @@ export abstract class IMutation {
 
   abstract createBox(data: BoxInput): BoxType | Promise<BoxType>;
 
+  abstract updateBox(data: BoxUpdateInput): BoxType | Promise<BoxType>;
+
+  abstract createCategory(category: CategoryInput): CategoryType | Promise<CategoryType>;
+
+  abstract updateCategory(category: CategoryEditInput): CategoryType | Promise<CategoryType>;
+
   abstract createArticleLike(articleId: string, like: string): ArticleType | Promise<ArticleType>;
 
   abstract createBoxLike(boxId: string, like: string): BoxType | Promise<BoxType>;
@@ -211,6 +258,8 @@ export abstract class IMutation {
   abstract addItem(item: MenuItemInput, name: string): MenuType | Promise<MenuType>;
 
   abstract createPicture(picture: PictureInput, file: Upload): PictureType | Promise<PictureType>;
+
+  abstract createResourceAudio(resource: ResourceAudioInput): ResourceType | Promise<ResourceType>;
 
   abstract deleteUser(id: string): UserType | Promise<UserType>;
 
@@ -252,9 +301,13 @@ export abstract class IQuery {
 
   abstract myArticles(skip?: number, after?: number, before?: number, first?: number, last?: number): ArticleType[] | Promise<ArticleType[]>;
 
-  abstract boxes(skip?: number, after?: number, before?: number, first?: number, last?: number): BoxType[] | Promise<BoxType[]>;
+  abstract boxes(pagination?: PaginationInput): BoxType[] | Promise<BoxType[]>;
 
   abstract box(id: string): BoxType | Promise<BoxType>;
+
+  abstract categories(pagination?: PaginationInput): CategoryType[] | Promise<CategoryType[]>;
+
+  abstract categorie(id: string): CategoryType | Promise<CategoryType>;
 
   abstract myComments(): CommentType[] | Promise<CommentType[]>;
 
@@ -266,7 +319,9 @@ export abstract class IQuery {
 
   abstract myPictures(skip?: number, after?: number, before?: number, first?: number, last?: number): PictureType[] | Promise<PictureType[]>;
 
-  abstract resources(skip?: number, after?: number, before?: number, first?: number, last?: number): ResourceType[] | Promise<ResourceType[]>;
+  abstract resources(pagination?: PaginationInput): ResourceType[] | Promise<ResourceType[]>;
+
+  abstract resource(id: string): ResourceType | Promise<ResourceType>;
 
   abstract tags(skip?: number, after?: number, before?: number, first?: number, last?: number): TagType[] | Promise<TagType[]>;
 
@@ -282,6 +337,7 @@ export class ResourceType {
   title: string;
   description: string;
   url: string;
+  author: UserType;
 }
 
 export class TagType {

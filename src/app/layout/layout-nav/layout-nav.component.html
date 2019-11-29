@@ -1,7 +1,8 @@
-<nav
-  class="flex"
-  [ngClass]="responsiveService.isLargeScreen ? 'flex-col' : 'flex-col-reverse'"
->
+<div class="sidenav">
+  <nav
+    class="flex"
+    [ngClass]="responsiveService.isLargeScreen ? 'flex-col' : 'flex-col-reverse'"
+  >
     <a
       *ngFor="let route of routes"
       [routerLink]="route.url"
@@ -15,4 +16,7 @@
       <mat-icon class="mat-18">{{route.icon}}</mat-icon>
       <span class="m-x-2">{{route.name}}</span>
     </a>
-</nav>
+  </nav>
+
+  <app-sound-player></app-sound-player>
+</div>

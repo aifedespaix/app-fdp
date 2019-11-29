@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {NotFoundGuard} from './guards/not-found.guard';
 
 export const APP_ROUTES: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/index/index.module').then(m => m.IndexModule),
     data: {
+      main: true,
       icon: 'home',
       name: 'Accueil',
       index: 1,
@@ -27,6 +27,7 @@ export const APP_ROUTES: Routes = [
     path: 'blog',
     loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule),
     data: {
+      main: true,
       icon: 'chrome_reader_mode',
       name: 'Blog',
       index: 3,
@@ -37,15 +38,30 @@ export const APP_ROUTES: Routes = [
     path: 'music',
     loadChildren: () => import('./pages/music/music.module').then(m => m.MusicModule),
     data: {
-      icon: 'audiotrack',
-      name: 'Musique',
+      main: true,
+      icon: 'queue_music',
+      name: 'Playlist',
       index: 4,
       animation: 'Music',
     },
   },
   {
+    path: 'box',
+    loadChildren: () => import('./pages/box/box.module').then(m => m.BoxModule),
+    data: {
+      main: true,
+      icon: 'audiotrack',
+      name: 'Box',
+      index: 5,
+      animation: 'Box',
+    },
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
+    data: {
+      animation: 'OnBottom',
+    },
   },
   {
     path: 'legal',

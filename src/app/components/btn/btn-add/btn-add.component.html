@@ -1,0 +1,11 @@
+<a
+  [routerLink]="route"
+  *ngIf="authService.isAuthenticated"
+  class="add"
+  mat-fab
+  color="primary"
+  [matTooltip]="label"
+  matTooltipPosition="left"
+>
+  <mat-icon>add</mat-icon>
+</a>

@@ -112,6 +112,10 @@
   text-align: justify;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .hoverable {
   cursor: pointer;
 
@@ -145,4 +149,12 @@
 
 .aifeBackground {
   background: linear-gradient(-45deg, #6b4587, #230439);
+}
+
+.whitespace-no-wrap {
+  white-space: nowrap;
+}
+
+.whitespace-pre-line {
+  white-space: pre-line;
 }

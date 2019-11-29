@@ -1,0 +1,16 @@
+<app-loading [isLoading]="isLoading">
+  <div class="boxes">
+    <div class="box"
+      *ngFor="let box of boxes"
+      (click)="play(box)"
+    >
+        <app-picture [picture]="box.thumbnail"></app-picture>
+        <h3>{{box.title}}</h3>
+    </div>
+  </div>
+</app-loading>
+
+<app-btn-add
+  route="create"
+  label="Ajouter une nouvelle box"
+></app-btn-add>

@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FileUploadComponent} from './file-upload/file-upload.component';
-import {ResourceService} from '../../model/resource/resource.service';
+import {ResourceSoundUploadComponent} from './resource-sound-upload/resource-sound-upload.component';
+import {ResourceModelService} from '../../model/resource/resource-model.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material';
 import {PipesModule} from '../../pipes/pipes.module';
+import {SoundModule} from '../sound/sound.module';
 
 @NgModule({
   declarations: [
-    FileUploadComponent,
+    ResourceSoundUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -19,13 +20,14 @@ import {PipesModule} from '../../pipes/pipes.module';
     FormsModule,
     MatInputModule,
     PipesModule,
+    SoundModule,
   ],
   providers: [
-    ResourceService,
+    ResourceModelService,
   ],
   exports: [
-    FileUploadComponent,
+    ResourceSoundUploadComponent,
   ],
 })
-export class FileModule {
+export class ResourceModule {
 }

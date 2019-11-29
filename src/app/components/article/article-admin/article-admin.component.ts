@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ArticleType, LikeEnum} from '../../../model/_generated/graphql.schema';
 import {SelectionModel} from '@angular/cdk/collections';
-import {MatTableDataSource} from '@angular/material';
+import {MatSnackBar, MatTableDataSource} from '@angular/material';
 import {ArticleModelService} from '../../../model/article/article-model.service';
+import {SnackbarComponent} from '../../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-article-admin',
@@ -20,6 +21,7 @@ export class ArticleAdminComponent implements OnInit {
 
   constructor(
     private readonly articleModelService: ArticleModelService,
+    private readonly snackBar: MatSnackBar,
   ) {
     this.articles = [];
     this.displayedColumns = ['select', 'title', 'description', 'like', 'published'];
@@ -56,7 +58,28 @@ export class ArticleAdminComponent implements OnInit {
     this.selection.selected.map((article) => {
       this.articleModelService
         .updateArticle(article.id, {published: true})
-        .subscribe();
+        .subscribe(
+          () => {
+            this.snackBar.openFromComponent(SnackbarComponent, {
+              duration: 5000,
+              data: {
+                icon: 'success',
+                color: '',
+                message: `Les articles sont publiés`,
+              },
+            });
+          },
+          () => {
+            this.snackBar.openFromComponent(SnackbarComponent, {
+              duration: 5000,
+              data: {
+                icon: 'error',
+                color: '',
+                message: `Vous n'avez pas l'autorisation de publier ces articles.`,
+              },
+            });
+          },
+        );
     });
   }
 

@@ -40,7 +40,7 @@ export class MusicYoutubeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.layoutService.footerVisibility(false);
+    this.layoutService.footerVisibility(true);
   }
 
   private updateMetas() {

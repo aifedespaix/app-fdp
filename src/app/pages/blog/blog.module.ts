@@ -20,6 +20,7 @@ import {ArticleModule} from '../../components/article/article.module';
 import {BlogArticleComponent} from './blog-article/blog-article.component';
 import {ArticleFormComponent} from './article-form/article-form.component';
 import {AuthModule} from '../../auth/auth.module';
+import {BtnModule} from '../../components/btn/btn.module';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {AuthModule} from '../../auth/auth.module';
     AuthModule,
     MarkdownModule,
     NgxMarkdownModule.forChild(),
+    BtnModule,
   ],
 })
 export class BlogModule {

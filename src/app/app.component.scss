@@ -19,7 +19,7 @@ app-header {
   grid-area: header;
 }
 
-app-nav {
+app-layout-nav {
   grid-area: nav;
   position: absolute;
   z-index: 100;
@@ -49,4 +49,7 @@ main {
     min-height: initial;
     flex: 1;
   }
+}
+app-layout-footer {
+  position: relative;
 }

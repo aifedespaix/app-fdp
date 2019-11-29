@@ -1,9 +1,9 @@
 <app-header class="bg-second text-second mat-elevation-z4"></app-header>
 
-<app-nav
+<app-layout-nav
   class="bg-second text-second flex items-end"
   [ngClass]="layoutService.isMenuVisible || responsiveService.isLargeScreen ? 'flex' : 'hidden'"
-></app-nav>
+></app-layout-nav>
 
 <div
   class="content overflow-auto"
@@ -18,5 +18,5 @@
     <router-outlet #outlet="outlet"></router-outlet>
   </main>
 
-  <app-layout-footer [ngClass]="{hidden: !layoutService.isFooterVisible}"></app-layout-footer>
+  <app-layout-footer></app-layout-footer>
 </div>

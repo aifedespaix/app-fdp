@@ -24,7 +24,6 @@ export class BlogComponent implements OnInit, OnDestroy {
     private readonly seoHeadService: SeoHeadService,
     private readonly router: Router,
     private readonly articleModelService: ArticleModelService,
-    public readonly authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
     this.articles = [];

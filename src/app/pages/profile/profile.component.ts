@@ -48,7 +48,6 @@ export class ProfileComponent implements OnInit {
       .completeProfile()
       .subscribe((user) => {
         this.user = user;
-        console.log(this.user);
       });
   }
 

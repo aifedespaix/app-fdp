@@ -1,0 +1,96 @@
+<div
+  *ngIf="soundExists();"
+  class="sound main-color main-background"
+>
+  <div class="sound_controls">
+    <button
+      matTooltip="Pause [Echap]"
+      matTooltipPosition="above"
+      mat-flat-button
+      color="primary"
+      (click)="pause()"
+      *ngIf="isPlaying(); else playable"
+    >
+      <mat-icon>pause</mat-icon>
+    </button>
+
+    <ng-template #playable>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="play()"
+        matTooltip="Play"
+        matTooltipPosition="above"
+      >
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+    </ng-template>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="stop()"
+      matTooltip="Arrêter"
+      matTooltipPosition="above"
+    >
+      <mat-icon>stop</mat-icon>
+    </button>
+  </div>
+
+  <div class="sound_controlbar">
+    <button
+      mat-mini-fab color="primary"
+      (click)="muteUnmute()"
+      matTooltip="Mute / Unmute"
+      matTooltipPosition="right"
+    >
+      <mat-icon
+        class="fdpClickable"
+      >{{volumeIcone()}}</mat-icon>
+    </button>
+
+    <mat-slider
+      class="fdpClickable fdpBloc-fullW"
+      min="0"
+      max="100"
+      step="1"
+      [(ngModel)]="soundModel.volume"
+      (change)="updateVolume()"
+      thumbLabel
+    ></mat-slider>
+  </div>
+
+  <div class="sound_controlbar">
+    <button
+      mat-mini-fab color="primary"
+      (click)="soundModel.speed = 100; updateSpeed()"
+      matTooltip="Réinitaliser la vitesse"
+      matTooltipPosition="right"
+    >
+      <mat-icon
+        [svgIcon]="speedIcone()"
+      ></mat-icon>
+    </button>
+
+    <mat-slider
+      class="fdpClickable fdpBloc-fullW"
+      min="50"
+      max="200"
+      step="25"
+      [(ngModel)]="soundModel.speed"
+      (change)="updateSpeed()"
+      thumbLabel
+    ></mat-slider>
+  </div>
+
+  <a
+    class="sound_title"
+    [href]="url | safe: 'resourceUrl'"
+    target="_blank"
+    *ngIf="url"
+  >
+    <mat-icon class="mat-18 fdpIcon-z fdpPadded-h">cloud_download</mat-icon>
+    <span>{{title()}}</span>
+  </a>
+
+</div>

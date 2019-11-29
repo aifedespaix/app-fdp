@@ -13,10 +13,16 @@ const routes: Routes = [
   {
     path: 'streaming',
     component: MusicStreamingComponent,
+    data: {
+      animation: 'OnBottom',
+    },
   },
   {
     path: 'youtube',
     component: MusicYoutubeComponent,
+    data: {
+      animation: 'OnTop',
+    },
     children: [{
       path: '**',
       component: MusicYoutubeComponent,

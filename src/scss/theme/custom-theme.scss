@@ -13,7 +13,7 @@
     color: mat-color($foreground, text)
   }
 
-  app-nav {
+  app-layout-nav {
     background-color: mat-color($background, background);
     a {
       color: mat-color($foreground, text)
@@ -32,6 +32,10 @@
 
   .main-color {
     color: mat-color($foreground, text);
+  }
+
+  .main-background {
+    color: mat-color($background, card);
   }
 
 }
