@@ -6,6 +6,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
         ApolloTestingModule,
         InlineSVGModule,
         HttpClientModule,
+        BrowserAnimationsModule,
       ],
       declarations: [
         AppComponent

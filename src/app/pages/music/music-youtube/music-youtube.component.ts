@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {YOUTUBE_PLAYLISTS} from '../../../model/playlist/tests/playlists.mock';
+import {Location} from '@angular/common';
 import {PlaylistModelService} from '../../../model/playlist/playlist-model.service';
 import {LayoutService} from '../../../services/layout.service';
 import {Metas} from '../../../services/seo-head';
 import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
+import {PlaylistYoutubeType} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-music-youtube',
@@ -13,13 +14,15 @@ import {Router} from '@angular/router';
 })
 export class MusicYoutubeComponent implements OnInit, OnDestroy {
 
-  public playlists = YOUTUBE_PLAYLISTS;
+  public playlists: PlaylistYoutubeType[];
+  public activePlaylist: PlaylistYoutubeType;
 
   constructor(
     private readonly playlistModelService: PlaylistModelService,
     private readonly layoutService: LayoutService,
     private readonly seoHeadService: SeoHeadService,
     private readonly router: Router,
+    private readonly location: Location,
   ) {
     layoutService.footerVisibility(false);
   }
@@ -27,6 +30,13 @@ export class MusicYoutubeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.playlists = this.playlistModelService.youtubePlaylists();
     this.updateMetas();
+    this.updateActualPlaylist();
+  }
+
+  private updateActualPlaylist() {
+    const playlistName = this.router.url.split('/').pop();
+    const playlist = this.playlists.find(p => p.title === playlistName);
+    this.switchPlaylist(playlist ? playlist : this.playlists[0]);
   }
 
   ngOnDestroy(): void {
@@ -43,5 +53,10 @@ export class MusicYoutubeComponent implements OnInit, OnDestroy {
         this.router.url,
       ),
     );
+  }
+
+  public switchPlaylist(playlist: PlaylistYoutubeType) {
+    this.activePlaylist = playlist;
+    this.location.replaceState(`music/youtube/${playlist.title}`);
   }
 }
