@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BoxModelService} from '../../../model/box/box-model.service';
-import {BoxInput} from '../../../model/_generated/graphql.schema';
+import {AudioInput, BoxInput} from '../../../model/_generated/graphql.schema';
 import {Router} from '@angular/router';
-import {IResourceSound} from '../../../components/resource/resource-sound-upload/resource-sound';
 import {ResourceModelService} from '../../../model/resource/resource-model.service';
 
 @Component({
@@ -32,7 +31,7 @@ export class BoxCreateComponent implements OnInit {
       });
   }
 
-  setAudio(resource: IResourceSound) {
+  setAudio(resource: AudioInput) {
     this.resourceService.createResourceAudio({
       audio: resource,
       resource: {
