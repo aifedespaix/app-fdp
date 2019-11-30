@@ -1,5 +1,5 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {ArticleType, PictureType} from '../../../model/_generated/graphql.schema';
+import {ArticleInput, ArticleType, PictureType, TagType} from '../../../model/_generated/graphql.schema';
 import {Metas} from '../../../services/seo-head';
 import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
@@ -7,6 +7,9 @@ import {getUndefinedPictureMock} from '../../../model/picture/tests/picture.mock
 import {LayoutService} from '../../../services/layout.service';
 import {ArticleModelService} from '../../../model/article/article-model.service';
 import {ComponentCanDeactivate} from '../../../guards/pending-changes.guard';
+import {SnackbarComponent} from '../../../components/snackbar/snackbar.component';
+import {MatSnackBar} from '@angular/material';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-new-article',
@@ -15,19 +18,22 @@ import {ComponentCanDeactivate} from '../../../guards/pending-changes.guard';
 })
 export class ArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
 
-  public article: ArticleType;
+  public articleInput: ArticleInput;
   public markdown: string;
   public isSaved: boolean;
+  public thumbnail: PictureType;
 
   constructor(
+    private readonly snackBar: MatSnackBar,
     private readonly headService: SeoHeadService,
     private readonly articleModelService: ArticleModelService,
     private readonly layoutService: LayoutService,
+    private readonly authService: AuthService,
     private readonly router: Router,
     @Inject(PLATFORM_ID) private readonly platformId: object,
   ) {
-    this.article = new ArticleType();
-    this.article.thumbnail = getUndefinedPictureMock();
+    this.articleInput = new ArticleInput();
+    this.thumbnail = getUndefinedPictureMock();
     this.isSaved = false;
     layoutService.footerVisibility(false);
   }
@@ -54,29 +60,52 @@ export class ArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeac
   }
 
   public setPicture(picture: PictureType) {
-    this.article.thumbnail = picture;
+    this.thumbnail = picture;
+    this.articleInput.thumbnailId = picture.id;
   }
 
   public createArticle() {
     this.articleModelService
-      .createArticle(this.article)
-      .subscribe((article) => {
+      .createArticle(this.articleInput)
+      .subscribe(() => {
         this.isSaved = true;
-        this.router.navigate(['../articles', article.id, article.title]);
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 5000,
+          data: {icon: 'save', color: '', message: `L'article a bien été enregistré`},
+        });
       });
   }
 
   public isSubmitable() {
     return (
-      this.article.title
-      && this.article.description
-      && this.article.tags
-      && this.article.tags.length
-      && this.article.thumbnail
-      && this.article.thumbnail.images
-      && this.article.thumbnail.images.length
-      && this.article.content
-      && this.article.content.length > 250
+      this.articleInput.title
+      && this.articleInput.description
+      && this.articleInput.tags
+      && this.articleInput.tags.length
+      && this.articleInput.thumbnailId
+      && this.thumbnail
+      && this.thumbnail.images
+      && this.thumbnail.images.length
+      && this.articleInput.content
+      && this.articleInput.content.length > 250
     );
+  }
+
+  public getArticle(): ArticleType {
+    return {
+      title: this.articleInput.title,
+      description: this.articleInput.description,
+      updatedAt: new Date(),
+      createdAt: new Date(),
+      category: null,
+      thumbnail: this.thumbnail,
+      author: this.authService.user,
+      tags: this.articleInput.tags,
+      id: 'create',
+      content: this.articleInput.content,
+      comments: [],
+      likes: [],
+      published: false,
+    };
   }
 }

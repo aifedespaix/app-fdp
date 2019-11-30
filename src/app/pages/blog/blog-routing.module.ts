@@ -10,14 +10,20 @@ import {BlogRoutes} from './blog-routes';
 import {AuthGuard} from '../../guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: BlogComponent},
+  {
+    path: '',
+    component: BlogComponent
+  },
   {
     path: BlogRoutes.Write,
     component: ArticleFormComponent,
     canDeactivate: [PendingChangesGuard],
     canActivate: [AuthGuard],
   },
-  {path: 'articles/:id/:title', component: BlogArticleComponent},
+  {
+    path: 'articles/:id/:title',
+    component: BlogArticleComponent
+  },
 ];
 
 @NgModule({

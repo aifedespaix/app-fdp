@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {LoginInput, RegisterInput, UserEditInput, UserType} from '../model/_generated/graphql.schema';
+import {LoginInput, RegisterInput, Role, UserEditInput, UserType} from '../model/_generated/graphql.schema';
 import {AuthModelService} from '../model/auth/auth-model.service';
 import {map} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
@@ -10,12 +10,11 @@ import {Apollo} from 'apollo-angular';
 import {Router} from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 
   private readonly tokenKey = 'token';
-  private _isAuthenticated;
 
   constructor(
     private readonly cookieService: CookieService,
@@ -28,14 +27,20 @@ export class AuthService {
     this._isAuthenticated = false;
   }
 
+  private _isAuthenticated;
+
+  get isAuthenticated() {
+    return this._isAuthenticated;
+  }
+
+  get isAdmin() {
+    return this.isAuthenticated && this.user.role === Role.AIFEDESPAIX;
+  }
+
   private _user: UserType;
 
   get user() {
     return this._user;
-  }
-
-  get isAuthenticated() {
-    return this._isAuthenticated;
   }
 
   public getToken() {
@@ -76,7 +81,8 @@ export class AuthService {
 
   public loadProfile() {
     if (this.getToken()) {
-      const sub = this.userModelService.myProfile()
+      const sub = this.userModelService
+        .myProfile()
         .subscribe(
           (user) => {
             this.updateUser(user);

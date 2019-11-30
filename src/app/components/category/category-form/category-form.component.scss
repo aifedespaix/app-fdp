@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.picture {
+  height: 10rem;
+  position: relative;
+  display: grid;
+
+  app-picture-library-pick {
+    position: absolute;
+    z-index: 10;
+  }
+}

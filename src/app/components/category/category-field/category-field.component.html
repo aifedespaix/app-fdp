@@ -1,0 +1,11 @@
+<mat-form-field>
+  <mat-label>Catégorie</mat-label>
+  <mat-select (change)="changeCategory($event)" required>
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let category of categories" [value]="category.id">
+      {{category.name}}
+    </mat-option>
+  </mat-select>
+<!--  <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>-->
+<!--  <mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
+</mat-form-field>

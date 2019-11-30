@@ -13,10 +13,8 @@ a {
 }
 
 app-article-card {
-  display: block;
-  height: 100%;
+  display: grid;
   overflow: hidden;
-  text-overflow: ellipsis;
 
   div {
     padding: 1rem;

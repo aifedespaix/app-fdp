@@ -1,0 +1,46 @@
+<form
+  #form="ngForm"
+  (ngSubmit)="create()"
+>
+  <mat-form-field
+    class="name">
+    <input
+      matInput
+      type="text"
+      placeholder="Nom"
+      name="name"
+      [(ngModel)]="categoryInput.name"
+      required
+      minlength="3"
+      maxlength="25"
+    >
+    <mat-error>Le titre est trop court</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="description">
+    <textarea
+      matInput
+      type="text"
+      placeholder="Description"
+      name="description"
+      [(ngModel)]="categoryInput.description"
+      required
+      minlength="5"
+    ></textarea>
+    <mat-error>La description est trop courte</mat-error>
+  </mat-form-field>
+
+  <div class="picture">
+    <app-picture [picture]="picture"></app-picture>
+    <app-picture-library-pick (pictureSelected)="picture = $event"></app-picture-library-pick>
+  </div>
+
+  <button
+    [disabled]="form.errors?.length || !picture.id"
+    class="submit"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >Ajouter la catégorie
+  </button>
+</form>

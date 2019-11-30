@@ -28,10 +28,9 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
   public filteredTags: Observable<string[]>;
   public tags: string[] = [];
   public allTags: string[];
-  private onChange: any;
-
   @ViewChild('tagInput', {static: false}) tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  private onChange: any;
 
   constructor(
     private readonly tagModelService: TagModelService,
@@ -41,16 +40,13 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    const subTag = this.tagModelService.tags({}).subscribe(
-      (tags) => {
-        this.allTags = tags;
-      },
-      () => {
-      },
-      () => {
-        subTag.unsubscribe();
-      },
-    );
+    const subTag = this.tagModelService.tags({})
+      .subscribe(
+        (tags) => {
+          this.allTags = tags;
+          subTag.unsubscribe();
+        },
+      );
     this.filteredTags = this.tagsCtrl
       .valueChanges
       .pipe(
@@ -74,11 +70,9 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
 
   remove(tag: string) {
     const index = this.tags.indexOf(tag);
-
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
-
     this.change();
   }
 

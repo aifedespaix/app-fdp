@@ -7,6 +7,7 @@ schema {
 
 type ArticleType {
   author: UserType!
+  category: CategoryType!
   comments: [CommentType!]
   content: String!
   createdAt: DateTime!
@@ -39,7 +40,7 @@ type CategoryType {
   description: String!
   id: ID!
   name: String!
-  picture: ResourceType!
+  picture: PictureType!
   updatedAt: DateTime!
 }
 
@@ -150,8 +151,8 @@ type Query {
   articles(pagination: PaginationInput, published: Boolean!): [ArticleType!]
   box(id: String!): BoxType!
   boxes(pagination: PaginationInput): [BoxType!]!
-  categorie(id: String!): CategoryType!
   categories(pagination: PaginationInput): [CategoryType!]!
+  category(id: ID!): CategoryType!
   helloWorld: String!
   menu(name: String!): MenuType!
   menus: [MenuType!]!
@@ -162,7 +163,7 @@ type Query {
   myProfile: UserType!
   resource(id: ID!): ResourceType!
   resources(pagination: PaginationInput): [ResourceType!]!
-  tags(after: Int, before: Int, first: Int, last: Int, skip: Int): [TagType]
+  tags(pagination: PaginationInput): [TagType]
   users: [UserType!]!
 }
 
@@ -177,9 +178,9 @@ type ResourceType {
 }
 
 type TagType {
-  createdAt: DateTime!
-  id: ID!
-  updatedAt: DateTime!
+  createdAt: DateTime
+  id: ID
+  updatedAt: DateTime
   value: String!
 }
 
@@ -220,7 +221,7 @@ input ArticleInput {
   categoryId: String!
   content: String!
   description: String!
-  tags: [String!]
+  tags: [TagInput!]!
   thumbnailId: String!
   title: String!
 }
@@ -248,13 +249,13 @@ input BoxUpdateInput {
 input CategoryEditInput {
   description: String
   name: String
-  pictureId: String
+  pictureId: ID
 }
 
 input CategoryInput {
   description: String!
   name: String!
-  pictureId: String!
+  pictureId: ID!
 }
 
 input CommentInput {
@@ -278,8 +279,8 @@ input MenuItemInput {
 }
 
 input PaginationInput {
-  after: Int
-  before: Int
+  after: String
+  before: String
   first: Int
   last: Int
   skip: Int
@@ -314,6 +315,11 @@ input ResourceInput {
 input SliceInput {
   from: Float!
   to: Float!
+}
+
+input TagInput {
+  id: ID
+  value: String!
 }
 
 input UserEditInput {

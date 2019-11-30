@@ -21,6 +21,8 @@ import {BlogArticleComponent} from './blog-article/blog-article.component';
 import {ArticleFormComponent} from './article-form/article-form.component';
 import {AuthModule} from '../../auth/auth.module';
 import {BtnModule} from '../../components/btn/btn.module';
+import {CategoryModule} from '../../components/category/category.module';
+import {CategoryModelService} from '../../model/category/category-model.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import {BtnModule} from '../../components/btn/btn.module';
     MarkdownModule,
     NgxMarkdownModule.forChild(),
     BtnModule,
+    CategoryModule,
   ],
 })
 export class BlogModule {

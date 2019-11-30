@@ -3,7 +3,7 @@ import {Pagination} from '../pagination';
 import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
-import {TagType} from '../_generated/graphql.schema';
+import {PaginationInput, TagType} from '../_generated/graphql.schema';
 import {TAGS} from './graphql';
 import {Observable} from 'rxjs';
 
@@ -16,7 +16,7 @@ export class TagModelService {
   }
 
 
-  public tags(pagination: Pagination): Observable<string[]> {
+  public tags(pagination: PaginationInput): Observable<string[]> {
     return this.apollo.query({
       query: TAGS,
       variables: pagination,

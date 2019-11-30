@@ -28,21 +28,11 @@ export class ArticleModelService {
       ));
   }
 
-  public createArticle(article: ArticleType): Observable<ArticleType> {
-    const articleInput: ArticleInput = {
-      title: article.title,
-      description: article.description,
-      content: article.content,
-      tags: article.tags.map((t) => t.value),
-      thumbnailId: article.thumbnail.id,
-      // categoryId:
-    };
+  public createArticle(article: ArticleInput): Observable<ArticleType> {
     return this.apollo
       .mutate({
         mutation: CREATE_ARTICLE,
-        variables: {
-          article: articleInput,
-        },
+        variables: {article},
       })
       .pipe(map(
         ({data}: ApolloQueryResult<{ createArticle: ArticleType }>) => data.createArticle,

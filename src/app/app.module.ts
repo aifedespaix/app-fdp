@@ -14,7 +14,6 @@ import {HttpLink, HttpLinkHandler, HttpLinkModule} from 'apollo-angular-link-htt
 import {CookieService} from 'ngx-cookie-service';
 import {setContext} from 'apollo-link-context';
 import {isPlatformBrowser} from '@angular/common';
-import {InlineSVGModule} from 'ng-inline-svg';
 
 const STATE_KEY = makeStateKey<any>('apollo.state');
 
@@ -56,14 +55,6 @@ export class AppModule {
     this.cache = new InMemoryCache({
       addTypename: true,
       resultCaching: true,
-      cacheRedirects: {
-        // PictureType: {
-        //   images: (_, args, { getCacheKey }) => {
-        //     console.log('wwwwwwwwww');
-        //     return getCacheKey({ __typename: 'ImageType', id: args.id });
-        //   }
-        // }
-      }
     });
     this.link = this.httpLink.create({
       uri: `${environment.apiEndpoint}`,

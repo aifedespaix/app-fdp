@@ -24,7 +24,7 @@ export class ArticleEditInput {
   description?: string;
   categoryId?: string;
   thumbnailId?: string;
-  tags?: string[];
+  tags?: TagInput[];
 }
 
 export class ArticleInput {
@@ -33,7 +33,7 @@ export class ArticleInput {
   description: string;
   categoryId: string;
   thumbnailId: string;
-  tags?: string[];
+  tags: TagInput[];
 }
 
 export class AudioInput {
@@ -57,6 +57,7 @@ export class BoxUpdateInput {
 }
 
 export class CategoryEditInput {
+  id: string;
   name?: string;
   description?: string;
   pictureId?: string;
@@ -90,8 +91,8 @@ export class MenuItemInput {
 
 export class PaginationInput {
   skip?: number;
-  after?: number;
-  before?: number;
+  after?: string;
+  before?: string;
   first?: number;
   last?: number;
 }
@@ -127,6 +128,11 @@ export class SliceInput {
   to: number;
 }
 
+export class TagInput {
+  id?: string;
+  value: string;
+}
+
 export class UserEditInput {
   avatarId?: string;
 }
@@ -139,6 +145,7 @@ export class ArticleType {
   title: string;
   content: string;
   description: string;
+  category: CategoryType;
   thumbnail: PictureType;
   author: UserType;
   likes?: LikeType[];
@@ -166,7 +173,7 @@ export class CategoryType {
   updatedAt: DateTime;
   name: string;
   description: string;
-  picture: ResourceType;
+  picture: PictureType;
 }
 
 export class CommentType {
@@ -307,7 +314,7 @@ export abstract class IQuery {
 
   abstract categories(pagination?: PaginationInput): CategoryType[] | Promise<CategoryType[]>;
 
-  abstract categorie(id: string): CategoryType | Promise<CategoryType>;
+  abstract category(id: string): CategoryType | Promise<CategoryType>;
 
   abstract myComments(): CommentType[] | Promise<CommentType[]>;
 
@@ -323,7 +330,7 @@ export abstract class IQuery {
 
   abstract resource(id: string): ResourceType | Promise<ResourceType>;
 
-  abstract tags(skip?: number, after?: number, before?: number, first?: number, last?: number): TagType[] | Promise<TagType[]>;
+  abstract tags(pagination?: PaginationInput): TagType[] | Promise<TagType[]>;
 
   abstract users(): UserType[] | Promise<UserType[]>;
 
@@ -341,9 +348,9 @@ export class ResourceType {
 }
 
 export class TagType {
-  id: string;
-  createdAt: DateTime;
-  updatedAt: DateTime;
+  id?: string;
+  createdAt?: DateTime;
+  updatedAt?: DateTime;
   value: string;
 }
 

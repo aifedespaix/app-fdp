@@ -1,0 +1,13 @@
+@import "layout-variables";
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+
+  > div {
+    overflow: auto;
+    padding: $padding;
+  }
+}

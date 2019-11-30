@@ -5,7 +5,26 @@
 }
 
 app-card {
-  padding-top: $padding;
+  padding: $padding 0;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: space-around;
+
+  app-card-header {
+    height: 2em;
+
+    h2 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  app-card-content {
+    flex: 1;
+    text-align: justify;
+    overflow-wrap: break-word;
+  }
 }
 
 h2 {

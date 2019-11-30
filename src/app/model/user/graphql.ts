@@ -8,6 +8,7 @@ export const MY_PROFILE = gql`
             login
             createdAt
             updatedAt
+            role
             avatar {
                 id
                 title

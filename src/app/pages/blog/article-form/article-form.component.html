@@ -1,35 +1,45 @@
-<app-article [article]="article"></app-article>
+<app-article [article]="getArticle()"></app-article>
 
-<form #articleForm="ngForm" (ngSubmit)="createArticle()">
+<form
+  #articleForm="ngForm"
+  (ngSubmit)="createArticle()"
+>
   <mat-form-field class="title">
     <input
       matInput
       type="text"
       placeholder="Titre"
       name="title"
-      [(ngModel)]="article.title"
+      [(ngModel)]="articleInput.title"
     >
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="description">
     <textarea
       matInput
       name="description"
       placeholder="Description"
-      [(ngModel)]="article.description"
+      [(ngModel)]="articleInput.description"
     >
     </textarea>
   </mat-form-field>
 
+  <app-category-field
+    class="category"
+    [(ngModel)]="articleInput.categoryId"
+  >
+  </app-category-field>
+
   <app-tag-field
+    class="tags"
     name="tags"
-    [(ngModel)]="article.tags"
+    [(ngModel)]="articleInput.tags"
   ></app-tag-field>
 
   <app-picture-library-pick
     (pictureSelected)="setPicture($event)"
-    [title]="article.title"
-    [description]="article.description"
+    [title]="articleInput.title"
+    [description]="articleInput.description"
     label="Image de couverture"
   ></app-picture-library-pick>
 
@@ -38,12 +48,12 @@
       #area
       name="content"
       placeholder="Content"
-      [(ngModel)]="article.content"
+      [(ngModel)]="articleInput.content"
     ></textarea>
   </app-markdown-edit>
 
   <button
-    [disabled]="!(isSubmitable())"
+    [disabled]="!isSubmitable()"
     class="submit"
     mat-raised-button
     color="primary"

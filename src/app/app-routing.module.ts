@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {AdminGuard} from './guards/admin.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -65,7 +66,18 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'legal',
-    loadChildren: () => import('./pages/legal/legal.module').then(m => m.LegalModule)
+    loadChildren: () => import('./pages/legal/legal.module').then(m => m.LegalModule),
+    data: {
+      animation: 'OnTop',
+    },
+  },
+  {
+    canActivate: [AdminGuard],
+    path: 'admin',
+    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+    data: {
+      animation: 'OnBottom',
+    },
   },
   {
     path: '404',
