@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategoryInput, PictureType} from '../../../model/_generated/graphql.schema';
 import {getUndefinedPictureMock} from '../../../model/picture/tests/picture.mocks';
 import {CategoryModelService} from '../../../model/category/category-model.service';
@@ -6,7 +6,7 @@ import {CategoryModelService} from '../../../model/category/category-model.servi
 @Component({
   selector: 'app-category-form',
   templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.scss']
+  styleUrls: ['./category-form.component.scss'],
 })
 export class CategoryFormComponent implements OnInit {
 
@@ -17,8 +17,8 @@ export class CategoryFormComponent implements OnInit {
     private readonly categoryModelService: CategoryModelService,
   ) {
     this.categoryInput = new CategoryInput();
-    this.categoryInput.description = 'Angular est un framework front end permettant de développer des applications modernes';
-    this.categoryInput.name = 'Angular';
+    this.categoryInput.description = '';
+    this.categoryInput.name = '';
     this.picture = getUndefinedPictureMock();
   }
 
@@ -30,7 +30,7 @@ export class CategoryFormComponent implements OnInit {
     this.categoryModelService
       .createCategory({
         ...this.categoryInput,
-        pictureId: this.picture.id
+        pictureId: this.picture.id,
       })
       .subscribe((category) => {
         console.log(category);

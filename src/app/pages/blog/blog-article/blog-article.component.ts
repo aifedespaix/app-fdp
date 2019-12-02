@@ -71,7 +71,7 @@ export class BlogArticleComponent implements OnInit {
             modifiedTime: new Date(this.article.updatedAt),
             section: 'web',
             expirationTime: null,
-          }
+          },
         },
       ),
     );

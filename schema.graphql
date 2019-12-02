@@ -112,10 +112,11 @@ type Mutation {
   createCommentLike(commentId: String!, like: String!): CommentType!
   createMenu(menu: MenuInput!): MenuType!
   createPicture(file: Upload!, picture: PictureInput!): PictureType!
-  createResourceAudio(resource: ResourceAudioInput!): ResourceType!
+  createResourceAudio(audio: AudioInput): ResourceType!
+  deleteCategory(id: ID!): CategoryType!
   deleteUser(id: String!): UserType!
   editMyUser(user: UserEditInput!): UserType!
-  updateArticle(article: ArticleEditInput!, articleId: String!): ArticleType!
+  updateArticle(article: ArticleEditInput!): ArticleType!
   updateBox(data: BoxUpdateInput!): BoxType!
   updateCategory(category: CategoryEditInput!): CategoryType!
 }
@@ -211,8 +212,9 @@ input ArticleEditInput {
   categoryId: String
   content: String
   description: String
+  id: ID!
   published: Boolean
-  tags: [String!]
+  tags: [TagInput!]
   thumbnailId: String
   title: String
 }
@@ -228,6 +230,7 @@ input ArticleInput {
 
 input AudioInput {
   file: Upload!
+  resource: ResourceInput!
   slice: SliceInput!
 }
 
@@ -248,6 +251,7 @@ input BoxUpdateInput {
 
 input CategoryEditInput {
   description: String
+  id: ID!
   name: String
   pictureId: ID
 }
@@ -302,14 +306,10 @@ input RegisterInput {
   password: String!
 }
 
-input ResourceAudioInput {
-  audio: AudioInput!
-  resource: ResourceInput!
-}
-
 input ResourceInput {
   description: String!
   title: String!
+  url: String!
 }
 
 input SliceInput {

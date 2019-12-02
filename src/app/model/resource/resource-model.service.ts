@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {ResourceAudioInput, ResourceInput, ResourceType} from '../_generated/graphql.schema';
+import {AudioInput, ResourceInput, ResourceType} from '../_generated/graphql.schema';
 import {CREATE_RESOURCE_AUDIO} from './graphql';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
@@ -14,16 +14,14 @@ export class ResourceModelService {
   ) {
   }
 
-  public createResourceAudio(resource: ResourceAudioInput): Observable<ResourceType> {
-    console.log(resource);
-    return this.apollo.mutate({
-      mutation: CREATE_RESOURCE_AUDIO,
-      variables: {resource},
-    })
+  public createResourceAudio(audio: AudioInput): Observable<ResourceType> {
+    return this.apollo
+      .mutate({
+        mutation: CREATE_RESOURCE_AUDIO,
+        variables: {audio},
+      })
       .pipe(map(
-        (res: ApolloQueryResult<{ createResource: ResourceType }>) => {
-          return res.data.createResource;
-        },
+        ({data: {createResource}}: ApolloQueryResult<{ createResource: ResourceType }>) => createResource,
       ));
   }
 

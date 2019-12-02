@@ -18,6 +18,7 @@ export enum Role {
 }
 
 export class ArticleEditInput {
+  id: string;
   title?: string;
   published?: boolean;
   content?: string;
@@ -39,6 +40,8 @@ export class ArticleInput {
 export class AudioInput {
   file: Upload;
   slice: SliceInput;
+  title: string;
+  description: string;
 }
 
 export class BoxInput {
@@ -113,14 +116,10 @@ export class RegisterInput {
   password: string;
 }
 
-export class ResourceAudioInput {
-  resource: ResourceInput;
-  audio: AudioInput;
-}
-
 export class ResourceInput {
   title: string;
   description: string;
+  url: string;
 }
 
 export class SliceInput {
@@ -228,7 +227,7 @@ export class MenuType {
 }
 
 export abstract class IMutation {
-  abstract updateArticle(article: ArticleEditInput, articleId: string): ArticleType | Promise<ArticleType>;
+  abstract updateArticle(article: ArticleEditInput): ArticleType | Promise<ArticleType>;
 
   abstract createArticle(article: ArticleInput): ArticleType | Promise<ArticleType>;
 
@@ -252,6 +251,8 @@ export abstract class IMutation {
 
   abstract updateCategory(category: CategoryEditInput): CategoryType | Promise<CategoryType>;
 
+  abstract deleteCategory(id: string): CategoryType | Promise<CategoryType>;
+
   abstract createArticleLike(articleId: string, like: string): ArticleType | Promise<ArticleType>;
 
   abstract createBoxLike(boxId: string, like: string): BoxType | Promise<BoxType>;
@@ -266,7 +267,7 @@ export abstract class IMutation {
 
   abstract createPicture(picture: PictureInput, file: Upload): PictureType | Promise<PictureType>;
 
-  abstract createResourceAudio(resource: ResourceAudioInput): ResourceType | Promise<ResourceType>;
+  abstract createResourceAudio(audio?: AudioInput): ResourceType | Promise<ResourceType>;
 
   abstract deleteUser(id: string): UserType | Promise<UserType>;
 

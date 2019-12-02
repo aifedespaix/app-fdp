@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const CREATE_RESOURCE_AUDIO = gql`
-    mutation createResourceAudio($resource: ResourceAudioInput!) {
-        createResourceAudio(resource: $resource) {
+    mutation createResourceAudio($audio: AudioInput) {
+        createResourceAudio(audio: $audio) {
             id
             createdAt
             updatedAt

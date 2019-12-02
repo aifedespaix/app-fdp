@@ -16,11 +16,11 @@ export function slideTopAnimation(stateChangeExpr: string, duration: string) {
     query(':enter', [
       style({top: '100%'}),
     ]),
-    query(':leave', animateChild()),
+    query(':leave', animateChild(), { optional: true }),
     group([
       query(':leave', [
         animate(`${duration} ease-out`, style({top: '-100%'})),
-      ]),
+      ], { optional: true }),
       query(':enter', [
         animate(`${duration} ease-out`, style({top: '0'})),
       ]),

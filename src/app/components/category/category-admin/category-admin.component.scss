@@ -1,0 +1,12 @@
+@import "layout-variables";
+
+:host {
+  display: grid;
+  grid-gap: $padding;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 2rem;
+  grid-template-rows: 2rem;
+}

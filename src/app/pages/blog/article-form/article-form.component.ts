@@ -1,5 +1,5 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {ArticleInput, ArticleType, PictureType, TagType} from '../../../model/_generated/graphql.schema';
+import {ArticleInput, ArticleType, CategoryType, PictureType} from '../../../model/_generated/graphql.schema';
 import {Metas} from '../../../services/seo-head';
 import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
@@ -18,10 +18,12 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class ArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
 
+  public id: string;
   public articleInput: ArticleInput;
   public markdown: string;
   public isSaved: boolean;
   public thumbnail: PictureType;
+  public category: CategoryType;
 
   constructor(
     private readonly snackBar: MatSnackBar,
@@ -36,6 +38,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeac
     this.thumbnail = getUndefinedPictureMock();
     this.isSaved = false;
     layoutService.footerVisibility(false);
+    this.id = null;
   }
 
 
@@ -64,16 +67,12 @@ export class ArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeac
     this.articleInput.thumbnailId = picture.id;
   }
 
-  public createArticle() {
-    this.articleModelService
-      .createArticle(this.articleInput)
-      .subscribe(() => {
-        this.isSaved = true;
-        this.snackBar.openFromComponent(SnackbarComponent, {
-          duration: 5000,
-          data: {icon: 'save', color: '', message: `L'article a bien été enregistré`},
-        });
-      });
+  public submitArticle() {
+    if (this.id) {
+      this.updateArticle();
+    } else {
+      this.createArticle();
+    }
   }
 
   public isSubmitable() {
@@ -107,5 +106,35 @@ export class ArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeac
       likes: [],
       published: false,
     };
+  }
+
+  public submitLabel() {
+    return this.id ? `Mettre à jour l'article` : `Créer l'article`;
+  }
+
+  private createArticle() {
+    this.articleInput.categoryId = this.category.id;
+    this.articleModelService
+      .createArticle(this.articleInput)
+      .subscribe((article) => {
+        this.isSaved = true;
+        this.id = article.id;
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 5000,
+          data: {icon: 'save', color: '', message: `L'article a bien été créé`},
+        });
+      });
+  }
+
+  private updateArticle() {
+    this.articleModelService
+      .updateArticle({...this.articleInput, id: this.id})
+      .subscribe(() => {
+        this.isSaved = true;
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 5000,
+          data: {icon: 'save', color: '', message: `L'article a bien été mis à jour`},
+        });
+      });
   }
 }

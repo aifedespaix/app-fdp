@@ -1,0 +1,7 @@
+<div
+  class="category"
+  [matTooltip]="category.description"
+  aria-label="Catégorie de l'élèment">
+  <app-picture *ngIf="category.picture" [picture]="category.picture"></app-picture>
+  <span>{{category.name}}</span>
+</div>

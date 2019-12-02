@@ -46,6 +46,11 @@ export class ResourceSoundUploadComponent {
   }
 
   emitFile(slice: ISoundSlice) {
-    this.resourceLoaded.emit({file: this.file, slice});
+    this.resourceLoaded.emit({
+      file: this.file,
+      slice,
+      title: this.title,
+      description: this.description,
+    });
   }
 }

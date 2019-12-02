@@ -19,9 +19,8 @@ export class PictureUploadComponent implements OnInit {
   public isLoading: boolean;
   public picture: PictureType;
   public uuid: string;
-  public types = ['image/png', 'image/jpg', 'image/gif'];
+  public types = ['image/*'];
   private file: File;
-
 
   constructor(
     private readonly snackBar: MatSnackBar,

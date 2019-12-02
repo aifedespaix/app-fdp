@@ -2,7 +2,7 @@
 
 <form
   #articleForm="ngForm"
-  (ngSubmit)="createArticle()"
+  (ngSubmit)="submitArticle()"
 >
   <mat-form-field class="title">
     <input
@@ -26,7 +26,8 @@
 
   <app-category-field
     class="category"
-    [(ngModel)]="articleInput.categoryId"
+    name="category"
+    [(ngModel)]="category"
   >
   </app-category-field>
 
@@ -58,6 +59,5 @@
     mat-raised-button
     color="primary"
     type="submit"
-  >Envoyer
-  </button>
+  >{{submitLabel()}}</button>
 </form>

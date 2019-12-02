@@ -1,0 +1,14 @@
+<app-category-form></app-category-form>
+<app-category-field [(ngModel)]="category"></app-category-field>
+<div class="actions" *ngIf="category">
+  <app-category [category]="category"></app-category>
+  <button
+    mat-icon-button
+    color="warn"
+    matTooltip="Supprimer la catégorie"
+    aria-label="Boutton pour supprimer la catégorie active"
+    (click)="deleteCategory(category.id)"
+  >
+    <mat-icon class="mat-36 delete">close</mat-icon>
+  </button>
+</div>

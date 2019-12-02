@@ -18,7 +18,7 @@ const routes: Routes = [
     path: BlogRoutes.Write,
     component: ArticleFormComponent,
     canDeactivate: [PendingChangesGuard],
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard], todo
   },
   {
     path: 'articles/:id/:title',

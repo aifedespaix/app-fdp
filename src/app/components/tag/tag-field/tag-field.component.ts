@@ -28,8 +28,10 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
   public filteredTags: Observable<string[]>;
   public tags: string[] = [];
   public allTags: string[];
+
   @ViewChild('tagInput', {static: false}) tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+
   private onChange: any;
 
   constructor(
@@ -109,7 +111,6 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.allTags.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
 

@@ -1,7 +1,9 @@
-import {Component, EventEmitter, forwardRef, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, OnDestroy, OnInit, Output} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {CategoryType} from '../../../model/_generated/graphql.schema';
 import {CategoryModelService} from '../../../model/category/category-model.service';
+import {MatSelectChange} from '@angular/material';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-category-field',
@@ -15,10 +17,11 @@ import {CategoryModelService} from '../../../model/category/category-model.servi
     },
   ],
 })
-export class CategoryFieldComponent implements OnInit, ControlValueAccessor {
+export class CategoryFieldComponent implements OnInit, ControlValueAccessor, OnDestroy {
 
   private onChange: any;
   private categories: CategoryType[];
+  private $categories: Subscription;
 
   constructor(
     private readonly categoryModelService: CategoryModelService,
@@ -30,6 +33,9 @@ export class CategoryFieldComponent implements OnInit, ControlValueAccessor {
     this.loadCategories();
   }
 
+  ngOnDestroy(): void {
+    this.$categories.unsubscribe();
+  }
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -45,15 +51,14 @@ export class CategoryFieldComponent implements OnInit, ControlValueAccessor {
   }
 
   private loadCategories() {
-    this.categoryModelService
+    this.$categories = this.categoryModelService
       .categories({})
       .subscribe((categories) => {
         this.categories = categories;
       });
   }
 
-  public changeCategory(category: any) {
-    console.log(category);
-    // this.categoryChange.emit()
+  public changeCategory(change: MatSelectChange) {
+    this.onChange(change.value);
   }
 }

@@ -57,7 +57,7 @@ export class ArticleAdminComponent implements OnInit {
   public publishArticles() {
     this.selection.selected.map((article) => {
       this.articleModelService
-        .updateArticle(article.id, {published: true})
+        .updateArticle({id: article.id, published: true})
         .subscribe(
           () => {
             this.snackBar.openFromComponent(SnackbarComponent, {
@@ -68,6 +68,7 @@ export class ArticleAdminComponent implements OnInit {
                 message: `Les articles sont publiés`,
               },
             });
+            this.selection.selected.forEach((a) => a.published = true);
           },
           () => {
             this.snackBar.openFromComponent(SnackbarComponent, {

@@ -15,10 +15,10 @@ export class ArticleModelService {
   ) {
   }
 
-  public articles(pagination: Pagination): Observable<ArticleType[]> {
+  public articles(pagination: Pagination, published = true): Observable<ArticleType[]> {
     return this.apollo.watchQuery({
       query: ARTICLES,
-      variables: {pagination, published: true},
+      variables: {pagination, published},
     })
       .valueChanges
       .pipe(map(
@@ -50,11 +50,11 @@ export class ArticleModelService {
       ));
   }
 
-  public updateArticle(articleId: string, article: ArticleEditInput) {
+  public updateArticle(article: ArticleEditInput) {
     return this.apollo
       .mutate({
         mutation: UPDATE_ARTICLE,
-        variables: {articleId, article},
+        variables: {article},
       })
       .pipe(map(
         ({data}: ApolloQueryResult<{ updateArticle: ArticleType }>) => data.updateArticle,
