@@ -7,11 +7,13 @@ import {PictureLibraryPickComponent} from './picture-library-pick/picture-librar
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {PictureLibraryService} from './picture-library.service';
+import { PictureLibraryPickAndPreviewComponent } from './picture-library-pick-and-preview/picture-library-pick-and-preview.component';
 
 @NgModule({
   declarations: [
     PictureLibraryDialogComponent,
     PictureLibraryPickComponent,
+    PictureLibraryPickAndPreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import {PictureLibraryService} from './picture-library.service';
   ],
   exports: [
     PictureLibraryPickComponent,
+    PictureLibraryPickAndPreviewComponent,
   ],
   providers: [
     PictureLibraryService,

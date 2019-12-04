@@ -36,6 +36,7 @@ export class PictureLibraryPickComponent {
           this.pictureSelected.emit(picture);
         }
       });
+    return false;
   }
 
 }

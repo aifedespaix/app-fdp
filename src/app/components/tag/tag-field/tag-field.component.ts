@@ -6,6 +6,7 @@ import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/t
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {TagModelService} from '../../../model/tag/tag-model.service';
+import {TagInput} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-tag-field',
@@ -32,7 +33,7 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
   @ViewChild('tagInput', {static: false}) tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  private onChange: any;
+  private onChange: (newValue: TagInput[]) => void;
 
   constructor(
     private readonly tagModelService: TagModelService,
@@ -57,7 +58,7 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
       );
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (newValue: TagInput[]) => void): void {
     this.onChange = fn;
   }
 

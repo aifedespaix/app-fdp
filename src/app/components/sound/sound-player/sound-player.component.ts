@@ -15,7 +15,7 @@ export class SoundPlayerComponent implements OnInit {
   private readonly icons: string[];
 
   constructor(
-    private soundService: SoundService,
+    public soundService: SoundService,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer) {
     this.lastVolumeLevel = this.soundService.volume;
@@ -31,10 +31,6 @@ export class SoundPlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerIcons();
-  }
-
-  public soundExists() {
-    return this.soundService.sound !== null;
   }
 
   public play() {
@@ -74,7 +70,7 @@ export class SoundPlayerComponent implements OnInit {
 
   speedIcone() {
     if (this.soundModel.speed < 100) {
-      return 'low';
+      return 'slow';
     }
     if (this.soundModel.speed > 100) {
       return 'fast';

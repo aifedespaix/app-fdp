@@ -1,11 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArticleFormComponent } from './article-form.component';
+import {ArticleFormComponent} from './article-form.component';
 import {BlogModule} from '../blog.module';
-import {AppRoutingModule} from '../../../app-routing.module';
-import {ApolloTestingModule} from 'apollo-angular/testing';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LayoutModule} from '../../../layout/layout.module';
+import {TestsModule} from '../../../tests/tests.module';
 
 describe('ArticleFormComponent', () => {
   let component: ArticleFormComponent;
@@ -15,16 +12,10 @@ describe('ArticleFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         BlogModule,
-        AppRoutingModule,
-        ApolloTestingModule,
-        BrowserAnimationsModule,
-        LayoutModule,
-      ],
-      providers: [
-
+        TestsModule,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

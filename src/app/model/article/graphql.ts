@@ -111,6 +111,32 @@ export const ARTICLE = gql`
       updatedAt
       title
       content
+      comments {
+        id
+        value
+        createdAt
+        updatedAt
+        likes {
+          value
+        }
+        author {
+          login
+          avatar {
+            id
+            title
+            description
+            createdAt
+            updatedAt
+            images {
+              id
+              url
+              width
+              height
+              mimetype
+            }
+          }
+        }
+      }
       thumbnail {
         id
         title

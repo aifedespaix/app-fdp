@@ -1,12 +1,23 @@
-<app-loading [isLoading]="isLoading">
+<div class="box-detail-container">
+  <app-box-detail
+    #detail
+    *ngIf="actualBox"
+    [box]="actualBox"
+    [ngClass]="{'box-detail': actualBox}"
+  ></app-box-detail>
+</div>
+
+<app-loading [isLoading]="isLoadingBoxes" class="boxes-container">
   <div class="boxes">
-    <div class="box"
+    <a
+      [routerLink]="['/box', box.id,  box.title]"
+      class="box hoverable hoverable_pump"
       *ngFor="let box of boxes"
       (click)="play(box)"
     >
-        <app-picture [picture]="box.thumbnail"></app-picture>
-        <h3>{{box.title}}</h3>
-    </div>
+      <app-picture [picture]="box.thumbnail"></app-picture>
+      <h3 class="border-3 main-color">{{box.title}}</h3>
+    </a>
   </div>
 </app-loading>
 

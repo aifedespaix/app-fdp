@@ -48,15 +48,14 @@ export class BoxInput {
   title: string;
   description: string;
   thumbnailId: string;
-  soundId: string;
-  tags: string[];
+  tags: TagInput[];
 }
 
 export class BoxUpdateInput {
   title?: string;
   description?: string;
   thumbnailId?: string;
-  tags?: string[];
+  tags?: TagInput[];
 }
 
 export class CategoryEditInput {
@@ -72,9 +71,19 @@ export class CategoryInput {
   pictureId: string;
 }
 
+export class CommentAnswerInput {
+  parent: string;
+  value: string;
+}
+
+export class CommentEditInput {
+  commentId: string;
+  value: string;
+}
+
 export class CommentInput {
-  parent?: string;
-  comment: string;
+  target: string;
+  value: string;
 }
 
 export class LoginInput {
@@ -231,27 +240,27 @@ export abstract class IMutation {
 
   abstract createArticle(article: ArticleInput): ArticleType | Promise<ArticleType>;
 
-  abstract createArticleComment(articleId: string, comment: string): ArticleType | Promise<ArticleType>;
-
-  abstract createBoxComment(boxId: string, comment: string): ArticleType | Promise<ArticleType>;
-
-  abstract createCommentAnswer(parentId: string, comment: string): CommentType | Promise<CommentType>;
-
   abstract authAifedespaix(secret: string): LoginType | Promise<LoginType>;
 
   abstract authRegister(data: RegisterInput): LoginType | Promise<LoginType>;
 
   abstract authLogin(login: LoginInput): LoginType | Promise<LoginType>;
 
-  abstract createBox(data: BoxInput): BoxType | Promise<BoxType>;
+  abstract createBox(box: BoxInput, sound: AudioInput): BoxType | Promise<BoxType>;
 
-  abstract updateBox(data: BoxUpdateInput): BoxType | Promise<BoxType>;
+  abstract updateBox(box: BoxUpdateInput): BoxType | Promise<BoxType>;
 
   abstract createCategory(category: CategoryInput): CategoryType | Promise<CategoryType>;
 
   abstract updateCategory(category: CategoryEditInput): CategoryType | Promise<CategoryType>;
 
   abstract deleteCategory(id: string): CategoryType | Promise<CategoryType>;
+
+  abstract createBoxComment(comment: CommentInput): CommentType | Promise<CommentType>;
+
+  abstract createArticleComment(comment: CommentInput): CommentType | Promise<CommentType>;
+
+  abstract editComment(comment: CommentInput): CommentType | Promise<CommentType>;
 
   abstract createArticleLike(articleId: string, like: string): ArticleType | Promise<ArticleType>;
 
@@ -316,8 +325,6 @@ export abstract class IQuery {
   abstract categories(pagination?: PaginationInput): CategoryType[] | Promise<CategoryType[]>;
 
   abstract category(id: string): CategoryType | Promise<CategoryType>;
-
-  abstract myComments(): CommentType[] | Promise<CommentType[]>;
 
   abstract myLikes(): LikeType[] | Promise<LikeType[]>;
 

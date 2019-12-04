@@ -16,6 +16,7 @@ import {ArticleAdminComponent} from './article-admin/article-admin.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {PipesModule} from '../../pipes/pipes.module';
+import {CommentModule} from '../comment/comment.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {PipesModule} from '../../pipes/pipes.module';
     PipesModule,
     MatButtonModule,
     NgxMarkdownModule.forChild(),
+    CommentModule,
   ],
   exports: [
     ArticleComponent,

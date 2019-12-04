@@ -102,22 +102,22 @@ type Mutation {
   authRegister(data: RegisterInput!): LoginType!
   changeLike(like: String!, likeId: String!): Boolean!
   createArticle(article: ArticleInput!): ArticleType!
-  createArticleComment(articleId: String!, comment: String!): ArticleType!
+  createArticleComment(comment: CommentInput!): CommentType!
   createArticleLike(articleId: String!, like: String!): ArticleType!
-  createBox(data: BoxInput!): BoxType!
-  createBoxComment(boxId: String!, comment: String!): ArticleType!
+  createBox(box: BoxInput!, sound: AudioInput!): BoxType!
+  createBoxComment(comment: CommentInput!): CommentType!
   createBoxLike(boxId: String!, like: String!): BoxType!
   createCategory(category: CategoryInput!): CategoryType!
-  createCommentAnswer(comment: String!, parentId: String!): CommentType!
   createCommentLike(commentId: String!, like: String!): CommentType!
   createMenu(menu: MenuInput!): MenuType!
   createPicture(file: Upload!, picture: PictureInput!): PictureType!
   createResourceAudio(audio: AudioInput): ResourceType!
   deleteCategory(id: ID!): CategoryType!
   deleteUser(id: String!): UserType!
+  editComment(comment: CommentInput!): CommentType!
   editMyUser(user: UserEditInput!): UserType!
   updateArticle(article: ArticleEditInput!): ArticleType!
-  updateBox(data: BoxUpdateInput!): BoxType!
+  updateBox(box: BoxUpdateInput!): BoxType!
   updateCategory(category: CategoryEditInput!): CategoryType!
 }
 
@@ -150,7 +150,7 @@ type PlaylistsType {
 type Query {
   article(id: ID!): ArticleType!
   articles(pagination: PaginationInput, published: Boolean!): [ArticleType!]
-  box(id: String!): BoxType!
+  box(id: ID!): BoxType!
   boxes(pagination: PaginationInput): [BoxType!]!
   categories(pagination: PaginationInput): [CategoryType!]!
   category(id: ID!): CategoryType!
@@ -158,7 +158,6 @@ type Query {
   menu(name: String!): MenuType!
   menus: [MenuType!]!
   myArticles(after: Int, before: Int, first: Int, last: Int, skip: Int): [ArticleType!]
-  myComments: [CommentType!]!
   myLikes: [LikeType!]!
   myPictures(after: Int, before: Int, first: Int, last: Int, skip: Int): [PictureType!]
   myProfile: UserType!
@@ -229,22 +228,22 @@ input ArticleInput {
 }
 
 input AudioInput {
+  description: String!
   file: Upload!
-  resource: ResourceInput!
   slice: SliceInput!
+  title: String!
 }
 
 input BoxInput {
   description: String!
-  soundId: String!
-  tags: [String]!
+  tags: [TagInput]!
   thumbnailId: String!
   title: String!
 }
 
 input BoxUpdateInput {
   description: String
-  tags: [String]
+  tags: [TagInput]
   thumbnailId: String
   title: String
 }
@@ -262,9 +261,19 @@ input CategoryInput {
   pictureId: ID!
 }
 
+input CommentAnswerInput {
+  parent: ID!
+  value: String!
+}
+
+input CommentEditInput {
+  commentId: ID!
+  value: String!
+}
+
 input CommentInput {
-  comment: String!
-  parent: ID
+  target: ID!
+  value: String!
 }
 
 input LoginInput {

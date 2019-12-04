@@ -16,9 +16,9 @@ export class BlogArticleComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
+    private readonly seoHeadService: SeoHeadService,
     private readonly route: ActivatedRoute,
     private readonly articleModelService: ArticleModelService,
-    private readonly seoHeadService: SeoHeadService,
   ) {
     this.isLoading = false;
   }
@@ -51,7 +51,7 @@ export class BlogArticleComponent implements OnInit {
     this.seoHeadService.setHead(
       new Metas(
         this.article.title,
-        this.article.title,
+        'Blog',
         this.article.description,
         this.article.author.login,
         this.router.url,

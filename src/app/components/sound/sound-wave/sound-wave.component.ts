@@ -149,7 +149,7 @@ export class SoundWaveComponent implements OnInit {
   }
 
   emitEvent() {
-    this.slice.emit({from: this.audioSliceTo, to: this.audioSliceTo});
+    this.slice.emit({from: this.audioSliceFrom, to: this.audioSliceTo});
   }
 
   private moveSlicer(audioPosition) {

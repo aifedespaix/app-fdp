@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {Metas} from '../../../services/seo-head';
 import {SeoHeadService} from '../../../services/seo-head.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleModelService} from '../../../model/article/article-model.service';
 import {Subscription} from 'rxjs';
 import {ArticleType} from '../../../model/_generated/graphql.schema';
@@ -23,6 +23,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   constructor(
     private readonly seoHeadService: SeoHeadService,
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly articleModelService: ArticleModelService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {

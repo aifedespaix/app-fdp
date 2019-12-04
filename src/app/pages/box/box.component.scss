@@ -1,10 +1,36 @@
 @import "layout-variables";
+@import "responsive";
 @import "mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  @include largeScreen {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    height: calc(100vh - #{$header-height});
+
+    .box-detail-container,
+    .boxes-container {
+      overflow: auto;
+    }
+  }
+}
+
+app-box-detail {
+  display: grid;
+  @include largeScreen {
+    width: 20rem;
+  }
+}
 
 .boxes {
   @include squareGrid(12rem);
   grid-gap: $padding;
   padding: $padding;
+  user-select: none;
 }
 
 .box {

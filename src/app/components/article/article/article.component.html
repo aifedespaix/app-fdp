@@ -5,14 +5,27 @@
     class="thumbnail"
     [picture]="article.thumbnail"
   ></app-picture>
-  <div [innerHTML]="article.content | markdown"></div>
+
+  <div
+    class="content"
+    [innerHTML]="article.content | markdown"
+  ></div>
+
   <footer>
     <div>
+      Tags :
       <app-tag
         *ngFor="let tag of article.tags"
         [tag]="tag"
       ></app-tag>
     </div>
     <div>{{article.likes}}</div>
+
+    <app-comment-system
+      label="Commentaires"
+      [comments]="article.comments"
+      (newComment)="addNewComment($event)"
+    ></app-comment-system>
+
   </footer>
 </article>

@@ -1,28 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LayoutNavComponent } from './layout-nav.component';
-import {MatIconModule} from '@angular/material';
-import {LayoutService} from '../../services/layout.service';
-import {ResponsiveService} from '../../responsive/responsive.service';
-import {AppRoutingModule} from '../../app-routing.module';
+import {LayoutNavComponent} from './layout-nav.component';
+import {TestsModule} from '../../tests/tests.module';
+import {LayoutModule} from '../layout.module';
 
-describe('NavComponent', () => {
+describe('LayoutNavComponent', () => {
   let component: LayoutNavComponent;
   let fixture: ComponentFixture<LayoutNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LayoutNavComponent ],
       imports: [
-        MatIconModule,
-        AppRoutingModule,
-      ],
-      providers: [
-        LayoutService,
-        ResponsiveService,
+        LayoutModule,
+        TestsModule,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import 'mixins';
 
 // @src/app/app.component.scss
 @mixin app-theme($theme) {
@@ -34,8 +35,12 @@
     color: mat-color($foreground, text);
   }
 
+  .border-3 {
+    @include stroke(3px, mat-color($background, app-bar));
+  }
+
   .main-background {
-    color: mat-color($background, card);
+    background-color: mat-color($background, card);
   }
 
 }

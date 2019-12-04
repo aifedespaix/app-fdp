@@ -48,7 +48,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'box',
-    loadChildren: () => import('./pages/box/box.module').then(m => m.BoxModule),
+    loadChildren: () => import('./pages/box/box-page.module').then(m => m.BoxPageModule),
     data: {
       main: true,
       icon: 'audiotrack',

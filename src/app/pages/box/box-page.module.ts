@@ -16,6 +16,10 @@ import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ResourceModule} from '../../components/resource/resource.module';
+import {PictureLibraryModule} from '../../components/picture-library/picture-library.module';
+import {TagModule} from '../../components/tag/tag.module';
+import {BoxModule} from '../../components/box/box.module';
+import {SoundModule} from '../../components/sound/sound.module';
 
 
 @NgModule({
@@ -34,10 +38,11 @@ import {ResourceModule} from '../../components/resource/resource.module';
     MatFormFieldModule,
     MatInputModule,
     ResourceModule,
-  ],
-  providers: [
-    BoxModelService,
+    PictureLibraryModule,
+    TagModule,
+    BoxModule,
+    SoundModule,
   ],
 })
-export class BoxModule {
+export class BoxPageModule {
 }
