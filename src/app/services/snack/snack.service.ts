@@ -32,19 +32,4 @@ export class SnackService {
     });
   }
 
-  /**
-   * todo
-   * @param message
-   */
-  public accent(message: string) {
-    alert('todo');
-    // this.snackBar.openFromComponent(SnackbarComponent, {
-    //   duration: 5000,
-    //   data: {
-    //     icon: 'error',
-    //     color: 'error',
-    //     message,
-    //   },
-    // });
-  }
 }
