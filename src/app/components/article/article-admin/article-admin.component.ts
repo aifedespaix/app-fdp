@@ -25,9 +25,7 @@ export class ArticleAdminComponent implements OnInit {
   ) {
     this.articles = [];
     this.displayedColumns = [
-      'select',
-      'edit',
-      'show',
+      'actions',
       'title',
       'description',
       'comments',

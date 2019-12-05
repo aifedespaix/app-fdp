@@ -9,6 +9,9 @@ export const ARTICLES = gql`
       title
       published
       description
+      comments {
+        id
+      }
       thumbnail {
         id
         title

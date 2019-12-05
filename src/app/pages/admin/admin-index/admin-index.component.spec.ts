@@ -1,12 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {AdminComponent} from './admin.component';
-import {AdminModule} from './admin.module';
-import {TestsModule} from '../../tests/tests.module';
+import {AdminIndexComponent} from './admin-index.component';
+import {AdminModule} from '../admin.module';
+import {TestsModule} from '../../../tests/tests.module';
 
 describe('AdminComponent', () => {
-  let component: AdminComponent;
-  let fixture: ComponentFixture<AdminComponent>;
+  let component: AdminIndexComponent;
+  let fixture: ComponentFixture<AdminIndexComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe('AdminComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminComponent);
+    fixture = TestBed.createComponent(AdminIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

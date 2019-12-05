@@ -16,15 +16,14 @@ export class ArticleModelService {
   }
 
   public articles(pagination: Pagination, published = true): Observable<ArticleType[]> {
-    return this.apollo.watchQuery({
-      query: ARTICLES,
-      variables: {pagination, published},
-    })
+    return this.apollo
+      .watchQuery({
+        query: ARTICLES,
+        variables: {pagination, published},
+      })
       .valueChanges
       .pipe(map(
-        (res: ApolloQueryResult<{ articles: ArticleType[] }>) => {
-          return res.data.articles;
-        },
+        ({data: {articles}}: ApolloQueryResult<{ articles: ArticleType[] }>) => articles,
       ));
   }
 
@@ -35,7 +34,7 @@ export class ArticleModelService {
         variables: {article},
       })
       .pipe(map(
-        ({data}: ApolloQueryResult<{ createArticle: ArticleType }>) => data.createArticle,
+        ({data: {createArticle}}: ApolloQueryResult<{ createArticle: ArticleType }>) => createArticle,
       ));
   }
 
@@ -46,7 +45,7 @@ export class ArticleModelService {
         variables: {id},
       })
       .pipe(map(
-        ({data}: ApolloQueryResult<{ article: ArticleType }>) => data.article,
+        ({data: {article}}: ApolloQueryResult<{ article: ArticleType }>) => article,
       ));
   }
 
@@ -57,7 +56,7 @@ export class ArticleModelService {
         variables: {article},
       })
       .pipe(map(
-        ({data}: ApolloQueryResult<{ updateArticle: ArticleType }>) => data.updateArticle,
+        ({data: {updateArticle}}: ApolloQueryResult<{ updateArticle: ArticleType }>) => updateArticle,
       ));
   }
 

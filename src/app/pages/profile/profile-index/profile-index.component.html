@@ -26,7 +26,12 @@
     </app-card-content>
 
     <app-card-footer>
-      <button *ngIf="modified" mat-raised-button color="primary" (click)="save()">Enregistrer le profil</button>
+      <button
+        *ngIf="modified"
+        mat-raised-button
+        color="primary"
+        (click)="save()"
+      >Enregistrer le profil</button>
     </app-card-footer>
 
   </app-card>

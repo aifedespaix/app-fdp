@@ -1,7 +1,11 @@
 <h3>{{label}}</h3>
 
-<table mat-table [dataSource]="articles" class="mat-elevation-z8">
-  <ng-container matColumnDef="select">
+<table
+  mat-table
+  [dataSource]="articles"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox
         (change)="$event ? masterToggle() : null"
@@ -17,6 +21,22 @@
         [checked]="selection.isSelected(row)"
         [aria-label]="checkboxLabel(row)">
       </mat-checkbox>
+      <a
+        mat-flat-button
+        matTooltipPosition="below"
+        matTooltip="Accéder à l'article"
+        [routerLink]="['/blog/articles/', row.id, row.title]"
+      >
+        <mat-icon class="mat-18">visibility</mat-icon>
+      </a>
+      <a
+        mat-flat-button
+        matTooltipPosition="below"
+        matTooltip="Modifier l'article"
+        [routerLink]="['/blog/articles/edit', row.id, row.title]"
+      >
+        <mat-icon class="mat-18">edit</mat-icon>
+      </a>
     </td>
   </ng-container>
 
@@ -38,40 +58,6 @@
   <ng-container matColumnDef="published">
     <th mat-header-cell *matHeaderCellDef>Publié</th>
     <td mat-cell *matCellDef="let element"> {{element.published ? 'Oui' : 'non'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="show">
-    <th mat-header-cell *matHeaderCellDef>Voir</th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-    >
-      <button
-        mat-flat-button
-        matTooltipPosition="below"
-        matTooltip="Accéder à l'article"
-        [routerLink]="['/blog/articles/', element.id, element.title]"
-      >
-        <mat-icon class="mat-18">visibility</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef>Modifier</th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-    >
-      <a
-        mat-flat-button
-        matTooltipPosition="below"
-        matTooltip="Modifier l'article"
-        [routerLink]="['/blog/articles/edit', element.id, element.title]"
-      >
-        <mat-icon class="mat-18">edit</mat-icon>
-      </a>
-    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

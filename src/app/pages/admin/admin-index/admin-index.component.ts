@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {LayoutService} from '../../services/layout.service';
-import {ArticleType} from '../../model/_generated/graphql.schema';
-import {ArticleModelService} from '../../model/article/article-model.service';
+import {LayoutService} from '../../../services/layout.service';
+import {ArticleType} from '../../../model/_generated/graphql.schema';
+import {ArticleModelService} from '../../../model/article/article-model.service';
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
+  templateUrl: './admin-index.component.html',
+  styleUrls: ['./admin-index.component.scss'],
 })
-export class AdminComponent implements OnInit, OnDestroy {
+export class AdminIndexComponent implements OnInit, OnDestroy {
 
   public articles: ArticleType[];
 

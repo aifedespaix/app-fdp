@@ -1,17 +1,37 @@
 @import "layout-variables";
+@import "responsive";
 
-table {
-  width: 100%;
-
-  th, td {
-    padding-left: $padding;
-    padding-right: $padding;
-  }
+:host {
+  display: grid;
 }
 
-.actions {
-  width: 100%;
+.mat-table {
   display: flex;
-  justify-content: center;
-  margin-top: $padding;
+  flex-direction: column;
+  max-width: 100%;
+  min-height: 30rem;
+
+  @include largeScreen {
+    display: table;
+    min-height: auto;
+  }
+
+  .mat-header-row,
+  .mat-row {
+    display: flex;
+    height: auto;
+
+    @include largeScreen {
+      display: table-row;
+    }
+  }
+
+  .mat-row {
+    flex-direction: column;
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    padding: $padding;
+  }
 }

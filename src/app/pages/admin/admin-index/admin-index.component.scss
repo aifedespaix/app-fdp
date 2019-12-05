@@ -1,0 +1,19 @@
+@import "layout-variables";
+@import "responsive";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+
+  .categories {
+    max-width: 100%;
+    width: 30rem;
+  }
+
+  > div {
+    overflow: auto;
+    padding: $padding;
+  }
+}

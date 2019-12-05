@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminGuard} from './guards/admin.guard';
+import {AuthGuard} from './guards/auth.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -58,6 +59,7 @@ export const APP_ROUTES: Routes = [
     },
   },
   {
+    canActivate: [AuthGuard],
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
     data: {
@@ -72,7 +74,7 @@ export const APP_ROUTES: Routes = [
     },
   },
   {
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard], todo
     path: 'admin',
     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
     data: {
