@@ -3,7 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {SoundWaveComponent} from './sound-wave.component';
 import {TestsModule} from '../../../tests/tests.module';
 import {SoundModule} from '../sound.module';
-import {getResourceMock, ResourceTypeEnum} from '../../../model/resource/tests/resource.mock';
+import {getResourceMock, ResourceTypeEnum} from '../../../model/resource/resource.mock';
 
 describe('SoundWaveComponent', () => {
   let component: SoundWaveComponent;

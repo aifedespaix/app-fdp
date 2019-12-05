@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticleListComponent } from './article-list.component';
 import {RouterModule} from '@angular/router';
-import {getArticlesMock} from '../../../model/article/tests/article.mocks';
+import {getArticlesMock} from '../../../model/article/article.mocks';
 import {ArticleCardComponent} from '../article-card/article-card.component';
 import {CardModule} from '../../card/card.module';
 import {PictureModule} from '../../picture/picture.module';

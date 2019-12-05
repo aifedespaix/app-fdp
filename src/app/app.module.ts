@@ -14,6 +14,8 @@ import {HttpLink, HttpLinkHandler, HttpLinkModule} from 'apollo-angular-link-htt
 import {CookieService} from 'ngx-cookie-service';
 import {setContext} from 'apollo-link-context';
 import {isPlatformBrowser} from '@angular/common';
+import {SnackService} from './services/snack/snack.service';
+import {MatSnackBarModule} from '@angular/material';
 
 const STATE_KEY = makeStateKey<any>('apollo.state');
 
@@ -32,9 +34,11 @@ const STATE_KEY = makeStateKey<any>('apollo.state');
     ApolloModule,
     HttpLinkModule,
     BrowserTransferStateModule,
+    MatSnackBarModule,
   ],
   providers: [
     CookieService,
+    SnackService,
   ],
   bootstrap: [
     AppComponent,

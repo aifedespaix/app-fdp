@@ -1,0 +1,34 @@
+@import "layout-variables";
+
+:host {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto;
+  border-radius: 1rem;
+  padding: $padding;
+}
+
+app-picture {
+  width: 4rem;
+  height: 4rem;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+
+  .author {
+    margin-right: $padding;
+  }
+
+  .body {
+    display: inline;
+    flex: 1;
+  }
+
+  footer {
+    font-size: .8rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+}

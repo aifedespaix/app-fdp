@@ -1,10 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArticleAdminComponent } from './article-admin.component';
-import {ArticleModelService} from '../../../model/article/article-model.service';
-import {MatCheckboxModule, MatTableModule} from '@angular/material';
-import {ApolloTestingModule} from 'apollo-angular/testing';
+import {ArticleAdminComponent} from './article-admin.component';
 import {ArticleModule} from '../article.module';
+import {TestsModule} from '../../../tests/tests.module';
 
 describe('ArticleAdminComponent', () => {
   let component: ArticleAdminComponent;
@@ -14,10 +12,10 @@ describe('ArticleAdminComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ArticleModule,
-        ApolloTestingModule,
+        TestsModule,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

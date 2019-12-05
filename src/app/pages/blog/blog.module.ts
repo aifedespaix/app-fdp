@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BlogRoutingModule} from './blog-routing.module';
-import {BlogComponent} from './index/blog.component';
+import {BlogIndexComponent} from './blog-index/blog-index.component';
 import {DirectivesModule} from '../../directives/directives.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -18,16 +18,16 @@ import {PictureLibraryModule} from '../../components/picture-library/picture-lib
 import {LoadingModule} from '../../components/loading/loading.module';
 import {ArticleModule} from '../../components/article/article.module';
 import {BlogArticleComponent} from './blog-article/blog-article.component';
-import {ArticleFormComponent} from './article-form/article-form.component';
+import {BlogArticleFormComponent} from './blog-article-form/blog-article-form.component';
 import {AuthModule} from '../../auth/auth.module';
 import {BtnModule} from '../../components/btn/btn.module';
 import {CategoryModule} from '../../components/category/category.module';
 
 @NgModule({
   declarations: [
-    BlogComponent,
+    BlogIndexComponent,
     BlogArticleComponent,
-    ArticleFormComponent,
+    BlogArticleFormComponent,
   ],
   imports: [
     CommonModule,

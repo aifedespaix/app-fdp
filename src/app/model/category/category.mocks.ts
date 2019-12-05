@@ -1,6 +1,6 @@
 import {CategoryType} from '../_generated/graphql.schema';
 import * as faker from 'faker';
-import {getPictureMock} from '../picture/tests/picture.mocks';
+import {getPictureMock} from '../picture/picture.mocks';
 
 export function getCategoryMock(): CategoryType {
   const category = new CategoryType();

@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../../services/auth.service';
 import {LoginInput} from '../../model/_generated/graphql.schema';
-import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
+import {SnackService} from '../../services/snack/snack.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,7 @@ export class LoginComponent {
   public showPassword;
 
   constructor(
-    private readonly snackBar: MatSnackBar,
+    private readonly snackService: SnackService,
     private readonly authService: AuthService,
     private readonly dialogRef: MatDialogRef<null>,
   ) {
@@ -32,19 +31,12 @@ export class LoginComponent {
     const loginSub = this.authService.login(this.loginInput)
       .subscribe(
         () => {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {icon: 'done', color: '', message: 'Vous êtes connecté'},
-          });
+          this.snackService.success('Vous êtes connecté');
           this.closeLogin();
+          loginSub.unsubscribe();
         },
         () => {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {icon: 'error', color: 'warn', message: 'Identifiants incorrects'},
-          });
-        },
-        () => {
+          this.snackService.error('Identifiants incorrects');
           loginSub.unsubscribe();
         },
       );

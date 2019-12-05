@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
-import { ProfileComponent } from './profile.component';
+import { ProfileIndexComponent } from './profile-index/profile-index.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -17,7 +17,7 @@ import {ArticleModule} from '../../components/article/article.module';
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileIndexComponent
   ],
   imports: [
     CommonModule,

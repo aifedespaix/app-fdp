@@ -1,0 +1,62 @@
+<app-picture [picture]="comment.author.avatar"></app-picture>
+
+<div class="comment">
+  <div class="body">
+    <ng-container *ngIf="editMode then edit else print"></ng-container>
+
+    <ng-template #print>
+      <span class="author">{{comment.author.login}}</span>
+      <span>{{comment.value}}</span>
+    </ng-template>
+
+    <ng-template #edit>
+      <app-comment-field
+        [comment]="comment.value"
+        (newComment)="update($event)"
+      ></app-comment-field>
+    </ng-template>
+  </div>
+
+  <footer>
+    <span>
+      Le {{comment.createdAt | date: 'd MMM y HH:mm'}}
+    </span>
+    <span *ngIf="comment.createdAt !== comment.updatedAt">
+      Modifié {{comment.updatedAt | date: 'd MMM y HH:mm'}}
+    </span>
+  </footer>
+
+</div>
+
+
+<div
+  *ngIf="isOwner()"
+  class="admin"
+>
+  <button
+    *ngIf="isOwner()"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Actions sur ce commentaire"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      (click)="editMode = true"
+    >
+      <mat-icon>edit</mat-icon>
+      <span>Modifier</span>
+    </button>
+    <button
+      mat-menu-item
+      class="warn-color"
+      (click)="delete()"
+    >
+      <mat-icon color="warn">delete</mat-icon>
+      <span>Supprimer</span>
+    </button>
+  </mat-menu>
+</div>

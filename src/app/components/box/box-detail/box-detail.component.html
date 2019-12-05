@@ -1,0 +1,19 @@
+<app-picture [picture]="box.thumbnail"></app-picture>
+
+<div class="infos">
+  <h2>{{box.title}}</h2>
+  <p>{{box.description}}</p>
+  <footer>
+    <div>{{box.author.login}}</div>
+    <div>{{box.createdAt | date: 'd MMM y'}}</div>
+  </footer>
+</div>
+
+<app-comment-system
+  class="comments"
+  [show]="showComments"
+  [canHide]="true"
+  [comments]="box.comments"
+  (newComment)="addComment($event)"
+>
+</app-comment-system>

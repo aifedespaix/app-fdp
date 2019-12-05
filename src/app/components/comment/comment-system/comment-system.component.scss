@@ -1,0 +1,15 @@
+@import "layout-variables";
+
+:host {
+  display: grid;
+  grid-gap: $padding;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column-reverse;
+  app-comment {
+    margin-bottom: $padding;
+  }
+  overflow: hidden;
+}

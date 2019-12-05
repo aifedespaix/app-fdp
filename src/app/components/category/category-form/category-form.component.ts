@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryInput, PictureType} from '../../../model/_generated/graphql.schema';
-import {getUndefinedPictureMock} from '../../../model/picture/tests/picture.mocks';
+import {getUndefinedPictureMock} from '../../../model/picture/picture.mocks';
 import {CategoryModelService} from '../../../model/category/category-model.service';
 
 @Component({

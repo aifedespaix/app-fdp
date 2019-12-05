@@ -1,0 +1,8 @@
+<div>
+  <app-picture [picture]="picture"></app-picture>
+  <app-picture-library-pick
+    (pictureSelected)="emitPicture($event)"
+    [title]="titleLabel"
+    [label]="label"
+  ></app-picture-library-pick>
+</div>

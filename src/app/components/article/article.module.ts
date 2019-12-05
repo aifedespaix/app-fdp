@@ -17,6 +17,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {PipesModule} from '../../pipes/pipes.module';
 import {CommentModule} from '../comment/comment.module';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import {CommentModule} from '../comment/comment.module';
     MatButtonModule,
     NgxMarkdownModule.forChild(),
     CommentModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
   exports: [
     ArticleComponent,

@@ -1,0 +1,37 @@
+@import "layout-variables";
+
+:host {
+  display: grid;
+  grid-template-columns: auto 2fr;
+  grid-template-rows: auto auto;
+  box-sizing: border-box;
+  padding: $padding;
+}
+
+app-picture {
+  width: 8rem;
+  height: 8rem;
+  max-width: 50vmin;
+  max-height: 50vmin;
+}
+
+.infos {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: $padding;
+
+  p, h2 {
+    margin: 0;
+  }
+
+  footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    font-size: .8em;
+  }
+}
+
+.comments {
+  grid-column: span 2;
+  padding: $padding;
+}

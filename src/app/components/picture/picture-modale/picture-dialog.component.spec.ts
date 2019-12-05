@@ -1,13 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PictureDialogComponent } from './picture-dialog.component';
-import {MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
-import {PictureUploadComponent} from '../picture-upload/picture-upload.component';
-import {LoadingModule} from '../../loading/loading.module';
-import {PictureComponent} from '../picture/picture.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PipesModule} from '../../../pipes/pipes.module';
+import {PictureDialogComponent} from './picture-dialog.component';
+import {MatDialogRef} from '@angular/material';
+import {PictureModule} from '../picture.module';
+import {TestsModule} from '../../../tests/tests.module';
 
 describe('PictureDialogComponent', () => {
   let component: PictureDialogComponent;
@@ -15,24 +11,18 @@ describe('PictureDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PictureDialogComponent, PictureUploadComponent, PictureComponent ],
       imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        MatIconModule,
-        LoadingModule,
-        BrowserAnimationsModule,
-        PipesModule,
+        PictureModule,
+        TestsModule,
       ],
       providers: [
         {
           provide: MatDialogRef,
           useValue: {},
-        }
+        },
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

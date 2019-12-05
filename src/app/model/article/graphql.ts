@@ -148,6 +148,25 @@ export const ARTICLE = gql`
         }
         description
       }
+      category {
+        id
+        description
+        picture {
+          id
+          title
+          description
+          images {
+            id
+            url
+            width
+            height
+            mimetype
+          }
+        }
+        name
+        updatedAt
+        createdAt
+      }
       author {
         login
       }

@@ -1,0 +1,30 @@
+<h3 *ngIf="label">{{label}}</h3>
+<app-comment-field
+  *ngIf="authService.isAuthenticated"
+  (newComment)="emitNewComment($event)"
+></app-comment-field>
+
+<button
+  mat-button
+  (click)="show = !show"
+  *ngIf="canHide && comments.length"
+>
+  {{show ? 'Cacher les commentaires' : 'Afficher les commentaires'}}
+</button>
+
+<div class="comments" *ngIf="!canHide || show">
+  <app-comment
+    *ngFor="let comment of comments"
+    [comment]="comment"
+    class="main-background"
+    (deleted)="remove(comment.id)"
+  ></app-comment>
+</div>
+
+<button
+  *ngIf="canHide && show && comments.length > 10"
+  mat-button
+  (click)="show = !show"
+>
+  {{show ? 'Cacher les commentaires' : 'Afficher les commentaires'}}
+</button>

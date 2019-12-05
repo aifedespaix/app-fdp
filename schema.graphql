@@ -113,12 +113,13 @@ type Mutation {
   createPicture(file: Upload!, picture: PictureInput!): PictureType!
   createResourceAudio(audio: AudioInput): ResourceType!
   deleteCategory(id: ID!): CategoryType!
+  deleteComment(id: ID!): CommentType!
   deleteUser(id: String!): UserType!
-  editComment(comment: CommentInput!): CommentType!
   editMyUser(user: UserEditInput!): UserType!
   updateArticle(article: ArticleEditInput!): ArticleType!
   updateBox(box: BoxUpdateInput!): BoxType!
   updateCategory(category: CategoryEditInput!): CategoryType!
+  updateComment(comment: CommentEditInput!): CommentType!
 }
 
 type PictureType {
@@ -267,7 +268,7 @@ input CommentAnswerInput {
 }
 
 input CommentEditInput {
-  commentId: ID!
+  id: ID!
   value: String!
 }
 

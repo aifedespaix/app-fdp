@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ArticleType, LikeEnum} from '../../../model/_generated/graphql.schema';
 import {SelectionModel} from '@angular/cdk/collections';
-import {MatSnackBar, MatTableDataSource} from '@angular/material';
+import {MatTableDataSource} from '@angular/material';
 import {ArticleModelService} from '../../../model/article/article-model.service';
-import {SnackbarComponent} from '../../snackbar/snackbar.component';
+import {SnackService} from '../../../services/snack/snack.service';
 
 @Component({
   selector: 'app-article-admin',
@@ -21,10 +21,18 @@ export class ArticleAdminComponent implements OnInit {
 
   constructor(
     private readonly articleModelService: ArticleModelService,
-    private readonly snackBar: MatSnackBar,
+    private readonly snackService: SnackService,
   ) {
     this.articles = [];
-    this.displayedColumns = ['select', 'title', 'description', 'like', 'published'];
+    this.displayedColumns = [
+      'select',
+      'edit',
+      'show',
+      'title',
+      'description',
+      'comments',
+      'published',
+    ];
   }
 
   ngOnInit() {
@@ -60,25 +68,11 @@ export class ArticleAdminComponent implements OnInit {
         .updateArticle({id: article.id, published: true})
         .subscribe(
           () => {
-            this.snackBar.openFromComponent(SnackbarComponent, {
-              duration: 5000,
-              data: {
-                icon: 'success',
-                color: '',
-                message: `Les articles sont publiés`,
-              },
-            });
+            this.snackService.success(`Les articles sont publiés`);
             this.selection.selected.forEach((a) => a.published = true);
           },
           () => {
-            this.snackBar.openFromComponent(SnackbarComponent, {
-              duration: 5000,
-              data: {
-                icon: 'error',
-                color: '',
-                message: `Vous n'avez pas l'autorisation de publier ces articles.`,
-              },
-            });
+            this.snackService.error(`Vous n'avez pas l'autorisation de publier ces articles.`);
           },
         );
     });
@@ -86,9 +80,12 @@ export class ArticleAdminComponent implements OnInit {
 
   public publishLabel() {
     switch (this.selection.selected.length) {
-      case 0: return 'Publier';
-      case 1: return `Publier l'article`;
-      default: return `Publier les ${this.selection.selected.length} articles.`;
+      case 0:
+        return 'Publier';
+      case 1:
+        return `Publier l'article`;
+      default:
+        return `Publier les ${this.selection.selected.length} articles.`;
     }
   }
 }

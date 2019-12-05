@@ -1,9 +1,9 @@
 @import "layout-variables";
 
-:root {
-  overflow: auto;
+:host {
   max-width: 1080px;
   width: 100%;
+  overflow-y: auto;
 }
 
 h1 {

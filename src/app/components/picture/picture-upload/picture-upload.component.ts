@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {PictureType} from '../../../model/_generated/graphql.schema';
 import {PictureModelService} from '../../../model/picture/picture-model.service';
-import {SnackbarComponent} from '../../snackbar/snackbar.component';
-import {MatSnackBar} from '@angular/material';
+import {SnackService} from '../../../services/snack/snack.service';
 
 @Component({
   selector: 'app-picture-upload',
@@ -14,16 +13,15 @@ export class PictureUploadComponent implements OnInit {
   @Input() public title = '';
   @Input() public description = '';
   @Input() public label = 'Choisir une image';
-  @Output() private pictureSaved: EventEmitter<PictureType>;
-
   public isLoading: boolean;
   public picture: PictureType;
   public uuid: string;
   public types = ['image/*'];
+  @Output() private pictureSaved: EventEmitter<PictureType>;
   private file: File;
 
   constructor(
-    private readonly snackBar: MatSnackBar,
+    private readonly snackService: SnackService,
     private readonly pictureModelService: PictureModelService,
     @Inject('UUID') private readonly UUID: () => string,
   ) {
@@ -54,10 +52,7 @@ export class PictureUploadComponent implements OnInit {
           this.pictureSaved.emit(this.picture);
         },
         () => {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {icon: 'error', color: 'warn', message: 'Une erreur est survenue, veuillez réessayer'},
-          });
+          this.snackService.error('Une erreur est survenue, veuillez réessayer');
         },
         () => {
           this.isLoading = false;

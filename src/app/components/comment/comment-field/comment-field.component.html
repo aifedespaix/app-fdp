@@ -1,0 +1,26 @@
+<form #registerForm="ngForm" (ngSubmit)="submitComment(); registerForm.resetForm()" autocomplete="on">
+  <mat-form-field class="comment">
+    <textarea
+      matInput
+      placeholder="Ajouter un commentaire"
+      name="comment"
+      type="comment"
+      [(ngModel)]="comment"
+      maxlength="150"
+      required
+    ></textarea>
+  </mat-form-field>
+
+  <button
+    *ngIf="registerForm.form.valid"
+    mat-flat-button
+    color="primary"
+    type="submit"
+    class="btn btn-success"
+    matTooltipPosition="below"
+    matTooltip="Publier ce commentaire"
+    aria-label="Publie le commentaire"
+  >
+    <mat-icon>publish</mat-icon>
+  </button>
+</form>

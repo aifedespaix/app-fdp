@@ -77,7 +77,7 @@ export class CommentAnswerInput {
 }
 
 export class CommentEditInput {
-  commentId: string;
+  id: string;
   value: string;
 }
 
@@ -260,7 +260,9 @@ export abstract class IMutation {
 
   abstract createArticleComment(comment: CommentInput): CommentType | Promise<CommentType>;
 
-  abstract editComment(comment: CommentInput): CommentType | Promise<CommentType>;
+  abstract updateComment(comment: CommentEditInput): CommentType | Promise<CommentType>;
+
+  abstract deleteComment(id: string): CommentType | Promise<CommentType>;
 
   abstract createArticleLike(articleId: string, like: string): ArticleType | Promise<ArticleType>;
 

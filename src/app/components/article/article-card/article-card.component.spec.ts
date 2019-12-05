@@ -4,7 +4,7 @@ import { ArticleCardComponent } from './article-card.component';
 import {PictureModule} from '../../picture/picture.module';
 import {CardModule} from '../../card/card.module';
 import {TagModule} from '../../tag/tag.module';
-import {getArticleMock} from '../../../model/article/tests/article.mocks';
+import {getArticleMock} from '../../../model/article/article.mocks';
 import {PipesModule} from '../../../pipes/pipes.module';
 import {ArticleModule} from '../article.module';
 

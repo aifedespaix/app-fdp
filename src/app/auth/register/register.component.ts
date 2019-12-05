@@ -5,6 +5,7 @@ import {AuthService} from '../../services/auth.service';
 import {RegisterInput} from '../../model/_generated/graphql.schema';
 import {SnackbarComponent} from '../../components/snackbar/snackbar.component';
 import {Register} from './register';
+import {SnackService} from '../../services/snack/snack.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent {
   public readonly registerModel: Register;
 
   constructor(
-    private readonly snackBar: MatSnackBar,
+    private readonly snackService: SnackService,
     private readonly authService: AuthService,
     private readonly dialogRef: MatDialogRef<null>,
   ) {
@@ -34,25 +35,11 @@ export class RegisterComponent {
     const registerSub = this.authService.register(this.registerModel.registerInput)
       .subscribe(
         () => {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {
-              icon: 'done',
-              color: '',
-              message: 'Vous êtes inscrit et connecté',
-            },
-          });
+          this.snackService.success('Vous êtes inscrit et connecté');
           this.closeRegister();
         },
         () => {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            data: {
-              icon: 'error',
-              color: 'warn',
-              message: `L'utilisateur existe déjà`,
-            },
-          });
+          this.snackService.error(`L'utilisateur existe déjà`);
         },
         () => {
           registerSub.unsubscribe();

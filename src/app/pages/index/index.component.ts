@@ -3,7 +3,7 @@ import {SeoHeadService} from '../../services/seo-head.service';
 import {Metas} from '../../services/seo-head';
 import {Router} from '@angular/router';
 import {IIndexCard} from './index-card';
-import {getPictureMock} from '../../model/picture/tests/picture.mocks';
+import {getPictureMock} from '../../model/picture/picture.mocks';
 
 @Component({
   selector: 'app-index',

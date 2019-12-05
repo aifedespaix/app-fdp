@@ -1,0 +1,20 @@
+:host {
+  min-width: 3rem;
+  min-height: 3rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  app-picture {
+    width: 300px;
+    height: 300px;
+  }
+
+  app-picture-library-pick {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

@@ -1,6 +1,6 @@
 import {CommentType} from '../_generated/graphql.schema';
 import * as faker from 'faker';
-import {getUserMock} from '../user/tests/user.mocks';
+import {getUserMock} from '../user/user.mocks';
 
 export function getCommentMock(): CommentType {
   const comment = new CommentType();

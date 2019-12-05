@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PictureComponent } from './picture.component';
-import {getPictureMock} from '../../../model/picture/tests/picture.mocks';
+import {getPictureMock} from '../../../model/picture/picture.mocks';
 import {PictureModule} from '../picture.module';
 
 describe('PictureComponent', () => {

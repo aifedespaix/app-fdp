@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {MusicComponent} from './music.component';
+import {MusicIndexComponent} from './music-index/music-index.component';
 import {MusicYoutubeComponent} from './music-youtube/music-youtube.component';
 import {MusicStreamingComponent} from './music-streaming/music-streaming.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MusicComponent,
+    component: MusicIndexComponent,
   },
   {
     path: 'streaming',
