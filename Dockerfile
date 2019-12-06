@@ -6,7 +6,6 @@ COPY . .
 RUN yarn
 RUN yarn build:ssr
 
-RUN echo ${APP_PORT}
-EXPOSE ${APP_PORT}
+EXPOSE 4000
 
 ENTRYPOINT yarn serve:ssr
