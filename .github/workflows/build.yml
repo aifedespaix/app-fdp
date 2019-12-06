@@ -3,49 +3,29 @@ name: CI
 on: [push]
 
 jobs:
-  install:
-    name: Installation
+  test:
+    name: Test
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v1
+    - name: Use Node.js 12.8
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.8
     - name: Install
       run: yarn install
-     
-  test:
-    name: Tests
-    runs-on: [ubuntu-latest]
-    needs: [install]
-    steps:
-      - uses: install
-      - name: Use Node.js 12.8
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.8
-      - name: Lint
-        run: yarn lint
-      - name: Test
-        run: yarn test --watch=false --browsers=ChromeHeadlessCustom
+    - name: Lint
+      run: yarn lint
+    - name: Test
+      run: yarn test --watch=false --browsers=ChromeHeadlessCustom
 
   build:
-    name: Build (SSR)
+    name: Build SSR
     runs-on: [ubuntu-latest]
-    needs: [install, test]
+    needs: [test]
     steps:
-    - uses: actions/checkout@v1
     - name: Install
-      run: yarn install
-    - name: Build
-      run: yarn build:ssr
-
-  update:
-    name: Test (server)
-    runs-on: [ubuntu-latest]
-    steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: ls -la
+      uses: actions/app-fdp@v1
+#      run: yarn install
+#    - name: Build
+#      run: yarn build:ssr

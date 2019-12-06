@@ -2,24 +2,10 @@ version: '3.7'
 
 services:
 
-    app:
-      container_name: fdp-app-${NODE_ENV}
-      build:
-        context: .
-        dockerfile: Dockerfile
-#      networks:
-#        - fdp-postgres
-#
-#volumes:
-#  postgres:
-#  mongo:
-#
-#networks:
-#  fdp-postgres:
-#  fdp-mongo:
-#
-#secrets:
-#  mongo-root-passwd:
-#    file: mongo-root-passwd
-#  mongo-user-passwd:
-#    file: mongo-user-passwd
+  app:
+    container_name: fdp-app-${NODE_ENV}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - APP_PORT=4000

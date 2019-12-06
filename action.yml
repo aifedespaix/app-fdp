@@ -1,0 +1,12 @@
+name: 'Build prod image'
+description: Build
+inputs:
+  app_port:
+    description: 'exposing port'
+    required: true
+    default: 4000'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.app_port }}
