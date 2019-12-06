@@ -35,16 +35,16 @@ h2 {
 
 app-card-footer {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
-  grid-template-areas: "tags tags tags" "author . date";
+  grid-template-areas: "tags tags" "author date";
 
   address {
     grid-area: author;
     font-size: .8rem;
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: 50%;
+    white-space: nowrap;
   }
 
   time {

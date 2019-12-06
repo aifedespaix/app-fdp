@@ -3,7 +3,7 @@
 @import "mixins";
 
 :host {
-  @include squareGrid(13rem);
+  @include squareGrid(15rem);
   grid-gap: $padding;
   padding: $padding;
 }

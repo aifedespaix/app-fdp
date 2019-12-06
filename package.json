@@ -10,10 +10,11 @@
     "e2e": "ng e2e",
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:ssr": "yarn build:client-and-server-bundles && yarn compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run app-fdp:server:production --bundleDependencies all",
     "build:highmem": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build",
-    "build:sm": "ng build --prod --source-map"
+    "build:sm": "ng build --prod --source-map",
+    "generate:animations": "ts-node src/app/animations/generate.ts"
   },
   "private": true,
   "dependencies": {

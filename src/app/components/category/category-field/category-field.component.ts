@@ -1,9 +1,14 @@
-import {Component, EventEmitter, forwardRef, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {CategoryType} from '../../../model/_generated/graphql.schema';
 import {CategoryModelService} from '../../../model/category/category-model.service';
 import {MatSelectChange} from '@angular/material';
 import {Subscription} from 'rxjs';
+import {trigger} from '@angular/animations';
+import {slideRightAnimation} from '../../../animations/slide-right.animation';
+import {slideLeftAnimation} from '../../../animations/slide-left.animation';
+import {slideTopAnimation} from '../../../animations/slide-top.animation';
+import {slideBottomAnimation} from '../../../animations/slide-bottom.animation';
 
 @Component({
   selector: 'app-category-field',
@@ -20,7 +25,7 @@ import {Subscription} from 'rxjs';
 export class CategoryFieldComponent implements OnInit, ControlValueAccessor, OnDestroy {
 
   private onChange: any;
-  private categories: CategoryType[];
+  public categories: CategoryType[];
   private $categories: Subscription;
 
   constructor(
