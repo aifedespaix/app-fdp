@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HeaderComponent} from './layout-header/header.component';
+import {LayoutHeaderComponent} from './layout-header/layout-header.component';
 import {LayoutNavComponent} from './layout-nav/layout-nav.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
-import {LogoComponent} from './layout-logo/logo.component';
+import {LayoutLogoComponent} from './layout-logo/layout-logo.component';
 import {ActionsComponent} from './layout-header/layout-header-actions/actions.component';
 import {AuthComponent} from './layout-header/layout-header-actions/auth/auth.component';
 import {RouterModule} from '@angular/router';
@@ -26,9 +26,9 @@ import {ThemeModule} from '../components/theme/theme.module';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
+    LayoutHeaderComponent,
     LayoutNavComponent,
-    LogoComponent,
+    LayoutLogoComponent,
     ActionsComponent,
     AuthComponent,
     LayoutFooterComponent,
@@ -52,7 +52,7 @@ import {ThemeModule} from '../components/theme/theme.module';
     ThemeModule,
   ],
   exports: [
-    HeaderComponent,
+    LayoutHeaderComponent,
     LayoutNavComponent,
     LayoutFooterComponent,
   ],

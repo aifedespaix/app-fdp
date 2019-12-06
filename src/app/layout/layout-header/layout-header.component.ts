@@ -5,10 +5,10 @@ import {SeoHeadService} from '../../services/seo-head.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  templateUrl: './layout-header.component.html',
+  styleUrls: ['./layout-header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class LayoutHeaderComponent implements OnInit {
 
   constructor(
     public readonly layoutService: LayoutService,

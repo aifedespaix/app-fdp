@@ -20,7 +20,6 @@ import {SnackService} from '../services/snack/snack.service';
     LayoutModule,
     HttpClientModule,
     HttpLinkModule,
-    BrowserTransferStateModule,
     BrowserAnimationsModule,
     ResponsiveModule,
     AppRoutingModule,

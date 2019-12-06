@@ -6,7 +6,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {routesTrigger} from './animations/route';
 
-export const ROUTES_TRIGGER = new InjectionToken<any>('Routes Trigger');
+const ROUTES_TRIGGER = new InjectionToken<any>('Routes Trigger');
 
 @Component({
   selector: 'app-root',

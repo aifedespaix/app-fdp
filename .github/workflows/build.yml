@@ -15,9 +15,9 @@ jobs:
     - name: Install
       run: yarn install
     - name: Lint
-      run: yarn lint 
+      run: yarn lint
     - name: Test
-      run: yarn test --watch=false 
+      run: yarn test --watch=false --browsers=ChromeHeadlessCustom
 
   build:
     name: Build SSR
