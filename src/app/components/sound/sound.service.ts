@@ -16,15 +16,15 @@ export class SoundService {
   ) {
     this._title = '';
     this.isPlaying = false;
-    this._audioContext = new AudioContext();
 
-    const speed = parseInt(localStorage.getItem('service_sound-speed'), 10);
-    this._speed = speed ? speed : 100;
+    if (isPlatformBrowser(platformId)) {
+      const speed = parseInt(localStorage.getItem('service_sound-speed'), 10);
+      this._speed = speed ? speed : 100;
 
-    const volume = parseInt(localStorage.getItem('service_sound-volume'), 10);
-    this._volume = volume ? volume : 100;
+      const volume = parseInt(localStorage.getItem('service_sound-volume'), 10);
+      this._volume = volume ? volume : 100;
 
-    if (isPlatformBrowser(this.platformId)) {
+      this._audioContext = new AudioContext();
       this._audioHTML = new Audio();
       this._audioHTML.addEventListener('ended', () => {
         this.verifyIfPlaying();
