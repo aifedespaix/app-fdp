@@ -17,6 +17,11 @@
     background-color: mat-color($background, card);
   }
 
+  .second-background {
+    //background-color: mat-color($background, background);
+    background-color: mat-color($background, app-bar);
+  }
+
   .accent-color {
     color: mat-color($accent, text);
   }
@@ -25,25 +30,12 @@
     background-color: mat-color($accent, card);
   }
 
-
   .warn-color {
     color: mat-color($warn, text);
   }
 
   .warn-background {
     background-color: mat-color($warn, card);
-  }
-
-  app-header {
-    background-color: mat-color($background, app-bar);
-    color: mat-color($foreground, text)
-  }
-
-  app-layout-nav {
-    background-color: mat-color($background, background);
-    a {
-      color: mat-color($foreground, text)
-    }
   }
 
   .content {

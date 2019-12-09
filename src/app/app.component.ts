@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, HostBinding, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ResponsiveService} from './responsive/responsive.service';
 import {LayoutService} from './services/layout.service';
 import {AuthService} from './services/auth.service';
@@ -24,6 +24,10 @@ import {slideBottomAnimation} from './animations/slide-bottom.animation';
 })
 
 export class AppComponent implements OnInit {
+
+  @HostBinding('class.hideMenu') get hideMenu() {
+    return !this.layoutService.isMenuVisible;
+  }
 
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: object,

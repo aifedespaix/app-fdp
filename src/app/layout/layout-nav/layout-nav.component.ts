@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ResponsiveService} from '../../responsive/responsive.service';
 import {LayoutService} from '../../services/layout.service';
@@ -23,6 +23,13 @@ export class LayoutNavComponent implements OnInit {
     public readonly layoutService: LayoutService,
   ) {
     this.routes = [];
+  }
+
+  @HostListener('mousewheel', ['$event'])
+  onScroll(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
   }
 
   ngOnInit() {

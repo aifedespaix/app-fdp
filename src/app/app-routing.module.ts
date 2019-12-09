@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AdminGuard} from './guards/admin.guard';
 import {AuthGuard} from './guards/auth.guard';
 
 export const APP_ROUTES: Routes = [
@@ -92,7 +91,7 @@ export const APP_ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(APP_ROUTES)],
+  imports: [RouterModule.forRoot(APP_ROUTES, {scrollPositionRestoration: 'top'})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

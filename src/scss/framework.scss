@@ -100,10 +100,6 @@
   overflow: auto;
 }
 
-.blur {
-  filter: blur(2px);
-}
-
 .cursor-pointer {
   cursor: pointer;
 }
@@ -157,4 +153,10 @@
 
 .whitespace-pre-line {
   white-space: pre-line;
+}
+
+.overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

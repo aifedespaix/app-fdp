@@ -1,18 +1,18 @@
-<header class="flex justify-between items-center"
-        [ngClass]="responsiveService.isLargeScreen ? 'flex-row' : 'flex-row-reverse'">
-  <div class="flex flex-row-reverse items-center">
-    <app-logo class="flex"></app-logo>
-    <button *ngIf="!responsiveService.isLargeScreen"
+<header>
+  <div class="logo">
+    <button
+      *ngIf="!responsiveService.isLargeScreen"
       mat-icon-button
       aria-label="Afficher ou cacher le menu"
-      class="m-2"
+      class="menu-btn"
       (click)="layoutService.toggleMenu()"
     >
       <mat-icon class="mat-18">menu</mat-icon>
     </button>
+    <app-logo></app-logo>
   </div>
 
-  <h1 class="mat-h1">{{headService.actualTitle}}</h1>
+  <h1 class="mat-h1 overflow-ellipsis">{{headService.actualTitle}}</h1>
 
   <app-actions></app-actions>
 

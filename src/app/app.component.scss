@@ -3,53 +3,73 @@
 @import '~@angular/material/theming';
 
 :host {
+  position: absolute;
+  top: 0;
+  bottom: $header-height;
+  right: 0;
+  left: 0;
+
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr auto;
-  grid-template-areas: "content content" "header header";
+  overflow: visible;
 
   @include largeScreen {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: "header header" "nav content" ;
+    top: $header-height;
+    bottom: 0;
+    left: $nav-width;
   }
 }
 
+
 app-header {
-  grid-area: header;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $header-height;
+  z-index: 2;
+
+  @include largeScreen {
+    top: 0;
+    bottom: auto;
+  }
 }
 
 app-layout-nav {
-  grid-area: nav;
-  position: absolute;
-  z-index: 100;
+  position: fixed;
   top: 0;
-  right: 0;
   bottom: $header-height;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-end;
 
   @include largeScreen {
-    position: relative;
-    flex-direction: column;
+    top: $header-height;
+    bottom: 0;
+    width: $nav-width;
   }
 }
 
 .content {
-  grid-area: content;
-
+  display: flex;
+  flex-direction: column;
+  padding-bottom: $header-height;
   @include largeScreen {
-    display: flex;
-    flex-direction: column;
+    padding-bottom: 0;
   }
 }
 
 main {
+  flex: 1;
   min-height: calc(100vh - #{$header-height});
 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0 1fr;
+
   @include largeScreen {
-    min-height: initial;
-    flex: 1;
+    min-height: auto;
   }
-}
-app-layout-footer {
-  position: relative;
 }

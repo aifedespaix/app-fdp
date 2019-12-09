@@ -1,11 +1,28 @@
 @import "responsive";
 
 header {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+
   @include largeScreen {
     flex-direction: row;
   }
 
   h1 {
     margin: 0;
+  }
+
+  .menu-btn {
+    margin: .8rem;
+    box-sizing: content-box;
+    padding: .2rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
   }
 }

@@ -3,3 +3,13 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.message {
+  flex: 1;
+}
+
+.actions,
+.message {
+  display: flex;
+  align-items: center;
+}

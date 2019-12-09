@@ -41,10 +41,10 @@ jobs:
       - name: SSH Commands
         uses: appleboy/ssh-action@v0.0.2
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
           key: ${{ secrets.PROD_KEY }}
-          port: ${{ secrets.PORT }}
+          port: ${{ secrets.PROD_PORT }}
           script: ls -la
 
 # todo https://github.com/marketplace/actions/telegram-notify

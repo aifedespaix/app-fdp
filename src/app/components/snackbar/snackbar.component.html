@@ -1,9 +1,9 @@
-<div class="flex items-center">
+<div class="message">
   <mat-icon class="mat-18" [color]="data.color">{{data.icon}}</mat-icon>
   <span class="m-l-2">{{data.message}}</span>
 </div>
 
-<div class="flex items-center">
+<div class="actions">
   <span *ngIf="subscribeTimer > 0">{{ subscribeTimer }}</span>
   <button mat-button (click)="close()">
     <mat-icon class="mat-18">close</mat-icon>

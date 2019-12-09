@@ -6,25 +6,13 @@
   background-color: #666666;
 }
 
-html {
+body, html {
   height: 100%;
-  overflow: hidden;
 }
 
 body {
   font-family: Alata, "Helvetica Neue", sans-serif;
-  height: 100%;
   overflow-x: hidden;
-}
-
-app-root {
-  display: block;
-  height: 100%;
-}
-
-main {
-  display: grid;
-  grid-template-rows: 0 1fr;
 }
 
 a {
@@ -33,12 +21,4 @@ a {
 
 p {
   overflow-wrap: break-word;
-}
-
-.mat-tab-body-content {
-  //margin-right: calc(-1rem - 1px); todo
-}
-
-.cdk-global-scrollblock {
-  //overflow-y: auto;
 }

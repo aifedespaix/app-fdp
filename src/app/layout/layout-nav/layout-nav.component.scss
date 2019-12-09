@@ -1,10 +1,18 @@
 @import "responsive";
 @import "layout-variables";
 
+.lock {
+  height: 100%;
+  flex: 1;
+  background-color: rgba(127, 127, 127, .5);
+  cursor: pointer;
+}
+
 .sidenav {
   display: flex;
   flex-direction: column-reverse;
   height: 100%;
+  width: $nav-width;
 
   @include largeScreen {
     flex-direction: column;
@@ -13,7 +21,8 @@
 }
 
 a {
-  width: $nav-width;
+  width: 100%;
+  box-sizing: border-box;
   color: #444;
 
   &.active-link {

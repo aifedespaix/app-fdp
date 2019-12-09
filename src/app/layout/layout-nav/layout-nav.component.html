@@ -1,4 +1,9 @@
-<div class="sidenav">
+<div
+  class="lock"
+  [ngClass]="{hidden: responsiveService.isLargeScreen}"
+  (click)="layoutService.toggleMenu()"
+></div>
+<div class="sidenav second-background">
   <nav
     class="flex"
     [ngClass]="responsiveService.isLargeScreen ? 'flex-col' : 'flex-col-reverse'"
@@ -8,7 +13,7 @@
       [routerLink]="route.url"
       [ngClass]="responsiveService.isLargeScreen ? 'flex-row' : 'flex-row-reverse'"
       [routerLinkActiveOptions]="{exact: !route.url}"
-      class="text-main p-4 flex items-center"
+      class="text-main p-4 flex items-center main-color"
       matRipple
       routerLinkActive="active-link"
       (click)="layoutService.toggleMenu()"
