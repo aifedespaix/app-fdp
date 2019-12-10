@@ -3,8 +3,7 @@ FROM node:latest
 WORKDIR app
 COPY . .
 
-RUN yarn install --production
-RUN yarn global add @angular/cli
+RUN yarn install
 
 RUN yarn build:ssr
 
