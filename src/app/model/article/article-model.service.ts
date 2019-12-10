@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {ARTICLE, ARTICLES, CREATE_ARTICLE, UPDATE_ARTICLE} from './graphql';
-import {Pagination} from '../pagination';
 import {ApolloQueryResult} from 'apollo-client';
-import {ArticleEditInput, ArticleInput, ArticleType} from '../_generated/graphql.schema';
+import {ArticleEditInput, ArticleInput, ArticleType, PaginationInput} from '../_generated/graphql.schema';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
@@ -15,7 +14,7 @@ export class ArticleModelService {
   ) {
   }
 
-  public articles(pagination: Pagination, published = true): Observable<ArticleType[]> {
+  public articles(pagination: PaginationInput, published = true): Observable<ArticleType[]> {
     return this.apollo
       .watchQuery({
         query: ARTICLES,

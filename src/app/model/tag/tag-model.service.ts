@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Pagination} from '../pagination';
 import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
