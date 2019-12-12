@@ -8,10 +8,10 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js 12.8
+    - name: Use Node.js 12.13.1
       uses: actions/setup-node@v1
       with:
-        node-version: 12.8
+        node-version: 12.13.1
     - name: Install
       run: yarn install
     - name: Lint
