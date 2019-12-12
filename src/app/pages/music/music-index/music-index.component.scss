@@ -11,6 +11,10 @@ a {
   flex-direction: column;
   filter: saturate(0);
 
+  span {
+    color: #fff;
+  }
+
   &:hover {
     filter: saturate(1);
   }
