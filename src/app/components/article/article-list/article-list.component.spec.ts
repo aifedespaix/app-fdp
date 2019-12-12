@@ -1,7 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArticleListComponent } from './article-list.component';
-import {RouterModule} from '@angular/router';
+import {ArticleListComponent} from './article-list.component';
 import {getArticlesMock} from '../../../model/article/article.mocks';
 import {ArticleCardComponent} from '../article-card/article-card.component';
 import {CardModule} from '../../card/card.module';
@@ -15,15 +14,15 @@ describe('ArticleListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticleListComponent, ArticleCardComponent ],
+      declarations: [ArticleListComponent, ArticleCardComponent],
       imports: [
         CardModule,
         PictureModule,
         TagModule,
         AppRoutingModule,
-      ]
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
