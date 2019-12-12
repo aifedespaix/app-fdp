@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:3002/graphql',
+  apiEndpoint: 'http://localhost:3000/graphql',
   host: 'https://localhost.4200',
   fbApiId: 'pute',
 };

@@ -76,10 +76,10 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
       .boxes({first: 20})
       .subscribe((boxes) => {
           this.boxes = boxes;
-          this.boxes = this.boxes.concat(getBoxesMock());
           this.isLoadingBoxes = false;
         },
         (e) => {
+          this.boxes = getBoxesMock();
           this.isLoadingBoxes = false;
         },
       );
