@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {Observable} from 'rxjs';
 import {CategoryInput, CategoryType, PaginationInput} from '../_generated/graphql.schema';
-import {CATEGORIES, CATEGORY, CREATE_CATEGORY, DELETE_CATEGORY} from './graphql';
+import {CATEGORIES, CATEGORY, CREATE_CATEGORY, DELETE_CATEGORY, UPDATE_CATEGORY} from './graphql';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
+import {CategoryEditInput} from '@aifedespaix/fdp-api-models';
 
 @Injectable()
 export class CategoryModelService {
@@ -69,4 +70,20 @@ export class CategoryModelService {
       .pipe(map(({data: {deleteCategory}}: ApolloQueryResult<{ deleteCategory: CategoryType }>) => deleteCategory));
   }
 
+  update(category: CategoryEditInput) {
+    return this.apollo
+      .mutate({
+          mutation: UPDATE_CATEGORY,
+        variables: {category},
+        update: (store, {data: {updateCategory}}: ApolloQueryResult<{ updateCategory: CategoryType }>) => {
+          const options = {query: CATEGORIES, variables: {pagination: {}}};
+          const data = store.readQuery(options) as { categories: CategoryType[] };
+          data.categories.push(updateCategory);
+          store.writeQuery({...options, data});
+        },
+      })
+      .pipe(map(
+        ({data: {updateCategory}}: ApolloQueryResult<{ updateCategory: CategoryType }>) => updateCategory,
+      ));
+  }
 }

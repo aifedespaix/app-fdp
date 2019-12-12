@@ -13,10 +13,10 @@
   flex-direction: column-reverse;
   height: 100%;
   width: $nav-width;
+  justify-content: space-between;
 
   @include largeScreen {
     flex-direction: column;
-    justify-content: space-between;
   }
 }
 

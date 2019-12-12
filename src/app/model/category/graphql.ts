@@ -80,7 +80,6 @@ export const CREATE_CATEGORY = gql`
   }
 `;
 
-
 export const UPDATE_CATEGORY = gql`
   mutation updateCategory($category: CategoryEditInput!) {
     updateCategory(category: $category) {

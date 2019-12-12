@@ -13,7 +13,9 @@ export class CategoryAdminComponent implements OnInit {
 
   constructor(
     private readonly categoryModelService: CategoryModelService,
-  ) { }
+  ) {
+    this.category = new CategoryType();
+  }
 
   ngOnInit() {
   }

@@ -18,6 +18,12 @@ h1 {
 
 .content {
   text-align: justify;
+
+  img {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+  }
 }
 
 footer,

@@ -4,7 +4,6 @@
 
 :host {
   @include squareGrid(15rem);
-  grid-template-rows: auto 1fr;
   grid-gap: $padding;
   padding: $padding;
 }

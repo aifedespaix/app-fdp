@@ -3,21 +3,22 @@
 @import "mixins";
 
 :host {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  height: calc(100vh - #{$header-height});
+
+  .box-detail-container,
+  .boxes-container {
+    overflow: auto;
+  }
 
   @include largeScreen {
-    display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
-    height: calc(100vh - #{$header-height});
-
-    .box-detail-container,
-    .boxes-container {
-      overflow: auto;
-    }
   }
 }
+
 
 app-box-detail {
   display: grid;

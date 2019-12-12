@@ -1,4 +1,4 @@
-<app-category-form></app-category-form>
+<app-category-form [category]="category"></app-category-form>
 <app-category-field [(ngModel)]="category"></app-category-field>
 <div class="actions" *ngIf="category">
   <app-category [category]="category"></app-category>

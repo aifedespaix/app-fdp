@@ -60,6 +60,13 @@ export class IndexComponent implements OnInit {
         // tslint:disable-next-line:max-line-length
         description: `Écoute ces sons poto : Youtube, Spotify, Apple Music et Deezer, y'en a pour tout le monde.`,
       },
+      {
+        title: 'Box',
+        picture: getPictureMock(),
+        link: '/box',
+        // tslint:disable-next-line:max-line-length
+        description: `Une sound box, avec tout ce que tu veux. Upload un son, une image et t'es good frèro`,
+      },
     ];
   }
 }

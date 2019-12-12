@@ -1,6 +1,6 @@
 <form
   #form="ngForm"
-  (ngSubmit)="create()"
+  (ngSubmit)="submit()"
 >
   <mat-form-field
     class="name">
@@ -41,6 +41,6 @@
     mat-raised-button
     color="primary"
     type="submit"
-  >Ajouter la catégorie
+  >{{category.id ? 'Éditer la catégorie' : 'Ajouter la catégorie'}}
   </button>
 </form>
