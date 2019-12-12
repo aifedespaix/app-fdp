@@ -2,7 +2,7 @@
 @import 'layout-variables';
 
 :host {
-  position: absolute;
+  position: fixed;
   bottom: calc(4 * #{$padding} + #{$header-height});
   right: 4 * $padding;
   z-index: 10;
