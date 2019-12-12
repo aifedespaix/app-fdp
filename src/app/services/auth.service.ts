@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 import {UserModelService} from '../model/user/user-model.service';
-import {getPictureMock} from '../model/picture/picture.mocks';
+import {getUndefinedPictureMock} from '../model/picture/picture.mocks';
 import {Apollo} from 'apollo-angular';
 import {Router} from '@angular/router';
 
@@ -113,7 +113,7 @@ export class AuthService {
   private updateUser(user: UserType) {
     this._user = user;
     if (!this.user.avatar || !this.user.avatar.images) {
-      this._user.avatar = getPictureMock();
+      this._user.avatar = getUndefinedPictureMock();
     }
   }
 

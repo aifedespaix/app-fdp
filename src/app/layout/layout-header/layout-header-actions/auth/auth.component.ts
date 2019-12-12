@@ -25,7 +25,7 @@ export class AuthComponent {
   }
 
   public getBackgroundImage() {
-    return `url('${this.avatar.images[this.avatar.images.length - 1].url})`;
+    return `url('${this.avatar.images[this.avatar.images.length - 1].url}')`;
   }
 
 }

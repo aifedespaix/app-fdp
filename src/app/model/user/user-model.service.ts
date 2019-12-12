@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
 import {UserEditInput, UserType} from '../_generated/graphql.schema';
 import {Observable} from 'rxjs';
+import {getUndefinedPictureMock} from '../picture/picture.mocks';
 
 @Injectable()
 export class UserModelService {
@@ -19,8 +20,11 @@ export class UserModelService {
       query: MY_PROFILE,
     })
       .pipe(map(
-        (res: ApolloQueryResult<{ myProfile: UserType }>) => {
-          return res.data.myProfile;
+        ({data: {myProfile}}: ApolloQueryResult<{ myProfile: UserType }>) => {
+          if (!myProfile.avatar) {
+            myProfile.avatar = getUndefinedPictureMock();
+          }
+          return myProfile;
         }),
       );
   }
@@ -30,8 +34,11 @@ export class UserModelService {
       query: MY_PROFILE_FULL,
     })
       .pipe(map(
-        (res: ApolloQueryResult<{ myProfile: UserType }>) => {
-          return res.data.myProfile;
+        ({data: {myProfile}}: ApolloQueryResult<{ myProfile: UserType }>) => {
+          if (!myProfile.avatar) {
+            myProfile.avatar = getUndefinedPictureMock();
+          }
+          return myProfile;
         }),
       );
   }
@@ -42,8 +49,11 @@ export class UserModelService {
       variables: user,
     })
       .pipe(map(
-        (res: ApolloQueryResult<{ editMyUser: UserType }>) => {
-          return res.data.editMyUser;
+        ({data: {editMyUser}}: ApolloQueryResult<{ editMyUser: UserType }>) => {
+          if (!editMyUser.avatar) {
+            editMyUser.avatar = getUndefinedPictureMock();
+          }
+          return editMyUser;
         }),
       );
   }
