@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActionsComponent } from './actions.component';
-import {CookieService} from 'ngx-cookie-service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 import {LayoutModule} from '../../layout.module';
 import {AppRoutingModule} from '../../../app-routing.module';
@@ -16,9 +15,6 @@ describe('ActionsComponent', () => {
         LayoutModule,
         ApolloTestingModule,
         AppRoutingModule,
-      ],
-      providers: [
-        CookieService,
       ],
     })
     .compileComponents();

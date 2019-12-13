@@ -1,0 +1,71 @@
+<form
+  #createBoxForm="ngForm"
+  (ngSubmit)="submit()"
+>
+  <app-resource-sound-upload
+    name="sound"
+    [(ngModel)]="audioInput"
+    required
+  ></app-resource-sound-upload>
+
+  <app-picture-field
+    name="thumbnail"
+    [(ngModel)]="elem.thumbnail"
+    (ngModelChange)="thumbnailUpdated()"
+    [title]="elem.title"
+    [description]="elem.description"
+    label="Miniature"
+    required
+  ></app-picture-field>
+
+  <mat-form-field>
+    <input
+      #title="ngModel"
+      matInput
+      placeholder="Title"
+      name="title"
+      type="text"
+      [(ngModel)]="elem.title"
+      maxlength="25"
+      minlength="3"
+      required
+    >
+    <mat-error *ngIf="title?.errors?.required">Veuillez saisir un titre</mat-error>
+    <mat-error *ngIf="title?.errors?.minlength">Le titre est trop court</mat-error>
+    <mat-error *ngIf="title?.errors?.maxlength">Le titre est trop long</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea
+      #description="ngModel"
+      matInput
+      placeholder="Description"
+      name="description"
+      [(ngModel)]="elem.description"
+      type="text"
+      minlength="10"
+      maxlength="150"
+      required
+    ></textarea>
+    <mat-error *ngIf="description?.errors?.required">Veuillez saisir une description</mat-error>
+    <mat-error *ngIf="description?.errors?.minlength">La description est trop courte</mat-error>
+    <mat-error *ngIf="description?.errors?.maxlength">La description est trop longue</mat-error>
+  </mat-form-field>
+
+  <app-tag-field
+    [(ngModel)]="elem.tags"
+    name="tags"
+    required
+  ></app-tag-field>
+
+  <button
+    mat-flat-button
+    color="primary"
+    type="submit"
+    class="btn btn-success"
+    [disabled]="!createBoxForm.form.valid"
+  >
+    <mat-icon>playlist_add</mat-icon>
+    Créer une box
+  </button>
+</form>

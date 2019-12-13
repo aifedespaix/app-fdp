@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation} from '@angular/core';
 import {OverlayContainer} from '@angular/cdk/overlay';
-import {ThemeStorageService} from './theme-storage/theme-storage.service';
 import {isPlatformBrowser} from '@angular/common';
 import {ITheme} from './theme.interface';
 import {Theme} from './theme.enum';
+import {LocalstorageService} from '../../services/localstorage/localstorage.service';
 
 @Component({
   selector: 'app-theme',
@@ -30,14 +30,14 @@ export class ThemeComponent implements OnInit {
 
   constructor(
     private readonly overlay: OverlayContainer,
-    private readonly themeStorage: ThemeStorageService,
+    private readonly localstorageService: LocalstorageService,
     @Inject(PLATFORM_ID) private readonly platformId: object,
   ) {
   }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.setTheme(this.themeStorage.getStoredThemeName());
+      this.setTheme(this.localstorageService.theme);
     }
   }
 
@@ -65,9 +65,9 @@ export class ThemeComponent implements OnInit {
     this.installTheme(Theme.DARK);
   }
 
-  private installTheme(name: string) {
-    this.overlay.getContainerElement().classList.add(name);
-    document.body.classList.add(name);
-    this.themeStorage.storeTheme(this.themes.find(theme => theme.name === name));
+  private installTheme(theme: Theme) {
+    this.overlay.getContainerElement().classList.add(theme);
+    document.body.classList.add(theme);
+    this.localstorageService.theme = theme;
   }
 }

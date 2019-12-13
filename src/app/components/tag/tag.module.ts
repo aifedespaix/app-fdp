@@ -9,15 +9,18 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TagModelService} from '../../model/tag/tag-model.service';
 import {TagComponent} from './tag/tag.component';
 import {MatButtonModule} from '@angular/material/button';
+import { TagListComponent } from './tag-list/tag-list.component';
 
 @NgModule({
   declarations: [
     TagFieldComponent,
     TagComponent,
+    TagListComponent,
   ],
   exports: [
     TagFieldComponent,
     TagComponent,
+    TagListComponent,
   ],
   imports: [
     CommonModule,

@@ -2,22 +2,20 @@ import {Injectable} from '@angular/core';
 import {LoginInput, RegisterInput, Role, UserEditInput, UserType} from '../model/_generated/graphql.schema';
 import {AuthModelService} from '../model/auth/auth-model.service';
 import {map} from 'rxjs/operators';
-import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 import {UserModelService} from '../model/user/user-model.service';
 import {getUndefinedPictureMock} from '../model/picture/picture.mocks';
 import {Apollo} from 'apollo-angular';
 import {Router} from '@angular/router';
+import {LocalstorageService} from './localstorage/localstorage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  private readonly tokenKey = 'token';
-
   constructor(
-    private readonly cookieService: CookieService,
+    private readonly localstorageService: LocalstorageService,
     private readonly authModelService: AuthModelService,
     private readonly userModelService: UserModelService,
     private readonly apollo: Apollo,
@@ -44,7 +42,7 @@ export class AuthService {
   }
 
   public getToken() {
-    return this.cookieService.get(this.tokenKey);
+    return this.localstorageService.token;
   }
 
   public login(loginInput: LoginInput): Observable<boolean> {
@@ -107,7 +105,7 @@ export class AuthService {
   }
 
   private setToken(value: string) {
-    this.cookieService.set(this.tokenKey, value);
+    this.localstorageService.token = value;
   }
 
   private updateUser(user: UserType) {

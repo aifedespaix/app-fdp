@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SoundWaveComponent} from './sound-wave/sound-wave.component';
-import {SoundService} from './sound.service';
 import {SoundPlayerComponent} from './sound-player/sound-player.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSliderModule} from '@angular/material/slider';
@@ -29,4 +28,5 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     SoundWaveComponent,
   ],
 })
-export class SoundModule { }
+export class SoundModule {
+}

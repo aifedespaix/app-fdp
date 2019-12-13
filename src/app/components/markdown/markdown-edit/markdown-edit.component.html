@@ -1,10 +1,9 @@
 <div class="btns">
-  <button mat-button (click)="addTitle(1)">h1</button>
   <button mat-button (click)="addTitle(2)">h2</button>
   <button mat-button (click)="addTitle(3)">h3</button>
   <button mat-button (click)="addTitle(4)">h4</button>
   <button mat-button (click)="addLink()"><mat-icon class="mat-18">link</mat-icon></button>
-  <app-picture-library-pick (pictureSelected)="addPicture($event)"></app-picture-library-pick>
+  <app-picture-field (pictureSelected)="addPicture($event)"></app-picture-field>
   <button mat-button (click)="addCode()"><mat-icon class="mat-18">code</mat-icon></button>
 </div>
 

@@ -1,8 +1,8 @@
 <div>
   <app-picture [picture]="picture"></app-picture>
-  <app-picture-library-pick
+  <app-picture-field
     (pictureSelected)="emitPicture($event)"
     [title]="titleLabel"
     [label]="label"
-  ></app-picture-library-pick>
+  ></app-picture-field>
 </div>

@@ -11,11 +11,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {InMemoryCache, NormalizedCacheObject} from 'apollo-cache-inmemory';
 import {Apollo, ApolloModule} from 'apollo-angular';
 import {HttpLink, HttpLinkHandler, HttpLinkModule} from 'apollo-angular-link-http';
-import {CookieService} from 'ngx-cookie-service';
 import {setContext} from 'apollo-link-context';
 import {isPlatformBrowser} from '@angular/common';
 import {SnackService} from './services/snack/snack.service';
 import {MatSnackBarModule} from '@angular/material';
+import {LocalstorageService} from './services/localstorage/localstorage.service';
 
 const STATE_KEY = makeStateKey<any>('apollo.state');
 
@@ -37,7 +37,6 @@ const STATE_KEY = makeStateKey<any>('apollo.state');
     MatSnackBarModule,
   ],
   providers: [
-    CookieService,
     SnackService,
   ],
   bootstrap: [
@@ -52,7 +51,7 @@ export class AppModule {
     private readonly apollo: Apollo,
     private readonly transferState: TransferState,
     private readonly httpLink: HttpLink,
-    private readonly cookieService: CookieService,
+    private readonly localstorageService: LocalstorageService,
     @Inject(PLATFORM_ID) readonly platformId: object,
   ) {
     const isBrowser = isPlatformBrowser(platformId);
@@ -76,7 +75,7 @@ export class AppModule {
       link: setContext((_, {headers}) => {
         let authorization: string;
 
-        const token = cookieService.get('token');
+        const token = localstorageService.token;
         authorization = token ? token : '';
 
         return {

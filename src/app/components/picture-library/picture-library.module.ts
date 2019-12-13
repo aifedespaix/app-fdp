@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {PictureModule} from '../picture/picture.module';
 import {PictureLibraryDialogComponent} from './picture-library/picture-library-dialog.component';
 import {MatDialogModule, MatIconModule, MatTabsModule} from '@angular/material';
-import {PictureLibraryPickComponent} from './picture-library-pick/picture-library-pick.component';
+import {PictureLibraryFieldComponent} from './picture-library-field/picture-library-field.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {PictureLibraryService} from './picture-library.service';
@@ -12,7 +12,7 @@ import { PictureLibraryPickAndPreviewComponent } from './picture-library-pick-an
 @NgModule({
   declarations: [
     PictureLibraryDialogComponent,
-    PictureLibraryPickComponent,
+    PictureLibraryFieldComponent,
     PictureLibraryPickAndPreviewComponent,
   ],
   imports: [
@@ -28,7 +28,7 @@ import { PictureLibraryPickAndPreviewComponent } from './picture-library-pick-an
     PictureLibraryDialogComponent,
   ],
   exports: [
-    PictureLibraryPickComponent,
+    PictureLibraryFieldComponent,
     PictureLibraryPickAndPreviewComponent,
   ],
   providers: [

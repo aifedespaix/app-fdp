@@ -10,47 +10,9 @@
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
   }
-
-  .tags {
-    grid-area: tags;
-  }
-
-  .submit {
-    grid-area: submit;
-  }
-
-  .category {
-    grid-area: category;
-  }
-
-  app-picture-library-pick {
-    grid-area: thumbnail;
-  }
-
-  app-markdown-edit {
-    grid-column: editor;
-  }
-
-  .title {
-    grid-area: title;
-  }
-
-  .description {
-    grid-area: description;
-  }
-
-  form {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-      "title description description"
-      "category tags thumbnail"
-      "editor editor editor"
-      "submit submit submit";
-  }
 }
 
 app-article {
+  display: grid;
   overflow: auto;
 }

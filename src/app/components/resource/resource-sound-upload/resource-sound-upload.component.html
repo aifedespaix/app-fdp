@@ -12,12 +12,12 @@
 
   <ng-template #uploadForm>
     <form>
-      <label for="resource">Cliquez pour selectionner un fichier...</label>
+      <label for="resource">Cliquez pour selectionner un fichier audio...</label>
       <input
         id="resource"
         type="file"
         [accept]="acceptedMimes()"
-        (change)="uploadResource($event)"
+        (change)="prepareResource($event)"
       >
     </form>
   </ng-template>

@@ -17,13 +17,13 @@ const routes: Routes = [
     path: 'new',
     component: BlogArticleFormComponent,
     canDeactivate: [PendingChangesGuard],
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard], todo
   },
   {
     path: 'articles/edit/:id/:title',
     component: BlogArticleFormComponent,
     canDeactivate: [PendingChangesGuard],
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard], todo
   },
   {
     path: 'articles/:id/:title',

@@ -1,7 +1,9 @@
 <h1>{{article.title}}</h1>
 <article>
-  <h2>{{article.description}}</h2>
+  <div>{{article.description}}</div>
+
   <app-picture
+    *ngIf="article?.thumbnail?.id"
     class="thumbnail"
     [picture]="article.thumbnail"
   ></app-picture>
@@ -12,20 +14,17 @@
   ></div>
 
   <footer>
-    <div>
-      Tags :
-      <app-tag
-        *ngFor="let tag of article.tags"
-        [tag]="tag"
-      ></app-tag>
+    <div class="">
+      <app-tag-list *ngIf="article.tags" [tags]="article.tags"></app-tag-list>
+      <app-category *ngIf="article.category" [category]="article.category"></app-category>
+      <div>{{article.likes}}</div>
     </div>
-    <div>{{article.likes}}</div>
 
     <app-comment-system
+      *ngIf="!hideComments"
       label="Commentaires"
       [comments]="article.comments"
       (newComment)="addNewComment($event)"
     ></app-comment-system>
-
   </footer>
 </article>

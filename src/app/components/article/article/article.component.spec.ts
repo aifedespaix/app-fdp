@@ -4,7 +4,6 @@ import { ArticleComponent } from './article.component';
 import {getArticleMock} from '../../../model/article/article.mocks';
 import {ArticleModule} from '../article.module';
 import {ApolloTestingModule} from 'apollo-angular/testing';
-import {CookieService} from 'ngx-cookie-service';
 import {AuthModule} from '../../../auth/auth.module';
 import {AppRoutingModule} from '../../../app-routing.module';
 
@@ -20,9 +19,6 @@ describe('ArticleComponent', () => {
         AuthModule,
         AppRoutingModule,
       ],
-      providers: [
-        CookieService,
-      ]
     })
     .compileComponents();
   }));

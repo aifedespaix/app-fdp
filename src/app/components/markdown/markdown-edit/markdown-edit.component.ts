@@ -32,20 +32,17 @@ export class MarkdownEditComponent implements OnInit, AfterContentInit {
       title += '#';
     }
     this.placeText(`${title} `, '');
+    return false;
   }
 
   public addLink() {
     this.placeText(`[`, '](URL)');
-  }
-
-  public addImage() {
-    const dialogRef = this.pictureDialog.open(PictureDialogComponent);
-    dialogRef.afterClosed().subscribe((picture: PictureType) => {
-    });
+    return false;
   }
 
   public addCode() {
     this.placeText('\`\`\`js\n', '\n\`\`\`');
+    return false;
   }
 
   private placeText(txtBefore: string, txtAfter: string) {
@@ -66,5 +63,6 @@ export class MarkdownEditComponent implements OnInit, AfterContentInit {
 
   public addPicture(picture: PictureType) {
     this.placeText(`![${picture.description}](${picture.images.pop().url} "`, `${picture.title}")`);
+    return false;
   }
 }

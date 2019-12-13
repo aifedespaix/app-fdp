@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
-import {SoundService} from '../sound.service';
+import {SoundService} from '../../../services/sound/sound.service';
 
 @Component({
   selector: 'app-sound-player',
@@ -15,13 +15,12 @@ export class SoundPlayerComponent implements OnInit {
   private readonly icons: string[];
 
   constructor(
-    public soundService: SoundService,
+    private readonly soundService: SoundService,
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer) {
+    private domSanitizer: DomSanitizer,
+  ) {
     this.lastVolumeLevel = this.soundService.volume;
     this.soundModel = {volume: this.soundService.volume, speed: soundService.speed};
-    // this.visualizer();
-
     this.icons = ['fast', 'normal', 'slow'];
   }
 

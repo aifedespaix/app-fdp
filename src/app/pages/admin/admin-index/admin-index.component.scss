@@ -2,18 +2,26 @@
 @import "responsive";
 
 :host {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  justify-content: center;
   align-items: center;
 
-  .categories {
-    max-width: 100%;
-    width: 30rem;
+  @include largeScreen {
+    grid-template-columns: 1fr 1fr;
   }
 
-  > div {
-    overflow: auto;
+  .articles,
+  .categories {
+    width: 100%;
     padding: $padding;
+    box-sizing: border-box;
+  }
+
+  .articles {
+    @include largeScreen {
+      grid-column: span 2;
+    }
   }
 }

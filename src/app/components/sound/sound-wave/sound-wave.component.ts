@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {from} from 'rxjs';
-import {SoundService} from '../sound.service';
+import {SoundService} from '../../../services/sound/sound.service';
 import {ResourceType} from '../../../model/_generated/graphql.schema';
 import {ISoundSlice} from './sound-slice';
 
@@ -209,7 +209,7 @@ export class SoundWaveComponent implements OnInit {
   private getWaveformData(audioBuffer: AudioBuffer) {
     const dataPoints = this.width / this.smoothing;
     const leftChannel = audioBuffer.getChannelData(0);
-    const rightChannel = audioBuffer.getChannelData(1);
+    const rightChannel = audioBuffer.numberOfChannels > 1 ? audioBuffer.getChannelData(1) : leftChannel;
     const values = new Float32Array(dataPoints);
     const dataWindow = Math.round(leftChannel.length / dataPoints);
 

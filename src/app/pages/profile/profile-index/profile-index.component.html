@@ -5,11 +5,11 @@
       <h2>Avatar</h2>
       <div class="avatar">
         <app-picture [picture]="user.avatar"></app-picture>
-        <app-picture-library-pick
+        <app-picture-field
           (pictureSelected)="updateAvatar($event)"
           [title]="'Image de profil de ' + user.login"
           label="Choisir un avatar"
-        ></app-picture-library-pick>
+        ></app-picture-field>
       </div>
 
       <div class="infos">

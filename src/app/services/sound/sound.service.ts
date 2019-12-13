@@ -1,9 +1,10 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import {ResourceType} from '../../model/_generated/graphql.schema';
+import {LocalstorageService} from '../localstorage/localstorage.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SoundService {
   public sound: ResourceType;
@@ -13,17 +14,15 @@ export class SoundService {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId,
+    private readonly localstorageService: LocalstorageService,
   ) {
     this._title = '';
     this.isPlaying = false;
 
+    this._speed = localstorageService.audioSpeed;
+    this._volume = localstorageService.audioVolume;
+
     if (isPlatformBrowser(platformId)) {
-      const speed = parseInt(localStorage.getItem('service_sound-speed'), 10);
-      this._speed = speed ? speed : 100;
-
-      const volume = parseInt(localStorage.getItem('service_sound-volume'), 10);
-      this._volume = volume ? volume : 100;
-
       this._audioContext = new AudioContext();
       this._audioHTML = new Audio();
       this._audioHTML.addEventListener('ended', () => {
@@ -48,7 +47,7 @@ export class SoundService {
 
   set speed(value) {
     this._speed = value;
-    localStorage.setItem('service_sound-speed', value.toString());
+    this.localstorageService.audioSpeed = value;
     this.updateSpeed();
   }
 
@@ -60,7 +59,7 @@ export class SoundService {
 
   set volume(value) {
     this._volume = value;
-    localStorage.setItem('service_sound-volume', value.toString());
+    this.localstorageService.audioVolume = value;
     this.updateVolume();
   }
 

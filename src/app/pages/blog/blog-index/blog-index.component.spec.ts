@@ -3,7 +3,6 @@ import {BlogIndexComponent} from './blog-index.component';
 import {AuthModule} from '../../../auth/auth.module';
 import {SeoHeadService} from '../../../services/seo-head.service';
 import {AppRoutingModule} from '../../../app-routing.module';
-import {CookieService} from 'ngx-cookie-service';
 import {BlogModule} from '../blog.module';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 import {getArticlesMock} from '../../../model/article/article.mocks';
@@ -22,7 +21,6 @@ describe('BlogComponent', () => {
       ],
       providers: [
         SeoHeadService,
-        CookieService,
       ],
     })
       .compileComponents();

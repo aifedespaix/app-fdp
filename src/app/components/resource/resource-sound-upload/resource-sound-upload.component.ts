@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, forwardRef} from '@angular/core';
 import {AudioInput, ResourceType} from '../../../model/_generated/graphql.schema';
 import {ISoundSlice} from '../../sound/sound-wave/sound-slice';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
@@ -20,15 +20,12 @@ export class ResourceSoundUploadComponent implements ControlValueAccessor {
   public isLoading: boolean;
   public resource: ResourceType;
   public file: File;
+  public acceptedTypes: string[];
 
   private onChange: (newValue: AudioInput) => void;
 
-  public acceptedTypes: string[];
-  @Input() public title: string;
-  @Input() public description: string;
-
   constructor() {
-    this.acceptedTypes = ['audio/mp3'];
+    this.acceptedTypes = ['audio/*'];
     this.isLoading = false;
     this.resource = new ResourceType();
   }
@@ -46,13 +43,13 @@ export class ResourceSoundUploadComponent implements ControlValueAccessor {
   writeValue(obj: any): void {
   }
 
-  public async uploadResource({target: {validity, files: [resource]}}: any) {
+  public async prepareResource({target: {validity, files: [resource]}}: any) {
     this.file = resource;
 
     const audio = URL.createObjectURL(resource);
     this.resource = {
-      description: this.description,
-      title: this.title,
+      title: '',
+      description: '',
       url: audio,
       id: 'loading',
       updatedAt: null,
@@ -66,11 +63,12 @@ export class ResourceSoundUploadComponent implements ControlValueAccessor {
   }
 
   emitFile(slice: ISoundSlice) {
-    this.onChange({
+    const audio: AudioInput = {
       file: this.file,
       slice,
-      title: this.title,
-      description: this.description,
-    });
+      title: '',
+      description: '',
+    };
+    this.onChange(audio);
   }
 }

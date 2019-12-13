@@ -19,6 +19,12 @@ import {PipesModule} from '../../pipes/pipes.module';
 import {CommentModule} from '../comment/comment.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { ArticleFormComponent } from './article-form/article-form.component';
+import {FormsModule} from '@angular/forms';
+import {PictureLibraryModule} from '../picture-library/picture-library.module';
+import {CategoryModule} from '../category/category.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ArticleListComponent,
     ArticleCardComponent,
     ArticleAdminComponent,
+    ArticleFormComponent,
   ],
   imports: [
     CommonModule,
@@ -43,11 +50,17 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     CommentModule,
     MatIconModule,
     MatTooltipModule,
+    FormsModule,
+    PictureLibraryModule,
+    CategoryModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     ArticleComponent,
     ArticleListComponent,
     ArticleAdminComponent,
+    ArticleFormComponent,
   ],
   providers: [
     ArticleModelService,

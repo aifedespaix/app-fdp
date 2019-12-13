@@ -150,7 +150,7 @@ type PlaylistsType {
 
 type Query {
   article(id: ID!): ArticleType!
-  articles(pagination: PaginationInput, published: Boolean!): [ArticleType!]
+  articles(pagination: PaginationInput, published: Boolean): [ArticleType!]
   box(id: ID!): BoxType!
   boxes(pagination: PaginationInput): [BoxType!]!
   categories(pagination: PaginationInput): [CategoryType!]!

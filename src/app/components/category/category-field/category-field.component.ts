@@ -4,11 +4,6 @@ import {CategoryType} from '../../../model/_generated/graphql.schema';
 import {CategoryModelService} from '../../../model/category/category-model.service';
 import {MatSelectChange} from '@angular/material';
 import {Subscription} from 'rxjs';
-import {trigger} from '@angular/animations';
-import {slideRightAnimation} from '../../../animations/slide-right.animation';
-import {slideLeftAnimation} from '../../../animations/slide-left.animation';
-import {slideTopAnimation} from '../../../animations/slide-top.animation';
-import {slideBottomAnimation} from '../../../animations/slide-bottom.animation';
 
 @Component({
   selector: 'app-category-field',
@@ -24,13 +19,15 @@ import {slideBottomAnimation} from '../../../animations/slide-bottom.animation';
 })
 export class CategoryFieldComponent implements OnInit, ControlValueAccessor, OnDestroy {
 
-  private onChange: any;
+  public category: CategoryType;
   public categories: CategoryType[];
+  private onChange: (value: CategoryType) => void;
   private $categories: Subscription;
 
   constructor(
     private readonly categoryModelService: CategoryModelService,
   ) {
+    this.category = new CategoryType();
     this.categories = [];
   }
 
@@ -42,7 +39,7 @@ export class CategoryFieldComponent implements OnInit, ControlValueAccessor, OnD
     this.$categories.unsubscribe();
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: CategoryType) => void): void {
     this.onChange = fn;
   }
 
@@ -52,7 +49,15 @@ export class CategoryFieldComponent implements OnInit, ControlValueAccessor, OnD
   setDisabledState(isDisabled: boolean): void {
   }
 
-  writeValue(obj: any): void {
+  writeValue(value: CategoryType): void {
+    if (value) {
+      this.category = value;
+    }
+  }
+
+  public changeCategory(change: MatSelectChange) {
+    this.category = this.categories.find((category) => category.id === change.value);
+    this.onChange(this.category);
   }
 
   private loadCategories() {
@@ -61,9 +66,5 @@ export class CategoryFieldComponent implements OnInit, ControlValueAccessor, OnD
       .subscribe((categories) => {
         this.categories = categories;
       });
-  }
-
-  public changeCategory(change: MatSelectChange) {
-    this.onChange(change.value);
   }
 }

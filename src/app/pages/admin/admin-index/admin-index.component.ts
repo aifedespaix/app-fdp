@@ -21,7 +21,7 @@ export class AdminIndexComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.articleModelService
-      .articles({}, false)
+      .articles({}, null)
       .subscribe((articles) => {
         this.articles = articles;
       });

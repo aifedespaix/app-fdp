@@ -15,13 +15,14 @@ export class TagModelService {
   }
 
 
-  public tags(pagination: PaginationInput): Observable<string[]> {
-    return this.apollo.query({
-      query: TAGS,
-      variables: pagination,
-    })
+  public tags(pagination: PaginationInput): Observable<TagType[]> {
+    return this.apollo
+      .query({
+        query: TAGS,
+        variables: pagination,
+      })
       .pipe(map(
-        ({data}: ApolloQueryResult<{ tags: TagType[] }>) => data.tags.map((t) => t.value)
+        ({data: {tags}}: ApolloQueryResult<{ tags: TagType[] }>) => tags,
       ));
   }
 

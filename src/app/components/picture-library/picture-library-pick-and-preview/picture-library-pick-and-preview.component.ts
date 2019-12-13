@@ -21,7 +21,7 @@ export class PictureLibraryPickAndPreviewComponent implements OnInit, ControlVal
   @Input() titleLabel = 'image';
   public picture: PictureType;
 
-  private onChange: (newValue: string) => void;
+  private onChange: (newValue: PictureType) => void;
 
   constructor() {
     this.picture = getUndefinedPictureMock();
@@ -30,7 +30,7 @@ export class PictureLibraryPickAndPreviewComponent implements OnInit, ControlVal
   ngOnInit() {
   }
 
-  registerOnChange(fn: (newValue: string) => void): void {
+  registerOnChange(fn: (newValue: PictureType) => void): void {
     this.onChange = fn;
   }
 
@@ -45,6 +45,6 @@ export class PictureLibraryPickAndPreviewComponent implements OnInit, ControlVal
 
   emitPicture(picture: PictureType) {
     this.picture = picture;
-    this.onChange(picture.id);
+    this.onChange(picture);
   }
 }

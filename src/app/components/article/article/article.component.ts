@@ -9,6 +9,7 @@ import {CommentModelService} from '../../../model/comment/comment-model.service'
 })
 export class ArticleComponent {
   @Input() public article: ArticleType;
+  @Input() public hideComments: boolean;
 
   constructor(
     private readonly commentModelService: CommentModelService,

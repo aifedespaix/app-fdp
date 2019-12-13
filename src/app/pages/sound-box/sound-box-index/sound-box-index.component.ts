@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {BoxType} from '../../../model/_generated/graphql.schema';
 import {BoxModelService} from '../../../model/box/box-model.service';
-import {SoundService} from '../../../components/sound/sound.service';
+import {SoundService} from '../../../services/sound/sound.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SeoHeadService} from '../../../services/seo-head.service';
 import {Metas} from '../../../services/seo-head';

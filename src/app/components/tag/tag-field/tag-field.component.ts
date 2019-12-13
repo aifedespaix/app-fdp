@@ -1,12 +1,12 @@
 import {Component, ElementRef, forwardRef, OnInit, ViewChild} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {COMMA, ENTER, SEMICOLON, SPACE} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/typings/autocomplete';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {TagModelService} from '../../../model/tag/tag-model.service';
-import {TagInput} from '../../../model/_generated/graphql.schema';
+import {TagInput, TagType} from '../../../model/_generated/graphql.schema';
 
 @Component({
   selector: 'app-tag-field',
@@ -24,21 +24,23 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
   public removable: boolean;
   public selectable: boolean;
   public tagsCtrl: FormControl;
-  public separatorKeysCodes: number[] = [ENTER, COMMA];
+  public separatorKeysCodes: number[] = [ENTER, COMMA, SPACE, SEMICOLON];
   public addOnBlur: true;
-  public filteredTags: Observable<string[]>;
-  public tags: string[] = [];
-  public allTags: string[];
+  public filteredTags: Observable<TagInput[]>;
+  public tags: TagInput[] = [];
+  public allTags: TagInput[];
 
   @ViewChild('tagInput', {static: false}) tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   private onChange: (newValue: TagInput[]) => void;
+  private onTouched: (a) => void;
 
   constructor(
     private readonly tagModelService: TagModelService,
   ) {
     this.tagsCtrl = new FormControl();
+    this.removable = true;
     this.allTags = [];
   }
 
@@ -54,7 +56,12 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
       .valueChanges
       .pipe(
         startWith(null),
-        map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()),
+        map((tag: string | TagInput | null) => {
+          if (typeof tag === 'string') {
+            tag = {value: tag};
+          }
+          return tag ? this._filter(tag) : this.allTags.slice();
+        }),
       );
   }
 
@@ -63,15 +70,20 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {
   }
 
-  writeValue(obj: any): void {
+  writeValue(obj: TagInput[]): void {
+    if (obj) {
+      this.tags = obj;
+      this.change();
+    }
   }
 
-  remove(tag: string) {
+  remove(tag: TagType) {
     const index = this.tags.indexOf(tag);
     if (index >= 0) {
       this.tags.splice(index, 1);
@@ -81,9 +93,10 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
 
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.viewValue);
+    this.tags.push({value: event.option.viewValue});
     this.tagInput.nativeElement.value = '';
     this.tagsCtrl.setValue(null);
+    this.change();
   }
 
   add(event: MatChipInputEvent) {
@@ -92,7 +105,7 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
       const value = event.value;
 
       if ((value || '').trim()) {
-        this.tags.push(value.trim());
+        this.tags.push({value: value.trim()});
       }
 
       if (input) {
@@ -106,13 +119,14 @@ export class TagFieldComponent implements OnInit, ControlValueAccessor {
 
   private change() {
     this.onChange(this.tags.map((tag) => {
-      return {value: tag};
+      return {value: tag.value};
     }));
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.allTags.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  private _filter(tag: TagInput): TagInput[] {
+    const filterValue = tag.value.toLowerCase();
+    return this.allTags
+      .filter(({value}) => value.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

@@ -18,7 +18,6 @@ import {AuthDialogComponent} from '../auth/auth-dialog/auth-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DirectivesModule} from '../directives/directives.module';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {ThemeStorageService} from '../components/theme/theme-storage/theme-storage.service';
 import {LayoutFooterComponent} from './layout-footer/layout-footer.component';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {SoundModule} from '../components/sound/sound.module';
@@ -55,9 +54,6 @@ import {ThemeModule} from '../components/theme/theme.module';
     LayoutHeaderComponent,
     LayoutNavComponent,
     LayoutFooterComponent,
-  ],
-  providers: [
-    ThemeStorageService,
   ],
   entryComponents: [
     AuthDialogComponent,

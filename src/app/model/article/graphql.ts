@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const ARTICLES = gql`
-  query articles($pagination: PaginationInput, $published: Boolean!) {
+  query articles($pagination: PaginationInput, $published: Boolean) {
     articles(pagination: $pagination published: $published) {
       id
       createdAt
@@ -45,6 +45,7 @@ export const CREATE_ARTICLE = gql`
       createdAt
       updatedAt
       title
+      description
       content
       thumbnail {
         id
@@ -79,6 +80,7 @@ export const UPDATE_ARTICLE = gql`
       createdAt
       updatedAt
       title
+      description
       content
       thumbnail {
         id
@@ -113,6 +115,7 @@ export const ARTICLE = gql`
       createdAt
       updatedAt
       title
+      description
       content
       comments {
         id

@@ -1,0 +1,42 @@
+:host {
+  display: grid;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "title category thumbnail"
+    "description tags tags"
+    "editor editor editor"
+    "submit submit submit";
+}
+
+.tags {
+  grid-area: tags;
+}
+
+.submit {
+  grid-area: submit;
+}
+
+.category {
+  grid-area: category;
+}
+
+app-picture-field {
+  grid-area: thumbnail;
+}
+
+app-markdown-edit {
+  grid-column: editor;
+}
+
+.title {
+  grid-area: title;
+}
+
+.description {
+  grid-area: description;
+}

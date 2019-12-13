@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BoxModelService} from '../../../model/box/box-model.service';
-import {AudioInput, BoxInput} from '../../../model/_generated/graphql.schema';
+import {BoxType} from '../../../model/_generated/graphql.schema';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,25 +8,19 @@ import {Router} from '@angular/router';
 })
 export class BoxCreateComponent implements OnInit {
 
-  public boxInput: BoxInput;
-  public sound: AudioInput;
+  public box: BoxType;
 
   constructor(
-    private readonly boxModelService: BoxModelService,
-    private readonly router: Router,
+    public readonly router: Router,
   ) {
   }
 
   ngOnInit() {
-    this.boxInput = new BoxInput();
+    this.box = new BoxType();
   }
 
-  createBox() {
-    this.boxModelService
-      .createBox(this.boxInput, this.sound)
-      .subscribe((box) => {
-        this.router.navigate(['..', box.id, box.title]);
-      });
+  test($event: Event) {
+    console.log('$event');
+    console.log($event);
   }
-
 }

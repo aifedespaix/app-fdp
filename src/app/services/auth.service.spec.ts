@@ -1,7 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
 import {AuthService} from './auth.service';
-import {CookieService} from 'ngx-cookie-service';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 import {AppRoutingModule} from '../app-routing.module';
 import {AuthModelService} from '../model/auth/auth-model.service';
@@ -17,7 +16,6 @@ describe('AuthService', () => {
       AuthService,
       AuthModelService,
       UserModelService,
-      CookieService,
     ],
   }));
 
