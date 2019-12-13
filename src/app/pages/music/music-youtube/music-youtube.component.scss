@@ -18,6 +18,7 @@ $playlist-size: 8rem;
 
 .playlists_container {
   max-height: 3 * $playlist-size;
+  overflow: auto;
 }
 
 .playlists {
