@@ -15,7 +15,7 @@ export class SoundPlayerComponent implements OnInit {
   private readonly icons: string[];
 
   constructor(
-    private readonly soundService: SoundService,
+    public readonly soundService: SoundService,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
   ) {

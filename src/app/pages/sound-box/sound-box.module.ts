@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {BoxRoutingModule} from './box-routing.module';
+import {SoundBoxRoutingModule} from './sound-box-routing.module';
 import {SoundBoxIndexComponent} from './sound-box-index/sound-box-index.component';
 import {BoxModelService} from '../../model/box/box-model.service';
 import {LoadingModule} from '../../components/loading/loading.module';
@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {BtnModule} from '../../components/btn/btn.module';
-import {BoxCreateComponent} from './sound-box-create/box-create.component';
+import {SoundBoxEditorComponent} from './sound-box-editor/sound-box-editor.component';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -23,10 +23,10 @@ import {SoundModule} from '../../components/sound/sound.module';
 
 
 @NgModule({
-  declarations: [SoundBoxIndexComponent, BoxCreateComponent],
+  declarations: [SoundBoxIndexComponent, SoundBoxEditorComponent],
   imports: [
     CommonModule,
-    BoxRoutingModule,
+    SoundBoxRoutingModule,
     LoadingModule,
     CardModule,
     PictureModule,
@@ -44,5 +44,5 @@ import {SoundModule} from '../../components/sound/sound.module';
     SoundModule,
   ],
 })
-export class BoxPageModule {
+export class SoundBoxModule {
 }

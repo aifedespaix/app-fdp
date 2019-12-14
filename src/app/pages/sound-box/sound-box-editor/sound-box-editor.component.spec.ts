@@ -1,17 +1,17 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {BoxCreateComponent} from './box-create.component';
-import {BoxPageModule} from '../box-page.module';
+import {SoundBoxEditorComponent} from './sound-box-editor.component';
+import {SoundBoxModule} from '../sound-box.module';
 import {TestsModule} from '../../../tests/tests.module';
 
 describe('BoxCreateComponent', () => {
-  let component: BoxCreateComponent;
-  let fixture: ComponentFixture<BoxCreateComponent>;
+  let component: SoundBoxEditorComponent;
+  let fixture: ComponentFixture<SoundBoxEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BoxPageModule,
+        SoundBoxModule,
         TestsModule,
       ],
     })
@@ -19,7 +19,7 @@ describe('BoxCreateComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BoxCreateComponent);
+    fixture = TestBed.createComponent(SoundBoxEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

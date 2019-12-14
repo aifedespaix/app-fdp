@@ -3,10 +3,10 @@ import {BoxType} from '../../../model/_generated/graphql.schema';
 import {Router} from '@angular/router';
 
 @Component({
-  templateUrl: './box-create.component.html',
-  styleUrls: ['./box-create.component.scss'],
+  templateUrl: './sound-box-editor.component.html',
+  styleUrls: ['./sound-box-editor.component.scss'],
 })
-export class BoxCreateComponent implements OnInit {
+export class SoundBoxEditorComponent implements OnInit {
 
   public box: BoxType;
 

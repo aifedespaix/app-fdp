@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SoundBoxIndexComponent } from './sound-box-index.component';
 import {TestsModule} from '../../../tests/tests.module';
-import {BoxPageModule} from '../box-page.module';
+import {SoundBoxModule} from '../sound-box.module';
 
 describe('BoxComponent', () => {
   let component: SoundBoxIndexComponent;
@@ -12,7 +12,7 @@ describe('BoxComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         TestsModule,
-        BoxPageModule,
+        SoundBoxModule,
       ]
     })
     .compileComponents();

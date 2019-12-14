@@ -16,7 +16,7 @@ export class BoxComponent implements OnInit {
   ) {
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('click')
   click() {
     if (this.box.sound) {
       this.soundService.load(this.box.sound, this.box.title);
