@@ -3,12 +3,12 @@ import {BoxType} from '../../../model/_generated/graphql.schema';
 import {BoxModelService} from '../../../model/box/box-model.service';
 import {SoundService} from '../../../services/sound/sound.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SeoHeadService} from '../../../services/seo-head.service';
-import {Metas} from '../../../services/seo-head';
+import {Metas, OgImage} from '../../../services/seo-head';
 import {Subscription} from 'rxjs';
-import {LayoutService} from '../../../services/layout.service';
 import {getBoxesMock} from '../../../model/box/box.mocks';
 import {BoxDetailComponent} from '../../../components/box/box-detail/box-detail.component';
+import {PageService} from '../../../services/page/page.service';
+import {QueryRef} from 'apollo-angular/QueryRef';
 
 /** todo
  * a revoir car on change tout et on change dynamiquement la box actuelle (en ram) plutot que de requeter l'api
@@ -27,19 +27,19 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
 
   public boxes: BoxType[];
   public $boxes: Subscription;
+  public boxesQuery: QueryRef<{ boxes: BoxType[] }>;
   public isLoadingBoxes: boolean;
 
-  @ViewChild('detail', { static: true }) public boxDetailComponent: BoxDetailComponent;
+  @ViewChild('detail', {static: true}) public boxDetailComponent: BoxDetailComponent;
 
   constructor(
     private readonly router: Router,
-    private readonly seoHeadService: SeoHeadService,
     private readonly route: ActivatedRoute,
-    private readonly layoutService: LayoutService,
+    private readonly pageService: PageService,
     private readonly boxModelService: BoxModelService,
     private readonly soundService: SoundService,
   ) {
-    layoutService.footerVisibility(false);
+    pageService.layout(false);
   }
 
   ngOnInit() {
@@ -58,7 +58,6 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
     if (this.$actualBox) {
       this.$actualBox.unsubscribe();
     }
-    this.layoutService.footerVisibility(true);
   }
 
 
@@ -68,6 +67,10 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
     }
     this.soundService.load(box.sound, box.title);
     this.soundService.play();
+  }
+
+  public async fetchMore() {
+    await this.boxModelService.moreBoxes({first: 10, skip: this.boxes.length});
   }
 
   private loadBoxes() {
@@ -86,7 +89,7 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
   }
 
   private updateHead(box: BoxType) {
-    this.seoHeadService.setHead(
+    this.pageService.metas(
       new Metas(
         box ? box.title : 'Des Sound Box à partager avec tous les fdp de ta région',
         'Box',
@@ -94,6 +97,7 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
         box ? box.description : `Tu cliques, t'écoutes, ça fait du bruit, t'es content(e) et tu fermes ta gueule poto`,
         box ? box.author.login : 'clapette',
         this.router.url,
+        box ? OgImage.fromPicture(box.thumbnail) : undefined,
       ),
     );
   }

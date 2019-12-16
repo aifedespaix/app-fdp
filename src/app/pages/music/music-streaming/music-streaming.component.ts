@@ -1,29 +1,26 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MUSIC_STREAMING} from './music-streaming';
 import {PlaylistStreamingType} from '../../../model/_generated/graphql.schema';
-import {LayoutService} from '../../../services/layout.service';
-import {SafePipe} from '../../../pipes/safe.pipe';
 import {Metas} from '../../../services/seo-head';
-import {SeoHeadService} from '../../../services/seo-head.service';
 import {Router} from '@angular/router';
+import {PageService} from '../../../services/page/page.service';
 
 @Component({
   selector: 'app-music-streaming',
   templateUrl: './music-streaming.component.html',
   styleUrls: ['./music-streaming.component.scss'],
 })
-export class MusicStreamingComponent implements OnInit, OnDestroy {
+export class MusicStreamingComponent implements OnInit {
 
   public playlists: PlaylistStreamingType[];
   public plateformId: number;
   public playlistId: number;
 
   constructor(
-    private readonly layoutService: LayoutService,
-    private readonly seoHeadService: SeoHeadService,
+    private readonly pageService: PageService,
     private readonly router: Router,
   ) {
-    this.layoutService.footerVisibility(false);
+    this.pageService.layout(false);
   }
 
   ngOnInit() {
@@ -33,12 +30,8 @@ export class MusicStreamingComponent implements OnInit, OnDestroy {
     this.updateMetas();
   }
 
-  ngOnDestroy(): void {
-    this.layoutService.footerVisibility(true);
-  }
-
   private updateMetas() {
-    this.seoHeadService.setHead(
+    this.pageService.metas(
       new Metas(
         'Les Meilleures playlists Kegab',
         'Playlists',

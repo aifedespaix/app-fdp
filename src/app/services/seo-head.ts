@@ -1,14 +1,8 @@
 // https://ogp.me/
 import {environment} from '../../environments/environment';
+import {PictureType} from '../model/_generated/graphql.schema';
+import {getUndefinedPictureMock} from '../model/picture/picture.mocks';
 
-const mainImage: OgImage = {
-  url: '',
-  secureUrl: '',
-  type: '',
-  alt: '',
-  width: 0,
-  height: 0,
-};
 
 export class Metas {
   public readonly title: string;
@@ -132,6 +126,17 @@ export class OgImage {
   width: number;
   height: number;
   alt: string;
+
+  public static fromPicture(picture: PictureType) {
+    return {
+      url: picture.images[0].url,
+      secureUrl: picture.images[0].url,
+      type: picture.images[0].mimetype,
+      width: picture.images[0].width,
+      height: picture.images[0].height,
+      alt: picture.description,
+    };
+  }
 }
 
 export class OgArticleType {
@@ -169,3 +174,5 @@ export class TwitterMetas {
 export enum TwitterCard {
   SUMMARY_LARGE_IMAGE = 'summary_large_image'
 }
+
+const mainImage = OgImage.fromPicture(getUndefinedPictureMock());

@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ResponsiveService} from '../../responsive/responsive.service';
-import {LayoutService} from '../../services/layout.service';
+import {LayoutService} from '../../services/layout/layout.service';
 
 @Component({
   selector: 'app-layout-nav',

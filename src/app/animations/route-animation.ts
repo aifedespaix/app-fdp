@@ -37,6 +37,7 @@ export function getMainStateChangeExpr() {
     })
     .filter(r => r)
     .sort((r: AnimationRoute, p: AnimationRoute) => r.index - p.index) as AnimationRoute[];
+  console.log(routes);
   return {
     top: work(routes, 0, [], Direction.FROM).join(', '),
     bottom: work(routes.reverse(), 0, [], Direction.FROM).join(', '),

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {SeoHeadService} from '../../services/seo-head.service';
 import {Metas} from '../../services/seo-head';
 import {Router} from '@angular/router';
 import {IIndexCard} from './index-card';
-import {getPictureMock} from '../../model/picture/picture.mocks';
+import {getUndefinedPictureMock} from '../../model/picture/picture.mocks';
+import {PageService} from '../../services/page/page.service';
 
 @Component({
   selector: 'app-index',
@@ -15,9 +15,10 @@ export class IndexComponent implements OnInit {
   public cards: IIndexCard[];
 
   constructor(
-    private readonly headService: SeoHeadService,
+    private readonly pageService: PageService,
     private readonly router: Router,
   ) {
+    pageService.layout();
   }
 
   ngOnInit() {
@@ -26,7 +27,7 @@ export class IndexComponent implements OnInit {
   }
 
   private updateHead() {
-    this.headService.setHead(
+    this.pageService.metas(
       new Metas(
         `Page d'accueil`,
         `Accueil`,
@@ -41,31 +42,45 @@ export class IndexComponent implements OnInit {
     this.cards = [
       {
         title: 'Blog',
-        picture: getPictureMock(),
+        picture: getUndefinedPictureMock(),
         link: '/blog',
         // tslint:disable-next-line:max-line-length
         description: `Un blog technique pour apprendre plein de choses dans le domaine du web moderne. Javascript, nodejs, Typescript, graphql, c'est grave cool !`,
       },
       {
         title: 'Formations',
-        picture: getPictureMock(),
+        picture: getUndefinedPictureMock(),
         link: '/learn',
         // tslint:disable-next-line:max-line-length
         description: `Apprendre à developper des applications web dans des technologies modernes.`,
       },
       {
         title: 'Musiques',
-        picture: getPictureMock(),
+        picture: getUndefinedPictureMock(),
         link: '/music',
         // tslint:disable-next-line:max-line-length
         description: `Écoute ces sons poto : Youtube, Spotify, Apple Music et Deezer, y'en a pour tout le monde.`,
       },
       {
         title: 'Box',
-        picture: getPictureMock(),
+        picture: getUndefinedPictureMock(),
         link: '/box',
         // tslint:disable-next-line:max-line-length
         description: `Une sound box, avec tout ce que tu veux. Upload un son, une image et t'es good frèro`,
+      },
+      {
+        title: 'Shop',
+        picture: getUndefinedPictureMock(),
+        link: '/shop',
+        // tslint:disable-next-line:max-line-length
+        description: `Des vêtements grave stylés pour tous les goûts...`,
+      },
+      {
+        title: 'Glitch',
+        picture: getUndefinedPictureMock(),
+        link: '/glitch',
+        // tslint:disable-next-line:max-line-length
+        description: `Des tutos glitchs les plus fun pour les meilleurs jeux vidéos`,
       },
     ];
   }

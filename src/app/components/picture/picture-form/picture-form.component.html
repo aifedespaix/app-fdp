@@ -1,0 +1,56 @@
+<form
+  #form="ngForm"
+  autocomplete="on"
+  (ngSubmit)="uploadFile()"
+>
+  <div class="picture-upload">
+    <label [for]="uuid">{{label}}</label>
+    <input
+      type="file"
+      name="file"
+      [id]="uuid"
+      [accept]="types.join(',')"
+      (change)="onFileChange($event)"
+    >
+      <img
+        alt="Aperçu"
+        *ngIf="imageData"
+        [src]="imageData"
+      >
+  </div>
+
+  <mat-form-field *ngIf="imageData">
+    <input
+      matInput
+      placeholder="Titre"
+      name="title"
+      [(ngModel)]="title"
+      maxlength="50"
+      required
+    >
+    <mat-error>Veuillez saisir un titre</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="title && imageData">
+    <textarea
+      matInput
+      placeholder="Description"
+      name="description"
+      [(ngModel)]="description"
+      maxlength="250"
+      required
+    >
+    </textarea>
+    <mat-error>Veuillez saisir une description</mat-error>
+  </mat-form-field>
+
+
+  <button
+    [disabled]="form.errors?.length || !imageData"
+    class="submit"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >Ajouter l'image
+  </button>
+</form>

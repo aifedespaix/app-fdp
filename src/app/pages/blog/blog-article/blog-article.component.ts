@@ -3,7 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleModelService} from '../../../model/article/article-model.service';
 import {ArticleType} from '../../../model/_generated/graphql.schema';
 import {Metas} from '../../../services/seo-head';
-import {SeoHeadService} from '../../../services/seo-head.service';
+import {PageService} from '../../../services/page/page.service';
+import {Logo} from '../../../services/layout/logo';
 
 @Component({
   templateUrl: './blog-article.component.html',
@@ -16,11 +17,12 @@ export class BlogArticleComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly seoHeadService: SeoHeadService,
+    private readonly pageService: PageService,
     private readonly route: ActivatedRoute,
     private readonly articleModelService: ArticleModelService,
   ) {
     this.isLoading = false;
+    this.pageService.layout(true, Logo.Aife);
   }
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class BlogArticleComponent implements OnInit {
   }
 
   private updateHead() {
-    this.seoHeadService.setHead(
+    this.pageService.metas(
       new Metas(
         this.article.title,
         'Blog',

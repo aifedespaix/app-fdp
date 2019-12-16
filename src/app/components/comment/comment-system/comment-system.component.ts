@@ -33,8 +33,6 @@ export class CommentSystemComponent implements OnInit {
   }
 
   public remove(id: string) {
-    console.log('remove');
-    console.log(id);
     this.comments = this.comments.filter((e) => e.id !== id);
   }
 }

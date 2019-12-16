@@ -3,4 +3,6 @@
 :host {
   grid-area: content;
   padding: 0 $padding;
+  overflow-wrap: break-word;
+  overflow: hidden;
 }

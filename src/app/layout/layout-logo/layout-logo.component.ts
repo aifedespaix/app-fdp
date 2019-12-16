@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LayoutService} from '../../services/layout/layout.service';
 
 @Component({
   selector: 'app-logo',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutLogoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public readonly layoutService: LayoutService,
+  ) { }
 
   ngOnInit() {
   }

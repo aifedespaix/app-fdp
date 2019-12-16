@@ -1,0 +1,16 @@
+<a
+  *ngFor="let video of videos"
+  target="_blank"
+  [href]="'https://www.youtube.com/watch?v='+video.snippet.resourceId.videoId"
+  class="hoverable_pump hoverable"
+>
+  <app-card>
+    <app-card-header>
+      <h2>{{video.snippet.title}}</h2>
+    </app-card-header>
+
+    <app-card-content>
+      <app-picture [picture]="youtubeService.youtubeSnippetToPicture(video.snippet)"></app-picture>
+    </app-card-content>
+  </app-card>
+</a>

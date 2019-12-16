@@ -1,6 +1,6 @@
 import {Component, HostBinding, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ResponsiveService} from './responsive/responsive.service';
-import {LayoutService} from './services/layout.service';
+import {LayoutService} from './services/layout/layout.service';
 import {AuthService} from './services/auth.service';
 import {isPlatformBrowser} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
@@ -9,6 +9,10 @@ import {slideRightAnimation} from './animations/slide-right.animation';
 import {trigger} from '@angular/animations';
 import {slideTopAnimation} from './animations/slide-top.animation';
 import {slideBottomAnimation} from './animations/slide-bottom.animation';
+// import {getMainStateChangeExpr} from './animations/route-animation';
+
+// console.log(getMainStateChangeExpr().bottom);
+// console.log(getMainStateChangeExpr().top);
 
 @Component({
   selector: 'app-root',
@@ -16,8 +20,10 @@ import {slideBottomAnimation} from './animations/slide-bottom.animation';
   styleUrls: ['./app.component.scss'],
   animations: [
     trigger('routeAnimations', [ // todo voir src/app/animations/route-animation.ts
-      slideRightAnimation('Box => Music, Music => Blog, Blog => Index, Music => Index, Box => Blog, Blog => Index, Box => Index', '300ms'),
-      slideLeftAnimation('Index => Blog, Blog => Music, Music => Box, Blog => Box, Index => Music, Music => Box, Index => Box', '300ms'),
+      // tslint:disable-next-line:max-line-length
+      slideRightAnimation('Shop => Glitch, Glitch => Box, Box => Music, Music => Blog, Blog => Index, Music => Index, Box => Blog, Blog => Index, Box => Index, Glitch => Music, Music => Blog, Blog => Index, Music => Index, Glitch => Blog, Blog => Index, Glitch => Index, Shop => Box, Box => Music, Music => Blog, Blog => Index, Music => Index, Box => Blog, Blog => Index, Box => Index, Shop => Music, Music => Blog, Blog => Index, Music => Index, Shop => Blog, Blog => Index, Shop => Index', '300ms'),
+      // tslint:disable-next-line:max-line-length
+      slideLeftAnimation('Index => Blog, Blog => Music, Music => Box, Box => Glitch, Glitch => Shop, Box => Shop, Music => Glitch, Glitch => Shop, Music => Shop, Blog => Box, Box => Glitch, Glitch => Shop, Box => Shop, Blog => Glitch, Glitch => Shop, Blog => Shop, Index => Music, Music => Box, Box => Glitch, Glitch => Shop, Box => Shop, Music => Glitch, Glitch => Shop, Music => Shop, Index => Box, Box => Glitch, Glitch => Shop, Box => Shop, Index => Glitch, Glitch => Shop, Index => Shop', '300ms'),
       slideTopAnimation('* => OnTop, OnBottom => *', '300ms'),
       slideBottomAnimation('* => OnBottom, OnTop => *', '300ms'),
     ])],
@@ -25,16 +31,16 @@ import {slideBottomAnimation} from './animations/slide-bottom.animation';
 
 export class AppComponent implements OnInit {
 
-  @HostBinding('class.hideMenu') get hideMenu() {
-    return !this.layoutService.isMenuVisible;
-  }
-
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: object,
     public readonly authService: AuthService,
     public readonly layoutService: LayoutService,
     public readonly responsiveService: ResponsiveService,
   ) {
+  }
+
+  @HostBinding('class.hideMenu') get hideMenu() {
+    return !this.layoutService.isMenuVisible;
   }
 
   ngOnInit(): void {

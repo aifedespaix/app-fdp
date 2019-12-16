@@ -1,6 +1,5 @@
 <app-box-form
-  (change)="test($event)"
   [elem]="box"
-  (newElem)="router.navigate(['/', box.id, box.title])"
+  (newElem)="router.navigate(['/box', $event.id, $event.title])"
 ></app-box-form>
 <app-box [box]="box"></app-box>

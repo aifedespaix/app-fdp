@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Metas} from '../../services/seo-head';
-import {SeoHeadService} from '../../services/seo-head.service';
 import {Router} from '@angular/router';
+import {PageService} from '../../services/page/page.service';
 
 @Component({
   selector: 'app-learn',
   templateUrl: './learn.component.html',
-  styleUrls: ['./learn.component.scss']
+  styleUrls: ['./learn.component.scss'],
 })
 export class LearnComponent implements OnInit {
 
   constructor(
-    private readonly headService: SeoHeadService,
+    private readonly pageService: PageService,
     private readonly router: Router,
   ) {
+    pageService.layout();
   }
 
   ngOnInit() {
-    this.headService.setHead(
+    this.pageService.metas(
       new Metas(
         `Formations`,
         `Formations`,

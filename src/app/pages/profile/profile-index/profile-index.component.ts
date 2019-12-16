@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {PictureType, UserEditInput, UserType} from '../../../model/_generated/graphql.schema';
 import {UserModelService} from '../../../model/user/user-model.service';
 import {SnackService} from '../../../services/snack/snack.service';
+import {PageService} from '../../../services/page/page.service';
 
 @Component({
   templateUrl: './profile-index.component.html',
@@ -21,18 +22,19 @@ export class ProfileIndexComponent implements OnInit {
   constructor(
     private readonly snackService: SnackService,
     private readonly authService: AuthService,
-    private readonly headService: SeoHeadService,
     private readonly router: Router,
     private readonly userModelService: UserModelService,
+    private readonly pageService: PageService,
   ) {
     this.userEditInput = new UserEditInput();
     this.isLoading = false;
     this.modified = false;
     this.user = null;
+    pageService.layout();
   }
 
   ngOnInit() {
-    this.headService.setHead(
+    this.pageService.metas(
       new Metas(
         `Profil`,
         `Profil`,

@@ -1,0 +1,16 @@
+@import "mixins";
+@import "layout-variables";
+
+:host {
+  @include squareGrid(20rem);
+  grid-gap: $padding;
+}
+
+app-card-content {
+  display: grid;
+}
+
+
+h2 {
+  height: 1.5em;
+}

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { LayoutService } from './layout.service';
-import {ResponsiveService} from '../responsive/responsive.service';
+import {ResponsiveService} from '../../responsive/responsive.service';
 
 describe('LayoutService', () => {
   beforeEach(() => TestBed.configureTestingModule({

@@ -24,7 +24,7 @@ app-card-content {
 
 .grid {
   display: grid;
-  @include squareGrid(15rem);
+  @include squareGrid(20rem);
   grid-gap: $padding;
 }
 

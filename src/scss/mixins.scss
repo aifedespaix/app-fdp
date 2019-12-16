@@ -1,7 +1,7 @@
 @mixin squareGrid($min-size) {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax($min-size, 1fr));
-  grid-auto-rows: 1fr;
+  grid-auto-rows: $min-size;
 
   &::before {
     content: '';
@@ -16,6 +16,7 @@
     grid-column: 1 / 1;
   }
 }
+
 @mixin stroke($width, $color) {
   $width: $width + 0;
   $shadow: 0 0 0 transparent;

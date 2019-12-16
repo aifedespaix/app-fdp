@@ -1,33 +1,29 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SeoHeadService} from '../../../services/seo-head.service';
-import {LayoutService} from '../../../services/layout.service';
+import {LayoutService} from '../../../services/layout/layout.service';
 import {Metas} from '../../../services/seo-head';
 import {Router} from '@angular/router';
+import {PageService} from '../../../services/page/page.service';
 
 @Component({
   templateUrl: './music-index.component.html',
   styleUrls: ['./music-index.component.scss'],
 })
-export class MusicIndexComponent implements OnInit, OnDestroy {
+export class MusicIndexComponent implements OnInit {
 
   constructor(
-    private readonly seoHeadService: SeoHeadService,
-    private readonly layoutService: LayoutService,
+    private readonly pageService: PageService,
     private readonly router: Router,
   ) {
-    layoutService.footerVisibility(false);
+    pageService.layout(false);
   }
 
   ngOnInit() {
     this.updateMetas();
   }
 
-  ngOnDestroy(): void {
-    this.layoutService.footerVisibility(true);
-  }
-
   private updateMetas() {
-    this.seoHeadService.setHead(
+    this.pageService.metas(
       new Metas(
         'Les Meilleures playlists de musique of da world bitch',
         'Musique',

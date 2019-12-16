@@ -7,6 +7,7 @@ export const environment = {
   apiEndpoint: 'http://localhost:3000/graphql',
   host: 'https://localhost.4200',
   fbApiId: 'pute',
+  youtube_aifedespaix: 'AIzaSyCnRWkTF-AwRnEUhDg_QzRwkOwwaAojGOE',
 };
 
 /*

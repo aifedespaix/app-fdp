@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {LayoutService} from '../../services/layout.service';
+import {LayoutService} from '../../services/layout/layout.service';
 
 @Component({
   selector: 'app-layout-footer',

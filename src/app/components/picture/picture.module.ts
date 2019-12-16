@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {PictureComponent} from './picture/picture.component';
-import {PictureUploadComponent} from './picture-upload/picture-upload.component';
+import {PictureFormComponent} from './picture-form/picture-form.component';
 import {PictureModelService} from '../../model/picture/picture-model.service';
 import * as uuid from 'uuid';
 import {PictureDialogComponent} from './picture-modale/picture-dialog.component';
@@ -16,7 +16,7 @@ import {PipesModule} from '../../pipes/pipes.module';
 @NgModule({
   declarations: [
     PictureComponent,
-    PictureUploadComponent,
+    PictureFormComponent,
     PictureDialogComponent,
   ],
   imports: [
@@ -32,7 +32,7 @@ import {PipesModule} from '../../pipes/pipes.module';
   ],
   exports: [
     PictureComponent,
-    PictureUploadComponent,
+    PictureFormComponent,
   ],
   providers: [
     PictureModelService,

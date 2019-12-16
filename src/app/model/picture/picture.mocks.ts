@@ -4,6 +4,8 @@ import {getImagesMock} from '../image/image.mocks';
 
 export function getUndefinedPictureMock(): PictureType {
   const picture = new PictureType();
+  picture.title = 'aifedespaix';
+  picture.description = 'logo aifedespaix';
   picture.images = [{
     url: '/assets/images/undefined.png',
     width: 595,

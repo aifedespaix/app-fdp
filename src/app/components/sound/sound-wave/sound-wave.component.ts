@@ -13,7 +13,6 @@ import {ISoundSlice} from './sound-slice';
 export class SoundWaveComponent implements OnInit {
 
   @Input() public resource: ResourceType;
-
   @Output() slice: EventEmitter<ISoundSlice>;
 
   private readonly FROM = 1;
@@ -57,7 +56,6 @@ export class SoundWaveComponent implements OnInit {
       const newFrom = this.fromAudioToPhysicalValue(value).toString();
       this.sliceFrom.nativeElement.setAttribute('x', newFrom.toString());
       this.updateSlicer();
-      // this.changeFrom.emit(this.audioSliceFrom);
     }
   }
 

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './guards/auth.guard';
+import {AdminGuard} from './guards/admin.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -57,9 +58,33 @@ export const APP_ROUTES: Routes = [
       animation: 'Box',
     },
   },
+  { path: 'glitch', loadChildren: () => import('./pages/glitch/glitch.module').then(m => m.GlitchModule) },
+  { path: 'shop', loadChildren: () => import('./pages/shop/shop.module').then(m => m.ShopModule) },
   {
-    canActivate: [AuthGuard],
+    path: 'glitch',
+    loadChildren: () => import('./pages/glitch/glitch.module').then(m => m.GlitchModule),
+    data: {
+      main: true,
+      icon: 'videogame_asset',
+      name: 'Glitch',
+      index: 6,
+      animation: 'Glitch',
+    },
+  },
+  {
+    path: 'shop',
+    loadChildren: () => import('./pages/shop/shop.module').then(m => m.ShopModule),
+    data: {
+      main: true,
+      icon: 'shopping_cart',
+      name: 'Shop',
+      index: 7,
+      animation: 'Shop',
+    },
+  },
+  {
     path: 'profile',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
     data: {
       animation: 'OnBottom',
@@ -73,7 +98,7 @@ export const APP_ROUTES: Routes = [
     },
   },
   {
-    // canActivate: [AdminGuard], todo
+    canActivate: [AdminGuard],
     path: 'admin',
     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
     data: {

@@ -19,8 +19,4 @@ export class SoundBoxEditorComponent implements OnInit {
     this.box = new BoxType();
   }
 
-  test($event: Event) {
-    console.log('$event');
-    console.log($event);
-  }
 }

@@ -1,20 +1,19 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticleType, CategoryType, PictureType} from '../../../model/_generated/graphql.schema';
 import {Metas} from '../../../services/seo-head';
-import {SeoHeadService} from '../../../services/seo-head.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {getUndefinedPictureMock} from '../../../model/picture/picture.mocks';
-import {LayoutService} from '../../../services/layout.service';
 import {ComponentCanDeactivate} from '../../../guards/pending-changes.guard';
-import {AuthService} from '../../../services/auth.service';
 import {SnackService} from '../../../services/snack/snack.service';
 import {ArticleModelService} from '../../../model/article/article-model.service';
+import {PageService} from '../../../services/page/page.service';
+import {Logo} from '../../../services/layout/logo';
 
 @Component({
   templateUrl: './blog-article-form.component.html',
   styleUrls: ['./blog-article-form.component.scss'],
 })
-export class BlogArticleFormComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
+export class BlogArticleFormComponent implements OnInit, ComponentCanDeactivate {
 
   public article: ArticleType;
   public markdown: string;
@@ -24,10 +23,8 @@ export class BlogArticleFormComponent implements OnInit, OnDestroy, ComponentCan
   public category: CategoryType;
 
   constructor(
+    private readonly pageService: PageService,
     private readonly snackService: SnackService,
-    private readonly headService: SeoHeadService,
-    private readonly layoutService: LayoutService,
-    private readonly authService: AuthService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly articleModelService: ArticleModelService,
@@ -35,7 +32,7 @@ export class BlogArticleFormComponent implements OnInit, OnDestroy, ComponentCan
     this.article = new ArticleType();
     this.isSaved = false;
     this.thumbnail = getUndefinedPictureMock();
-    layoutService.footerVisibility(false);
+    pageService.layout(false, Logo.Aife);
   }
 
   ngOnInit() {
@@ -44,7 +41,15 @@ export class BlogArticleFormComponent implements OnInit, OnDestroy, ComponentCan
       this.loadArticle(id);
     } else {
     }
-    this.headService.setHead(
+    this.setMetas();
+  }
+
+  canDeactivate(): boolean {
+    return this.isSaved;
+  }
+
+  private setMetas() {
+    this.pageService.metas(
       new Metas(
         'Rédiger un article',
         'Rédiger un article',
@@ -53,14 +58,6 @@ export class BlogArticleFormComponent implements OnInit, OnDestroy, ComponentCan
         this.router.url,
       ),
     );
-  }
-
-  ngOnDestroy(): void {
-    this.layoutService.footerVisibility(true);
-  }
-
-  canDeactivate(): boolean {
-    return this.isSaved;
   }
 
   private loadArticle(id: string) {

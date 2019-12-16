@@ -1,25 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {PictureUploadComponent} from './picture-upload.component';
-import {PictureModule} from '../picture.module';
+import {ShopIndexComponent} from './shop-index.component';
 import {TestsModule} from '../../../tests/tests.module';
+import {ShopModule} from '../shop.module';
 
-describe('PictureUploadComponent', () => {
-  let component: PictureUploadComponent;
-  let fixture: ComponentFixture<PictureUploadComponent>;
+describe('ShopComponent', () => {
+  let component: ShopIndexComponent;
+  let fixture: ComponentFixture<ShopIndexComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        PictureModule,
-        TestsModule,
-      ],
+      imports: [ShopModule, TestsModule],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PictureUploadComponent);
+    fixture = TestBed.createComponent(ShopIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

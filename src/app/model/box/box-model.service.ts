@@ -5,9 +5,12 @@ import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {ApolloQueryResult} from 'apollo-client';
 import {BOX, BOXES, CREATE_BOX} from './graphql';
+import {QueryRef} from 'apollo-angular/QueryRef';
 
 @Injectable()
 export class BoxModelService {
+
+  private boxesQuery: QueryRef<{ boxes: BoxType[] }>;
 
   constructor(
     private readonly apollo: Apollo,
@@ -15,13 +18,32 @@ export class BoxModelService {
   }
 
   public boxes(pagination: PaginationInput): Observable<BoxType[]> {
-    return this.apollo
+    this.boxesQuery = this.apollo
       .watchQuery({
         query: BOXES,
         variables: {pagination},
-      })
+      });
+
+    return this.boxesQuery
       .valueChanges
-      .pipe(map(({data}: ApolloQueryResult<{ boxes: BoxType[] }>) => data.boxes));
+      .pipe(map(({data: {boxes}}: ApolloQueryResult<{ boxes: BoxType[] }>) => boxes));
+  }
+
+  public async moreBoxes(pagination: PaginationInput) {
+    if (this.boxesQuery) {
+      await this.boxesQuery.fetchMore({
+        variables: {pagination},
+        updateQuery: (prev, {fetchMoreResult}) => {
+          if (!fetchMoreResult) {
+            return prev;
+          }
+          return Object.assign({}, prev, {
+            feed: [...prev.boxes, ...fetchMoreResult.boxes],
+          });
+        },
+      });
+    }
+
   }
 
   public createBox(box: BoxInput, sound: AudioInput): Observable<BoxType> {

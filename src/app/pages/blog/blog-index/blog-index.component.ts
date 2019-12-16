@@ -1,11 +1,12 @@
 import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {Metas} from '../../../services/seo-head';
-import {SeoHeadService} from '../../../services/seo-head.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {ArticleModelService} from '../../../model/article/article-model.service';
 import {Subscription} from 'rxjs';
 import {ArticleType} from '../../../model/_generated/graphql.schema';
 import {getArticlesMock} from '../../../model/article/article.mocks';
+import {PageService} from '../../../services/page/page.service';
+import {Logo} from '../../../services/layout/logo';
 
 @Component({
   templateUrl: './blog-index.component.html',
@@ -15,18 +16,20 @@ export class BlogIndexComponent implements OnInit, OnDestroy {
 
   public articles: ArticleType[];
   public isLoading: boolean;
+  protected metas: Metas;
   private articles$: Subscription;
 
   constructor(
-    private readonly seoHeadService: SeoHeadService,
+    private readonly pageService: PageService,
     private readonly router: Router,
-    private readonly route: ActivatedRoute,
     private readonly articleModelService: ArticleModelService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
     this.articles = [];
     this.isLoading = false;
+    pageService.layout(true, Logo.Aife);
   }
+
 
   ngOnInit() {
     this.updateHead();
@@ -38,7 +41,7 @@ export class BlogIndexComponent implements OnInit, OnDestroy {
   }
 
   private updateHead() {
-    this.seoHeadService.setHead(
+    this.pageService.metas(
       new Metas(
         'Un blog technique pour apprendre à dev ou comprendre des trucs',
         'Blog',

@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import {ResponsiveService} from '../responsive/responsive.service';
+import {Injectable} from '@angular/core';
+import {ResponsiveService} from '../../responsive/responsive.service';
+import {Logo} from './logo';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,7 @@ export class LayoutService {
 
   private _isMenuVisible: boolean;
   private _isFooterVisible: boolean;
+  public logoUri: Logo;
 
   get isMenuVisible(): boolean {
     return this._isMenuVisible;
@@ -22,6 +24,7 @@ export class LayoutService {
   ) {
     this._isMenuVisible = responsiveService.isLargeScreen;
     this._isFooterVisible = true;
+    this.logoUri = Logo.Aifedespaix;
   }
 
   public toggleMenu() {
@@ -31,5 +34,6 @@ export class LayoutService {
   public footerVisibility(visible: boolean) {
     this._isFooterVisible = visible;
   }
+
 
 }
