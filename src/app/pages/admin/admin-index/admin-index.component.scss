@@ -12,14 +12,16 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .articles,
+  app-box-admin,
+  app-article-admin,
   .categories {
     width: 100%;
     padding: $padding;
     box-sizing: border-box;
   }
 
-  .articles {
+  app-article-admin,
+  app-box-admin {
     @include largeScreen {
       grid-column: span 2;
     }

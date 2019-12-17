@@ -8,10 +8,9 @@ import {Subscription} from 'rxjs';
 import {getBoxesMock} from '../../../model/box/box.mocks';
 import {BoxDetailComponent} from '../../../components/box/box-detail/box-detail.component';
 import {PageService} from '../../../services/page/page.service';
-import {QueryRef} from 'apollo-angular/QueryRef';
 
 /** todo
- * a revoir car on change tout et on change dynamiquement la box actuelle (en ram) plutot que de requeter l'api
+ * a revoir car on charge tout et on change dynamiquement la box actuelle (en ram) plutot que de requeter l'api
  * ça oblige à charger les commentaires et tout le bordel de chaque box alors que l'on ne l'affiche pas
  * (si modification => update également la requete dans le model (boxes))
  */
@@ -27,7 +26,6 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
 
   public boxes: BoxType[];
   public $boxes: Subscription;
-  public boxesQuery: QueryRef<{ boxes: BoxType[] }>;
   public isLoadingBoxes: boolean;
 
   @ViewChild('detail', {static: true}) public boxDetailComponent: BoxDetailComponent;
@@ -69,8 +67,8 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
     this.soundService.play();
   }
 
-  public async fetchMore() {
-    await this.boxModelService.moreBoxes({first: 10, skip: this.boxes.length});
+  public fetchMore() {
+    this.boxModelService.moreBoxes({first: 10, skip: this.boxes.length});
   }
 
   private loadBoxes() {
@@ -93,7 +91,6 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
       new Metas(
         box ? box.title : 'Des Sound Box à partager avec tous les fdp de ta région',
         'Box',
-        // tslint:disable-next-line:max-line-length
         box ? box.description : `Tu cliques, t'écoutes, ça fait du bruit, t'es content(e) et tu fermes ta gueule poto`,
         box ? box.author.login : 'clapette',
         this.router.url,

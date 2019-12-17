@@ -1,0 +1,88 @@
+<h3>{{label}}</h3>
+
+<table
+  mat-table
+  [dataSource]="boxes"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        (change)="$event ? masterToggle() : null"
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox
+        (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)"
+        [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+      <a
+        mat-flat-button
+        matTooltipPosition="below"
+        matTooltip="Accéder à la box"
+        [routerLink]="['/box', row.id, row.title]"
+      >
+        <mat-icon class="mat-18">visibility</mat-icon>
+      </a>
+      <a
+        mat-flat-button
+        matTooltipPosition="below"
+        matTooltip="Modifier la box"
+        [routerLink]="['/box/edit', row.id, row.title]"
+      >
+        <mat-icon class="mat-18">edit</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="box">
+    <th mat-header-cell *matHeaderCellDef>Box</th>
+    <td mat-cell *matCellDef="let element">
+      <app-box class="box-preview" [box]="element" [noTitle]="true"></app-box>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Titre</th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="comments">
+    <th mat-header-cell *matHeaderCellDef>Commentaires</th>
+    <td mat-cell *matCellDef="let element"> {{element.comments.length}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div class="actions">
+  <button
+    mat-icon-button
+    color="primary"
+    matTooltip="Actions multiples"
+    aria-label="Actions multiples"
+    [disabled]="!selection.selected.length"
+    [matMenuTriggerFor]="actions"
+  >
+    <mat-icon class="mat-18">work</mat-icon>
+  </button>
+  <mat-menu #actions="matMenu">
+    <button
+      mat-menu-item
+      (click)="delete()"
+    >
+      <mat-icon>delete</mat-icon> Supprimer
+    </button>
+  </mat-menu>
+</div>

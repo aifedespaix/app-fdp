@@ -6,6 +6,7 @@ import { AdminIndexComponent } from './admin-index/admin-index.component';
 import {CategoryModule} from '../../components/category/category.module';
 import {FormsModule} from '@angular/forms';
 import {ArticleModule} from '../../components/article/article.module';
+import {BoxModule} from '../../components/box/box.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {ArticleModule} from '../../components/article/article.module';
     CategoryModule,
     FormsModule,
     ArticleModule,
+    BoxModule,
   ],
 })
 export class AdminModule { }

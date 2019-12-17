@@ -112,6 +112,7 @@ type Mutation {
   createMenu(menu: MenuInput!): MenuType!
   createPicture(file: Upload!, picture: PictureInput!): PictureType!
   createResourceAudio(audio: AudioInput): ResourceType!
+  deleteBox(id: ID!): BoxType!
   deleteCategory(id: ID!): CategoryType!
   deleteComment(id: ID!): CommentType!
   deleteUser(id: String!): UserType!
@@ -244,6 +245,7 @@ input BoxInput {
 
 input BoxUpdateInput {
   description: String
+  id: ID!
   tags: [TagInput]
   thumbnailId: String
   title: String

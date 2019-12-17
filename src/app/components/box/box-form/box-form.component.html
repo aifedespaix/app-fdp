@@ -63,9 +63,9 @@
     color="primary"
     type="submit"
     class="btn btn-success"
-    [disabled]="!createBoxForm.form.valid"
+    [disabled]="!createBoxForm.form.valid && !elem.id"
   >
     <mat-icon>playlist_add</mat-icon>
-    Créer une box
+    {{getSaveLabel()}}
   </button>
 </form>

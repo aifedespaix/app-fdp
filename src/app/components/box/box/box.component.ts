@@ -10,6 +10,7 @@ import {SoundService} from '../../../services/sound/sound.service';
 export class BoxComponent implements OnInit {
 
   @Input() box: BoxType;
+  @Input() noTitle = false;
 
   constructor(
     private readonly soundService: SoundService,

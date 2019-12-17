@@ -1,6 +1,8 @@
 @import '~normalize.css';
 @import 'theme/app-theme';
 @import 'framework';
+@import "layout-variables";
+@import "responsive";
 
 .inutile {
   background-color: #666666;
@@ -21,4 +23,35 @@ a {
 
 p {
   overflow-wrap: break-word;
+}
+
+.mat-table {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  min-height: 30rem;
+
+  @include largeScreen {
+    display: table;
+    min-height: auto;
+  }
+
+  .mat-header-row,
+  .mat-row {
+    display: flex;
+    height: auto;
+
+    @include largeScreen {
+      display: table-row;
+    }
+  }
+
+  .mat-row {
+    flex-direction: column;
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    padding: $padding;
+  }
 }

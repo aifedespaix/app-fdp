@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ArticleType} from '../../../model/_generated/graphql.schema';
+import {ArticleType, BoxType} from '../../../model/_generated/graphql.schema';
 import {ArticleModelService} from '../../../model/article/article-model.service';
 import {PageService} from '../../../services/page/page.service';
 import {Metas} from '../../../services/seo-head';
 import {Router} from '@angular/router';
+import {BoxModelService} from '../../../model/box/box-model.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,11 +14,13 @@ import {Router} from '@angular/router';
 export class AdminIndexComponent implements OnInit {
 
   public articles: ArticleType[];
+  public boxes: BoxType[];
 
   constructor(
     private readonly router: Router,
     private readonly pageService: PageService,
     private readonly articleModelService: ArticleModelService,
+    private readonly boxModelService: BoxModelService,
   ) {
     this.pageService.layout(false);
   }
@@ -27,6 +30,11 @@ export class AdminIndexComponent implements OnInit {
       .articles({}, null)
       .subscribe((articles) => {
         this.articles = articles;
+      });
+    this.boxModelService
+      .boxes({})
+      .subscribe((boxes) => {
+        this.boxes = boxes;
       });
     this.setMetas();
   }

@@ -18,6 +18,10 @@ export abstract class Form<T extends { id: string }> {
   }
 
   protected abstract update(): void;
+
   protected abstract create(): void;
+
   protected abstract getInput(): void;
+
+  protected abstract getSaveLabel(): string;
 }

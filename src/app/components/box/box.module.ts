@@ -14,13 +14,20 @@ import {ResourceModule} from '../resource/resource.module';
 import {MatIconModule} from '@angular/material/icon';
 import {TagModule} from '../tag/tag.module';
 import { BoxComponent } from './box/box.component';
+import { BoxAdminComponent } from './box-admin/box-admin.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {RouterModule} from '@angular/router';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
-  declarations: [BoxDetailComponent, BoxFormComponent, BoxComponent],
+  declarations: [BoxDetailComponent, BoxFormComponent, BoxComponent, BoxAdminComponent],
   exports: [
     BoxDetailComponent,
     BoxFormComponent,
     BoxComponent,
+    BoxAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +41,11 @@ import { BoxComponent } from './box/box.component';
     ResourceModule,
     MatIconModule,
     TagModule,
+    MatTableModule,
+    MatCheckboxModule,
+    RouterModule,
+    MatTooltipModule,
+    MatMenuModule,
   ],
   providers: [
     BoxModelService,

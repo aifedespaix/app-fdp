@@ -2,7 +2,10 @@
   class="mat-elevation-z4 second-background main-color"
 ></app-header>
 
-<app-layout-nav *ngIf="layoutService.isMenuVisible || responsiveService.isLargeScreen"></app-layout-nav>
+<app-layout-nav
+  *ngIf="layoutService.isMenuVisible || responsiveService.isLargeScreen"
+  class="mat-elevation-z4"
+></app-layout-nav>
 
 <div
   class="content"

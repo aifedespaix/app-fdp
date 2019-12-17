@@ -1,2 +1,2 @@
 <app-picture *ngIf="box.thumbnail" [picture]="box.thumbnail"></app-picture>
-<h3 class="border-3 main-color">{{box.title}}</h3>
+<h3 class="border-3 main-color" *ngIf="!noTitle">{{box.title}}</h3>

@@ -1,5 +1,6 @@
 <div class="box-detail-container">
   <app-box-detail
+    (click)="fetchMore()"
     #detail
     *ngIf="actualBox"
     [box]="actualBox"
@@ -7,15 +8,22 @@
   ></app-box-detail>
 </div>
 
-<app-loading [isLoading]="isLoadingBoxes" class="boxes-container">
-  <div class="boxes">
+<app-loading
+  [isLoading]="isLoadingBoxes"
+  class="boxes-container"
+>
+  <div
+    class="boxes"
+  >
     <a
       [routerLink]="['/box', box.id,  box.title]"
-      class="box hoverable hoverable_pump"
+      class="box hoverable hoverable_pump fdpBackground"
       *ngFor="let box of boxes"
       (click)="play(box)"
+      appScroll
+      (scrolled)="fetchMore()"
     >
-      <app-picture [picture]="box.thumbnail"></app-picture>
+      <app-picture [picture]="box.thumbnail" objectFit="cover"></app-picture>
       <h3 class="border-3 main-color">{{box.title}}</h3>
     </a>
   </div>

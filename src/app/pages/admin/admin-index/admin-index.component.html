@@ -1,12 +1,14 @@
- <div class="categories">
+<div class="categories">
   <h2>Catégories</h2>
   <app-category-admin></app-category-admin>
 </div>
 
-<div class="articles">
-  <app-article-admin
-    *ngIf="articles"
-    label="Articles"
-    [articles]="articles"
-  ></app-article-admin>
-</div>
+<app-article-admin
+  *ngIf="articles"
+  [articles]="articles"
+></app-article-admin>
+
+<app-box-admin
+  *ngIf="boxes"
+  [boxes]="boxes"
+></app-box-admin>

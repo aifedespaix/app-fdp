@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BoxModelService} from '../../../model/box/box-model.service';
 import {AudioInput, BoxInput, BoxType} from '../../../model/_generated/graphql.schema';
 import {Form} from '../../../abstract/form.abstract';
+import {ComponentCanDeactivate} from '../../../guards/pending-changes.guard';
 
 @Component({
   selector: 'app-box-form',
@@ -11,22 +12,16 @@ import {Form} from '../../../abstract/form.abstract';
 export class BoxFormComponent extends Form<BoxType> implements OnInit {
 
   public audioInput: AudioInput;
+  public isSaved: boolean;
 
   constructor(
     private readonly boxModelService: BoxModelService,
   ) {
     super();
+    this.isSaved = false;
   }
 
   ngOnInit() {
-  }
-
-  submit() {
-    if (this.elem.id) {
-      this.update();
-    } else {
-      this.create();
-    }
   }
 
   thumbnailUpdated() {
@@ -48,7 +43,11 @@ export class BoxFormComponent extends Form<BoxType> implements OnInit {
   }
 
   protected update() {
-
+    this.boxModelService
+      .update({...this.getInput(), id: this.elem.id})
+      .subscribe((box) => {
+        this.newElem.emit(box);
+      });
   }
 
   protected create() {
@@ -60,4 +59,9 @@ export class BoxFormComponent extends Form<BoxType> implements OnInit {
         this.newElem.emit(box);
       });
   }
+
+  protected getSaveLabel(): string {
+    return this.elem.id ? 'Éditer la box' : 'Enregistrer la box';
+  }
+
 }

@@ -52,6 +52,7 @@ export class BoxInput {
 }
 
 export class BoxUpdateInput {
+  id: string;
   title?: string;
   description?: string;
   thumbnailId?: string;
@@ -250,6 +251,8 @@ export abstract class IMutation {
 
   abstract updateBox(box: BoxUpdateInput): BoxType | Promise<BoxType>;
 
+  abstract deleteBox(id: string): BoxType | Promise<BoxType>;
+
   abstract createCategory(category: CategoryInput): CategoryType | Promise<CategoryType>;
 
   abstract updateCategory(category: CategoryEditInput): CategoryType | Promise<CategoryType>;
@@ -314,7 +317,7 @@ export class PlaylistYoutubeType {
 export abstract class IQuery {
   abstract helloWorld(): string | Promise<string>;
 
-  abstract articles(published: boolean, pagination?: PaginationInput): ArticleType[] | Promise<ArticleType[]>;
+  abstract articles(published?: boolean, pagination?: PaginationInput): ArticleType[] | Promise<ArticleType[]>;
 
   abstract article(id: string): ArticleType | Promise<ArticleType>;
 

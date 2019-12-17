@@ -39,7 +39,6 @@ export class BlogArticleFormComponent implements OnInit, ComponentCanDeactivate 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadArticle(id);
-    } else {
     }
     this.setMetas();
   }

@@ -1,5 +1,5 @@
 <app-box-form
   [elem]="box"
-  (newElem)="router.navigate(['/box', $event.id, $event.title])"
+  (newElem)="isSaved = true; router.navigate(['/box', $event.id, $event.title])"
 ></app-box-form>
 <app-box [box]="box"></app-box>

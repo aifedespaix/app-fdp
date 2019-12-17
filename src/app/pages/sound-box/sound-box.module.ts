@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 
 import {SoundBoxRoutingModule} from './sound-box-routing.module';
 import {SoundBoxIndexComponent} from './sound-box-index/sound-box-index.component';
-import {BoxModelService} from '../../model/box/box-model.service';
 import {LoadingModule} from '../../components/loading/loading.module';
 import {CardModule} from '../../components/card/card.module';
 import {PictureModule} from '../../components/picture/picture.module';
@@ -20,6 +19,7 @@ import {PictureLibraryModule} from '../../components/picture-library/picture-lib
 import {TagModule} from '../../components/tag/tag.module';
 import {BoxModule} from '../../components/box/box.module';
 import {SoundModule} from '../../components/sound/sound.module';
+import {DirectivesModule} from '../../directives/directives.module';
 
 
 @NgModule({
@@ -42,6 +42,7 @@ import {SoundModule} from '../../components/sound/sound.module';
     TagModule,
     BoxModule,
     SoundModule,
+    DirectivesModule,
   ],
 })
 export class SoundBoxModule {
