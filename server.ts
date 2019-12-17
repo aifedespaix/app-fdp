@@ -18,6 +18,7 @@
 import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
+import * as compression from 'compression';
 import {join} from 'path';
 import {RESPONSE} from '@nguniversal/express-engine/tokens';
 
@@ -29,6 +30,8 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
+
+app.use(compression());
 
 // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
 app.engine('html', ngExpressEngine({
