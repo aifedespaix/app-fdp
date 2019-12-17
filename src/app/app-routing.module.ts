@@ -99,7 +99,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'admin',
-    // canActivate: [AdminGuard], todo
+    canActivate: [AdminGuard],
     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
     data: {
       animation: 'OnBottom',
