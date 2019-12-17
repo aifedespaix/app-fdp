@@ -18,7 +18,7 @@ export class ShopIndexComponent implements OnInit {
 
   ngOnInit() {
     this.updateHead();
-    this.pageService.layout();
+    this.pageService.layout(false);
   }
 
   private updateHead() {
