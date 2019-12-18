@@ -34,11 +34,11 @@ export class PictureComponent implements OnInit, OnChanges {
     const largestImage = calcPicture.images.pop();
 
     calcPicture.images.forEach((image) => {
-      this.srcset += `${image.url} ${image.width}w,`;
+      this.srcset += `${encodeURI(image.url)} ${image.width}w,`;
       this.sizes += `(max-width: ${image.width - 20}px) ${image.width}px,`;
     });
 
-    this.srcset += `${largestImage.url} ${largestImage.width}w`;
+    this.srcset += `${encodeURI(largestImage.url)} ${largestImage.width}w`;
     this.sizes += `${largestImage.width}px`;
     this.src = largestImage.url;
   }
