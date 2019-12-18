@@ -6,11 +6,11 @@
   <div class="playlists">
     <a
       *ngFor="let playlist of playlists"
-      class="playlists-item main-color hoverable hoverable_pump fdpBackground"
+      class="playlists-item main-color hoverable hoverable-pump fdpBackground"
       (click)="switchPlaylist(playlist)"
     >
-      <div>{{playlist.title}}</div>
-      <div class="subtitle">{{playlist.year}}</div>
+      <span>{{playlist.title}}</span>
+      <span class="subtitle">{{playlist.year}}</span>
     </a>
   </div>
 

@@ -17,7 +17,7 @@
   >
     <a
       [routerLink]="['/box', box.id,  box.title]"
-      class="box hoverable hoverable_pump fdpBackground"
+      class="box hoverable hoverable-pump fdpBackground"
       *ngFor="let box of boxes"
       (click)="play(box)"
       appScroll
