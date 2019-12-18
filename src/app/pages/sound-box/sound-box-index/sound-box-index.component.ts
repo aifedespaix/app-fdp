@@ -111,6 +111,7 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
           this.actualBox = box;
           this.updateHead(box);
           this.isLoadingBox = false;
+          this.play(box);
         },
         async () => {
           await this.router.navigateByUrl('/404');
