@@ -1,6 +1,7 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {BoxType} from '../../../model/_generated/graphql.schema';
 import {SoundService} from '../../../services/sound/sound.service';
+import {BoxModelService} from '../../../model/box/box-model.service';
 
 @Component({
   selector: 'app-box',
@@ -14,6 +15,7 @@ export class BoxComponent implements OnInit {
 
   constructor(
     private readonly soundService: SoundService,
+    private readonly boxModelService: BoxModelService,
   ) {
   }
 
@@ -22,10 +24,19 @@ export class BoxComponent implements OnInit {
     if (this.box.sound) {
       this.soundService.load(this.box.sound, this.box.title);
       this.soundService.play();
+      this.addView();
     }
   }
 
   ngOnInit() {
   }
 
+  private addView() {
+    const $sub = this.boxModelService
+      .addViewBox(this.box.id)
+      .subscribe((box) => {
+        this.box.views = box.views;
+        $sub.unsubscribe();
+      });
+  }
 }

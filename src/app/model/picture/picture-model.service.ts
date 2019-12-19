@@ -4,7 +4,7 @@ import {PictureInput, PictureType} from '../_generated/graphql.schema';
 import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
-import {CREATE_PICTURE, MY_PICTURES} from './graphql';
+import {PICTURE} from './picture-graphql';
 
 @Injectable()
 export class PictureModelService {
@@ -17,7 +17,7 @@ export class PictureModelService {
   public createPicture(picture: PictureInput, file: File): Observable<PictureType> {
     return this.apollo
       .mutate({
-        mutation: CREATE_PICTURE,
+        mutation: PICTURE.mutations.createPicture,
         variables: {picture, file},
       })
       .pipe(map(
@@ -28,7 +28,7 @@ export class PictureModelService {
   public myPictures(): Observable<PictureType[]> {
     return this.apollo
       .query({
-        query: MY_PICTURES,
+        query: PICTURE.queries.myPictures,
       })
       .pipe(map(
         ({data}: ApolloQueryResult<{ myPictures: PictureType[] }>) => data.myPictures),

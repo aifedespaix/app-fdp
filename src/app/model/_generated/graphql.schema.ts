@@ -160,6 +160,7 @@ export class ArticleType {
   likes?: LikeType[];
   tags?: TagType[];
   comments?: CommentType[];
+  views: number;
 }
 
 export class BoxType {
@@ -174,6 +175,7 @@ export class BoxType {
   tags: TagType[];
   likes: LikeType[];
   comments: CommentType[];
+  views: number;
 }
 
 export class CategoryType {
@@ -252,6 +254,8 @@ export abstract class IMutation {
   abstract updateBox(box: BoxUpdateInput): BoxType | Promise<BoxType>;
 
   abstract deleteBox(id: string): BoxType | Promise<BoxType>;
+
+  abstract addViewBox(id: string): BoxType | Promise<BoxType>;
 
   abstract createCategory(category: CategoryInput): CategoryType | Promise<CategoryType>;
 
@@ -376,6 +380,7 @@ export class UserType {
   role: Role;
   avatar?: PictureType;
   articles?: ArticleType[];
+  boxes?: BoxType[];
 }
 
 export type DateTime = any;

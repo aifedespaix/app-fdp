@@ -19,6 +19,7 @@ type ArticleType {
   thumbnail: PictureType!
   title: String!
   updatedAt: DateTime!
+  views: Int!
 }
 
 type BoxType {
@@ -33,6 +34,7 @@ type BoxType {
   thumbnail: PictureType!
   title: String!
   updatedAt: DateTime!
+  views: Int!
 }
 
 type CategoryType {
@@ -97,6 +99,7 @@ type MenuType {
 
 type Mutation {
   addItem(item: MenuItemInput!, name: String!): MenuType!
+  addViewBox(id: ID!): BoxType!
   authAifedespaix(secret: String!): LoginType!
   authLogin(login: LoginInput!): LoginType!
   authRegister(data: RegisterInput!): LoginType!
@@ -189,6 +192,7 @@ type TagType {
 type UserType {
   articles: [ArticleType!]
   avatar: PictureType
+  boxes: [BoxType!]
   createdAt: DateTime!
   email: String!
   id: ID!

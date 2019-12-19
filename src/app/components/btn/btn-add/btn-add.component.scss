@@ -5,7 +5,7 @@
   position: fixed;
   bottom: calc(4 * #{$padding} + #{$header-height});
   right: 4 * $padding;
-  z-index: 10;
+  z-index: $zindex-floating;
 
   @include largeScreen {
     bottom: 4 * $padding;

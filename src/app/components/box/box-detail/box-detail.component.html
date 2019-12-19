@@ -1,14 +1,25 @@
-<app-picture [picture]="box.thumbnail"></app-picture>
+<a
+  *ngIf="canEdit()"
+  mat-icon-button
+  aria-label="Editer cette box"
+  matTooltip="Editer cette box"
+  class="edit"
+  [routerLink]="['/box/edit', box.id, box.title]"
+>
+  <mat-icon class="mat-24">edit</mat-icon>
+</a>
+
+<app-box [box]="box" [noTitle]="true"></app-box>
 
 <div class="infos">
   <h2>{{box.title}}</h2>
   <p>{{box.description}}</p>
   <footer>
-    <div>{{box.author.login}}</div>
+    <div class="author"><app-picture [picture]="box.author.avatar"></app-picture> {{box.author.login}}</div>
     <div>{{box.createdAt | date: 'd MMM y'}}</div>
   </footer>
 </div>
-
+{{showComments}}
 <app-comment-system
   class="comments"
   [show]="showComments"

@@ -4,7 +4,7 @@ import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {ApolloQueryResult} from 'apollo-client';
-import {BOX, BOXES, CREATE_BOX, DELETE_BOX, UPDATE_BOX} from './graphql';
+import {BOX} from './box-graphql';
 import {QueryRef} from 'apollo-angular/QueryRef';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class BoxModelService {
   public boxes(pagination: PaginationInput): Observable<BoxType[]> {
     this.boxesQuery = this.apollo
       .watchQuery({
-        query: BOXES,
+        query: BOX.queries.boxes,
         variables: {pagination},
       });
 
@@ -52,11 +52,11 @@ export class BoxModelService {
   public createBox(box: BoxInput, sound: AudioInput): Observable<BoxType> {
     return this.apollo
       .mutate({
-        mutation: CREATE_BOX,
+        mutation: BOX.mutations.createBox,
         variables: {box, sound},
         update: (store, {data: {createBox}}: ApolloQueryResult<{ createBox: BoxType }>) => {
           if (this.boxesQuery) {
-            const options = {query: BOXES, variables: {pagination: {first: 20}}};
+            const options = {query: BOX.queries.boxes, variables: {pagination: {first: 20}}};
             const data = store.readQuery(options) as { boxes: BoxType[] };
             data.boxes.push(createBox);
             store.writeQuery({...options, data});
@@ -64,13 +64,12 @@ export class BoxModelService {
         },
       })
       .pipe(map(({data: {createBox}}: ApolloQueryResult<{ createBox: BoxType }>) => createBox));
-
   }
 
   public box(id: string) {
     return this.apollo
       .query({
-        query: BOX,
+        query: BOX.queries.box,
         variables: {id},
       })
       .pipe(map(({data: {box}}: ApolloQueryResult<{ box: BoxType }>) => box));
@@ -79,7 +78,7 @@ export class BoxModelService {
   public update(box: BoxUpdateInput): Observable<BoxType> {
     return this.apollo
       .mutate({
-        mutation: UPDATE_BOX,
+        mutation: BOX.mutations.updateBox,
         variables: {box},
       })
       .pipe(map(({data: {updateBox}}: ApolloQueryResult<{ updateBox: BoxType }>) => updateBox));
@@ -88,9 +87,18 @@ export class BoxModelService {
   public delete(id: string): Observable<BoxType> {
     return this.apollo
       .mutate({
-        mutation: DELETE_BOX,
+        mutation: BOX.mutations.deleteBox,
         variables: {id},
       })
       .pipe(map(({data: {deleteBox}}: ApolloQueryResult<{ deleteBox: BoxType }>) => deleteBox));
+  }
+
+  public addViewBox(id: string) {
+    return this.apollo
+      .mutate({
+        mutation: BOX.mutations.addViewBox,
+        variables: {id},
+      })
+      .pipe(map(({data: {addViewBox}}: ApolloQueryResult<{ addViewBox: BoxType }>) => addViewBox));
   }
 }

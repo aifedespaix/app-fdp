@@ -1,6 +1,5 @@
 <div class="box-detail-container">
   <app-box-detail
-    (click)="fetchMore()"
     #detail
     *ngIf="actualBox"
     [box]="actualBox"
@@ -13,24 +12,19 @@
   [isLoading]="isLoadingBoxes"
   class="boxes-container"
 >
-  <div
-    class="boxes"
-  >
-    <a
-      [routerLink]="['/box', box.id,  box.title]"
+  <div class="boxes">
+    <app-box
       class="box hoverable hoverable-pump fdpBackground"
       *ngFor="let box of boxes"
-      (click)="play(box)"
+      [routerLink]="['/box', box.id,  box.title]"
+      [box]="box"
       appScroll
       (scrolled)="fetchMore()"
-    >
-      <app-picture [picture]="box.thumbnail" objectFit="cover"></app-picture>
-      <h3 class="border-3 main-color">{{box.title}}</h3>
-    </a>
+    ></app-box>
   </div>
 </app-loading>
 
 <app-btn-add
-  route="/box/create"
+  route="/box/new"
   label="Ajouter une nouvelle box"
 ></app-btn-add>

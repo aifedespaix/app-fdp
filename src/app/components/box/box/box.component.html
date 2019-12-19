@@ -1,2 +1,10 @@
-<app-picture *ngIf="box.thumbnail" [picture]="box.thumbnail"></app-picture>
-<h3 class="border-3 main-color" *ngIf="!noTitle">{{box.title}}</h3>
+<app-picture *ngIf="box.thumbnail" [picture]="box.thumbnail" objectFit="cover"></app-picture>
+<div class="front">
+  <h3 class="border-3 main-color" *ngIf="!noTitle">{{box.title}}</h3>
+  <span
+    *ngIf="box.views"
+    class="border-3 main-color"
+    matTooltipPosition="below"
+    matTooltip="Nombre de lectures"
+  >{{box.views}}</span>
+</div>

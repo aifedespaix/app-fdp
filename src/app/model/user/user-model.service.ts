@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {EDIT_MY_USER, MY_PROFILE, MY_PROFILE_FULL} from './graphql';
+import {USER} from './user-graphql';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
 import {UserEditInput, UserType} from '../_generated/graphql.schema';
@@ -17,7 +17,7 @@ export class UserModelService {
 
   public myProfile(): Observable<UserType> {
     return this.apollo.query({
-      query: MY_PROFILE,
+      query: USER.queries.myProfile,
     })
       .pipe(map(
         ({data: {myProfile}}: ApolloQueryResult<{ myProfile: UserType }>) => {
@@ -31,7 +31,7 @@ export class UserModelService {
 
   public completeProfile(): Observable<UserType> {
     return this.apollo.query({
-      query: MY_PROFILE_FULL,
+      query: USER.queries.myProfileFull,
     })
       .pipe(map(
         ({data: {myProfile}}: ApolloQueryResult<{ myProfile: UserType }>) => {
@@ -45,7 +45,7 @@ export class UserModelService {
 
   public editMyUser(user: UserEditInput): Observable<UserType> {
     return this.apollo.mutate({
-      mutation: EDIT_MY_USER,
+      mutation: USER.mutations.editMyUser,
       variables: user,
     })
       .pipe(map(

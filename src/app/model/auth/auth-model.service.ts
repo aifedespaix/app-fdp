@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {LoginInput, LoginType, RegisterInput} from '../_generated/graphql.schema';
 import {Apollo} from 'apollo-angular';
-import {LOGIN, REGISTER} from './graphql';
+import {AUTH} from './auth-graphql';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
 import {Observable} from 'rxjs';
@@ -15,7 +15,7 @@ export class AuthModelService {
   }
 
   public login(loginInput: LoginInput): Observable<LoginType> {
-    return this.apollo.mutate({mutation: LOGIN, variables: loginInput})
+    return this.apollo.mutate({mutation: AUTH.mutations.login, variables: loginInput})
       .pipe(map(
         ({data}: ApolloQueryResult<{ authLogin: LoginType }>) => {
           return data.authLogin;
@@ -24,7 +24,7 @@ export class AuthModelService {
   }
 
   public register(registerInput: RegisterInput): Observable<LoginType> {
-    return this.apollo.mutate({mutation: REGISTER, variables: registerInput})
+    return this.apollo.mutate({mutation: AUTH.mutations.register, variables: registerInput})
       .pipe(map(
         (res: ApolloQueryResult<{ authRegister: LoginType }>) => {
           return res.data.authRegister;

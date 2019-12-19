@@ -37,7 +37,9 @@ export class BlogIndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.articles$.unsubscribe();
+    if (this.articles$) {
+      this.articles$.unsubscribe();
+    }
   }
 
   private updateHead() {

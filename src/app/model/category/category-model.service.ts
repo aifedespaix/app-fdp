@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {Observable} from 'rxjs';
 import {CategoryInput, CategoryType, PaginationInput} from '../_generated/graphql.schema';
-import {CATEGORIES, CATEGORY, CREATE_CATEGORY, DELETE_CATEGORY, UPDATE_CATEGORY} from './graphql';
+import {CATEGORY} from './category-graphql';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
 import {CategoryEditInput} from '@aifedespaix/fdp-api-models';
@@ -18,7 +18,7 @@ export class CategoryModelService {
   public category(id: string): Observable<CategoryType> {
     return this.apollo
       .query({
-        query: CATEGORY,
+        query: CATEGORY.queries.category,
         variables: id,
       })
       .pipe(map(
@@ -28,7 +28,7 @@ export class CategoryModelService {
 
   public categories(pagination: PaginationInput): Observable<CategoryType[]> {
     return this.apollo
-      .watchQuery({query: CATEGORIES, variables: {pagination}})
+      .watchQuery({query: CATEGORY.queries.categories, variables: {pagination}})
       .valueChanges
       .pipe(map(
         ({data}: ApolloQueryResult<{ categories: CategoryType[] }>) => data.categories,
@@ -38,10 +38,10 @@ export class CategoryModelService {
   public createCategory(category: CategoryInput): Observable<CategoryType> {
     return this.apollo
       .mutate({
-        mutation: CREATE_CATEGORY,
+        mutation: CATEGORY.mutations.createCategory,
         variables: {category},
         update: (store, {data: {createCategory}}: ApolloQueryResult<{ createCategory: CategoryType }>) => {
-          const options = {query: CATEGORIES, variables: {pagination: {}}};
+          const options = {query: CATEGORY.queries.categories, variables: {pagination: {}}};
           const data = store.readQuery(options) as { categories: CategoryType[] };
           data.categories.push(createCategory);
           store.writeQuery({...options, data});
@@ -55,10 +55,10 @@ export class CategoryModelService {
   public delete(id: string): Observable<CategoryType> {
     return this.apollo
       .mutate({
-          mutation: DELETE_CATEGORY,
+          mutation: CATEGORY.mutations.deleteCategory,
           variables: {id},
           update: (store, {data: {deleteCategory}}: ApolloQueryResult<{ deleteCategory: CategoryType }>) => {
-            const options = {query: CATEGORIES, variables: {pagination: {}}};
+            const options = {query: CATEGORY.queries.categories, variables: {pagination: {}}};
             const data = store.readQuery(options) as { categories: CategoryType[] };
             store.writeQuery({
               ...options,
@@ -73,10 +73,10 @@ export class CategoryModelService {
   update(category: CategoryEditInput) {
     return this.apollo
       .mutate({
-          mutation: UPDATE_CATEGORY,
+        mutation: CATEGORY.mutations.updateCategory,
         variables: {category},
         update: (store, {data: {updateCategory}}: ApolloQueryResult<{ updateCategory: CategoryType }>) => {
-          const options = {query: CATEGORIES, variables: {pagination: {}}};
+          const options = {query: CATEGORY.queries.categories, variables: {pagination: {}}};
           const data = store.readQuery(options) as { categories: CategoryType[] };
           data.categories.push(updateCategory);
           store.writeQuery({...options, data});

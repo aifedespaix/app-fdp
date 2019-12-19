@@ -3,6 +3,7 @@
   (ngSubmit)="submit()"
 >
   <app-resource-sound-upload
+    *ngIf="!elem.id"
     name="sound"
     [(ngModel)]="audioInput"
     required

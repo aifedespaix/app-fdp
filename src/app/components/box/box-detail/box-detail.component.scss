@@ -1,6 +1,7 @@
 @import "layout-variables";
 
 :host {
+  position: relative;
   display: grid;
   grid-template-columns: auto 2fr;
   grid-template-rows: auto auto;
@@ -8,7 +9,15 @@
   padding: $padding;
 }
 
-app-picture {
+.edit {
+  position: absolute;
+  z-index: $zindex-floating;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+app-box {
   width: 8rem;
   height: 8rem;
   max-width: 50vmin;
@@ -28,6 +37,17 @@ app-picture {
     display: grid;
     grid-template-columns: 1fr auto;
     font-size: .8em;
+
+    .author {
+      display: flex;
+      align-items: center;
+
+      app-picture {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
   }
 }
 

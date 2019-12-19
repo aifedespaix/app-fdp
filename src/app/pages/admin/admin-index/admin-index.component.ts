@@ -27,7 +27,7 @@ export class AdminIndexComponent implements OnInit {
 
   ngOnInit() {
     this.articleModelService
-      .articles({}, null)
+      .articlesFull({}, null)
       .subscribe((articles) => {
         this.articles = articles;
       });

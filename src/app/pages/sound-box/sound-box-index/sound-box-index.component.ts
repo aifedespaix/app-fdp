@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {BoxType} from '../../../model/_generated/graphql.schema';
 import {BoxModelService} from '../../../model/box/box-model.service';
-import {SoundService} from '../../../services/sound/sound.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Metas, OgImage} from '../../../services/seo-head';
 import {Subscription} from 'rxjs';
@@ -9,11 +8,6 @@ import {getBoxesMock} from '../../../model/box/box.mocks';
 import {BoxDetailComponent} from '../../../components/box/box-detail/box-detail.component';
 import {PageService} from '../../../services/page/page.service';
 
-/** todo
- * a revoir car on charge tout et on change dynamiquement la box actuelle (en ram) plutot que de requeter l'api
- * ça oblige à charger les commentaires et tout le bordel de chaque box alors que l'on ne l'affiche pas
- * (si modification => update également la requete dans le model (boxes))
- */
 @Component({
   templateUrl: './sound-box-index.component.html',
   styleUrls: ['./sound-box-index.component.scss'],
@@ -35,36 +29,30 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly pageService: PageService,
     private readonly boxModelService: BoxModelService,
-    private readonly soundService: SoundService,
   ) {
     pageService.layout(false);
   }
 
   ngOnInit() {
     this.loadBoxes();
-
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.loadBox(id);
-    } else {
-      this.updateHead(null);
-    }
+    this.route.params.subscribe(
+      params => {
+        if (params.id) {
+          this.loadBox(params.id);
+        } else {
+          this.updateHead(null);
+        }
+      },
+    );
   }
 
   ngOnDestroy(): void {
-    this.$boxes.unsubscribe();
+    if (this.$boxes) {
+      this.$boxes.unsubscribe();
+    }
     if (this.$actualBox) {
       this.$actualBox.unsubscribe();
     }
-  }
-
-
-  public play(box: BoxType) {
-    if (this.actualBox !== box) {
-      this.actualBox = box;
-    }
-    this.soundService.load(box.sound, box.title);
-    this.soundService.play();
   }
 
   public fetchMore() {
@@ -111,7 +99,6 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
           this.actualBox = box;
           this.updateHead(box);
           this.isLoadingBox = false;
-          this.play(box);
         },
         async () => {
           await this.router.navigateByUrl('/404');

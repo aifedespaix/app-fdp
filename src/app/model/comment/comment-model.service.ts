@@ -4,7 +4,7 @@ import {CommentEditInput, CommentInput, CommentType} from '../_generated/graphql
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ApolloQueryResult} from 'apollo-client';
-import {CREATE_ARTICLE_COMMENT, CREATE_BOX_COMMENT, DELETE_COMMENT, UPDATE_COMMENT} from './graphql';
+import {COMMENT} from './comment-graphql';
 
 @Injectable()
 export class CommentModelService {
@@ -17,7 +17,7 @@ export class CommentModelService {
   public createBoxComment(comment: CommentInput): Observable<CommentType> {
     return this.apollo
       .mutate({
-        mutation: CREATE_BOX_COMMENT,
+        mutation: COMMENT.mutations.createBoxComment,
         variables: {comment},
       })
       .pipe(map(({data: {createBoxComment}}: ApolloQueryResult<{ createBoxComment: CommentType }>) => createBoxComment));
@@ -26,7 +26,7 @@ export class CommentModelService {
   public createArticleComment(comment: CommentInput): Observable<CommentType> {
     return this.apollo
       .mutate({
-        mutation: CREATE_ARTICLE_COMMENT,
+        mutation: COMMENT.mutations.createArticleComment,
         variables: {comment},
       })
       .pipe(map(({data: {createArticleComment}}: ApolloQueryResult<{ createArticleComment: CommentType }>) => createArticleComment));
@@ -34,14 +34,14 @@ export class CommentModelService {
 
   public deleteComment(id: string): Observable<CommentType> {
     return this.apollo.mutate({
-      mutation: DELETE_COMMENT,
+      mutation: COMMENT.mutations.deleteComment,
       variables: {id},
     }).pipe(map(({data: {deleteComment}}: ApolloQueryResult<{ deleteComment: CommentType }>) => deleteComment));
   }
 
   public updateComment(comment: CommentEditInput) {
     return this.apollo.mutate({
-      mutation: UPDATE_COMMENT,
+      mutation: COMMENT.mutations.updateComment,
       variables: {comment},
     }).pipe(map(({data: {updateComment}}: ApolloQueryResult<{ updateComment: CommentType }>) => updateComment));
   }

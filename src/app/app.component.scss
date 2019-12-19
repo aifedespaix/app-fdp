@@ -25,7 +25,7 @@ app-header {
   left: 0;
   right: 0;
   height: $header-height;
-  z-index: 100;
+  z-index: $zindex-layout;
 
   @include largeScreen {
     top: 0;
@@ -39,7 +39,7 @@ app-layout-nav {
   bottom: $header-height;
   left: 0;
   right: 0;
-  z-index: 15;
+  z-index: $zindex-layout;
 
   display: flex;
   align-items: flex-end;

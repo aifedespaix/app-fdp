@@ -19,11 +19,10 @@
   }
 }
 
-
 app-box-detail {
   display: grid;
   @include largeScreen {
-    width: 20rem;
+    width: 30rem;
   }
 }
 
@@ -50,7 +49,7 @@ app-box-detail {
 
   h3 {
     padding: $padding;
-    z-index: 2;
+    z-index: $zindex-local;
     display: flex;
     justify-content: center;
     align-items: center;

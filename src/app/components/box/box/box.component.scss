@@ -5,7 +5,7 @@
   padding: 0;
   cursor: pointer;
 
-  h3,
+  .front,
   app-picture {
     position: absolute;
     top: 0;
@@ -14,11 +14,24 @@
     right: 0;
   }
 
-  h3 {
-    padding: $padding;
-    z-index: 2;
+  .front {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    z-index: $zindex-local;
+
+    h3 {
+      flex: 1;
+      padding: $padding;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    span {
+      padding: $padding;
+      text-align: right;
+    }
   }
+
 }
