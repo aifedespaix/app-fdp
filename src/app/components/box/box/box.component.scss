@@ -4,6 +4,7 @@
   position: relative;
   padding: 0;
   cursor: pointer;
+  user-select: none;
 
   .front,
   app-picture {
