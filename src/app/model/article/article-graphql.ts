@@ -1,13 +1,14 @@
 import {ARTICLE_FULL, ARTICLE_SHOW} from './article-fragments';
 import gql from 'graphql-tag';
 
+// todo use article _ show
 export const ARTICLE = {
   queries: {
     articles: gql`
       query articles($pagination: PaginationInput, $published: Boolean) {
-        articles(pagination: $pagination published: $published) {...ShowArticle}
+        articles(pagination: $pagination published: $published) {...FullArticle}
       }
-      ${ARTICLE_SHOW}
+      ${ARTICLE_FULL}
     `,
     articlesFull: gql`
       query articles($pagination: PaginationInput, $published: Boolean) {
