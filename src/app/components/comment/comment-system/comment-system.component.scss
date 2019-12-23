@@ -3,6 +3,9 @@
 :host {
   display: grid;
   grid-gap: $padding;
+  max-width: 50rem;
+  width: 100%;
+  margin: auto;
 }
 
 .comments {

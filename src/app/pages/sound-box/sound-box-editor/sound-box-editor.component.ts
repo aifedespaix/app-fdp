@@ -42,9 +42,9 @@ export class SoundBoxEditorComponent implements OnInit, ComponentCanDeactivate {
   private setMetas() {
     this.pageService.metas(
       new Metas(
-        'Rédiger un article',
-        'Rédiger un article',
-        `Encore un article à la con`,
+        'Box Editor',
+        'Création et édition de box',
+        `Une nouvelle box grave stylée`,
         'clapette',
         this.router.url,
       ),

@@ -70,6 +70,7 @@ export class SeoHeadService {
     this.meta.updateTag({name: 'twitter:title', content: twitter.twitterTitle});
     this.meta.updateTag({name: 'twitter:image', content: twitter.twitterImage});
     this.meta.updateTag({name: 'twitter:creator', content: twitter.twitterCreator});
+    this.meta.updateTag({name: 'twitter:site', content: 'aifedespaix.com'});
   }
 
   private setTitle(value: string) {

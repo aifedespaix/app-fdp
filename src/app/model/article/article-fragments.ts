@@ -26,6 +26,7 @@ export const ARTICLE_SHOW = gql`
 export const ARTICLE_FULL = gql`
   fragment FullArticle on ArticleType {
     ...ShowArticle
+    content
     comments {...FullComment}
     category {...FullCategory}
   }
