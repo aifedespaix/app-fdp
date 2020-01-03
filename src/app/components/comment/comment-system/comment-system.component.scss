@@ -11,8 +11,9 @@
 .comments {
   display: flex;
   flex-direction: column-reverse;
+  overflow: hidden;
+
   app-comment {
     margin-bottom: $padding;
   }
-  overflow: hidden;
 }

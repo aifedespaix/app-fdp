@@ -38,6 +38,11 @@ app-box {
     grid-template-columns: 1fr auto;
     font-size: .8em;
 
+    div {
+      display: flex;
+      align-items: center;
+    }
+
     .author {
       display: flex;
       align-items: center;
@@ -53,5 +58,4 @@ app-box {
 
 .comments {
   grid-column: span 2;
-  padding: $padding;
 }

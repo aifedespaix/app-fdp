@@ -1,3 +1,4 @@
+<script src="../../../services/string.service.ts"></script>
 <div class="box-detail-container">
   <app-box-detail
     #detail
@@ -13,14 +14,15 @@
   class="boxes-container"
 >
   <div class="boxes">
-    <app-box
+    <a
       class="box hoverable hoverable-pump fdpBackground"
       *ngFor="let box of boxes"
-      [routerLink]="['/box', box.id,  box.title]"
-      [box]="box"
+      [routerLink]="['/box', box.id,  stringService.forUrl(box.title)]"
       appScroll
       (scrolled)="fetchMore()"
-    ></app-box>
+    >
+      <app-box [box]="box"></app-box>
+    </a>
   </div>
 </app-loading>
 

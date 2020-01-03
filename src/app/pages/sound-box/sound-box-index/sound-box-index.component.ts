@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs';
 import {getBoxesMock} from '../../../model/box/box.mocks';
 import {BoxDetailComponent} from '../../../components/box/box-detail/box-detail.component';
 import {PageService} from '../../../services/page/page.service';
+import {StringService} from '../../../services/string.service';
 
 @Component({
   templateUrl: './sound-box-index.component.html',
@@ -28,6 +29,7 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly pageService: PageService,
+    public readonly stringService: StringService,
     private readonly boxModelService: BoxModelService,
   ) {
     pageService.layout(false);
@@ -91,8 +93,11 @@ export class SoundBoxIndexComponent implements OnInit, OnDestroy {
     this.isLoadingBox = true;
     this.$actualBox = this.boxModelService
       .box(id)
-      .subscribe(async (box) => {
-          const url = this.router.serializeUrl(this.router.createUrlTree(['/box', box.id, box.title]));
+      .subscribe(
+        async (box) => {
+          const url = this.router.serializeUrl(
+            this.router.createUrlTree(['/box', box.id, this.stringService.forUrl(box.title)])
+          );
           if (this.router.url !== url) {
             await this.router.navigateByUrl(url);
           }

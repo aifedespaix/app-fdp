@@ -34,25 +34,5 @@ app-box-detail {
 }
 
 .box {
-  position: relative;
-  padding: 0;
-  cursor: pointer;
-
-  h3,
-  app-picture {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  h3 {
-    padding: $padding;
-    z-index: $zindex-local;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+  display: grid;
 }

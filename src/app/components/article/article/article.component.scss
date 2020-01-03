@@ -11,6 +11,7 @@ h1 {
 
 article {
   display: grid;
+  overflow: hidden;
 }
 
 .thumbnail {
@@ -21,11 +22,11 @@ article {
 
 .content {
   text-align: justify;
+  overflow: hidden;
 
   img {
     margin: auto;
     display: block;
-    max-width: 100%;
   }
 }
 

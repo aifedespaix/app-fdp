@@ -25,6 +25,10 @@ p {
   overflow-wrap: break-word;
 }
 
+img {
+  max-width: 100%;
+}
+
 .mat-table {
   display: flex;
   flex-direction: column;

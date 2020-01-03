@@ -15,7 +15,9 @@
   <h2>{{box.title}}</h2>
   <p>{{box.description}}</p>
   <footer>
-    <div class="author"><app-picture [picture]="box.author.avatar"></app-picture> {{box.author.login}}</div>
+    <div class="author">
+      <app-picture [picture]="box.author.avatar"></app-picture> {{box.author.login}}
+    </div>
     <div>{{box.createdAt | date: 'd MMM y'}}</div>
   </footer>
 </div>
