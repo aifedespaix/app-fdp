@@ -5,6 +5,7 @@ import {ArticleType} from '../../../model/_generated/graphql.schema';
 import {Metas} from '../../../services/seo-head';
 import {PageService} from '../../../services/page/page.service';
 import {Logo} from '../../../services/layout/logo';
+import {StringService} from '../../../services/string.service';
 
 @Component({
   templateUrl: './blog-article.component.html',
@@ -20,6 +21,7 @@ export class BlogArticleComponent implements OnInit {
     private readonly pageService: PageService,
     private readonly route: ActivatedRoute,
     private readonly articleModelService: ArticleModelService,
+    public readonly stringService: StringService,
   ) {
     this.isLoading = false;
     this.pageService.layout(true, Logo.Aife);
@@ -34,7 +36,7 @@ export class BlogArticleComponent implements OnInit {
     this.articleModelService
       .article(this.route.snapshot.paramMap.get('id'))
       .subscribe(async (article) => {
-          const url = this.router.serializeUrl(this.router.createUrlTree(['/blog/articles', article.id, article.title]));
+          const url = this.router.serializeUrl(this.router.createUrlTree(['/blog/articles', article.id, this.stringService.forUrl(article.title)]));
           if (this.router.url !== url) {
             await this.router.navigateByUrl(url);
           }

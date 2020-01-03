@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {PictureType} from '../../../model/_generated/graphql.schema';
 import * as _ from 'lodash';
+import {getUndefinedPictureMock} from '../../../model/picture/picture.mocks';
 
 @Component({
   selector: 'app-picture',
@@ -11,6 +12,7 @@ export class PictureComponent implements OnInit, OnChanges {
 
   @Input() public picture: PictureType;
   @Input() public objectFit: 'cover' | 'contain' = 'contain';
+
   public src: string;
   public srcset: string;
   public sizes: string;
@@ -23,6 +25,9 @@ export class PictureComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.calcDatas();
+    if(!this.picture) {
+      this.picture = getUndefinedPictureMock();
+    }
   }
 
   private calcDatas() {

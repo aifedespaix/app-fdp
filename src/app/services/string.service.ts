@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StringService {
 
-  constructor() { }
+  constructor() {
+  }
 
   forUrl(text: string) {
-    return text.replace(/ /g,"_");
-  }d
+    return text.replace(/ /g, '_');
+  }
 
 }
