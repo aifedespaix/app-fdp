@@ -36,7 +36,11 @@ export class BlogArticleComponent implements OnInit {
     this.articleModelService
       .article(this.route.snapshot.paramMap.get('id'))
       .subscribe(async (article) => {
-          const url = this.router.serializeUrl(this.router.createUrlTree(['/blog/articles', article.id, this.stringService.forUrl(article.title)]));
+          const url = this.router.serializeUrl(
+            this.router.createUrlTree(
+              ['/blog/articles', article.id, this.stringService.forUrl(article.title)],
+            ),
+          );
           if (this.router.url !== url) {
             await this.router.navigateByUrl(url);
           }

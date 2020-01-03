@@ -25,7 +25,7 @@ export class PictureComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.calcDatas();
-    if(!this.picture) {
+    if (!this.picture) {
       this.picture = getUndefinedPictureMock();
     }
   }
